@@ -1,0 +1,3941 @@
+{
+  "entropy_src_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 12,
+    "commit_hashes": [
+      "7da23e4872588729c5a2dacd8a91c2d148276b9c",
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "20f8ec1676fcf796a50f3016beaf5dbe486a6aaf",
+      "74a6e9b8b0c80408b02386fd73ac7efae711d374",
+      "6be74bbbaa661cca728441f5e03af6afa2966ec5",
+      "c109f96be03b34bd86327e96de20ffb79115c9f0",
+      "8bde7c8d9ec813b51cbda1f68a291c14b7bf2282",
+      "33236363c1584a2e0b92c22fd6a28781932c22a8",
+      "789ea02bbe3a60c883e25a1cfa2f8d50a950ac43",
+      "6bd5c0264e03789003f0e19429b08b16b55ce697",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "7ebb11a7a783d0a03516da0095342aa25349af40"
+    ]
+  },
+  "entropy_src_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "7da23e4872588729c5a2dacd8a91c2d148276b9c",
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "20f8ec1676fcf796a50f3016beaf5dbe486a6aaf",
+      "74a6e9b8b0c80408b02386fd73ac7efae711d374",
+      "5cb04a7b86aa50a091f27f2a14d3a9f6bb569d60",
+      "6be74bbbaa661cca728441f5e03af6afa2966ec5",
+      "d77447877a7e516ec5067f89554f6a12d6f4844f",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "8661ac78eac2b4b105ab54d3bc89a8ea58d9e1ec",
+      "7308075e8f7fa9ff0e44e038e62bacc681ca9d52",
+      "c109f96be03b34bd86327e96de20ffb79115c9f0",
+      "33236363c1584a2e0b92c22fd6a28781932c22a8",
+      "789ea02bbe3a60c883e25a1cfa2f8d50a950ac43",
+      "6bd5c0264e03789003f0e19429b08b16b55ce697",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "7ebb11a7a783d0a03516da0095342aa25349af40"
+    ]
+  },
+  "entropy_src_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "7da23e4872588729c5a2dacd8a91c2d148276b9c",
+      "1a453313bf3ebde0e7c6805608c485265bd288c2",
+      "094c7c940c9e415fcb069c14f812d0d08355d24c",
+      "57f9776639e938193dfc15c3bcc6c208f07e321d",
+      "81db07fdf10df1c677b915cf28d276afd0b5f6a2",
+      "20f8ec1676fcf796a50f3016beaf5dbe486a6aaf",
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60",
+      "4befb490a23057bb4d1da8bf380273f8e2f57205",
+      "7e6048eab57449e5c024fed2442465a4eb042975",
+      "5cb04a7b86aa50a091f27f2a14d3a9f6bb569d60",
+      "6be74bbbaa661cca728441f5e03af6afa2966ec5",
+      "d77447877a7e516ec5067f89554f6a12d6f4844f",
+      "51fde5a9830ab1501b01d953c7651c63727a546d",
+      "ef348c9995b53217479ebda6af8f7501042ecb72",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "7ebb11a7a783d0a03516da0095342aa25349af40"
+    ]
+  },
+  "entropy_src_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "1a453313bf3ebde0e7c6805608c485265bd288c2",
+      "094c7c940c9e415fcb069c14f812d0d08355d24c",
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60",
+      "0794cfc4a8c1a5cbcd8d94ae3d8664215185afbf",
+      "5cb04a7b86aa50a091f27f2a14d3a9f6bb569d60",
+      "6be74bbbaa661cca728441f5e03af6afa2966ec5",
+      "d77447877a7e516ec5067f89554f6a12d6f4844f",
+      "51fde5a9830ab1501b01d953c7651c63727a546d",
+      "7308075e8f7fa9ff0e44e038e62bacc681ca9d52",
+      "164eb0963bd1bea4e51b98cc96b07cf603ba9fd2"
+    ]
+  },
+  "entropy_src_intr_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1a453313bf3ebde0e7c6805608c485265bd288c2",
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60"
+    ]
+  },
+  "entropy_src_rng_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "1a453313bf3ebde0e7c6805608c485265bd288c2",
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60",
+      "c9f094dc5d5161406d1f4808c5e230afbc15a4f1",
+      "21adde16af04c2d1f46b307b36854686f39084e8",
+      "d77447877a7e516ec5067f89554f6a12d6f4844f",
+      "51fde5a9830ab1501b01d953c7651c63727a546d",
+      "7308075e8f7fa9ff0e44e038e62bacc681ca9d52"
+    ]
+  },
+  "otbn_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 12,
+    "commit_hashes": [
+      "8c5b8d99a27de1b7011ee55026fd374676a9b55e",
+      "a6bbefa5be6445f593c33699772159c7a284ee5a",
+      "b72304ab6bc403b819e54329ee8e153c6438f4e6",
+      "a563d130033936d4dede673c6e450e43c3c4b35a",
+      "15a3817ba180c1b428f3b2ce5a4c97116dc80f38",
+      "ffc7b06ceabf85e53f8dc84cc5319e3a70bc3f62",
+      "e1a9db7dcd3fbb945b33fc03453135998409b988",
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "1b837adf4d58d982377df2db34cd571b04979567",
+      "185851596c06e3c031e844b2ddfa031715f8d65b",
+      "19afa99bead8fa0c44c1e9e6067deb6ed233f7cc",
+      "9387752fbcc083a9a1778058689d8e4b04464268"
+    ]
+  },
+  "lc_ctrl_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593"
+    ]
+  },
+  "lc_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "b8fc3dfde4cd0f708e87dc70910497c1888329a0",
+      "93c80ba55da1ebff714a705b12fd6c617acb2113",
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "6eb199cf93e5d2fa258b62d740aee41e07592f32",
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "50c7af28280a271bb17516c29fd5dabefcd9e503",
+      "ea0407514aef8b9fb6efe8b16330b32c6df05372",
+      "5dd38bf563116ba150165b0bf27a4c2d840c685b",
+      "bc95f34d33cd9f57d3f0d9a6b31279a653e5b417",
+      "6f3c54f832626aab7ac4d8e6a2c45df532fff3e0",
+      "547baf11fca84ce8556ead450234549db8697ee1",
+      "0afe6fa9b530969fdfca9cb68656db477fde179b",
+      "bdcb2cdd234e5756c7f78a4cd743a5fcffb20df5",
+      "3dfe0860ea6c13851f7481fe8a484f539e06df08",
+      "e9209e90b852c6687c8f38ff42cad3728b8e0587"
+    ]
+  },
+  "lc_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 17,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "b8fc3dfde4cd0f708e87dc70910497c1888329a0",
+      "2b9e4b3659f513488897cbf9da756bb41d779a30",
+      "93c80ba55da1ebff714a705b12fd6c617acb2113",
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "6eb199cf93e5d2fa258b62d740aee41e07592f32",
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "50c7af28280a271bb17516c29fd5dabefcd9e503",
+      "ea0407514aef8b9fb6efe8b16330b32c6df05372",
+      "5dd38bf563116ba150165b0bf27a4c2d840c685b",
+      "bc95f34d33cd9f57d3f0d9a6b31279a653e5b417",
+      "6f3c54f832626aab7ac4d8e6a2c45df532fff3e0",
+      "547baf11fca84ce8556ead450234549db8697ee1",
+      "0afe6fa9b530969fdfca9cb68656db477fde179b",
+      "bdcb2cdd234e5756c7f78a4cd743a5fcffb20df5",
+      "3dfe0860ea6c13851f7481fe8a484f539e06df08",
+      "e9209e90b852c6687c8f38ff42cad3728b8e0587"
+    ]
+  },
+  "lc_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "93c80ba55da1ebff714a705b12fd6c617acb2113",
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "6eb199cf93e5d2fa258b62d740aee41e07592f32",
+      "01234f94e2cf1ef42f3e2e79e940b4ae5b199ecc",
+      "bdcb2cdd234e5756c7f78a4cd743a5fcffb20df5"
+    ]
+  },
+  "lc_ctrl_claim_transition_if_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593"
+    ]
+  },
+  "lc_ctrl_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "b8fc3dfde4cd0f708e87dc70910497c1888329a0",
+      "357d9fbc93d827812e22ea9350476cf210a80eb1",
+      "bdcb2cdd234e5756c7f78a4cd743a5fcffb20df5"
+    ]
+  },
+  "lc_ctrl_errors_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "b5e4152d30f344f14d5c3185a57d84c6252106a0",
+      "fa447d0cdc993726850ef4422a32e473434a6ba0",
+      "ce422750fe05117e511f17dfc1efb4051c142ca3"
+    ]
+  },
+  "lc_ctrl_lc_errors_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593"
+    ]
+  },
+  "lc_ctrl_sec_mubi_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593"
+    ]
+  },
+  "lc_ctrl_sec_token_digest_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593"
+    ]
+  },
+  "lc_ctrl_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "04fca3d61575294a79ede9e8416fc396ba925783",
+      "ea0407514aef8b9fb6efe8b16330b32c6df05372",
+      "bc95f34d33cd9f57d3f0d9a6b31279a653e5b417",
+      "b5e4152d30f344f14d5c3185a57d84c6252106a0",
+      "ce422750fe05117e511f17dfc1efb4051c142ca3"
+    ]
+  },
+  "lc_ctrl_volatile_unlock_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "b5e4152d30f344f14d5c3185a57d84c6252106a0"
+    ]
+  },
+  "flash_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "7c11c0dff4fd17bce65fb8dd446902f1bfb9ea94",
+      "936cc94a633da4205dcf684ca8c3005a2e1786c7",
+      "8adb20d2bd26b8690368682353c3c7384122615c"
+    ]
+  },
+  "chip_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "04fca3d61575294a79ede9e8416fc396ba925783",
+      "120153126b18d216e3ba065868e9384fe3cf776a",
+      "b118f54e3171aea7d7bf6fd0ab00914bdfc4cc2f",
+      "b5e4152d30f344f14d5c3185a57d84c6252106a0",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "chip_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 9,
+    "commit_hashes": [
+      "da7fc3571b4a3d8dffd34b230def5472edd7c593",
+      "de31bdf1c26be2714ca787c6041a56eb56eb7d1e",
+      "04fca3d61575294a79ede9e8416fc396ba925783",
+      "175e33f823e21781f368773083b097f4e7edd809",
+      "120153126b18d216e3ba065868e9384fe3cf776a",
+      "e4116b590bb573a35f51cfff9889a2fe336fd2d8",
+      "b118f54e3171aea7d7bf6fd0ab00914bdfc4cc2f",
+      "b5e4152d30f344f14d5c3185a57d84c6252106a0",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "aes_ghash_fi_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6c3c7e9a6f02ce8763432f45379c312e9ccf9661"
+    ]
+  },
+  "aes_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "90bb0f069ab4bf8c1fbc1d47c0edfe863bf9e56b",
+      "553759a3928c85f48d5bf56bc08f32d919eb21f7",
+      "583c80d0e5ea54838dfadef64b3f78f39c2bdb4a",
+      "26d59d5da44827c8ee391d2eb414e08a9f617c63",
+      "bc40da4e70dbb0209f65f0fd4c6a239d9eeac9a3"
+    ]
+  },
+  "aes_control_fi_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "25d1f8f47a635a6c32293a774e5c38882c3f677d"
+    ]
+  },
+  "aes_core_fi_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "25d1f8f47a635a6c32293a774e5c38882c3f677d"
+    ]
+  },
+  "aes_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "9c5e034dc7ea8f308950ee58136ce5f79ae0f2c9",
+      "f58cda5ab437a3a2a5b60427c2963f97e7336c18",
+      "60df4fb9ff6da7fb0a6a6c96a1ebc67b8cdda127",
+      "4c22cf20a517cf78a5fe3a1578bf255ce4c43b57",
+      "c90e0c58a98990c1fc667f558c05db6367d5cc37"
+    ]
+  },
+  "csrng_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 18,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "be5d8c337adb3c389fb22022e0db4f81d45ac977",
+      "81753011df0d9e9d6d6972b0c13ec84ae37b4f2f",
+      "065b300909f5a4e4d93e66079fc1b2a897d85005",
+      "81ccf2754d896fe5bb8cea011314d7c31fb74662",
+      "f7c6f00f54a395b54a6f184811b7b38e1a3bc02f",
+      "f7b31ff77021a65621f2f500e5d07e5beae527dd",
+      "330c84e76c8ea60eddfa2671e5a6d19f90469f80",
+      "98ecdc343f9d714e6d391ecfc8a33091c5182f0d",
+      "b9bc4878f97b9258435b106f840db27488fe0374",
+      "6fec52e2979b15e9597e8036b2b7136496f09b51",
+      "535275b313975bfb95a6acb15684004bc641a62a",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "b2d8bfa32eb00f85ffa18c12bfc7dd4a9dabdae6",
+      "921e1498ed111ee2b8655d38c540a448f3ac8336",
+      "251b77427ed9ae64b18a0c2c80cd3f249c4ae8a9",
+      "b9e0388ab1932d781cf51702437cfa55dae15716"
+    ]
+  },
+  "csrng_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 21,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "be5d8c337adb3c389fb22022e0db4f81d45ac977",
+      "81753011df0d9e9d6d6972b0c13ec84ae37b4f2f",
+      "065b300909f5a4e4d93e66079fc1b2a897d85005",
+      "81ccf2754d896fe5bb8cea011314d7c31fb74662",
+      "f7c6f00f54a395b54a6f184811b7b38e1a3bc02f",
+      "f7b31ff77021a65621f2f500e5d07e5beae527dd",
+      "330c84e76c8ea60eddfa2671e5a6d19f90469f80",
+      "98ecdc343f9d714e6d391ecfc8a33091c5182f0d",
+      "43c1c3fdd1f94de6520d9d0e560e0a3d7fe41efe",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "b9bc4878f97b9258435b106f840db27488fe0374",
+      "6fec52e2979b15e9597e8036b2b7136496f09b51",
+      "6d4436f7fdc1a818849f9a7969ab30973c173f36",
+      "535275b313975bfb95a6acb15684004bc641a62a",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "b2d8bfa32eb00f85ffa18c12bfc7dd4a9dabdae6",
+      "921e1498ed111ee2b8655d38c540a448f3ac8336",
+      "251b77427ed9ae64b18a0c2c80cd3f249c4ae8a9",
+      "b9e0388ab1932d781cf51702437cfa55dae15716"
+    ]
+  },
+  "csrng_virtual_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee"
+    ]
+  },
+  "csrng_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "492b896e30d1f404a6b00e4a73a8f276ab7f26dc",
+      "14d4c87471cde3432858c1e892102e5608e2567a",
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "43c1c3fdd1f94de6520d9d0e560e0a3d7fe41efe",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "csrng_cmds_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "6d4436f7fdc1a818849f9a7969ab30973c173f36",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "a6541be12e5ee682e0ef19ec773d53a2920b1b1c"
+    ]
+  },
+  "entropy_src_virtual_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9880fe1ff4d8e00cba3129975647b31659d64690",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee"
+    ]
+  },
+  "csrng_agent_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee"
+    ]
+  },
+  "csrng_alert_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "477ae95158374f1c4ae940bcd66c1785d55aee1d",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "b9e0388ab1932d781cf51702437cfa55dae15716"
+    ]
+  },
+  "csrng_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 20,
+    "commit_hashes": [
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "be5d8c337adb3c389fb22022e0db4f81d45ac977",
+      "81753011df0d9e9d6d6972b0c13ec84ae37b4f2f",
+      "065b300909f5a4e4d93e66079fc1b2a897d85005",
+      "81ccf2754d896fe5bb8cea011314d7c31fb74662",
+      "f7c6f00f54a395b54a6f184811b7b38e1a3bc02f",
+      "f7b31ff77021a65621f2f500e5d07e5beae527dd",
+      "0ee349b144d463f3f866cc398cc69eaae2df24c3",
+      "bc4814e071adec3c59804a355a262f773339b629",
+      "330c84e76c8ea60eddfa2671e5a6d19f90469f80",
+      "98ecdc343f9d714e6d391ecfc8a33091c5182f0d",
+      "492b896e30d1f404a6b00e4a73a8f276ab7f26dc",
+      "14d4c87471cde3432858c1e892102e5608e2567a",
+      "0c397d707354adca6cf168bc857d22e6781af390",
+      "9e809f1301db5bc4be47a72003062e81c2df6592",
+      "0794cfc4a8c1a5cbcd8d94ae3d8664215185afbf",
+      "b2d8bfa32eb00f85ffa18c12bfc7dd4a9dabdae6",
+      "921e1498ed111ee2b8655d38c540a448f3ac8336",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "251b77427ed9ae64b18a0c2c80cd3f249c4ae8a9"
+    ]
+  },
+  "csrng_intr_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 18,
+    "commit_hashes": [
+      "15df2c3ab0f9f3b7d15bda26c7066e37a58440a7",
+      "be5d8c337adb3c389fb22022e0db4f81d45ac977",
+      "81753011df0d9e9d6d6972b0c13ec84ae37b4f2f",
+      "065b300909f5a4e4d93e66079fc1b2a897d85005",
+      "81ccf2754d896fe5bb8cea011314d7c31fb74662",
+      "f7c6f00f54a395b54a6f184811b7b38e1a3bc02f",
+      "f7b31ff77021a65621f2f500e5d07e5beae527dd",
+      "0ee349b144d463f3f866cc398cc69eaae2df24c3",
+      "330c84e76c8ea60eddfa2671e5a6d19f90469f80",
+      "98ecdc343f9d714e6d391ecfc8a33091c5182f0d",
+      "492b896e30d1f404a6b00e4a73a8f276ab7f26dc",
+      "14d4c87471cde3432858c1e892102e5608e2567a",
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "0794cfc4a8c1a5cbcd8d94ae3d8664215185afbf",
+      "b2d8bfa32eb00f85ffa18c12bfc7dd4a9dabdae6",
+      "921e1498ed111ee2b8655d38c540a448f3ac8336",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "251b77427ed9ae64b18a0c2c80cd3f249c4ae8a9"
+    ]
+  },
+  "soc_dbg_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9238065d5b5446b7e549cf1003c6064d16e86473"
+    ]
+  },
+  "lc_ctrl_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "b8fc3dfde4cd0f708e87dc70910497c1888329a0",
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "60650e073fa706966d8277fe7b55fdaac806a807",
+      "6eb199cf93e5d2fa258b62d740aee41e07592f32",
+      "01234f94e2cf1ef42f3e2e79e940b4ae5b199ecc",
+      "6f3c54f832626aab7ac4d8e6a2c45df532fff3e0",
+      "0afe6fa9b530969fdfca9cb68656db477fde179b",
+      "ce422750fe05117e511f17dfc1efb4051c142ca3"
+    ]
+  },
+  "keymgr_dpe_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "6181a2dabb86d0a3f93de15df0df124264f62be2",
+      "c0314764d50cebe8e9e209b8d9d23f21a3ab7a7a",
+      "205497fb5112fd99105be008913bb1cc71652a6e",
+      "760c60aea898263cd574c7f45aa1554df78d8c75"
+    ]
+  },
+  "keymgr_dpe_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6181a2dabb86d0a3f93de15df0df124264f62be2",
+      "6904f5048c8e97d9dceb84d2f56c273d7eab79d8"
+    ]
+  },
+  "keymgr_dpe_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6181a2dabb86d0a3f93de15df0df124264f62be2"
+    ]
+  },
+  "chip_sw_keymgr_dpe_key_derivation_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6181a2dabb86d0a3f93de15df0df124264f62be2"
+    ]
+  },
+  "entropy_src_xht_item": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60",
+      "4befb490a23057bb4d1da8bf380273f8e2f57205"
+    ]
+  },
+  "entropy_src_xht_monitor": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "a0f1e73ac7093fbb5a972bd973e62d78a1d43a60",
+      "4befb490a23057bb4d1da8bf380273f8e2f57205"
+    ]
+  },
+  "entropy_src_xht_device_driver": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "4befb490a23057bb4d1da8bf380273f8e2f57205"
+    ]
+  },
+  "rv_dm_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9ab52f9d49e59be68a6b4ad8e0355faf9392cc99",
+      "007e252fa1280486e96f0d5bc1f9f2fccf05a556"
+    ]
+  },
+  "pwm_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec",
+      "d3d4c597aa3e339abcdc757f69d76bf7a478a82c"
+    ]
+  },
+  "pwm_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec",
+      "d3d4c597aa3e339abcdc757f69d76bf7a478a82c"
+    ]
+  },
+  "pwm_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_virtual_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_heartbeat_wrap_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_perf_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_phase_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_rand_output_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_regwen_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "pwm_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9c20067467511f368d9e1ec05cb553058967abec"
+    ]
+  },
+  "gpio_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1ac8df399ae90cadffaee2f2b4bcc49e213dbd1b",
+      "0281a868ca8d636b1105cd4efc7ea1241ce2f8b1"
+    ]
+  },
+  "gpio_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1ac8df399ae90cadffaee2f2b4bcc49e213dbd1b",
+      "0281a868ca8d636b1105cd4efc7ea1241ce2f8b1"
+    ]
+  },
+  "gpio_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1ac8df399ae90cadffaee2f2b4bcc49e213dbd1b"
+    ]
+  },
+  "otp_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "b2e1f3b588d1168987dddd364cd453fae49f4f2d",
+      "42646972a1c2b1a968ee8e4e6da00ed7de4321ae",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "85600eec69b9c79423fbb93a3b186f3e953ca729",
+      "621b69ea0c35c5d30373755f65fc4108fbceb0dc",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "e70d6096bada149643048a15bfbf80cdff2d86ec",
+      "aa9e58a11cc7f6657e67d9a0078f89d10e1406c1",
+      "d59fd187b81ef5fefd38ac1e18579b5b9998ffb6",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af",
+      "0a91d093b3b5d969afe933a6c4c7d8bf9183fe53",
+      "dc9da971498948e75213089c49b7b3d8b45d9567",
+      "8b0b5b189e1eef980b88605a111672d47e0d7136"
+    ]
+  },
+  "otp_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "b2e1f3b588d1168987dddd364cd453fae49f4f2d",
+      "42646972a1c2b1a968ee8e4e6da00ed7de4321ae",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "85600eec69b9c79423fbb93a3b186f3e953ca729",
+      "621b69ea0c35c5d30373755f65fc4108fbceb0dc",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "e70d6096bada149643048a15bfbf80cdff2d86ec",
+      "aa9e58a11cc7f6657e67d9a0078f89d10e1406c1",
+      "d59fd187b81ef5fefd38ac1e18579b5b9998ffb6",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af",
+      "0a91d093b3b5d969afe933a6c4c7d8bf9183fe53",
+      "dc9da971498948e75213089c49b7b3d8b45d9567",
+      "8b0b5b189e1eef980b88605a111672d47e0d7136"
+    ]
+  },
+  "otp_ctrl_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "42646972a1c2b1a968ee8e4e6da00ed7de4321ae",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "c04a5bb08e3407df6b3b436fb27bbf47817c8dd9",
+      "8b0b5b189e1eef980b88605a111672d47e0d7136"
+    ]
+  },
+  "otp_ctrl_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 16,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "370540586a144a0d67bba01546b0d8d0bceb9366",
+      "1c9adba488df8a65639a7d66af491eb1e1cb47b7",
+      "e81b5885e5c417190f2e540912ee10f43fedb2c2",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "06f6ef2ac68a76de922624a49ac61355271b8ad8",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af",
+      "8e9081672484022556db8eb9743e9434c181c475",
+      "60c82fc74b34ba828217c28b9f3ce164fd0e8905",
+      "af727517201a86e3806e632ba9a38920b951fac1",
+      "c04a5bb08e3407df6b3b436fb27bbf47817c8dd9",
+      "dc9da971498948e75213089c49b7b3d8b45d9567",
+      "8b0b5b189e1eef980b88605a111672d47e0d7136"
+    ]
+  },
+  "otp_ctrl_virtual_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af"
+    ]
+  },
+  "otp_ctrl_background_chks_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 12,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "370540586a144a0d67bba01546b0d8d0bceb9366",
+      "42646972a1c2b1a968ee8e4e6da00ed7de4321ae",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "b44ec8212e25ed8098086b6f7462a7a65309db97",
+      "d59fd187b81ef5fefd38ac1e18579b5b9998ffb6",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af",
+      "c04a5bb08e3407df6b3b436fb27bbf47817c8dd9",
+      "8b0b5b189e1eef980b88605a111672d47e0d7136",
+      "d0936b2abea12fac6951252dbc86a167c1cc0ec5"
+    ]
+  },
+  "otp_ctrl_callback_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_check_fail_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "85600eec69b9c79423fbb93a3b186f3e953ca729"
+    ]
+  },
+  "otp_ctrl_dai_errs_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_dai_lock_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "370540586a144a0d67bba01546b0d8d0bceb9366",
+      "2ba74d6a6113c38efb959561fb60126ab5e53004",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac"
+    ]
+  },
+  "otp_ctrl_init_fail_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "42646972a1c2b1a968ee8e4e6da00ed7de4321ae",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "c04a5bb08e3407df6b3b436fb27bbf47817c8dd9",
+      "dc9da971498948e75213089c49b7b3d8b45d9567"
+    ]
+  },
+  "otp_ctrl_low_freq_read_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "59278e385c3537fcbd766429b4127cc55dec3aac"
+    ]
+  },
+  "otp_ctrl_macro_errs_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_parallel_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_parallel_key_req_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_parallel_lc_esc_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_parallel_lc_req_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af"
+    ]
+  },
+  "otp_ctrl_partition_walk_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "59278e385c3537fcbd766429b4127cc55dec3aac"
+    ]
+  },
+  "otp_ctrl_regwen_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c6107c4857e46d24893c4ba89ca4ec9fdd458848",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac",
+      "5f1fe83d83583c05e28dd2e2abafc30afdd128af",
+      "c04a5bb08e3407df6b3b436fb27bbf47817c8dd9"
+    ]
+  },
+  "otp_ctrl_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_test_access_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63"
+    ]
+  },
+  "otp_ctrl_wake_up_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "1fab97d71a4ae7972d77be60205f5f37edc25a63",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "59278e385c3537fcbd766429b4127cc55dec3aac"
+    ]
+  },
+  "otbn_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "e32fab4090215c6396a7c5dac68c438deed66077",
+      "e6bde62dc588c17ba2ad83cf6457946ed64f6cae",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6"
+    ]
+  },
+  "spi_host_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "16076d679085f2bafc6bd5acee541549292554ce",
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95",
+      "bd21d5a2994b71fb16c70ce283a0c67e03d3e354",
+      "b058bfe50707f0387891a892baaecb3625480e7b"
+    ]
+  },
+  "spi_host_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "16076d679085f2bafc6bd5acee541549292554ce",
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95",
+      "bd21d5a2994b71fb16c70ce283a0c67e03d3e354",
+      "b058bfe50707f0387891a892baaecb3625480e7b"
+    ]
+  },
+  "spi_host_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95",
+      "0416df9b9e2d1d167efb56e0a8dd11eab2a98cbd"
+    ]
+  },
+  "spi_host_overflow_underflow_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95"
+    ]
+  },
+  "spi_host_performance_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95"
+    ]
+  },
+  "spi_host_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95"
+    ]
+  },
+  "spi_host_speed_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95"
+    ]
+  },
+  "spi_host_upper_range_clkdiv_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95"
+    ]
+  },
+  "spi_host_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6ee0cf0193bfc2b5bb1b955461404495b1f39b95",
+      "0416df9b9e2d1d167efb56e0a8dd11eab2a98cbd"
+    ]
+  },
+  "keymgr_dpe_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "760c60aea898263cd574c7f45aa1554df78d8c75"
+    ]
+  },
+  "keymgr_dpe_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "760c60aea898263cd574c7f45aa1554df78d8c75"
+    ]
+  },
+  "dma_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "f7280d25eef5f8e25d8c3094deaff3b90efc5ee5",
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "3deb27b2d7f9370f8eae344962d360c8960c0cbb",
+      "07ac2a0929d73dcb96a4bd98dc6152b4fa3987fc",
+      "9518ef2cea0c0b5a675ee74b1f17ec059827c94c",
+      "18dd6d67864ea932046ada9625167bb1a8310fba"
+    ]
+  },
+  "dma_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "f7280d25eef5f8e25d8c3094deaff3b90efc5ee5",
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "3deb27b2d7f9370f8eae344962d360c8960c0cbb",
+      "07ac2a0929d73dcb96a4bd98dc6152b4fa3987fc",
+      "9518ef2cea0c0b5a675ee74b1f17ec059827c94c",
+      "18dd6d67864ea932046ada9625167bb1a8310fba",
+      "0fcc9e8820138663a20c5d860d590aaa8117b8a0"
+    ]
+  },
+  "dma_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "f7280d25eef5f8e25d8c3094deaff3b90efc5ee5",
+      "e2b0ef4afadaaba9fe720248ffd430786142059c",
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "7407d0bbad7d08ea3c61c91064af3311a85c3165",
+      "376c792a963f382f63dc859302111c72bb7e3f1c",
+      "d2321d0d8dfe04031330e390b0d94287c3d3249e",
+      "18dd6d67864ea932046ada9625167bb1a8310fba",
+      "4d92d22f9ea1b648f30972003164945460e59347",
+      "120687b7e100e946f8b8c56ea0aac71ae83b7c28",
+      "0fcc9e8820138663a20c5d860d590aaa8117b8a0"
+    ]
+  },
+  "dma_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "f7280d25eef5f8e25d8c3094deaff3b90efc5ee5",
+      "e2b0ef4afadaaba9fe720248ffd430786142059c",
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "f39461e2a1f4f2eccf1e5378c680bf4367275126",
+      "d2321d0d8dfe04031330e390b0d94287c3d3249e",
+      "18dd6d67864ea932046ada9625167bb1a8310fba",
+      "120687b7e100e946f8b8c56ea0aac71ae83b7c28",
+      "0fcc9e8820138663a20c5d860d590aaa8117b8a0"
+    ]
+  },
+  "dma_generic_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "f7280d25eef5f8e25d8c3094deaff3b90efc5ee5",
+      "e2b0ef4afadaaba9fe720248ffd430786142059c",
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "9a48e6c9c166bdf9de3e565ac44a657e7ef681a4"
+    ]
+  },
+  "kmac_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "2c5ba75c1cb3a41dd579d3634ce2438f8f3dd3cf",
+      "9a0ca1db75984a36aecd5ab1db20c723142ef9b1"
+    ]
+  },
+  "jtag_riscv_agent": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8e15cea015d8462a92a5daa7cb6c7f38b5982098"
+    ]
+  },
+  "jtag_riscv_agent_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8e15cea015d8462a92a5daa7cb6c7f38b5982098"
+    ]
+  },
+  "chip_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "chip_sw_flash_rma_unlocked_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "c939d9a6d586135d2e10d9574d5a804060890c79",
+      "6eb199cf93e5d2fa258b62d740aee41e07592f32"
+    ]
+  },
+  "chip_sw_keymgr_key_derivation_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "6efc747f695cb2c3eb231765acfceaaa21777ffe",
+      "2cf28c40e529d3f5e5f7bd0f348904ea5ef3b4be",
+      "60650e073fa706966d8277fe7b55fdaac806a807"
+    ]
+  },
+  "mbx_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "930a29417caeb0d293ca7a7662df694ee5f2e771"
+    ]
+  },
+  "kmac_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "58c6d26efaaf7d04000b633b1626e7e711ed1a07",
+      "2e9cbc667ac5fafb7805f3a32b63734cfb143fe7",
+      "6eb94eb7d9e92e786fbf4565668f82eb6f7b09e7",
+      "5f9ae1786cbc2250e93af1b86a98e85eb65f0faf",
+      "58f5ad256abf6c6d69622e192028748beff687ad",
+      "78b1e671fcabb21a64ccbd57986716273928b6b2",
+      "cb4dedf5da3fa6572dbf57c85024dbda6c9ba3b8",
+      "e2a5d48db459faac69405364c68f881c1d92bc64",
+      "02eaac710afb2080e64706e73b1b5d0f8d017e1b",
+      "9a0ca1db75984a36aecd5ab1db20c723142ef9b1"
+    ]
+  },
+  "kmac_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 22,
+    "commit_hashes": [
+      "58c6d26efaaf7d04000b633b1626e7e711ed1a07",
+      "83d08c404b21b9ca27a3ee88ed43662f160faac5",
+      "5cb6b899d73004a1bddf33d707a3a24757b3e54f",
+      "56399241e7614285e65fdb0ddfc7e37ade1cc7a4",
+      "2e9cbc667ac5fafb7805f3a32b63734cfb143fe7",
+      "14c36927946721b752d2f3881d4fbffa992db8b9",
+      "1f7eda046e9b72b4358698e433a010198f59187d",
+      "6eb94eb7d9e92e786fbf4565668f82eb6f7b09e7",
+      "5f9ae1786cbc2250e93af1b86a98e85eb65f0faf",
+      "76f35f4bc2d6304aed1112fc3a3734bf135ac083",
+      "78b1e671fcabb21a64ccbd57986716273928b6b2",
+      "6e9e8c62ab11d71ce4f33782426951d4aba2bf50",
+      "eecccf35aa9a8d94bc6acb4ebd876e08bffcdf86",
+      "0e0c1a99f5a45584017d42bc8cba0aa376745908",
+      "bb28c9f159f3f38848020a07cdb1601ba01e7831",
+      "f12a943e3010a62238af4226f60ed620803080f9",
+      "70151fe5370f2b454b8ba53ba699d7bd1345b8d9",
+      "8888540036f453a40d23e345064e1af5eb644210",
+      "e2a5d48db459faac69405364c68f881c1d92bc64",
+      "9a0ca1db75984a36aecd5ab1db20c723142ef9b1",
+      "642d7a9733799e6280e67e426e7ea8d09d964ca8",
+      "3b4e36e01c130d75844efe5d5b2a31502059e74c"
+    ]
+  },
+  "kmac_sideload_invalid_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "58c6d26efaaf7d04000b633b1626e7e711ed1a07"
+    ]
+  },
+  "dma_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "d2321d0d8dfe04031330e390b0d94287c3d3249e",
+      "18dd6d67864ea932046ada9625167bb1a8310fba",
+      "4d92d22f9ea1b648f30972003164945460e59347",
+      "120687b7e100e946f8b8c56ea0aac71ae83b7c28",
+      "0fcc9e8820138663a20c5d860d590aaa8117b8a0"
+    ]
+  },
+  "dma_seq_item": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "97efbd38a08f034b688596af0bd41a6d9af2e8a8",
+      "e8d4da3559134b350b6bf8d9011763ccac9596e5",
+      "9a48e6c9c166bdf9de3e565ac44a657e7ef681a4",
+      "d2321d0d8dfe04031330e390b0d94287c3d3249e",
+      "15a51b646f03fcb7f2c34ede880274b5d495dfc2",
+      "18dd6d67864ea932046ada9625167bb1a8310fba",
+      "120687b7e100e946f8b8c56ea0aac71ae83b7c28",
+      "0fcc9e8820138663a20c5d860d590aaa8117b8a0"
+    ]
+  },
+  "dma_memory_region_lock_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9a48e6c9c166bdf9de3e565ac44a657e7ef681a4"
+    ]
+  },
+  "sram_ctrl_regwen_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0df3194accab91b851753df0bb7b313aea74977c"
+    ]
+  },
+  "sram_ctrl_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 9,
+    "commit_hashes": [
+      "0df3194accab91b851753df0bb7b313aea74977c",
+      "ee5f4a1abf7dcbfca031bdad5e5aa4aafaefdb33",
+      "0aed4e7972c50cfcb6442ffd3f607eb7eca876b6",
+      "9b32cd1b3d815cf31294065984d63f486661a1d4",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "4e7114e85a61e4a3814ee56bb689cd3e8c4292a2",
+      "4d8199fb8505236617287c1b22d45bb64e87534c",
+      "95d23d98b2050f353499e06907c11903ae2ac707",
+      "5c21925fc18d0f641c2ca42f177e2c382d4e5d7c"
+    ]
+  },
+  "csrng_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "3a4c42f7217fc8e80dc39ef2ba7e2723d10b4ae8",
+      "c903d65d25cd3eb982f0eb5772110fd0bcdd053d",
+      "7f84f7cdb836718b7e2605fe628c537309bb527f",
+      "477ae95158374f1c4ae940bcd66c1785d55aee1d",
+      "6d4436f7fdc1a818849f9a7969ab30973c173f36",
+      "ef348c9995b53217479ebda6af8f7501042ecb72",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "uart_intr_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "e7ce9718ebe01905c9cf475b6387b5f88e96eb82",
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "8ea8f8f4f97774ec3daf71d5041b3d822e8f5ca7",
+      "6d86557b2742845ac71dbb997319abe875970ac9"
+    ]
+  },
+  "uart_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "e7ce9718ebe01905c9cf475b6387b5f88e96eb82",
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "6d86557b2742845ac71dbb997319abe875970ac9",
+      "9d1fd4aa64f91e8663b73c045d68a7bafedb7325"
+    ]
+  },
+  "uart_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "e7ce9718ebe01905c9cf475b6387b5f88e96eb82",
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "6d86557b2742845ac71dbb997319abe875970ac9",
+      "9d1fd4aa64f91e8663b73c045d68a7bafedb7325"
+    ]
+  },
+  "uart_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "e7ce9718ebe01905c9cf475b6387b5f88e96eb82",
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "c187a82ee842f2b082397b49366fd6155b55dc66",
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "8ea8f8f4f97774ec3daf71d5041b3d822e8f5ca7",
+      "6d86557b2742845ac71dbb997319abe875970ac9"
+    ]
+  },
+  "uart_loopback_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "uart_tx_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "3dd6250f6c10c10a8bd015f587707533ddd5fd12",
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "keymgr_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 17,
+    "commit_hashes": [
+      "2cf28c40e529d3f5e5f7bd0f348904ea5ef3b4be",
+      "49d4e53c1beb1124beab2b35138a2bfda98af827",
+      "4979b0248e3b3d587ac4f77cfea0970a043445f5",
+      "e81b5885e5c417190f2e540912ee10f43fedb2c2",
+      "b8a1093b1de25ff7f84c6b9dc58bbc384815aeaa",
+      "8e37434ebaa1fd92fbff9db7c9b2e664e07bfc49",
+      "4fb25fc2398d7b1a6239a7dc64c1090bd8d45ba2",
+      "c75662319b369fe4d4d5238846d333e1d1cd121e",
+      "1e9c700dfe753ae38a930cbf6eb327dade61c934",
+      "4d8199fb8505236617287c1b22d45bb64e87534c",
+      "a4e2d7f2e1d7d76455558187a7792fa9176f6ee4",
+      "ef348c9995b53217479ebda6af8f7501042ecb72",
+      "4908b1be0bb56e7c14a8992c6173e336f8ce66be",
+      "be2da9e8b283aac3047add7c54e4ed6288a784ca",
+      "28bbd3237a306374197ef757b7875d96d44768ea",
+      "80fb8f4f8302bdbfbd55e7e84dacbf9b40268153",
+      "f625b0dc9a82c5851a29a8fd3974a2ced86e92e0"
+    ]
+  },
+  "sram_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "ee5f4a1abf7dcbfca031bdad5e5aa4aafaefdb33",
+      "d25b1659ceed6e6bbf3ecaf353bad181c9ec8c71",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "4e7114e85a61e4a3814ee56bb689cd3e8c4292a2",
+      "95d23d98b2050f353499e06907c11903ae2ac707",
+      "5c21925fc18d0f641c2ca42f177e2c382d4e5d7c"
+    ]
+  },
+  "hmac_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "f9f6fe5d066ae8bfa1e0d5c596d7a026e9ffe800",
+      "8a6bedc600ccb8f690724f6a71b96c0fce166a9b"
+    ]
+  },
+  "hmac_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "f9f6fe5d066ae8bfa1e0d5c596d7a026e9ffe800",
+      "8a6bedc600ccb8f690724f6a71b96c0fce166a9b"
+    ]
+  },
+  "hmac_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "aace3c06170104e83b3f38f2b1502ff80a1e61e1",
+      "1e033babff8dc92f0947f4d30c16a937e322c72e",
+      "7e196e6f072791aa17817b7691aed6b258399eeb"
+    ]
+  },
+  "i2c_glitch_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "2b430dd1b4207394ec78d32c8a181d0f5285d5f5",
+      "e7fe1f8ddb10d2eae5d97085f2b0f2db335f7608",
+      "f5ec916ed16324411f5126c915a4975135a339f0",
+      "b9b80db972332cfaa0990286bf45d171d6f24a63",
+      "7773b039d0db27585b3abb447c0dc64d247eca6d",
+      "689a163294e1791bd30cfe096decf7f9233abad4",
+      "9d94535beb40b2b377a0c4ef99b6b88fa250df3d"
+    ]
+  },
+  "kmac_key_error_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "d4850699bddce4623a7567d1718beec0c1af2723",
+      "ea9f7fbac477847b8b9ee180c36b87cf36a82b47"
+    ]
+  },
+  "kmac_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "83d08c404b21b9ca27a3ee88ed43662f160faac5",
+      "6eb94eb7d9e92e786fbf4565668f82eb6f7b09e7",
+      "54b949255a8c463ea365126d90c39cd26c462638",
+      "78b1e671fcabb21a64ccbd57986716273928b6b2",
+      "dd46cf9fe24eac8076040a038b7fa77ab8545ea5",
+      "642d7a9733799e6280e67e426e7ea8d09d964ca8"
+    ]
+  },
+  "csrng_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "6ae7ae4bfa44eb47a05ef31707a87f92e638fa40",
+      "6d4436f7fdc1a818849f9a7969ab30973c173f36",
+      "a6541be12e5ee682e0ef19ec773d53a2920b1b1c"
+    ]
+  },
+  "edn_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "69950e272d44c3d6135771d4fac649552ba5f2b2",
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "042e0b915865a8473d4d53a4976720f70e799c58",
+      "39af375e1e56317c6e2989b8c4f73fa0fdde1cfd"
+    ]
+  },
+  "edn_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "903b31917104b6d9e22f0eb41941a72415109a8a",
+      "29be573fbce0ac24dd1e85ad40b25d282ecda27e",
+      "69950e272d44c3d6135771d4fac649552ba5f2b2",
+      "6d6ae6979f3e6ffa2415672a8219f7c281bf0f35",
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "042e0b915865a8473d4d53a4976720f70e799c58",
+      "39af375e1e56317c6e2989b8c4f73fa0fdde1cfd"
+    ]
+  },
+  "edn_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "00fc69d28817089049ad42f0f017f6cd8fddf98d",
+      "486824971574f7810d5a00540130113a868d6dce"
+    ]
+  },
+  "i2c_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 13,
+    "commit_hashes": [
+      "0530abbd5367f48d2b4b2d8df39b43b9c8f8f7b5",
+      "3d6bcdfedfcb5b6a298409e249aa52c944dd42b8",
+      "689a163294e1791bd30cfe096decf7f9233abad4",
+      "b98c6c530017ac4e58c5ea214919163e6fad038d",
+      "a8fd5a8cfb7d7e25c2d5f60e719d627b6c31e967",
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201",
+      "e4699b52f296ed46f652182bf40885dfa13edbaa",
+      "c5965e8741bfc425a62da4c40c5c5940f2c5f0f3",
+      "bd161af75d866fe99c36e7df3549c48f4db559a0",
+      "d88dbea26b41919620bedf4dd89e6d65e8287f64",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6",
+      "0a8d1b27eba9f01a7504ab0edfba55b93e51f508"
+    ]
+  },
+  "i2c_target_hrst_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0530abbd5367f48d2b4b2d8df39b43b9c8f8f7b5"
+    ]
+  },
+  "chip_sw_i2c_device_tx_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0530abbd5367f48d2b4b2d8df39b43b9c8f8f7b5"
+    ]
+  },
+  "clkmgr_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "1938c40267b74458d3f0a7b80892ac9921424bd9",
+      "710e3c99854ae8f4f51a3e0e1dfab5761594e8a3"
+    ]
+  },
+  "clkmgr_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "1938c40267b74458d3f0a7b80892ac9921424bd9",
+      "710e3c99854ae8f4f51a3e0e1dfab5761594e8a3"
+    ]
+  },
+  "clkmgr_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "74aec162f126cb432979a05b8914f296f841afb8",
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "8be44c91f64b8ade77966ac786b70d31051fd6b3",
+      "710e3c99854ae8f4f51a3e0e1dfab5761594e8a3",
+      "f8f107273c0a98b8ba38a60ac9e1fe1ba376c468"
+    ]
+  },
+  "clkmgr_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b",
+      "f8f107273c0a98b8ba38a60ac9e1fe1ba376c468"
+    ]
+  },
+  "clkmgr_extclk_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "8be44c91f64b8ade77966ac786b70d31051fd6b3",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b",
+      "f8f107273c0a98b8ba38a60ac9e1fe1ba376c468"
+    ]
+  },
+  "clkmgr_peri_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b"
+    ]
+  },
+  "clkmgr_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b",
+      "710e3c99854ae8f4f51a3e0e1dfab5761594e8a3"
+    ]
+  },
+  "clkmgr_trans_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "ba71a6df80a034020352ccb07a93907cf86d7695",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b"
+    ]
+  },
+  "i2c_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "3d6bcdfedfcb5b6a298409e249aa52c944dd42b8",
+      "9d94535beb40b2b377a0c4ef99b6b88fa250df3d",
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201",
+      "aef50ddfaf05653aa044eaaa51f4627f6d65372e",
+      "e4699b52f296ed46f652182bf40885dfa13edbaa",
+      "c5965e8741bfc425a62da4c40c5c5940f2c5f0f3",
+      "332649b018fcff14f302ba30c624b624c683012c",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6",
+      "d1ae19001b8772ee0fe03efc0f0530d3cb35eb31"
+    ]
+  },
+  "i2c_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "3d6bcdfedfcb5b6a298409e249aa52c944dd42b8",
+      "9d94535beb40b2b377a0c4ef99b6b88fa250df3d",
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201",
+      "aef50ddfaf05653aa044eaaa51f4627f6d65372e",
+      "e4699b52f296ed46f652182bf40885dfa13edbaa",
+      "c5965e8741bfc425a62da4c40c5c5940f2c5f0f3",
+      "332649b018fcff14f302ba30c624b624c683012c",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6",
+      "d1ae19001b8772ee0fe03efc0f0530d3cb35eb31"
+    ]
+  },
+  "i2c_host_mode_toggle_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "3d6bcdfedfcb5b6a298409e249aa52c944dd42b8",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6"
+    ]
+  },
+  "i2c_target_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "689a163294e1791bd30cfe096decf7f9233abad4",
+      "b98c6c530017ac4e58c5ea214919163e6fad038d",
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "e4699b52f296ed46f652182bf40885dfa13edbaa",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6"
+    ]
+  },
+  "i2c_host_rx_oversample_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "b98c6c530017ac4e58c5ea214919163e6fad038d"
+    ]
+  },
+  "i2c_target_perf_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "b98c6c530017ac4e58c5ea214919163e6fad038d"
+    ]
+  },
+  "flash_ctrl_hw_sec_otp_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "c95dc32e6235cd0dd3beaee313dc54e25cebd8b4",
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "uart_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "6d86557b2742845ac71dbb997319abe875970ac9"
+    ]
+  },
+  "uart_fifo_full_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c",
+      "6d86557b2742845ac71dbb997319abe875970ac9"
+    ]
+  },
+  "uart_long_xfer_wo_dly_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "uart_perf_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "uart_tx_ovrd_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "uart_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "a72c8696d07516fe62bf6990a2007b77286b864c"
+    ]
+  },
+  "sysrst_ctrl_combo_detect_ec_rst_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "dcce044a0dd9ca6e34a0d8e8c6a598b8ec27a8c9"
+    ]
+  },
+  "sysrst_ctrl_ultra_low_pwr_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "dcce044a0dd9ca6e34a0d8e8c6a598b8ec27a8c9"
+    ]
+  },
+  "spi_host_event_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "272787cf68e97adaf25c1d966bbaabf4d9e10cec"
+    ]
+  },
+  "i2c_host_perf_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "a8fd5a8cfb7d7e25c2d5f60e719d627b6c31e967"
+    ]
+  },
+  "adc_ctrl_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "a8ba8530451d3cca5a6f273ecad489f7c394172e",
+      "c7fa17345c79122001ecae48c64ec36d296ac293",
+      "5403f07ce4577de469ab70206af00ec30e5460ad",
+      "5f1d304ad5c63a428219d1881479707727a559de",
+      "4c06f37ffe1de27a2aca447d757a0927a27b966a",
+      "1d8f192c3a5803a9aadd13f224514870b849ea5b"
+    ]
+  },
+  "entropy_src_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "74a6e9b8b0c80408b02386fd73ac7efae711d374",
+      "6a8f6a417e5b282984330281c60b3be6b3738264",
+      "52e64527d5cc302dffc1a7bc9ac933435d588456",
+      "7ebb11a7a783d0a03516da0095342aa25349af40"
+    ]
+  },
+  "i2c_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6"
+    ]
+  },
+  "i2c_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201",
+      "0cbc6f7d9984fb35218dcd72672013a6fcc3a2a6",
+      "0a8d1b27eba9f01a7504ab0edfba55b93e51f508"
+    ]
+  },
+  "i2c_host_fifo_full_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201"
+    ]
+  },
+  "i2c_host_fifo_overflow_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443"
+    ]
+  },
+  "i2c_host_fifo_reset_fmt_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443"
+    ]
+  },
+  "i2c_host_fifo_reset_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201"
+    ]
+  },
+  "i2c_host_fifo_watermark_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443",
+      "1a82003c465f4ec01b17c120e33b67bc40378201"
+    ]
+  },
+  "i2c_target_runtime_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443"
+    ]
+  },
+  "i2c_target_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8596a750d990de32ee9b164e632e25927cb83443"
+    ]
+  },
+  "spi_device_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "2f0b93372a5f1751a7e29ca546e79d7c21591e71",
+      "f28b7134094c1197ad9bab54729a5cb95a667f3c",
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58",
+      "f781bc270191c7ce152ddc55618ea36d992abb31",
+      "38ed2bc76163b3ff3e45bc46acf2b8d8822bdfdd",
+      "071972319c4aa79ee3d0c9d7f47742ff90281cdb",
+      "4c989be599ce13073df4697ee6070e9b6a048450",
+      "b118f54e3171aea7d7bf6fd0ab00914bdfc4cc2f",
+      "cbda9eaf091cce9365842e7c86172b80cccabcea",
+      "726cd46d0a841adba93560c78c982c01582baa14"
+    ]
+  },
+  "spi_device_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "2f0b93372a5f1751a7e29ca546e79d7c21591e71",
+      "f28b7134094c1197ad9bab54729a5cb95a667f3c",
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58",
+      "f781bc270191c7ce152ddc55618ea36d992abb31",
+      "38ed2bc76163b3ff3e45bc46acf2b8d8822bdfdd",
+      "071972319c4aa79ee3d0c9d7f47742ff90281cdb",
+      "4c989be599ce13073df4697ee6070e9b6a048450",
+      "b118f54e3171aea7d7bf6fd0ab00914bdfc4cc2f",
+      "cbda9eaf091cce9365842e7c86172b80cccabcea",
+      "726cd46d0a841adba93560c78c982c01582baa14"
+    ]
+  },
+  "usbdev_av_buffer_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_enable_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_in_trans_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e"
+    ]
+  },
+  "usbdev_nak_trans_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_out_stall_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e"
+    ]
+  },
+  "usbdev_out_trans_nak_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c"
+    ]
+  },
+  "usbdev_pkt_received_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_pkt_sent_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_random_length_out_transaction_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e"
+    ]
+  },
+  "usbdev_setup_trans_ignored_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "44badc4df9f077cefd75f6b180a4d161fbb5735e",
+      "649d162d79769c488a9faba3432c52abce11077e",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "c49c59a4e9ca890dd2ebd6b99ddee513e3f932d0",
+      "44c554de31ec1d30878ef2ea90881d9e92dae469",
+      "fd65b426f9b094836f9932b7c8606d43c185ce64",
+      "52373cdee56dfe67a63352329330447fd3ba1e99",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "usbdev_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "c49c59a4e9ca890dd2ebd6b99ddee513e3f932d0",
+      "44c554de31ec1d30878ef2ea90881d9e92dae469",
+      "fd65b426f9b094836f9932b7c8606d43c185ce64",
+      "52373cdee56dfe67a63352329330447fd3ba1e99",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "chip_sw_csrng_lc_hw_debug_en_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "chip_sw_entropy_src_fuse_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "chip_sw_sram_ctrl_execution_main_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "06bd80209207feb7817898a4e4772b48e0b789f7",
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "spi_device_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "f28b7134094c1197ad9bab54729a5cb95a667f3c",
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58"
+    ]
+  },
+  "spi_device_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "56c127c24bb259e9c31ed8b1797603b373470517",
+      "d914f7532dbdee2932969e1bf2905403ef0074f0",
+      "81cfbe0cfd8bfbb2b18f9a54cf14de31ceb4deb1",
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58",
+      "cbda9eaf091cce9365842e7c86172b80cccabcea",
+      "726cd46d0a841adba93560c78c982c01582baa14"
+    ]
+  },
+  "spi_device_pass_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "d914f7532dbdee2932969e1bf2905403ef0074f0",
+      "81cfbe0cfd8bfbb2b18f9a54cf14de31ceb4deb1",
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58",
+      "cbda9eaf091cce9365842e7c86172b80cccabcea",
+      "39cfb3ee408ebe4f70926c76d78038d27936fc71"
+    ]
+  },
+  "otbn_urnd_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "56399241e7614285e65fdb0ddfc7e37ade1cc7a4",
+      "3b4e36e01c130d75844efe5d5b2a31502059e74c"
+    ]
+  },
+  "spi_device_mem_parity_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58"
+    ]
+  },
+  "spi_device_ram_cfg_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "f554d45fc82e89fd1dc33b071a1d0c5d109e3b58"
+    ]
+  },
+  "flash_ctrl_otf_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "chip_sw_otp_ctrl_escalation_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "c939d9a6d586135d2e10d9574d5a804060890c79"
+    ]
+  },
+  "cip_base_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "de31bdf1c26be2714ca787c6041a56eb56eb7d1e"
+    ]
+  },
+  "cip_base_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "de31bdf1c26be2714ca787c6041a56eb56eb7d1e",
+      "1a5d53a0a2c784531bc84d083a3485e926916af9"
+    ]
+  },
+  "aon_timer_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "de31bdf1c26be2714ca787c6041a56eb56eb7d1e",
+      "ae414ef2e64907122b9149478ff2889f2509cb5f",
+      "535dfe3b4b69b9246335f793d7d919bfdbdee0f2",
+      "475c71174dc36ee5bf6b888e67172e6401ce963b"
+    ]
+  },
+  "otbn_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "de31bdf1c26be2714ca787c6041a56eb56eb7d1e",
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "b550aa253d8623add22e640cafd1b2d66a02dd7c",
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab",
+      "1b837adf4d58d982377df2db34cd571b04979567",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "75f76901f9fbcbee1b9d485d378ee099dab53ceb",
+      "b6acc10ea96984d9771c8be9827f076ab8a1466d"
+    ]
+  },
+  "csrng_item": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "477ae95158374f1c4ae940bcd66c1785d55aee1d",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "csrng_monitor": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "477ae95158374f1c4ae940bcd66c1785d55aee1d",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "pwrmgr_lowpower_wakeup_race_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "56ef4d48fa818ecaa6cedfaf86c48d72a1d606c4"
+    ]
+  },
+  "pwrmgr_reset_invalid_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "56ef4d48fa818ecaa6cedfaf86c48d72a1d606c4",
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f"
+    ]
+  },
+  "pwrmgr_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "75e1d57a79cf22b103787dcc04bb0c60ad55efdd",
+      "51513fb937079b89b53129e69fc548702cb782df",
+      "cb08888580da683e6e074107454e2f7177a60fcb",
+      "bdc9f1f3689c431e75846cf0a18ba99820329f30"
+    ]
+  },
+  "pwrmgr_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "75e1d57a79cf22b103787dcc04bb0c60ad55efdd",
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "51513fb937079b89b53129e69fc548702cb782df",
+      "cb08888580da683e6e074107454e2f7177a60fcb",
+      "bdc9f1f3689c431e75846cf0a18ba99820329f30"
+    ]
+  },
+  "pwrmgr_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "75e1d57a79cf22b103787dcc04bb0c60ad55efdd",
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f",
+      "2d3aa1765af8141675d8f3aee3b3a691d1a0db02",
+      "51513fb937079b89b53129e69fc548702cb782df",
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b",
+      "bdc9f1f3689c431e75846cf0a18ba99820329f30"
+    ]
+  },
+  "pwrmgr_wakeup_reset_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "75e1d57a79cf22b103787dcc04bb0c60ad55efdd",
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f"
+    ]
+  },
+  "chip_sw_uart_tx_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6d86557b2742845ac71dbb997319abe875970ac9"
+    ]
+  },
+  "flash_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "7c11c0dff4fd17bce65fb8dd446902f1bfb9ea94",
+      "6602e72552bbe3bbb980257549062c0fc85f9fd2",
+      "88829b65a0960271121209f996ce47ceeff71882",
+      "bef02e69b5b0f035f2d1a38811fd5ab4fc7b6588",
+      "6dd70f761132e83bdc956bec993b1744228e6247",
+      "55b5b7e7cd586512d7f50f2eee77b1fefafd310a",
+      "37eec2cbcb02ab1639382d3dbb8ab2bc5b3b904d",
+      "e1e0fd6c024b64705702f85e7285f48fa9f5e79f",
+      "8adb20d2bd26b8690368682353c3c7384122615c",
+      "06f7831b28423c25a763a8fece26f79a4e9df8eb"
+    ]
+  },
+  "flash_ctrl_info_part_access_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "7c11c0dff4fd17bce65fb8dd446902f1bfb9ea94"
+    ]
+  },
+  "flash_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "6602e72552bbe3bbb980257549062c0fc85f9fd2",
+      "88829b65a0960271121209f996ce47ceeff71882",
+      "bef02e69b5b0f035f2d1a38811fd5ab4fc7b6588",
+      "6dd70f761132e83bdc956bec993b1744228e6247",
+      "55b5b7e7cd586512d7f50f2eee77b1fefafd310a",
+      "37eec2cbcb02ab1639382d3dbb8ab2bc5b3b904d",
+      "e1e0fd6c024b64705702f85e7285f48fa9f5e79f",
+      "8adb20d2bd26b8690368682353c3c7384122615c",
+      "06f7831b28423c25a763a8fece26f79a4e9df8eb",
+      "fb8a78489a1639408fedb3bc1b6ddd637efd8b1b"
+    ]
+  },
+  "rstmgr_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "e9b2b0f15b3bf6b81f34f7dcdc11c486854b9cd4"
+    ]
+  },
+  "i2c_rx_tx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1a82003c465f4ec01b17c120e33b67bc40378201"
+    ]
+  },
+  "rom_ctrl_corrupt_sig_fatal_chk_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "e3148be3927bd7b0c948dac469b07ab2aa405df4",
+      "be25a8b21465e692ed056b0ac9760726d3dc5096",
+      "746cce3d17128699b4bfab4a8ed559bac6e092e5",
+      "0c4edc1c828361b7e1a0d42a1b7b05cf12d7f3cf",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "cip_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "fbf2edc1dadaabd93df8c84e9748e0f524dd2326",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6"
+    ]
+  },
+  "pwrmgr_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f",
+      "bdc9f1f3689c431e75846cf0a18ba99820329f30"
+    ]
+  },
+  "pwrmgr_aborted_low_power_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9"
+    ]
+  },
+  "pwrmgr_disable_rom_integrity_check_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9"
+    ]
+  },
+  "pwrmgr_esc_clk_rst_malfunc_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "51513fb937079b89b53129e69fc548702cb782df",
+      "12e3dd9c231754fa533afbc8255a33b0e03bca5b"
+    ]
+  },
+  "pwrmgr_lowpower_invalid_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9",
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f"
+    ]
+  },
+  "pwrmgr_reset_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0c7a6f3105a6dfff19687e566be5cbe99e9a5ef9"
+    ]
+  },
+  "keymgr_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "3ff1b64b5dce7b3dca31c4d2f098152da37fd43f",
+      "fbf2edc1dadaabd93df8c84e9748e0f524dd2326"
+    ]
+  },
+  "pwrmgr_repeat_wakeup_reset_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "10e7b2251fc01f0bbf2934804f466310810c2f2f"
+    ]
+  },
+  "edn_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "29be573fbce0ac24dd1e85ad40b25d282ecda27e",
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "042e0b915865a8473d4d53a4976720f70e799c58"
+    ]
+  },
+  "edn_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "29be573fbce0ac24dd1e85ad40b25d282ecda27e",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "edn_disable_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "29be573fbce0ac24dd1e85ad40b25d282ecda27e"
+    ]
+  },
+  "rstmgr_leaf_rst_shadow_attack_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "2d3aa1765af8141675d8f3aee3b3a691d1a0db02"
+    ]
+  },
+  "rv_dm_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "175e33f823e21781f368773083b097f4e7edd809",
+      "120153126b18d216e3ba065868e9384fe3cf776a",
+      "e4116b590bb573a35f51cfff9889a2fe336fd2d8"
+    ]
+  },
+  "aes_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 7,
+    "commit_hashes": [
+      "f58cda5ab437a3a2a5b60427c2963f97e7336c18",
+      "553759a3928c85f48d5bf56bc08f32d919eb21f7",
+      "86eaf5e4072bf0fc97c08f8cb0f74766e8ea1dad",
+      "583c80d0e5ea54838dfadef64b3f78f39c2bdb4a",
+      "4c22cf20a517cf78a5fe3a1578bf255ce4c43b57",
+      "26d59d5da44827c8ee391d2eb414e08a9f617c63",
+      "bc40da4e70dbb0209f65f0fd4c6a239d9eeac9a3"
+    ]
+  },
+  "otbn_escalate_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "08844b9d7cecd3c04ccff741082bded3d296f6fb"
+    ]
+  },
+  "otbn_intg_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "abe5191ac73a736ccb378852e07008ac9d585402",
+      "3345f7d4285d33ae4237ed76fe0d4e2fb17631c4",
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab"
+    ]
+  },
+  "otbn_rf_base_intg_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "abe5191ac73a736ccb378852e07008ac9d585402"
+    ]
+  },
+  "otbn_rf_bignum_intg_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "abe5191ac73a736ccb378852e07008ac9d585402"
+    ]
+  },
+  "chip_sw_i2c_host_tx_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "d88dbea26b41919620bedf4dd89e6d65e8287f64"
+    ]
+  },
+  "rstmgr_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "12e3dd9c231754fa533afbc8255a33b0e03bca5b",
+      "ae67983f67cf343e1a233b325f5470c693439a2f",
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "d7f00ea49fe2eea5bebf6d1e579f9f5b582d3438"
+    ]
+  },
+  "sysrst_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "454f88af63fb474af3fb31c19802417dea01b91a"
+    ]
+  },
+  "sysrst_ctrl_combo_detect_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "454f88af63fb474af3fb31c19802417dea01b91a"
+    ]
+  },
+  "rom_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "5d4d4e522848ee15d5423836cf00c334296a1c45",
+      "0c4edc1c828361b7e1a0d42a1b7b05cf12d7f3cf",
+      "54c37c472b9b9b57558ec53ef87319278c175b75",
+      "70151fe5370f2b454b8ba53ba699d7bd1345b8d9",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "rom_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "5d4d4e522848ee15d5423836cf00c334296a1c45",
+      "0c4edc1c828361b7e1a0d42a1b7b05cf12d7f3cf",
+      "54c37c472b9b9b57558ec53ef87319278c175b75",
+      "70151fe5370f2b454b8ba53ba699d7bd1345b8d9",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "rom_ctrl_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "5d4d4e522848ee15d5423836cf00c334296a1c45",
+      "0c4edc1c828361b7e1a0d42a1b7b05cf12d7f3cf",
+      "41b2628d1ad68a7c80073e00ddd5889278b38686",
+      "70151fe5370f2b454b8ba53ba699d7bd1345b8d9",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "otbn_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 6,
+    "commit_hashes": [
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "b550aa253d8623add22e640cafd1b2d66a02dd7c",
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab",
+      "1b837adf4d58d982377df2db34cd571b04979567",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "b6acc10ea96984d9771c8be9827f076ab8a1466d"
+    ]
+  },
+  "otbn_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 10,
+    "commit_hashes": [
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "3345f7d4285d33ae4237ed76fe0d4e2fb17631c4",
+      "0794cfc4a8c1a5cbcd8d94ae3d8664215185afbf",
+      "fc9528c6775c9f568a1a341e0efeab33127f588d",
+      "b550aa253d8623add22e640cafd1b2d66a02dd7c",
+      "8c89511ca28c3166242ce6f54beabde6faa03eeb",
+      "1b837adf4d58d982377df2db34cd571b04979567",
+      "cfcfbce85e182c127b8c4be5cd8bf531e0a4d927",
+      "039ab4b338855f53476ffd03a0b143fb36bdb751",
+      "3e19bde3c8f623da5f2ee7a96203419eac4a400a"
+    ]
+  },
+  "otbn_dmem_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "b550aa253d8623add22e640cafd1b2d66a02dd7c"
+    ]
+  },
+  "otbn_imem_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "b0d7574ae6c21dce86f0771484c07348cb83b46a",
+      "13b37d54ca7fd1cabf15140754bafa3bffddbf98"
+    ]
+  },
+  "hmac_test_vectors_sha_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "1e033babff8dc92f0947f4d30c16a937e322c72e"
+    ]
+  },
+  "otbn_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 9,
+    "commit_hashes": [
+      "3345f7d4285d33ae4237ed76fe0d4e2fb17631c4",
+      "b550aa253d8623add22e640cafd1b2d66a02dd7c",
+      "ca536ff70e670331a22bc8e21181daad90310a60",
+      "6386c757419ca1cdf24004a1bc830931a827850b",
+      "d88e5c3daefc64d094ca4407e002a3499ad8cf6f",
+      "29e1062c6537918c323d4e11fa30201898611e33",
+      "aee499c3e167096c6baecf8f9e989d75e94125ff",
+      "3e19bde3c8f623da5f2ee7a96203419eac4a400a",
+      "3b58f2012086619d5d21d19badf9db3b17bfff19"
+    ]
+  },
+  "otbn_sw_errs_fatal_chk_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "fc9528c6775c9f568a1a341e0efeab33127f588d"
+    ]
+  },
+  "otbn_trace_monitor": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab"
+    ]
+  },
+  "otbn_alu_bignum_mod_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab"
+    ]
+  },
+  "otbn_controller_ispr_rdata_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab"
+    ]
+  },
+  "otbn_mac_bignum_acc_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "9dd529d11f26e4941a9b616eee2498ce5a85c0ab"
+    ]
+  },
+  "kmac_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 8,
+    "commit_hashes": [
+      "6eb94eb7d9e92e786fbf4565668f82eb6f7b09e7",
+      "5f9ae1786cbc2250e93af1b86a98e85eb65f0faf",
+      "58f5ad256abf6c6d69622e192028748beff687ad",
+      "78b1e671fcabb21a64ccbd57986716273928b6b2",
+      "cb4dedf5da3fa6572dbf57c85024dbda6c9ba3b8",
+      "e2a5d48db459faac69405364c68f881c1d92bc64",
+      "02eaac710afb2080e64706e73b1b5d0f8d017e1b",
+      "9a0ca1db75984a36aecd5ab1db20c723142ef9b1"
+    ]
+  },
+  "flash_ctrl_hw_rma_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "bef02e69b5b0f035f2d1a38811fd5ab4fc7b6588"
+    ]
+  },
+  "flash_ctrl_rand_ops_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6dd70f761132e83bdc956bec993b1744228e6247"
+    ]
+  },
+  "rom_ctrl_kmac_err_chk_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "746cce3d17128699b4bfab4a8ed559bac6e092e5"
+    ]
+  },
+  "keymgr_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "2cba533b1e02a9396dfdc031c62e3b82c9aeb318",
+      "fbf2edc1dadaabd93df8c84e9748e0f524dd2326",
+      "4908b1be0bb56e7c14a8992c6173e336f8ce66be"
+    ]
+  },
+  "keymgr_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "2cba533b1e02a9396dfdc031c62e3b82c9aeb318",
+      "fbf2edc1dadaabd93df8c84e9748e0f524dd2326",
+      "4908b1be0bb56e7c14a8992c6173e336f8ce66be",
+      "28bbd3237a306374197ef757b7875d96d44768ea"
+    ]
+  },
+  "rstmgr_reset_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "ae67983f67cf343e1a233b325f5470c693439a2f"
+    ]
+  },
+  "rstmgr_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "c6f4c1ba9f1ed09c59f57519024c4c7a0ce4ca1a"
+    ]
+  },
+  "rstmgr_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "c6f4c1ba9f1ed09c59f57519024c4c7a0ce4ca1a"
+    ]
+  },
+  "entropy_src_base_test": {
+    "categories": [
+      "Checker Desync",
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6be74bbbaa661cca728441f5e03af6afa2966ec5",
+      "7308075e8f7fa9ff0e44e038e62bacc681ca9d52"
+    ]
+  },
+  "entropy_src_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "d77447877a7e516ec5067f89554f6a12d6f4844f"
+    ]
+  },
+  "rom_ctrl_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0c4edc1c828361b7e1a0d42a1b7b05cf12d7f3cf"
+    ]
+  },
+  "kmac_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "76f35f4bc2d6304aed1112fc3a3734bf135ac083"
+    ]
+  },
+  "aes_wake_up_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "553759a3928c85f48d5bf56bc08f32d919eb21f7"
+    ]
+  },
+  "keymgr_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "b8a1093b1de25ff7f84c6b9dc58bbc384815aeaa",
+      "fbf2edc1dadaabd93df8c84e9748e0f524dd2326",
+      "1e9c700dfe753ae38a930cbf6eb327dade61c934",
+      "b8d804c47fe2f2e2367b96fe9bd48c1b7fd2e6f2"
+    ]
+  },
+  "keymgr_cfg_regwen_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "b8a1093b1de25ff7f84c6b9dc58bbc384815aeaa",
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "keymgr_direct_to_disabled_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "b8a1093b1de25ff7f84c6b9dc58bbc384815aeaa"
+    ]
+  },
+  "spi_host_tx_rx_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0416df9b9e2d1d167efb56e0a8dd11eab2a98cbd"
+    ]
+  },
+  "cip_tl_seq_item": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "8089c124b17562ac35630512abd33f13b87967a8",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6"
+    ]
+  },
+  "sram_ctrl_executable_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "ee8c4bf17164f41c8a0983c1165e7873be4d6553",
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "9b32cd1b3d815cf31294065984d63f486661a1d4",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "4d8199fb8505236617287c1b22d45bb64e87534c"
+    ]
+  },
+  "tl_host_driver": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "5aaad4e1c47c92290582d566c76a3d54c6c0fa50",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6"
+    ]
+  },
+  "pwrmgr_wakeup_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "3f2a1c1223d3ca969b726d0ca982e936c5a42e4b"
+    ]
+  },
+  "sram_ctrl_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "9b32cd1b3d815cf31294065984d63f486661a1d4",
+      "126c22a6d4e5da97c25c26429c6529bac68671c6"
+    ]
+  },
+  "sram_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "4e7114e85a61e4a3814ee56bb689cd3e8c4292a2",
+      "12cce14e3355f5df1c1d2c533a9686b88cc84b93",
+      "5c21925fc18d0f641c2ca42f177e2c382d4e5d7c"
+    ]
+  },
+  "sram_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "126c22a6d4e5da97c25c26429c6529bac68671c6",
+      "4e7114e85a61e4a3814ee56bb689cd3e8c4292a2",
+      "12cce14e3355f5df1c1d2c533a9686b88cc84b93",
+      "5c21925fc18d0f641c2ca42f177e2c382d4e5d7c"
+    ]
+  },
+  "alert_handler_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_env_cfg": {
+    "categories": [
+      "Interface Drift",
+      "RAL Desync"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81",
+      "1a5d53a0a2c784531bc84d083a3485e926916af9",
+      "f1006bd24a5d81b2887bb60924bc49d209e107a2"
+    ]
+  },
+  "alert_handler_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81",
+      "1a5d53a0a2c784531bc84d083a3485e926916af9",
+      "a84531f04658c7d11ec43a5fec83de892531fe0d",
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "alert_handler_virtual_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 5,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81",
+      "715fc3bd9c2d16b10493f23ea918cad86e9ec4c7",
+      "1a5d53a0a2c784531bc84d083a3485e926916af9",
+      "a84531f04658c7d11ec43a5fec83de892531fe0d",
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "alert_handler_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_entropy_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_esc_alert_accum_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_esc_intr_timeout_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_ping_timeout_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_random_alerts_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_random_classes_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_sig_int_fail_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "alert_handler_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81",
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "alert_handler_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "0d7bd2cffc1faf0d7d711d62a40fc8af00dc5a81"
+    ]
+  },
+  "entropy_src_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "7308075e8f7fa9ff0e44e038e62bacc681ca9d52"
+    ]
+  },
+  "aes_alert_reset_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "c473f70f82ed410bae1adf9382eabedcbdf77aad"
+    ]
+  },
+  "keymgr_random_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "1e9c700dfe753ae38a930cbf6eb327dade61c934",
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "edn_smoke_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "6d6ae6979f3e6ffa2415672a8219f7c281bf0f35",
+      "295c69074da60207380afc8b58030ab622c007bb"
+    ]
+  },
+  "edn_smoke_test": {
+    "categories": [
+      "RAL Desync",
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6d6ae6979f3e6ffa2415672a8219f7c281bf0f35"
+    ]
+  },
+  "csrng_base_test": {
+    "categories": [
+      "Checker Desync",
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6d4436f7fdc1a818849f9a7969ab30973c173f36"
+    ]
+  },
+  "rom_ctrl_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "70151fe5370f2b454b8ba53ba699d7bd1345b8d9",
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "rv_timer_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6fec3b5807d02f57c66f7e1226a879856ee6a3fd"
+    ]
+  },
+  "rv_timer_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "6fec3b5807d02f57c66f7e1226a879856ee6a3fd"
+    ]
+  },
+  "aon_timer_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "ae414ef2e64907122b9149478ff2889f2509cb5f",
+      "535dfe3b4b69b9246335f793d7d919bfdbdee0f2",
+      "475c71174dc36ee5bf6b888e67172e6401ce963b"
+    ]
+  },
+  "adc_ctrl_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "18d75ceb7bee5e401dba4e9a6536054ac6f05caa",
+      "5f1d304ad5c63a428219d1881479707727a559de",
+      "4c06f37ffe1de27a2aca447d757a0927a27b966a"
+    ]
+  },
+  "adc_ctrl_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "18d75ceb7bee5e401dba4e9a6536054ac6f05caa",
+      "5f1d304ad5c63a428219d1881479707727a559de"
+    ]
+  },
+  "pattgen_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8b3f2ba3156b49b2ee7bf0109e09fd2675f339fa"
+    ]
+  },
+  "pattgen_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "8b3f2ba3156b49b2ee7bf0109e09fd2675f339fa"
+    ]
+  },
+  "kmac_app_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "e2a5d48db459faac69405364c68f881c1d92bc64"
+    ]
+  },
+  "sram_ctrl_common_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "95d23d98b2050f353499e06907c11903ae2ac707",
+      "671369d854841f8c46e7efd07e98487902d17a39"
+    ]
+  },
+  "aes_env": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "583c80d0e5ea54838dfadef64b3f78f39c2bdb4a",
+      "4c22cf20a517cf78a5fe3a1578bf255ce4c43b57",
+      "26d59d5da44827c8ee391d2eb414e08a9f617c63",
+      "c90e0c58a98990c1fc667f558c05db6367d5cc37"
+    ]
+  },
+  "aes_env_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "583c80d0e5ea54838dfadef64b3f78f39c2bdb4a",
+      "4c22cf20a517cf78a5fe3a1578bf255ce4c43b57",
+      "26d59d5da44827c8ee391d2eb414e08a9f617c63",
+      "c90e0c58a98990c1fc667f558c05db6367d5cc37"
+    ]
+  },
+  "csrng_agent": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "csrng_agent_cfg": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 4,
+    "commit_hashes": [
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57",
+      "042e0b915865a8473d4d53a4976720f70e799c58"
+    ]
+  },
+  "csrng_device_driver": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 3,
+    "commit_hashes": [
+      "8adade0211907fbab2c6a2bf2c201d8f25df4bc1",
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "042e0b915865a8473d4d53a4976720f70e799c58"
+    ]
+  },
+  "keymgr_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "ef348c9995b53217479ebda6af8f7501042ecb72"
+    ]
+  },
+  "csrng_driver": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee"
+    ]
+  },
+  "csrng_host_driver": {
+    "categories": [
+      "Interface Drift"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee"
+    ]
+  },
+  "csrng_sequencer": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "ef7bcab85b90236652df008ea3e14e2efd4425ee",
+      "1485517d8582509fd6ea023e56c8ae27dbddbc57"
+    ]
+  },
+  "usbdev_dpi_config_host_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c"
+    ]
+  },
+  "usbdev_link_out_err_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c"
+    ]
+  },
+  "usbdev_max_usb_traffic_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c"
+    ]
+  },
+  "usbdev_spray_packets_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c"
+    ]
+  },
+  "usbdev_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "73f2f7ac531199f11f4bcc37332f1492c37e4e3c",
+      "2dc8cb8ab62633db9999bf7a3ce1fc01d127ab37"
+    ]
+  },
+  "edn_alert_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "042e0b915865a8473d4d53a4976720f70e799c58"
+    ]
+  },
+  "rom_ctrl_prim_reg_block": {
+    "categories": [
+      "RAL Desync"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "80c18e551659733a86c45da68788b004d95939f8"
+    ]
+  },
+  "adc_ctrl_clock_gating_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "4c06f37ffe1de27a2aca447d757a0927a27b966a"
+    ]
+  },
+  "adc_ctrl_filters_both_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "4c06f37ffe1de27a2aca447d757a0927a27b966a"
+    ]
+  },
+  "adc_ctrl_filters_wakeup_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "4c06f37ffe1de27a2aca447d757a0927a27b966a"
+    ]
+  },
+  "aon_timer_env_cov": {
+    "categories": [
+      "Coverage Regression"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "86a48f1c70313fba310b3280908b5b1c5e332063"
+    ]
+  },
+  "aon_timer_scoreboard": {
+    "categories": [
+      "Checker Desync"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "86a48f1c70313fba310b3280908b5b1c5e332063"
+    ]
+  },
+  "aon_timer_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "86a48f1c70313fba310b3280908b5b1c5e332063",
+      "475c71174dc36ee5bf6b888e67172e6401ce963b"
+    ]
+  },
+  "aon_timer_jump_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "86a48f1c70313fba310b3280908b5b1c5e332063"
+    ]
+  },
+  "spi_device_tpm_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 2,
+    "commit_hashes": [
+      "cbda9eaf091cce9365842e7c86172b80cccabcea",
+      "39cfb3ee408ebe4f70926c76d78038d27936fc71"
+    ]
+  },
+  "chip_sw_spi_device_tpm_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "cbda9eaf091cce9365842e7c86172b80cccabcea"
+    ]
+  },
+  "spi_device_base_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "726cd46d0a841adba93560c78c982c01582baa14"
+    ]
+  },
+  "spi_device_stress_all_vseq": {
+    "categories": [
+      "Sequence Invalidation"
+    ],
+    "commit_count": 1,
+    "commit_hashes": [
+      "726cd46d0a841adba93560c78c982c01582baa14"
+    ]
+  }
+}

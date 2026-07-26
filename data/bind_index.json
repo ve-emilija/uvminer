@@ -1,0 +1,216 @@
+{
+  "prim_count": [
+    "sec_cm_prim_count_bind"
+  ],
+  "prim_double_lfsr": [
+    "sec_cm_prim_double_lfsr_bind"
+  ],
+  "prim_onehot_check": [
+    "sec_cm_prim_onehot_check_bind"
+  ],
+  "prim_singleton_fifo_if": [
+    "sec_cm_prim_singleton_fifo_bind"
+  ],
+  "prim_fifo_sync": [
+    "sec_cm_prim_singleton_fifo_bind"
+  ],
+  "prim_sparse_fsm_flop": [
+    "sec_cm_prim_sparse_fsm_flop_bind"
+  ],
+  "adc_ctrl_fsm": [
+    "adc_ctrl_cov_bind",
+    "adc_ctrl_bind"
+  ],
+  "adc_ctrl": [
+    "adc_ctrl_bind"
+  ],
+  "aes": [
+    "aes_cov_bind",
+    "aes_bind"
+  ],
+  "aes_control_fsm": [
+    "aes_err_injection_bind"
+  ],
+  "aes_cipher_control_fsm": [
+    "aes_err_injection_bind"
+  ],
+  "aes_ctr_fsm": [
+    "aes_err_injection_bind"
+  ],
+  "aes_core": [
+    "aes_err_injection_bind"
+  ],
+  "aes_ghash": [
+    "aes_err_injection_bind"
+  ],
+  "aon_timer": [
+    "aon_timer_bind"
+  ],
+  "csrng": [
+    "csrng_cov_bind",
+    "csrng_bind"
+  ],
+  "dma": [
+    "dma_cov_bind",
+    "dma_bind"
+  ],
+  "edn": [
+    "edn_cov_bind",
+    "edn_bind"
+  ],
+  "entropy_src": [
+    "entropy_src_cov_bind",
+    "entropy_src_bind"
+  ],
+  "hmac": [
+    "hmac_bind"
+  ],
+  "i2c": [
+    "i2c_bind"
+  ],
+  "keymgr": [
+    "keymgr_cov_bind",
+    "keymgr_bind"
+  ],
+  "keymgr_dpe": [
+    "keymgr_dpe_cov_bind",
+    "keymgr_dpe_bind"
+  ],
+  "kmac": [
+    "kmac_cov_bind",
+    "kmac_bind"
+  ],
+  "lc_ctrl_fsm": [
+    "lc_ctrl_cov_bind"
+  ],
+  "lc_ctrl": [
+    "lc_ctrl_cov_bind",
+    "lc_ctrl_bind"
+  ],
+  "mbx": [
+    "mbx_bind"
+  ],
+  "otbn": [
+    "otbn_bind"
+  ],
+  "pattgen": [
+    "pattgen_cov_bind",
+    "pattgen_bind"
+  ],
+  "rom_ctrl": [
+    "rom_ctrl_cov_bind",
+    "rom_ctrl_bind"
+  ],
+  "tb": [
+    "rom_ctrl_cov_bind",
+    "top_darjeeling_error_injection_ifs_bind",
+    "top_earlgrey_error_injection_ifs_bind"
+  ],
+  "rv_dm": [
+    "rv_dm_bind"
+  ],
+  "rv_timer": [
+    "rv_timer_bind"
+  ],
+  "soc_dbg_ctrl": [
+    "soc_dbg_ctrl_bind"
+  ],
+  "spi_device": [
+    "spi_device_bind"
+  ],
+  "spi_host": [
+    "spi_host_cov_bind",
+    "spi_host_bind"
+  ],
+  "sram_ctrl": [
+    "sram_ctrl_cov_bind",
+    "sram_ctrl_bind"
+  ],
+  "sysrst_ctrl": [
+    "sysrst_ctrl_cov_bind",
+    "sysrst_ctrl_bind"
+  ],
+  "uart": [
+    "uart_bind"
+  ],
+  "usbdev": [
+    "usbdev_bind"
+  ],
+  "flash_ctrl": [
+    "flash_ctrl_cov_bind",
+    "flash_ctrl_bind"
+  ],
+  "prim_generic_flash_bank": [
+    "flash_ctrl_cov_bind"
+  ],
+  "otp_ctrl": [
+    "otp_ctrl_bind",
+    "otp_ctrl_cov_bind"
+  ],
+  "otp_macro": [
+    "otp_ctrl_bind",
+    "otp_ctrl_cov_bind"
+  ],
+  "pwrmgr": [
+    "pwrmgr_unit_only_bind",
+    "pwrmgr_cov_bind",
+    "pwrmgr_bind"
+  ],
+  "rstmgr_leaf_rst": [
+    "top_darjeeling_error_injection_ifs_bind",
+    "top_earlgrey_error_injection_ifs_bind"
+  ],
+  "top_darjeeling": [
+    "top_darjeeling_bind"
+  ],
+  "xbar_dbg": [
+    "xbar_dbg_bind"
+  ],
+  "xbar_main": [
+    "xbar_main_bind"
+  ],
+  "xbar_mbx": [
+    "xbar_mbx_bind"
+  ],
+  "xbar_peri": [
+    "xbar_peri_bind"
+  ],
+  "ac_range_check": [
+    "ac_range_check_bind"
+  ],
+  "alert_handler": [
+    "alert_handler_cov_bind",
+    "alert_handler_bind"
+  ],
+  "clkmgr": [
+    "clkmgr_cov_bind",
+    "clkmgr_bind"
+  ],
+  "gpio": [
+    "gpio_bind"
+  ],
+  "racl_ctrl": [
+    "racl_ctrl_bind"
+  ],
+  "rstmgr": [
+    "rstmgr_bind"
+  ],
+  "rv_core_ibex": [
+    "rv_core_ibex_bind"
+  ],
+  "top_earlgrey": [
+    "top_earlgrey_bind"
+  ],
+  "pwm": [
+    "pwm_bind"
+  ],
+  "ibex_core": [
+    "core_ibex_fcov_bind"
+  ],
+  "ibex_icache": [
+    "ibex_icache_fcov_bind"
+  ],
+  "ibex_simple_system": [
+    "ibex_simple_system_cosim_checker_bind"
+  ]
+}

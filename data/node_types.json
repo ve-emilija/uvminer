@@ -1,0 +1,5182 @@
+{
+  "dv_base_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "alert_esc_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "dv_base_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "alert_esc_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "dv_base_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "alert_esc_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "dv_base_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "alert_esc_base_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "dv_base_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "alert_esc_base_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "dv_base_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_esc_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uvm_sequence_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_esc_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "alert_receiver_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "alert_sender_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "esc_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "esc_receiver_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "esc_sender_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "dv_base_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "cip_base_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "dv_base_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "cip_base_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "dv_base_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "cip_base_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "dv_base_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "cip_base_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "dv_base_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "cip_base_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dv_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "cip_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "tl_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "cip_tl_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "csrng_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "csrng_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "csrng_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "csrng_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "csrng_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "csrng_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "csrng_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uvm_object": {
+    "type": "OTHER",
+    "category": null
+  },
+  "csr_excl_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dv_base_lockable_field_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "mubi_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "mubi32_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "dv_base_mubi_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "uvm_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "dv_base_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "uvm_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "dv_base_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "uvm_reg_field": {
+    "type": "OTHER",
+    "category": null
+  },
+  "dv_base_reg_field": {
+    "type": "OTHER",
+    "category": null
+  },
+  "uvm_reg_map": {
+    "type": "OTHER",
+    "category": null
+  },
+  "dv_base_reg_map": {
+    "type": "OTHER",
+    "category": null
+  },
+  "dv_base_shadowed_field_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "uvm_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uvm_component": {
+    "type": "OTHER",
+    "category": null
+  },
+  "uvm_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uvm_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "uvm_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uvm_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uvm_sequence": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_xht_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "entropy_src_xht_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "entropy_src_xht_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "entropy_src_xht_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_xht_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "entropy_src_xht_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_phy_prim_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "flash_phy_prim_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "flash_phy_prim_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "flash_phy_prim_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "flash_phy_prim_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_phy_prim_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "i2c_acqdata_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "i2c_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "i2c_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "i2c_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "i2c_fdata_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "i2c_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "jtag_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "jtag_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "jtag_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uvm_reg_adapter": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_reg_adapter": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_base_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "jtag_dtm_reg_bypass": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_reg_idcode": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_reg_dtmcs": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_reg_dmi": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dtm_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "jtag_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "jtag_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_dmi_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "jtag_dmi_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_dmi_reg_abstractdata": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_dmcontrol": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_dmstatus": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_hartinfo": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_haltsum1": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_abstractcs": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_command": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_abstractauto": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_progbuf": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_haltsum2": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_haltsum3": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_field_sbcs_sberror": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbcs": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbaddress0": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbaddress1": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbaddress2": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbaddress3": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbdata0": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbdata1": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbdata2": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_sbdata3": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_haltsum0": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "uvm_reg_frontdoor": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_dmi_reg_frontdoor": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sba_access_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sba_access_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "sba_access_reg_frontdoor": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_riscv_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_riscv_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "jtag_riscv_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "jtag_riscv_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_riscv_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "jtag_riscv_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "jtag_riscv_reg_adapter": {
+    "type": "OTHER",
+    "category": null
+  },
+  "jtag_riscv_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "key_sideload_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "key_sideload_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "key_sideload_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "key_sideload_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "key_sideload_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "key_sideload_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "key_sideload_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_app_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "kmac_app_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "kmac_app_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "kmac_app_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "kmac_app_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "kmac_app_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "kmac_app_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_app_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "kmac_app_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pattgen_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "pattgen_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "pattgen_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pattgen_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_pull_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_pull_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "push_pull_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "push_pull_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_pull_sub_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pull_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pull_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_pull_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "push_pull_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "push_pull_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pwm_monitor_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rng_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "rng_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rng_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "rng_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "rng_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rng_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "scoreboard": {
+    "type": "OTHER",
+    "category": null
+  },
+  "scoreboard_queue": {
+    "type": "OTHER",
+    "category": null
+  },
+  "spi_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "spi_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "spi_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "spi_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "spi_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "spi_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "spi_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "spi_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "tl_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "tl_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "tl_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "tl_base_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "tl_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "tl_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "tl_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "tl_reg_adapter": {
+    "type": "OTHER",
+    "category": null
+  },
+  "tl_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "tl_agent_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "tl_agent_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "scoreboard_pkg": {
+    "type": "OTHER",
+    "category": null
+  },
+  "tl_agent_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "tl_agent_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "tl_agent_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dv_base_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "tl_agent_base_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "uart_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uart_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "uart_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "uart_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uart_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "uart_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usb20_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "usb20_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "usb20_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "usb20_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "usb20_device_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "usb20_host_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "usb20_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "token_pkt": {
+    "type": "OTHER",
+    "category": null
+  },
+  "data_pkt": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sof_pkt": {
+    "type": "OTHER",
+    "category": null
+  },
+  "handshake_pkt": {
+    "type": "OTHER",
+    "category": null
+  },
+  "usb20_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "adc_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "adc_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "adc_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "adc_ctrl_env_var_filters_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "adc_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "adc_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_filters_polled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_clock_gating_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_counter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_filters_both_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_filters_interrupt_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_filters_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_fsm_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_lowpower_counter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_poweron_counter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_random_ramp_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "adc_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "aes_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "aes_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "aes_message_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "aes_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_alert_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_cipher_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_control_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_core_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_ctr_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_deinit_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_gcm_save_restore_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_ghash_fi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_manual_config_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_nist_vectors_gcm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_nist_vectors_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_readability_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_reseed_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aes_wake_up_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "aon_timer_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "aon_timer_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "aon_timer_intr_timed_regs": {
+    "type": "OTHER",
+    "category": null
+  },
+  "aon_timer_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "aon_timer_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_alternating_enable_on_off_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_custom_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_jump_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_prescaler_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_smoke_max_thold_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_smoke_min_thold_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "aon_timer_wkup_count_cdc_hi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "csrng_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "csrng_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "csrng_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "csrng_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_alert_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_cmds_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "csrng_base_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "csrng_regwen_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "dma_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "dma_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "dma_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "dma_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "dma_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_generic_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_abort_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_handshake_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_config_lock_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_generic_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_generic_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_handshake_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_handshake_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_longer_transfer_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_memory_region_lock_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_memory_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_memory_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_memory_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_mem_enabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_short_transfer_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "dma_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "edn_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "edn_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "edn_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "edn_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_alert_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_disable_auto_req_mode_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_genbits_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "edn_smoke_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "edn_regwen_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "entropy_src_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "entropy_src_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "entropy_src_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "entropy_src_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "entropy_src_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_alert_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_cfg_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_fw_ov_contiguous_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_rng_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "entropy_src_base_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "entropy_src_cfg_regwen_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "hmac_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "hmac_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "hmac_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "hmac_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "hmac_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_back_pressure_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_long_msg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_burst_wr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_datapath_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_directed_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_stress_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_test_vectors_sha_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_test_vectors_hmac_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "hmac_wipe_secret_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "i2c_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "i2c_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "i2c_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "i2c_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_rx_tx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_error_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_fmt_empty_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_full_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_overflow_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_reset_fmt_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_reset_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_fifo_watermark_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_may_nack_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_mode_toggle_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_override_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_perf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_perf_precise_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_rx_oversample_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_stretch_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_host_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_ack_stop_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_runtime_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_fifo_reset_acq_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_fifo_reset_tx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_fifo_watermarks_acq_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_fifo_watermarks_tx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_hrst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_nack_acqfull_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_nack_acqfull_addr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_nack_txstretch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_perf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_smbus_maxlen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_stress_rd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_stress_wr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_stretch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "i2c_target_tx_stretch_ctrl_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "keymgr_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "keymgr_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "keymgr_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "keymgr_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_random_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_cfg_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_lc_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_custom_cm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_direct_to_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_sw_invalid_input_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_hwsw_invalid_input_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_kmac_rsp_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_sideload_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_sideload_one_intf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_sideload_protect_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_sync_async_fault_cross_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_dpe_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "keymgr_dpe_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "keymgr_dpe_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "keymgr_dpe_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "keymgr_dpe_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_dpe_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_dpe_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "keymgr_dpe_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "kmac_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "kmac_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "kmac_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "kmac_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_sideload_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_app_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_app_with_partial_data_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_long_msg_and_output_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_burst_write_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_edn_timeout_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_entropy_mode_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_entropy_ready_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_entropy_refresh_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_key_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_lc_escalation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_mubi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_sideload_invalid_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_test_vectors_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_test_vectors_kmac_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_test_vectors_kmac_xof_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_test_vectors_sha3_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "kmac_test_vectors_shake_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "lc_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "lc_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "lc_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "lc_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_claim_transition_if_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_errors_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_jtag_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_jtag_priority_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_lc_errors_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_prog_failure_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_regwen_during_op_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_security_escalation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_sec_mubi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_sec_token_digest_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_sec_token_mux_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_state_failure_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_state_post_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "lc_ctrl_volatile_unlock_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "mbx_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "mbx_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "mbx_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "mbx_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_async_msg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_doe_intr_msg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_imbx_oob_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_reg_reset_val_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "mbx_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "otbn_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "otbn_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "otbn_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "otbn_trace_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_trace_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "otbn_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_intg_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_alu_bignum_mod_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_controller_ispr_rdata_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_single_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_ctrl_redun_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_dmem_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_escalate_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_illegal_mem_acc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_imem_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_mac_bignum_acc_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_mem_gnt_acc_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_multi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_partial_wipe_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_pc_ctrl_flow_redun_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_rf_base_intg_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_rf_bignum_intg_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_rnd_sec_cm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_sec_wipe_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_sequential_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_smoke_vectorized_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_stack_addr_integ_chk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_sw_errs_fatal_chk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_sw_no_acc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_urnd_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_zero_state_err_urnd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_model_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "otbn_model_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "otbn_model_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otbn_model_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "pattgen_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "pattgen_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "pattgen_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "pattgen_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "pattgen_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_cnt_rollover_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_inactive_level_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_perf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pattgen_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_base_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "racl_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "racl_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "racl_ctrl_reg_window": {
+    "type": "OTHER",
+    "category": null
+  },
+  "racl_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "racl_error_log_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "racl_error_log_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "racl_error_log_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "racl_error_log_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_error_log_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "racl_error_log_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_error_log_vec_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_error_log_vec_driver_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "rom_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rom_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "dv_base_mem": {
+    "type": "OTHER",
+    "category": null
+  },
+  "rom_ctrl_prim_mem_rom_mem": {
+    "type": "OTHER",
+    "category": null
+  },
+  "rom_ctrl_prim_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "rom_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "rom_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_corrupt_sig_fatal_chk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_kmac_err_chk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rom_ctrl_throughput_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "rv_dm_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rv_dm_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "rv_dm_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "rv_dm_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_abstractcmd_status_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_buffered_enable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_cmderr_busy_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_cmderr_exception_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_cmderr_halt_resume_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_cmderr_not_supported_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_dataaddr_rw_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_debug_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_dmi_failed_op_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_halt_resume_whereto_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_hartsel_warl_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_hart_unavail_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dmi_csr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dmi_debug_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dmi_dm_inactive_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dtm_csr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dtm_hard_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_jtag_dtm_idle_hint_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_mem_tl_access_halted_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_mem_tl_access_resuming_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_ndmreset_req_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_progbuf_read_write_execute_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_rom_read_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_sba_debug_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_sba_tl_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_delayed_resp_sba_tl_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_bad_sba_tl_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_autoincr_sba_tl_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_scanmode_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_sparse_lc_gate_fsm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_dm_tap_fsm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "rv_timer_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rv_timer_cfg_cov_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "rv_timer_ctrl_reg_cov_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "rv_timer_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "rv_timer_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "rv_timer_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_random_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_cfg_update_on_fly_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_max_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_min_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_random_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rv_timer_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "soc_dbg_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "soc_dbg_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "soc_dbg_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "soc_dbg_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "soc_dbg_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "soc_dbg_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "soc_dbg_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "soc_dbg_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "spi_device_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "spi_device_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "spi_device_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "spi_device_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_intercept_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_cfg_cmd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_csb_read_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_pass_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_flash_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_flash_and_tpm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_flash_and_tpm_min_idle_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_flash_mode_ignore_cmds_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_flash_mode_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_pass_cmd_filtering_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_mailbox_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_mem_parity_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_pass_addr_payload_swap_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_ram_cfg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_read_buffer_direct_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_tpm_read_hw_reg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_tpm_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_tpm_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_tpm_rw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_tpm_sts_read_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_device_upload_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "spi_host_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "spi_host_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "csr_spinwait_ctrl_object": {
+    "type": "OTHER",
+    "category": null
+  },
+  "spi_host_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "spi_host_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_segment_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_transaction_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_error_cmd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_event_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_idlecsbactive_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_overflow_underflow_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_passthrough_mode_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_performance_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_speed_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_spien_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_status_stall_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_sw_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "spi_host_upper_range_clkdiv_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "sram_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "sram_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "sram_ctrl_prim_mem_sram_mem": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sram_ctrl_prim_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "sram_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "sram_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_multiple_keys_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_access_during_key_req_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_bijection_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_executable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_lc_escalation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_mubi_enc_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_ram_cfg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_readback_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_stress_pipeline_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sram_ctrl_throughput_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "sysrst_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "sysrst_ctrl_pin_cfgs_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_debounce_timer_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_combo_detect_action_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_combo_key_combinations_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_combo_intr_status_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_wakeup_event_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "sysrst_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "sysrst_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "sysrst_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_auto_blk_key_output_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_combo_detect_ec_rst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_combo_detect_ec_rst_with_pre_cond_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_combo_detect_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_combo_detect_with_pre_cond_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_ec_pwr_on_rst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_edge_detect_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_feature_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_flash_wr_prot_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_in_out_inverted_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_pin_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_pin_override_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "sysrst_ctrl_ultra_low_pwr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "xbar_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "xbar_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "xbar_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "xbar_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_random_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_access_same_device_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_same_source_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_seq_err_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_stress_all_with_rand_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "xbar_unmapped_addr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "uart_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "uart_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "uart_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "uart_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_fifo_full_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_fifo_overflow_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_fifo_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_long_xfer_wo_dly_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_loopback_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_noise_filter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_perf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_rx_oversample_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_rx_parity_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_rx_start_bit_filter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "uart_tx_ovrd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "timed_reg_field": {
+    "type": "OTHER",
+    "category": null
+  },
+  "timed_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "usbdev_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "usbdev_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "usbdev_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "usbdev_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "usbdev_timed_regs": {
+    "type": "OTHER",
+    "category": null
+  },
+  "usbdev_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_link_suspend_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_aon_wake_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_av_buffer_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_av_empty_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_av_overflow_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_bus_rand_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_bad_traffic_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_bitstuff_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_max_non_iso_usb_traffic_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_csr_test_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_data_toggle_clear_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_data_toggle_restore_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_spray_packets_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_device_address_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_device_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_disable_endpoint_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_disconnected_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_dpi_config_host_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_enable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_in_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_endpoint_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_endpoint_types_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_fifo_levels_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_fifo_rst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_stream_len_max_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_freq_phase_delta_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_host_lost_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_in_iso_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_in_rand_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_in_stall_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_iso_retraction_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_link_in_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_link_out_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_link_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_link_resume_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_pkt_sent_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_max_usb_traffic_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_low_speed_traffic_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_random_length_out_transaction_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_max_length_out_transaction_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_min_length_out_transaction_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_nak_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_out_iso_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_out_stall_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_out_trans_nak_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_pending_in_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_config_eop_single_bit_handling_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_config_pinflip_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_config_rand_bus_type_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_config_tx_osc_test_mode_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_config_usb_ref_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_phy_pins_sense_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_pkt_buffer_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_pkt_received_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_resume_link_active_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_rxenable_out_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_rx_crc_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_rx_full_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_rx_pid_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_setup_priority_over_stall_response_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_setup_priority_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_setup_stage_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_setup_trans_ignored_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_stall_priority_over_nak_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_stall_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_streaming_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "usbdev_tx_rx_disruption_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_scb_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_clk_status_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_eflash_mem": {
+    "type": "OTHER",
+    "category": null
+  },
+  "flash_ctrl_eflash_reg_block": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "flash_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "flash_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "flash_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "uvm_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "flash_ctrl_otf_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "flash_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "flash_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_otf_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_otf_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_access_after_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_basic_rw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_callback_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_config_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_connect_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_derr_detect_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_disable_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_erase_suspend_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_error_mp_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_error_prog_type_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_fetch_code_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_error_prog_win_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_err_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_filesystem_support_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_full_mem_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_legacy_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_host_addr_infection_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_host_ctrl_arb_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_host_dir_rd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_prog_rma_wipe_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_read_seed_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_rma_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_rma_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_rma_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_hw_sec_otp_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_info_part_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_integrity_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_intr_rd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_intr_wr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_invalid_op_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_lcmgr_intg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_mid_op_rst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_mp_regions_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_otp_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_oversize_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_phy_host_grant_err_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_phy_ack_consistency_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_phy_arb_redun_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_phy_arb_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_prog_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rand_ops_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rand_ops_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rd_buff_evict_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rd_ooo_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rd_path_intg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_read_rnd_wd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_read_word_sweep_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rw_evict_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_re_evict_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_ro_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_rw_rnd_wd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_serr_address_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_serr_counter_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_smoke_hw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_sw_op_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_wo_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_write_rnd_wd_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_write_word_sweep_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "flash_ctrl_wr_path_intg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_dai_lock_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_background_chks_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_callback_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_check_fail_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_dai_errs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_init_fail_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_low_freq_read_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_macro_errs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_parallel_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_parallel_lc_req_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_partition_walk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_test_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_wake_up_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "pwrmgr_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "pwrmgr_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_aborted_low_power_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_escalation_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_esc_clk_rst_malfunc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_global_esc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_lowpower_invalid_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_lowpower_wakeup_race_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_wakeup_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_repeat_wakeup_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_reset_invalid_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_sec_cm_ctrl_config_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_sw_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "rstmgr_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "rstmgr_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_sec_cm_scan_intersig_mubi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_sw_rst_reset_race_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_sw_rst_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "chip_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "chip_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "chip_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "chip_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_callback_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_stub_cpu_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_jtag_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_jtag_csr_rw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_jtag_mem_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_padctrl_attributes_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_prim_tl_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_rv_dm_lc_disabled_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_rv_dm_ndm_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_aes_masking_off_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_alert_handler_entropy_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_alert_handler_escalation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_alert_handler_lpg_clkoff_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_alert_handler_shorten_ping_wait_cycle_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_all_escalation_resets_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_csrng_lc_hw_debug_en_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_data_integrity_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_deep_power_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_deep_sleep_all_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_dma_spi_hw_handshake_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_exit_test_unlocked_bootstrap_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_fault_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_full_aon_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_gpio_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_gpio_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_i2c_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_i2c_device_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_i2c_host_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_inject_scramble_seed_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_keymgr_dpe_key_derivation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_keymgr_key_derivation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_keymgr_sideload_aes_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_keymgr_sideload_kmac_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_ctrl_program_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_ctrl_scrap_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_ctrl_transition_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_raw_unlock_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_volatile_raw_unlock_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_walkthrough_testunlocks_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_lc_walkthrough_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_main_power_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_mbx_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_otp_ctrl_escalation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_otp_ctrl_vendor_test_csr_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_power_virus_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_pwrmgr_deep_sleep_all_wake_ups_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_random_power_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_random_sleep_all_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_repeat_reset_wkup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_ctrl_integrity_check_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_asm_init_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_jtag_debug_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_jtag_inject_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_shutdown_exception_c_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_shutdown_output_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_sigverify_always_a_bad_b_bad_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rstmgr_cnsty_fault_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rv_core_ibex_icache_invalidate_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rv_core_ibex_lockstep_glitch_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rv_dm_access_after_escalation_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rv_dm_access_after_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rv_dm_ndm_reset_when_cpu_halted_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sensor_ctrl_status_intr_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sleep_pin_mio_dio_val_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sleep_pin_retention_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sleep_pin_wake_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_soc_proxy_external_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_soc_proxy_gpio_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_soc_proxy_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_spi_device_tpm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_spi_host_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_spi_passthrough_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_spi_passthrough_collision_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sram_ctrl_execution_main_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sram_ctrl_scrambled_access_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_uart_tx_rx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_uart_rand_baudrate_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_uart_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "ac_range_check_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "ac_range_check_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "ac_range_check_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "ac_range_check_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_bypass_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_lock_range_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_smoke_high_threshold_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_smoke_racl_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ac_range_check_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "alert_handler_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "alert_handler_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "alert_handler_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "alert_handler_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_alert_accum_saturation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_entropy_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_entropy_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_esc_alert_accum_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_esc_intr_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_lpg_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_lpg_stub_clk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_ping_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_random_alerts_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_random_classes_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_sig_int_fail_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "alert_handler_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "clkmgr_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "clkmgr_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "clkmgr_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "clkmgr_extclk_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_frequency_timeout_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_frequency_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_peri_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "clkmgr_trans_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "gpio_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "gpio_intr_type_cov_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "gpio_out_oe_cov_obj": {
+    "type": "OTHER",
+    "category": null
+  },
+  "gpio_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "gpio_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "gpio_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_dout_din_regs_random_rw_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_intr_with_filter_rand_intr_event_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_filter_stress_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_random_long_reg_writes_reg_reads_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_full_random_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_inp_prd_cnt_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_intr_rand_pgm_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_random_dout_din_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_rand_intr_trigger_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_rand_straps_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "gpio_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "otp_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "otp_ctrl_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "otp_ctrl_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "otp_ctrl_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_parallel_key_req_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "otp_ctrl_parallel_lc_esc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "pwrmgr_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "pwrmgr_disable_rom_integrity_check_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwrmgr_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "racl_ctrl_base_env_pkg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "racl_ctrl_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rstmgr_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "rstmgr_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "rstmgr_leaf_rst_cnsty_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_leaf_rst_shadow_attack_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_por_stretcher_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "rstmgr_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_adc_ctrl_sleep_debug_cable_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_ast_clk_outputs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_ast_clk_rst_inputs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_entropy_src_fuse_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_flash_ctrl_lc_rw_en_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_flash_host_gnt_err_inj_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_flash_init_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_flash_rma_unlocked_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_otp_ctrl_vendor_test_ecc_error_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_patt_ios_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_power_idle_load_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_power_sleep_load_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_pwm_pulses_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_pwrmgr_sensor_ctrl_deep_sleep_wake_up_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_rom_e2e_self_hash_gls_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sleep_por_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_spi_device_pinmux_sleep_retention_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_ec_rst_l_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_inputs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_in_irq_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_outputs_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_ulp_z3_wakeup_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_sysrst_ctrl_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_uart_tx_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_usbdev_dpi_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_usbdev_stream_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_sw_usb_ast_clk_calib_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "chip_tap_straps_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "pwm_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "pwm_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "pwm_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "pwm_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_common_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_rand_output_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_heartbeat_wrap_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_perf_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_phase_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_regwen_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_smoke_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "pwm_stress_all_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_cosim_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_cosim_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "ibex_ifetch_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_ifetch_pmp_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_ifetch_pmp_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_ifetch_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_rvfi_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_rvfi_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_mem_intf_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_request_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_request_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_response_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_response_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_response_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_mem_intf_response_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_mem_intf_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "irq_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "irq_request_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "irq_request_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "irq_seq_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "core_ibex_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "core_ibex_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "core_ibex_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "core_ibex_vseqr": {
+    "type": "OTHER",
+    "category": null
+  },
+  "core_ibex_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_env": {
+    "type": "ENV",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_env_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_env_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "ibex_icache_scoreboard": {
+    "type": "SCBD",
+    "category": "Checker Desync"
+  },
+  "ibex_icache_virtual_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_base_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_back_line_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_caching_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_combo_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_ecc_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_invalidation_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_many_errors_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_oldval_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_passthru_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_reset_vseq": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_core_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_core_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_core_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "ibex_icache_core_bus_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_core_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_core_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_core_req_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_core_rsp_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_core_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_mem_agent": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_mem_agent_cfg": {
+    "type": "CFG",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_mem_agent_cov": {
+    "type": "COV",
+    "category": "Coverage Regression"
+  },
+  "ibex_icache_mem_bus_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_mem_driver": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_mem_monitor": {
+    "type": "AGENT",
+    "category": "Interface Drift"
+  },
+  "ibex_icache_mem_req_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_mem_resp_item": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "ibex_icache_mem_sequencer": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "riscv_instr_sequence": {
+    "type": "SEQ",
+    "category": "Sequence Invalidation"
+  },
+  "riscv_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "riscv_privil_reg": {
+    "type": "RAL",
+    "category": "RAL Desync"
+  },
+  "riscv_reg_field": {
+    "type": "OTHER",
+    "category": null
+  },
+  "uvm_test": {
+    "type": "OTHER",
+    "category": null
+  },
+  "riscv_instr_cov_test": {
+    "type": "OTHER",
+    "category": null
+  }
+}
