@@ -1,0 +1,78 @@
+{
+  "counts": {
+    "miss_other_sv": 714,
+    "matched": 1221,
+    "miss_uvm_sv_miss": 53,
+    "miss_test_file": 29,
+    "non_sv": 195,
+    "miss_vseq_file": 59,
+    "miss_pkg_file": 44
+  },
+  "miss_examples": {
+    "other_sv": [
+      "otbn_core_model",
+      "otbn_trace_if",
+      "tb",
+      "otbn_mock_edn_bivium",
+      "otbn_top_sim",
+      "entropy_src_dut_cfg",
+      "otbn_trace_if",
+      "lc_ctrl_if"
+    ],
+    "uvm_sv_miss": [
+      "entropy_src_cov_if",
+      "entropy_src_cov_if",
+      "lc_ctrl_cov_bind",
+      "lc_ctrl_fsm_cov_if",
+      "entropy_src_cov_if",
+      "push_pull_driver_lib",
+      "csrng_cov_if",
+      "edn_cov_if"
+    ],
+    "test_file": [
+      "entropy_src_fw_ov_contiguous_test",
+      "entropy_src_fw_ov_test",
+      "entropy_src_rng_test",
+      "entropy_src_smoke_test",
+      "aes_ghash_fi_test",
+      "csrng_cmds_test",
+      "pwm_base_test",
+      "pwm_base_test"
+    ],
+    "vseq_file": [
+      "aes_vseq_list",
+      "pwm_vseq_list",
+      "pwm_vseq_list",
+      "gpio_vseq_list",
+      "gpio_vseq_list",
+      "otp_ctrl_vseq_list",
+      "otp_ctrl_vseq_list",
+      "kmac_vseq_list"
+    ],
+    "pkg_file": [
+      "aes_test_pkg",
+      "aes_model_dpi_pkg",
+      "chip_common_pkg",
+      "chip_common_pkg",
+      "lc_ctrl_dv_utils_pkg",
+      "pwm_test_pkg",
+      "pwm_test_pkg",
+      "gpio_test_pkg"
+    ]
+  },
+  "matched_examples": [
+    "i2c_host_error_intr_vseq \u2192 ['i2c_host_error_intr_vseq']",
+    "entropy_src_env_pkg \u2192 ['entropy_src_env', 'entropy_src_env_cfg']",
+    "entropy_src_scoreboard \u2192 ['entropy_src_scoreboard']",
+    "entropy_src_scoreboard \u2192 ['entropy_src_scoreboard']",
+    "entropy_src_base_vseq \u2192 ['entropy_src_base_vseq']",
+    "entropy_src_intr_vseq \u2192 ['entropy_src_intr_vseq']",
+    "entropy_src_rng_vseq \u2192 ['entropy_src_rng_vseq']",
+    "otbn_env_cov \u2192 ['otbn_env_cov']",
+    "lc_ctrl_env_cov \u2192 ['lc_ctrl_env_cov']",
+    "lc_ctrl_env_pkg \u2192 ['lc_ctrl_env', 'lc_ctrl_env_cfg']"
+  ],
+  "matched_commits": 403,
+  "total_commits": 602,
+  "total_node_label_pairs": 1250
+}

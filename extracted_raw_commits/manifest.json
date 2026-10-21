@@ -1,0 +1,91 @@
+{
+  "repositories": {
+    "opentitan": {
+      "csv": "opentitan.csv",
+      "ref": "HEAD",
+      "head": "8cfac43aa637fc6acdce3a290d8ffc6c82e3659c",
+      "profile_hash": "ce8dc4230559",
+      "commits": 32216,
+      "scope_counts": {
+        "other": 15529,
+        "design_only": 6115,
+        "verification_only": 9090,
+        "paired": 1482
+      },
+      "options": {
+        "since": null,
+        "until": null,
+        "include_merges": false,
+        "limit_per_repo": null,
+        "max_diff_lines": 2000
+      },
+      "seconds": 191.3,
+      "finished_at": "2026-10-04T15:06:56+00:00"
+    },
+    "core-v-verif": {
+      "csv": "core-v-verif.csv",
+      "ref": "HEAD",
+      "head": "083728bd8d548fd188e0ef43e0c1b038bce24002",
+      "profile_hash": "db415a6d9c09",
+      "commits": 3120,
+      "scope_counts": {
+        "verification_only": 1294,
+        "other": 1826
+      },
+      "options": {
+        "since": null,
+        "until": null,
+        "include_merges": false,
+        "limit_per_repo": null,
+        "max_diff_lines": 2000
+      },
+      "seconds": 15.4,
+      "finished_at": "2026-10-04T15:07:11+00:00"
+    },
+    "caliptra-rtl": {
+      "csv": "caliptra-rtl.csv",
+      "ref": "HEAD",
+      "head": "0f311d3021703f46bc9cb42ca88d84c07a599b9d",
+      "profile_hash": "dadb167ef091",
+      "commits": 791,
+      "scope_counts": {
+        "design_only": 92,
+        "verification_only": 214,
+        "paired": 187,
+        "other": 298
+      },
+      "options": {
+        "since": null,
+        "until": null,
+        "include_merges": false,
+        "limit_per_repo": null,
+        "max_diff_lines": 2000
+      },
+      "seconds": 9.5,
+      "finished_at": "2026-10-04T15:07:21+00:00"
+    },
+    "riscv-dv": {
+      "csv": "riscv-dv.csv",
+      "ref": "HEAD",
+      "head": "0d71c2b666dec48dde0b804a2138426da56aa252",
+      "profile_hash": "58908849dc4a",
+      "commits": 877,
+      "scope_counts": {
+        "other": 157,
+        "verification_only": 720
+      },
+      "options": {
+        "since": null,
+        "until": null,
+        "include_merges": false,
+        "limit_per_repo": null,
+        "max_diff_lines": 2000
+      },
+      "seconds": 7.9,
+      "finished_at": "2026-10-04T15:07:29+00:00"
+    }
+  },
+  "tool": "extract_raw_commits.py",
+  "protocol_version": "1.0.0",
+  "updated_at": "2026-10-04T15:07:29+00:00"
+}

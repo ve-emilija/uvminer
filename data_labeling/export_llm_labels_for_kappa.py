@@ -8,9 +8,9 @@ that were sampled for human annotation (using the same fixed seed=42).
 Output is a readable comparison file showing LLM label vs your human label.
 
 Usage:
-    python3 export_llm_labels_for_kappa.py \
-        --labeled ../data/llm_labeled_final.csv \
-        --output  ../data/llm_labels_kappa50.csv
+    python data_labeling/export_llm_labels_for_kappa.py \
+        --labeled data/llm_labeled_final.csv \
+        --output  data/llm_labels_kappa50.csv
 
 This file is your local proof of what the LLM said for each commit,
 BEFORE any comparison with your human labels.
@@ -101,12 +101,14 @@ def get_sample_hashes(labeled: pd.DataFrame) -> list[str]:
 
 
 def main():
+    project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(project_dir, "data")
     parser = argparse.ArgumentParser(
         description="Export LLM labels for the 50 kappa commits"
     )
     parser.add_argument("--labeled", required=True,
                         help="Path to llm_labeled_final.csv")
-    parser.add_argument("--output",  default="../data/llm_labels_kappa50.csv",
+    parser.add_argument("--output",  default=os.path.join(data_dir, "llm_labels_kappa50.csv"),
                         help="Output CSV file")
     args = parser.parse_args()
 
@@ -165,10 +167,10 @@ def main():
     print("Compare against your human_labels.csv to see agreements and disagreements.")
     print()
     print("To compute kappa run:")
-    print("  python3 llm_label.py \\")
-    print("    --input  ../data/commits_final.csv \\")
-    print("    --output ../data/llm_labeled_final.csv \\")
-    print("    --kappa-human ../data/human_labels.csv")
+    print("  python data_labeling/llm_label.py \\")
+    print("    --input  data/commits_final.csv \\")
+    print("    --output data/llm_labeled_final.csv \\")
+    print("    --kappa-human data/human_labels.csv")
 
 
 if __name__ == "__main__":

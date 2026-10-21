@@ -1,0 +1,207 @@
+Output directory: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits
+Extracting opentitan from /Users/emilija/Desktop/VeriDelta-sw/uvminer/src/opentitan at HEAD (8cfac43aa637)
+  opentitan: 200/32216 commits (0%), elapsed 0m01s, about 3m38s left
+  opentitan: 400/32216 commits (1%), elapsed 0m02s, about 3m12s left
+  opentitan: 600/32216 commits (1%), elapsed 0m03s, about 2m55s left
+  opentitan: 800/32216 commits (2%), elapsed 0m04s, about 2m47s left
+  opentitan: 1000/32216 commits (3%), elapsed 0m05s, about 2m41s left
+  opentitan: 1200/32216 commits (3%), elapsed 0m05s, about 2m26s left
+  opentitan: 1400/32216 commits (4%), elapsed 0m06s, about 2m19s left
+  opentitan: 1600/32216 commits (4%), elapsed 0m06s, about 2m04s left
+  opentitan: 1800/32216 commits (5%), elapsed 0m06s, about 1m52s left
+  opentitan: 2000/32216 commits (6%), elapsed 0m07s, about 1m53s left
+  opentitan: 2200/32216 commits (6%), elapsed 0m08s, about 1m52s left
+  opentitan: 2400/32216 commits (7%), elapsed 0m08s, about 1m47s left
+  opentitan: 2600/32216 commits (8%), elapsed 0m09s, about 1m45s left
+  opentitan: 2800/32216 commits (8%), elapsed 0m09s, about 1m44s left
+  opentitan: 3000/32216 commits (9%), elapsed 0m10s, about 1m39s left
+  opentitan: 3200/32216 commits (9%), elapsed 0m10s, about 1m36s left
+  opentitan: 3400/32216 commits (10%), elapsed 0m11s, about 1m34s left
+  opentitan: 3600/32216 commits (11%), elapsed 0m12s, about 1m37s left
+  opentitan: 3800/32216 commits (11%), elapsed 0m12s, about 1m36s left
+  opentitan: 4000/32216 commits (12%), elapsed 0m13s, about 1m34s left
+  opentitan: 4200/32216 commits (13%), elapsed 0m14s, about 1m34s left
+  opentitan: 4400/32216 commits (13%), elapsed 0m14s, about 1m34s left
+  opentitan: 4600/32216 commits (14%), elapsed 0m15s, about 1m32s left
+  opentitan: 4800/32216 commits (14%), elapsed 0m16s, about 1m34s left
+  opentitan: 5000/32216 commits (15%), elapsed 0m17s, about 1m37s left
+  opentitan: 5200/32216 commits (16%), elapsed 0m18s, about 1m36s left
+  opentitan: 5400/32216 commits (16%), elapsed 0m19s, about 1m35s left
+  opentitan: 5600/32216 commits (17%), elapsed 0m20s, about 1m36s left
+  opentitan: 5800/32216 commits (18%), elapsed 0m21s, about 1m38s left
+  opentitan: 6000/32216 commits (18%), elapsed 0m22s, about 1m37s left
+  opentitan: 6200/32216 commits (19%), elapsed 0m23s, about 1m37s left
+  opentitan: 6400/32216 commits (19%), elapsed 0m23s, about 1m36s left
+  opentitan: 6600/32216 commits (20%), elapsed 0m24s, about 1m35s left
+  opentitan: 6800/32216 commits (21%), elapsed 0m25s, about 1m35s left
+  opentitan: 7000/32216 commits (21%), elapsed 0m26s, about 1m35s left
+  opentitan: 7200/32216 commits (22%), elapsed 0m27s, about 1m35s left
+  opentitan: 7400/32216 commits (22%), elapsed 0m28s, about 1m35s left
+  opentitan: 7600/32216 commits (23%), elapsed 0m29s, about 1m35s left
+  opentitan: 7800/32216 commits (24%), elapsed 0m30s, about 1m34s left
+  opentitan: 8000/32216 commits (24%), elapsed 0m31s, about 1m35s left
+  opentitan: 8200/32216 commits (25%), elapsed 0m33s, about 1m36s left
+  opentitan: 8400/32216 commits (26%), elapsed 0m35s, about 1m39s left
+  opentitan: 8600/32216 commits (26%), elapsed 0m36s, about 1m39s left
+  opentitan: 8800/32216 commits (27%), elapsed 0m37s, about 1m39s left
+  opentitan: 9000/32216 commits (27%), elapsed 0m38s, about 1m39s left
+  opentitan: 9200/32216 commits (28%), elapsed 0m40s, about 1m40s left
+  opentitan: 9400/32216 commits (29%), elapsed 0m41s, about 1m40s left
+  opentitan: 9600/32216 commits (29%), elapsed 0m42s, about 1m39s left
+  opentitan: 9800/32216 commits (30%), elapsed 0m43s, about 1m39s left
+  opentitan: 10000/32216 commits (31%), elapsed 0m44s, about 1m39s left
+  opentitan: 10200/32216 commits (31%), elapsed 0m45s, about 1m38s left
+  opentitan: 10400/32216 commits (32%), elapsed 0m46s, about 1m37s left
+  opentitan: 10600/32216 commits (32%), elapsed 0m48s, about 1m39s left
+  opentitan: 10800/32216 commits (33%), elapsed 0m49s, about 1m38s left
+  opentitan: 11000/32216 commits (34%), elapsed 0m50s, about 1m38s left
+  opentitan: 11200/32216 commits (34%), elapsed 0m52s, about 1m37s left
+  opentitan: 11400/32216 commits (35%), elapsed 0m53s, about 1m37s left
+  opentitan: 11600/32216 commits (36%), elapsed 0m54s, about 1m36s left
+  opentitan: 11800/32216 commits (36%), elapsed 0m56s, about 1m37s left
+  opentitan: 12000/32216 commits (37%), elapsed 0m57s, about 1m36s left
+  opentitan: 12200/32216 commits (37%), elapsed 0m57s, about 1m34s left
+  opentitan: 12400/32216 commits (38%), elapsed 0m58s, about 1m32s left
+  opentitan: 12600/32216 commits (39%), elapsed 0m58s, about 1m31s left
+  opentitan: 12800/32216 commits (39%), elapsed 0m59s, about 1m29s left
+  opentitan: 13000/32216 commits (40%), elapsed 0m59s, about 1m28s left
+  opentitan: 13200/32216 commits (40%), elapsed 1m00s, about 1m27s left
+  opentitan: 13400/32216 commits (41%), elapsed 1m01s, about 1m25s left
+  opentitan: 13600/32216 commits (42%), elapsed 1m01s, about 1m24s left
+  opentitan: 13800/32216 commits (42%), elapsed 1m02s, about 1m23s left
+  opentitan: 14000/32216 commits (43%), elapsed 1m04s, about 1m23s left
+  opentitan: 14200/32216 commits (44%), elapsed 1m04s, about 1m22s left
+  opentitan: 14400/32216 commits (44%), elapsed 1m05s, about 1m20s left
+  opentitan: 14600/32216 commits (45%), elapsed 1m06s, about 1m19s left
+  opentitan: 14800/32216 commits (45%), elapsed 1m06s, about 1m18s left
+  opentitan: 15000/32216 commits (46%), elapsed 1m07s, about 1m17s left
+  opentitan: 15200/32216 commits (47%), elapsed 1m08s, about 1m16s left
+  opentitan: 15400/32216 commits (47%), elapsed 1m08s, about 1m15s left
+  opentitan: 15600/32216 commits (48%), elapsed 1m09s, about 1m13s left
+  opentitan: 15800/32216 commits (49%), elapsed 1m10s, about 1m12s left
+  opentitan: 16000/32216 commits (49%), elapsed 1m10s, about 1m11s left
+  opentitan: 16200/32216 commits (50%), elapsed 1m12s, about 1m11s left
+  opentitan: 16400/32216 commits (50%), elapsed 1m13s, about 1m10s left
+  opentitan: 16600/32216 commits (51%), elapsed 1m14s, about 1m10s left
+  opentitan: 16800/32216 commits (52%), elapsed 1m15s, about 1m09s left
+  opentitan: 17000/32216 commits (52%), elapsed 1m17s, about 1m09s left
+  opentitan: 17200/32216 commits (53%), elapsed 1m18s, about 1m08s left
+  opentitan: 17400/32216 commits (54%), elapsed 1m19s, about 1m07s left
+  opentitan: 17600/32216 commits (54%), elapsed 1m20s, about 1m07s left
+  opentitan: 17800/32216 commits (55%), elapsed 1m22s, about 1m06s left
+  opentitan: 18000/32216 commits (55%), elapsed 1m23s, about 1m06s left
+  opentitan: 18200/32216 commits (56%), elapsed 1m24s, about 1m05s left
+  opentitan: 18400/32216 commits (57%), elapsed 1m25s, about 1m04s left
+  opentitan: 18600/32216 commits (57%), elapsed 1m27s, about 1m03s left
+  opentitan: 18800/32216 commits (58%), elapsed 1m28s, about 1m03s left
+  opentitan: 19000/32216 commits (58%), elapsed 1m29s, about 1m02s left
+  opentitan: 19200/32216 commits (59%), elapsed 1m30s, about 1m01s left
+  opentitan: 19400/32216 commits (60%), elapsed 1m31s, about 1m00s left
+  opentitan: 19600/32216 commits (60%), elapsed 1m33s, about 0m59s left
+  opentitan: 19800/32216 commits (61%), elapsed 1m33s, about 0m58s left
+  opentitan: 20000/32216 commits (62%), elapsed 1m34s, about 0m57s left
+  opentitan: 20200/32216 commits (62%), elapsed 1m36s, about 0m57s left
+  opentitan: 20400/32216 commits (63%), elapsed 1m37s, about 0m56s left
+  opentitan: 20600/32216 commits (63%), elapsed 1m38s, about 0m55s left
+  opentitan: 20800/32216 commits (64%), elapsed 1m39s, about 0m54s left
+  opentitan: 21000/32216 commits (65%), elapsed 1m41s, about 0m54s left
+  opentitan: 21200/32216 commits (65%), elapsed 1m42s, about 0m53s left
+  opentitan: 21400/32216 commits (66%), elapsed 1m43s, about 0m52s left
+  opentitan: 21600/32216 commits (67%), elapsed 1m44s, about 0m51s left
+  opentitan: 21800/32216 commits (67%), elapsed 1m46s, about 0m50s left
+  opentitan: 22000/32216 commits (68%), elapsed 1m48s, about 0m50s left
+  opentitan: 22200/32216 commits (68%), elapsed 1m49s, about 0m49s left
+  opentitan: 22400/32216 commits (69%), elapsed 1m51s, about 0m48s left
+  opentitan: 22600/32216 commits (70%), elapsed 1m52s, about 0m47s left
+  opentitan: 22800/32216 commits (70%), elapsed 1m53s, about 0m47s left
+  opentitan: 23000/32216 commits (71%), elapsed 1m55s, about 0m46s left
+  opentitan: 23200/32216 commits (72%), elapsed 1m56s, about 0m45s left
+  opentitan: 23400/32216 commits (72%), elapsed 1m58s, about 0m44s left
+  opentitan: 23600/32216 commits (73%), elapsed 2m00s, about 0m43s left
+  opentitan: 23800/32216 commits (73%), elapsed 2m01s, about 0m42s left
+  opentitan: 24000/32216 commits (74%), elapsed 2m02s, about 0m41s left
+  opentitan: 24200/32216 commits (75%), elapsed 2m04s, about 0m41s left
+  opentitan: 24400/32216 commits (75%), elapsed 2m05s, about 0m40s left
+  opentitan: 24600/32216 commits (76%), elapsed 2m06s, about 0m39s left
+  opentitan: 24800/32216 commits (76%), elapsed 2m08s, about 0m38s left
+  opentitan: 25000/32216 commits (77%), elapsed 2m10s, about 0m37s left
+  opentitan: 25200/32216 commits (78%), elapsed 2m12s, about 0m36s left
+  opentitan: 25400/32216 commits (78%), elapsed 2m14s, about 0m36s left
+  opentitan: 25600/32216 commits (79%), elapsed 2m16s, about 0m35s left
+  opentitan: 25800/32216 commits (80%), elapsed 2m18s, about 0m34s left
+  opentitan: 26000/32216 commits (80%), elapsed 2m19s, about 0m33s left
+  opentitan: 26200/32216 commits (81%), elapsed 2m21s, about 0m32s left
+  opentitan: 26400/32216 commits (81%), elapsed 2m22s, about 0m31s left
+  opentitan: 26600/32216 commits (82%), elapsed 2m24s, about 0m30s left
+  opentitan: 26800/32216 commits (83%), elapsed 2m26s, about 0m29s left
+  opentitan: 27000/32216 commits (83%), elapsed 2m28s, about 0m28s left
+  opentitan: 27200/32216 commits (84%), elapsed 2m30s, about 0m27s left
+  opentitan: 27400/32216 commits (85%), elapsed 2m32s, about 0m26s left
+  opentitan: 27600/32216 commits (85%), elapsed 2m34s, about 0m25s left
+  opentitan: 27800/32216 commits (86%), elapsed 2m35s, about 0m24s left
+  opentitan: 28000/32216 commits (86%), elapsed 2m37s, about 0m23s left
+  opentitan: 28200/32216 commits (87%), elapsed 2m39s, about 0m22s left
+  opentitan: 28400/32216 commits (88%), elapsed 2m40s, about 0m21s left
+  opentitan: 28600/32216 commits (88%), elapsed 2m42s, about 0m20s left
+  opentitan: 28800/32216 commits (89%), elapsed 2m43s, about 0m19s left
+  opentitan: 29000/32216 commits (90%), elapsed 2m45s, about 0m18s left
+  opentitan: 29200/32216 commits (90%), elapsed 2m47s, about 0m17s left
+  opentitan: 29400/32216 commits (91%), elapsed 2m48s, about 0m16s left
+  opentitan: 29600/32216 commits (91%), elapsed 2m50s, about 0m15s left
+  opentitan: 29800/32216 commits (92%), elapsed 2m51s, about 0m13s left
+  opentitan: 30000/32216 commits (93%), elapsed 2m52s, about 0m12s left
+  opentitan: 30200/32216 commits (93%), elapsed 2m54s, about 0m11s left
+  opentitan: 30400/32216 commits (94%), elapsed 2m55s, about 0m10s left
+  opentitan: 30600/32216 commits (94%), elapsed 2m56s, about 0m09s left
+  opentitan: 30800/32216 commits (95%), elapsed 2m57s, about 0m08s left
+  opentitan: 31000/32216 commits (96%), elapsed 2m59s, about 0m07s left
+  opentitan: 31200/32216 commits (96%), elapsed 3m01s, about 0m05s left
+  opentitan: 31400/32216 commits (97%), elapsed 3m02s, about 0m04s left
+  opentitan: 31600/32216 commits (98%), elapsed 3m03s, about 0m03s left
+  opentitan: 31800/32216 commits (98%), elapsed 3m04s, about 0m02s left
+  opentitan: 32000/32216 commits (99%), elapsed 3m06s, about 0m01s left
+  opentitan: 32200/32216 commits (99%), elapsed 3m08s, about 0m00s left
+  opentitan: 32216/32216 commits (100%), elapsed 3m08s, about 0m00s left
+  opentitan: 32216 commits (design_only=6115, other=15529, paired=1482, verification_only=9090)
+  wrote /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/opentitan.csv
+Extracting core-v-verif from /Users/emilija/Desktop/VeriDelta-sw/uvminer/src/core-v-verif at HEAD (083728bd8d54)
+  core-v-verif: 200/3120 commits (6%), elapsed 0m01s, about 0m15s left
+  core-v-verif: 400/3120 commits (12%), elapsed 0m02s, about 0m14s left
+  core-v-verif: 600/3120 commits (19%), elapsed 0m02s, about 0m10s left
+  core-v-verif: 800/3120 commits (25%), elapsed 0m02s, about 0m08s left
+  core-v-verif: 1000/3120 commits (32%), elapsed 0m04s, about 0m08s left
+  core-v-verif: 1200/3120 commits (38%), elapsed 0m05s, about 0m08s left
+  core-v-verif: 1400/3120 commits (44%), elapsed 0m06s, about 0m08s left
+  core-v-verif: 1600/3120 commits (51%), elapsed 0m08s, about 0m08s left
+  core-v-verif: 1800/3120 commits (57%), elapsed 0m10s, about 0m07s left
+  core-v-verif: 2000/3120 commits (64%), elapsed 0m11s, about 0m06s left
+  core-v-verif: 2200/3120 commits (70%), elapsed 0m11s, about 0m04s left
+  core-v-verif: 2400/3120 commits (76%), elapsed 0m12s, about 0m03s left
+  core-v-verif: 2600/3120 commits (83%), elapsed 0m13s, about 0m02s left
+  core-v-verif: 2800/3120 commits (89%), elapsed 0m14s, about 0m01s left
+  core-v-verif: 3000/3120 commits (96%), elapsed 0m14s, about 0m00s left
+  core-v-verif: 3120/3120 commits (100%), elapsed 0m15s, about 0m00s left
+  core-v-verif: 3120 commits (other=1826, verification_only=1294)
+  wrote /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/core-v-verif.csv
+Extracting caliptra-rtl from /Users/emilija/Desktop/VeriDelta-sw/uvminer/src/caliptra-rtl at HEAD (0f311d302170)
+  caliptra-rtl: 200/791 commits (25%), elapsed 0m02s, about 0m06s left
+  caliptra-rtl: 400/791 commits (50%), elapsed 0m04s, about 0m04s left
+  caliptra-rtl: 600/791 commits (75%), elapsed 0m06s, about 0m01s left
+  caliptra-rtl: 791/791 commits (100%), elapsed 0m09s, about 0m00s left
+  caliptra-rtl: 791 commits (design_only=92, other=298, paired=187, verification_only=214)
+  wrote /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/caliptra-rtl.csv
+Extracting riscv-dv from /Users/emilija/Desktop/VeriDelta-sw/uvminer/src/riscv-dv at HEAD (0d71c2b666de)
+  riscv-dv: 200/877 commits (22%), elapsed 0m01s, about 0m06s left
+  riscv-dv: 400/877 commits (45%), elapsed 0m03s, about 0m04s left
+  riscv-dv: 600/877 commits (68%), elapsed 0m05s, about 0m02s left
+  riscv-dv: 800/877 commits (91%), elapsed 0m07s, about 0m00s left
+  riscv-dv: 877/877 commits (100%), elapsed 0m07s, about 0m00s left
+  riscv-dv: 877 commits (other=157, verification_only=720)
+  wrote /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/riscv-dv.csv
+
+Done. Files:
+  opentitan: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/opentitan.csv
+  core-v-verif: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/core-v-verif.csv
+  caliptra-rtl: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/caliptra-rtl.csv
+  riscv-dv: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/riscv-dv.csv
+  manifest: /Users/emilija/Desktop/VeriDelta-sw/uvminer/extracted_raw_commits/manifest.json

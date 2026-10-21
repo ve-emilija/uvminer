@@ -1,0 +1,49 @@
+Table 1: VeriDelta category-level F1 vs baselines
+(IF=Interface Drift, SI=Sequence Invalidation, CD=Checker Desync,
+ RD=RAL Desync, CR=Coverage Regression | Macro = avg over active categories)
+
+─────────────────────────────────────────────────────────────────────
+System                         IF     SI     CD     RD     CR   Macro
+─────────────────────────────────────────────────────────────────────
+VeriDelta (GraphRAG)         0.99   1.00   0.88   0.14   0.00     0.75
+LLM — no commit history      1.00   1.00   0.96   0.00   0.00     0.74
+Structural prior only        1.00   1.00   1.00   0.00   0.00     0.75
+LLM — no graph context       0.63   0.91   0.11   0.00   0.00     0.41
+─────────────────────────────────────────────────────────────────────
+
+
+VeriDelta (GraphRAG) — Precision / Recall / F1 / Support
+──────────────────────────────────────────────────────────
+  Interface Drift              P=0.99  R=1.00  F1=0.99  n=66
+  Sequence Invalidation        P=0.99  R=1.00  F1=1.00  n=328
+  Checker Desync               P=0.78  R=1.00  F1=0.88  n=25
+  RAL Desync                   P=1.00  R=0.08  F1=0.14  n=13
+  Coverage Regression          P=0.00  R=0.00  F1=0.00  n=0
+  MACRO                        P=0.94  R=0.77  F1=0.75
+
+LLM — no commit history — Precision / Recall / F1 / Support
+──────────────────────────────────────────────────────────
+  Interface Drift              P=1.00  R=1.00  F1=1.00  n=66
+  Sequence Invalidation        P=1.00  R=1.00  F1=1.00  n=328
+  Checker Desync               P=0.93  R=1.00  F1=0.96  n=25
+  RAL Desync                   P=0.00  R=0.00  F1=0.00  n=13
+  Coverage Regression          P=0.00  R=0.00  F1=0.00  n=0
+  MACRO                        P=0.73  R=0.75  F1=0.74
+
+Structural prior only — Precision / Recall / F1 / Support
+──────────────────────────────────────────────────────────
+  Interface Drift              P=1.00  R=1.00  F1=1.00  n=66
+  Sequence Invalidation        P=1.00  R=1.00  F1=1.00  n=328
+  Checker Desync               P=1.00  R=1.00  F1=1.00  n=25
+  RAL Desync                   P=0.00  R=0.00  F1=0.00  n=13
+  Coverage Regression          P=0.00  R=0.00  F1=0.00  n=0
+  MACRO                        P=0.75  R=0.75  F1=0.75
+
+LLM — no graph context — Precision / Recall / F1 / Support
+──────────────────────────────────────────────────────────
+  Interface Drift              P=0.87  R=0.50  F1=0.63  n=66
+  Sequence Invalidation        P=0.83  R=1.00  F1=0.91  n=328
+  Checker Desync               P=0.06  R=1.00  F1=0.11  n=25
+  RAL Desync                   P=0.00  R=0.00  F1=0.00  n=13
+  Coverage Regression          P=0.00  R=0.00  F1=0.00  n=0
+  MACRO                        P=0.44  R=0.62  F1=0.41

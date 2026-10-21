@@ -1,0 +1,406 @@
+{
+  "changed_node": "dv_base_env_cfg",
+  "ip_block": "dv",
+  "blast_radius": [
+    "cip_base_env_cfg",
+    "ibex_icache_env_cfg",
+    "tl_agent_env_cfg",
+    "xbar_env_cfg",
+    "ac_range_check_env_cfg",
+    "adc_ctrl_env_cfg",
+    "aes_env_cfg",
+    "alert_handler_env_cfg",
+    "aon_timer_env_cfg",
+    "chip_env_cfg",
+    "clkmgr_env_cfg",
+    "csrng_env_cfg",
+    "dma_env_cfg",
+    "edn_env_cfg",
+    "entropy_src_env_cfg",
+    "flash_ctrl_env_cfg",
+    "gpio_env_cfg",
+    "hmac_env_cfg",
+    "i2c_env_cfg",
+    "keymgr_dpe_env_cfg",
+    "keymgr_env_cfg",
+    "kmac_env_cfg",
+    "lc_ctrl_env_cfg",
+    "mbx_env_cfg",
+    "otbn_env_cfg",
+    "otp_ctrl_env_cfg",
+    "pattgen_env_cfg",
+    "pwm_env_cfg",
+    "pwrmgr_env_cfg",
+    "racl_ctrl_base_env_cfg",
+    "rom_ctrl_env_cfg",
+    "rstmgr_env_cfg",
+    "rv_dm_env_cfg",
+    "rv_timer_env_cfg",
+    "soc_dbg_ctrl_env_cfg",
+    "spi_device_env_cfg",
+    "spi_host_env_cfg",
+    "sram_ctrl_env_cfg",
+    "sysrst_ctrl_env_cfg",
+    "uart_env_cfg",
+    "usbdev_env_cfg",
+    "adc_ctrl_env_var_filters_cfg"
+  ],
+  "bind_at_risk": [],
+  "predictions": {
+    "cip_base_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.92,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "ibex_icache_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.92,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "tl_agent_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.92,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "xbar_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.92,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "ac_range_check_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "adc_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "aes_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "alert_handler_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "aon_timer_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "chip_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.87,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "clkmgr_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "csrng_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation",
+        "Checker Desync"
+      ],
+      "confidence": 0.9,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "dma_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "edn_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "entropy_src_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "flash_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "gpio_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "hmac_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "i2c_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "keymgr_dpe_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "keymgr_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "kmac_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "lc_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation",
+        "Coverage Regression"
+      ],
+      "confidence": 0.9,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "mbx_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "otbn_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "otp_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.86,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "pattgen_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "pwm_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "pwrmgr_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "racl_ctrl_base_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "rom_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "rstmgr_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "rv_dm_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "rv_timer_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "soc_dbg_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "spi_device_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "spi_host_env_cfg": {
+      "categories": [
+        "Interface Drift",
+        "Sequence Invalidation"
+      ],
+      "confidence": 0.85,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "sram_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "sysrst_ctrl_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "uart_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "usbdev_env_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.88,
+      "node_type": "CFG",
+      "source": "llm"
+    },
+    "adc_ctrl_env_var_filters_cfg": {
+      "categories": [
+        "Interface Drift"
+      ],
+      "confidence": 0.82,
+      "node_type": "CFG",
+      "source": "llm"
+    }
+  },
+  "model": "claude-haiku-4-5-20251001",
+  "few_shot_commits_used": 5
+}

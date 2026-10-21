@@ -1,0 +1,139 @@
+source_root = "src"
+
+[repositories.opentitan]
+url = "https://github.com/lowRISC/opentitan.git"
+checkout_dir = "opentitan"
+ref = "HEAD"
+# Verification wins when a path matches both sides; exclude_paths wins over both.
+design_paths = [
+  "hw/*/rtl/*.{sv,svh,v,vh,sv.tpl,svh.tpl}",
+  "hw/ip/prim*/*.{sv,svh,v,vh}",
+  "hw/ip_templates/*.{sv,svh,v,sv.tpl,svh.tpl,hjson,hjson.tpl}",
+  "hw/*/data/*.{hjson,hjson.tpl,rdl,sv.tpl,svh.tpl}",
+  "hw/*/templates/*.{sv.tpl,svh.tpl,hjson.tpl}",
+  "hw/ip/*/util/*.{py,sv.tpl,svh.tpl}",
+  "hw/ip/*/script/*.py",
+  "hw/*/doc/*.{hjson,hjson.tpl,tpl.hjson,sv.tpl,tpl.sv,py}",
+  "util/{reggen,topgen,tlgen,design}/*.{py,sv.tpl,svh.tpl,tpl.sv,hjson,hjson.tpl,rdl}",
+]
+verification_paths = [
+  "hw/dv/*.{sv,svh,v,vh,sv.tpl,svh.tpl,py,cc,c,h,el,cfg}",
+  "hw/*/dv/*.{sv,svh,v,vh,sv.tpl,svh.tpl,py,cc,c,h,el,cfg}",
+  "hw/*/{fpv,pre_dv,generic_dv,dv_bkp}/*.{sv,svh,v,vh,cc,h,py}",
+  "hw/ip/*/model/*.{c,h,cc,py,sv}",
+  "hw/ip/otbn/util/*.py",
+  "hw/dv/sv/*/jtag_dmi.hjson",
+  "hw/formal/tools/csr_assert_gen/*.py",
+  "hw/*testplan*.hjson",
+  "util/*testplan*",
+  "util/reggen/*{uvm,fpv_csr}*.{sv.tpl,tpl.sv}",
+  "util/tlgen/*{dv,bind}*.{sv.tpl,tpl.sv}",
+  "util/{uvmdvgen,fpvgen}/*.{py,sv,svh,sv.tpl,svh.tpl,tpl,hjson}",
+  "hw/*/fpv/*.{sv.tpl,svh.tpl,hjson,hjson.tpl}",
+  "hw/*/dv/*.{hjson,hjson.tpl}",
+  "hw/*testplan*.hjson.tpl",
+  "hw/*/data/*{env_pkg__params,tb__}*.sv.tpl",
+  "util/topgen/templates/*{env_pkg__params,tb__}*.sv.tpl",
+  "util/topgen/{top_uvm_reg.sv.tpl,gen_dv.py}",
+  "util/tlgen/{generate_tb.py,tb__xbar_connect.sv.tpl,xbar_env_pkg__params.sv.tpl,xbar.sim_cfg.hjson.tpl}",
+  "util/reggen/gen_{dv,fpv}.py",
+]
+exclude_paths = [
+  "hw/vendor/*",
+  "third_party/*",
+  "sw/*",
+  "*/autogen/*",
+  "*_autogen/*",
+  "*/pre_sca/*",
+  "*.prj.hjson",
+  "*.swp",
+  "hw/lint/*", "hw/syn/*", "hw/*/syn/*", "hw/cdc/*", "hw/rdc/*",
+  "hw/dv/data/*", "hw/formal/data/*",
+]
+category_profile_status = "established_for_study"
+category_profile_note = "OpenTitan study taxonomy; design and verification sources are in this checkout."
+
+[repositories.opentitan.category_applicability]
+INTERFACE_DRIFT = "in_scope"
+SEQUENCE_INVALIDATION = "in_scope"
+CHECKER_DESYNC = "in_scope"
+ASSERTION_ORPHANING = "in_scope"
+RAL_DESYNC = "in_scope"
+COVERAGE_REGRESSION = "in_scope"
+
+[repositories.core-v-verif]
+url = "https://github.com/openhwfoundation/core-v-verif.git"
+checkout_dir = "core-v-verif"
+ref = "HEAD"
+design_paths = []
+verification_paths = ["*.{sv,svh,v,vh,vhd}"]
+exclude_paths = ["vendor/*", "docs/*", "*/results/*", "*.swp", "rtl/*", "lib/uvm/*", "vendor_lib/*", "vendor_lib.rm/*", "*/vendor_lib/*"]
+category_profile_status = "initial_review_with_external_design_gap"
+category_profile_note = "Verification sources are present, but the core RTL dependency is separate and not populated in core-v-cores."
+
+[repositories.core-v-verif.category_applicability]
+INTERFACE_DRIFT = "paired_design_required"
+SEQUENCE_INVALIDATION = "paired_design_required"
+CHECKER_DESYNC = "paired_design_required"
+ASSERTION_ORPHANING = "paired_design_required"
+RAL_DESYNC = "not_present_in_checkout"
+COVERAGE_REGRESSION = "paired_design_required"
+
+[repositories.caliptra-rtl]
+url = "https://github.com/chipsalliance/caliptra-rtl.git"
+checkout_dir = "caliptra-rtl"
+ref = "HEAD"
+design_paths = [
+  "src/*/rtl/*.{sv,svh,v,vh}",
+  "src/*.rdl",
+  "src/*/data/*.hjson",
+  "tools/scripts/{reg_gen,rdl_post_process,reg_json,sparse_fsm_encode}.py",
+]
+verification_paths = [
+  "src/*/rtl/*_uvm.sv",
+  "src/*/{tb,formal,coverage,asserts,aaxi_uvm}/*.{sv,svh,v,vh}",
+  "src/*/uvmf*/*.{sv,svh,v,vh,vhd,yaml,py,cfg}",
+  "src/*/coverage/*.{cfg,yml,yaml}",
+  "src/integration/test_suites/*.{sv,svh}",
+  "tools/dv-classes/*.{sv,svh,py}",
+  "tools/dvsim/testplans/*.hjson",
+  "tools/templates/*.{sv,svh}",
+  "tools/scripts/gen_*covergroups*.py",
+  "coverage/*.{yml,yaml,cfg}",
+  "src/*/rtl/*_{covergroups,sample}.svh",
+]
+exclude_paths = ["docs/*", ".github/*", "*.swp"]
+category_profile_status = "initial_source_review"
+category_profile_note = "This checkout contains RTL and verification sources, including register, coverage, and bind/formal code."
+
+[repositories.caliptra-rtl.category_applicability]
+INTERFACE_DRIFT = "in_scope"
+SEQUENCE_INVALIDATION = "in_scope"
+CHECKER_DESYNC = "in_scope"
+ASSERTION_ORPHANING = "in_scope"
+RAL_DESYNC = "in_scope"
+COVERAGE_REGRESSION = "in_scope"
+
+[repositories.riscv-dv]
+url = "https://github.com/chipsalliance/riscv-dv.git"
+checkout_dir = "riscv-dv"
+ref = "HEAD"
+design_paths = []
+verification_paths = [
+  "{src,test,target,setting,user_extension}/*.{sv,svh}",
+  "pygen/pygen_src/*.py",
+  "{euvm,riscv}/*.d",
+  "scripts/*.py",
+  "{yaml,target}/*.{yaml,json}",
+]
+exclude_paths = ["docs/*", "*/deprecated/*", "*/exp/*", "*/experimental/*", "*.swp"]
+category_profile_status = "initial_generator_review"
+category_profile_note = "Instruction generator with sequences and coverage; no DUT RTL, bind, or RAL model is present in this checkout."
+
+[repositories.riscv-dv.category_applicability]
+INTERFACE_DRIFT = "paired_design_required"
+SEQUENCE_INVALIDATION = "in_scope"
+CHECKER_DESYNC = "paired_design_required"
+ASSERTION_ORPHANING = "not_present_in_checkout"
+RAL_DESYNC = "not_present_in_checkout"
+COVERAGE_REGRESSION = "in_scope"

@@ -6,8 +6,8 @@ Paper: "When RTL Changes, What Breaks?"
 Section 3.2 inclusion/exclusion criteria applied.
 
 Usage:
-    python3 extract_commits.py --repo ../opentitan --output data/commits.csv
-    python3 extract_commits.py --repo ../opentitan --output data/commits.csv --stats
+    python data_labeling/extract_commits.py --repo sources/opentitan --output data/commits.csv
+    python data_labeling/extract_commits.py --repo sources/opentitan --output data/commits.csv --stats
 """
 
 import subprocess
@@ -258,7 +258,7 @@ def extract(repo: str, output: str, stats: bool = False):
             print(f"    {block:<25} {count:>4}  {bar}")
 
     print(f"\nNext step:")
-    print(f"  python3 llm_label.py --input {output} "
+    print(f"  python data_labeling/llm_label.py --input {output} "
           f"--output data/llm_labeled.csv --validate\n")
 
     return len(rows)

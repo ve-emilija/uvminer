@@ -1,0 +1,5 @@
+/sources/*
+!/sources/.gitkeep
+/data/raw_commits/
+__pycache__/
+*.py[cod]extracted_raw_commits/opentitan.csv
