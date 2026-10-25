@@ -1,0 +1,130 @@
+diff --git a/src/integration/rtl/caliptra_top.sv b/src/integration/rtl/caliptra_top.sv
+index 69014b1b..1577ccf8 100755
+--- a/src/integration/rtl/caliptra_top.sv
++++ b/src/integration/rtl/caliptra_top.sv
+@@ -395,7 +395,11 @@ always_comb begin
+ end
+ 
+ el2_veer_wrapper rvtop (
++`ifdef CALIPTRA_FORCE_CPU_RESET
++    .rst_l                  ( 1'b0 ),
++`else
+     .rst_l                  ( cptra_uc_rst_b),
++`endif
+     .dbg_rst_l              ( cptra_pwrgood), 
+     .clk                    ( clk      ),
+     .rst_vec                ( reset_vector[31:1]),
+diff --git a/src/integration/tb/caliptra_top_tb.sv b/src/integration/tb/caliptra_top_tb.sv
+index 3829c330..89e8618b 100755
+--- a/src/integration/tb/caliptra_top_tb.sv
++++ b/src/integration/tb/caliptra_top_tb.sv
+@@ -144,6 +144,11 @@ module caliptra_top_tb (
+ 
+     //device lifecycle
+     security_state_t security_state;
++`ifdef CALIPTRA_DEBUG_UNLOCKED
++    assign security_state = '{device_lifecycle: DEVICE_PRODUCTION, debug_locked: 1'b0}; // DebugUnlocked & Production
++`else
++    assign security_state = '{device_lifecycle: DEVICE_PRODUCTION, debug_locked: 1'b1}; // DebugLocked & Production
++`endif
+ 
+     ras_test_ctrl_t ras_test_ctrl;
+     logic [63:0] generic_input_wires;
+@@ -316,11 +321,6 @@ module caliptra_top_tb (
+         BootFSM_BrkPoint = 1'b1; //Set to 1 even before anything starts
+         cptra_rst_b = 1'b0;
+         start_apb_fuse_sequence = 1'b0;
+-        //tie offs
+-        jtag_tck = 1'b0;    // JTAG clk
+-        jtag_tms = 1'b0;    // JTAG TMS
+-        jtag_tdi = 1'b0;    // JTAG tdi
+-        jtag_trst_n = 1'b0; // JTAG Reset
+         //TIE-OFF
+         PPROT = '0;
+ 
+@@ -847,6 +847,20 @@ module caliptra_top_tb (
+         endcase
+     end
+ 
++// JTAG DPI
++jtagdpi #(
++    .Name           ("jtag0"),
++    .ListenPort     (5000)
++) jtagdpi (
++    .clk_i          (core_clk),
++    .rst_ni         (cptra_rst_b),
++    .jtag_tck       (jtag_tck),
++    .jtag_tms       (jtag_tms),
++    .jtag_tdi       (jtag_tdi),
++    .jtag_tdo       (jtag_tdo),
++    .jtag_trst_n    (jtag_trst_n),
++    .jtag_srst_n    ()
++);
+ 
+    //=========================================================================-
+    // DUT instance
+@@ -923,8 +937,8 @@ caliptra_top caliptra_top_dut (
+     .generic_input_wires(generic_input_wires),
+     .generic_output_wires(),
+ 
+-    .security_state(security_state), //FIXME TIE-OFF
+-    .scan_mode     (scan_mode) //FIXME TIE-OFF
++    .security_state(security_state),
++    .scan_mode     (scan_mode)
+ );
+ 
+ 
+diff --git a/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv b/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
+new file mode 100644
+index 00000000..e69d719b
+--- /dev/null
++++ b/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
+@@ -0,0 +1,47 @@
++// Copyright lowRISC contributors.
++// Licensed under the Apache License, Version 2.0, see LICENSE for details.
++// SPDX-License-Identifier: Apache-2.0
++
++module jtagdpi #(
++  parameter string Name = "jtag0", // name of the JTAG interface (display only)
++  parameter int ListenPort = 44853 // TCP port to listen on
++)(
++  input  logic clk_i,
++  input  logic rst_ni,
++
++  output logic jtag_tck,
++  output logic jtag_tms,
++  output logic jtag_tdi,
++  input  logic jtag_tdo,
++  output logic jtag_trst_n,
++  output logic jtag_srst_n
++);
++
++  import "DPI-C"
++  function chandle jtagdpi_create(input string name, input int listen_port);
++
++  import "DPI-C"
++  function void jtagdpi_tick(input chandle ctx, output bit tck, output bit tms,
++                             output bit tdi, output bit trst_n,
++                             output bit srst_n, input bit tdo);
++
++  import "DPI-C"
++  function void jtagdpi_close(input chandle ctx);
++
++  chandle ctx;
++
++  initial begin
++    ctx = jtagdpi_create(Name, ListenPort);
++  end
++
++  final begin
++    jtagdpi_close(ctx);
++    ctx = null;
++  end
++
++  always_ff @(posedge clk_i, negedge rst_ni) begin
++    jtagdpi_tick(ctx, jtag_tck, jtag_tms, jtag_tdi, jtag_trst_n, jtag_srst_n,
++                 jtag_tdo);
++  end
++
++endmodule
+(30 non-HDL files also changed in this commit; not shown)

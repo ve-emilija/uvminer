@@ -1,0 +1,302 @@
+diff --git a/hw/ip/csrng/rtl/csrng_block_encrypt.sv b/hw/ip/csrng/rtl/csrng_block_encrypt.sv
+index 72c2b3fe40..26a56633bb 100644
+--- a/hw/ip/csrng/rtl/csrng_block_encrypt.sv
++++ b/hw/ip/csrng/rtl/csrng_block_encrypt.sv
+@@ -137,7 +137,8 @@ module csrng_block_encrypt #(
+     .rvalid_o (sfifo_blkenc_not_empty),
+     .rready_i (sfifo_blkenc_pop),
+     .rdata_o  (sfifo_blkenc_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_blkenc_push = block_encrypt_req_i && sfifo_blkenc_not_full;
+diff --git a/hw/ip/csrng/rtl/csrng_cmd_stage.sv b/hw/ip/csrng/rtl/csrng_cmd_stage.sv
+index 7348a160ad..e480f14fd7 100644
+--- a/hw/ip/csrng/rtl/csrng_cmd_stage.sv
++++ b/hw/ip/csrng/rtl/csrng_cmd_stage.sv
+@@ -124,7 +124,8 @@ module csrng_cmd_stage import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_cmd_not_empty),
+     .rready_i       (sfifo_cmd_pop),
+     .rdata_o        (sfifo_cmd_rdata),
+-    .depth_o        (sfifo_cmd_depth)
++    .depth_o        (sfifo_cmd_depth),
++    .full_o         ()
+   );
+ 
+   assign sfifo_cmd_wdata = cmd_stage_bus_i;
+@@ -318,7 +319,8 @@ module csrng_cmd_stage import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_genbits_not_empty),
+     .rready_i       (sfifo_genbits_pop),
+     .rdata_o        (sfifo_genbits_rdata),
+-    .depth_o        () // sfifo_genbits_depth)
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign sfifo_genbits_wdata = {genbits_fips_i,genbits_bus_i};
+diff --git a/hw/ip/csrng/rtl/csrng_ctr_drbg_cmd.sv b/hw/ip/csrng/rtl/csrng_ctr_drbg_cmd.sv
+index 41031dbaf5..78396b6faf 100644
+--- a/hw/ip/csrng/rtl/csrng_ctr_drbg_cmd.sv
++++ b/hw/ip/csrng/rtl/csrng_ctr_drbg_cmd.sv
+@@ -134,7 +134,8 @@ module csrng_ctr_drbg_cmd import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_cmdreq_not_empty),
+     .rready_i       (sfifo_cmdreq_pop),
+     .rdata_o        (sfifo_cmdreq_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign fips_modified = (ctr_drbg_cmd_ccmd_i == INS) ? ctr_drbg_cmd_entropy_fips_i :
+@@ -221,7 +222,8 @@ module csrng_ctr_drbg_cmd import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_rcstage_not_empty),
+     .rready_i       (sfifo_rcstage_pop),
+     .rdata_o        (sfifo_rcstage_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign sfifo_rcstage_push = sfifo_cmdreq_pop;
+@@ -255,7 +257,8 @@ module csrng_ctr_drbg_cmd import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_keyvrc_not_empty),
+     .rready_i       (sfifo_keyvrc_pop),
+     .rdata_o        (sfifo_keyvrc_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign sfifo_keyvrc_push = sfifo_rcstage_pop;
+diff --git a/hw/ip/csrng/rtl/csrng_ctr_drbg_gen.sv b/hw/ip/csrng/rtl/csrng_ctr_drbg_gen.sv
+index 506a19cdea..e6502f83e5 100644
+--- a/hw/ip/csrng/rtl/csrng_ctr_drbg_gen.sv
++++ b/hw/ip/csrng/rtl/csrng_ctr_drbg_gen.sv
+@@ -231,7 +231,8 @@ module csrng_ctr_drbg_gen import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_genreq_not_empty),
+     .rready_i       (sfifo_genreq_pop),
+     .rdata_o        (sfifo_genreq_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign genreq_ccmd_modified = (ctr_drbg_gen_ccmd_i == GEN) ? GENB : INV;
+@@ -341,7 +342,8 @@ module csrng_ctr_drbg_gen import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_adstage_not_empty),
+     .rready_i       (sfifo_adstage_pop),
+     .rdata_o        (sfifo_adstage_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+ //  assign sfifo_adstage_push = sfifo_genreq_pop;
+@@ -374,7 +376,8 @@ module csrng_ctr_drbg_gen import csrng_pkg::*; #(
+     .rvalid_o (sfifo_bencack_not_empty),
+     .rready_i (sfifo_bencack_pop),
+     .rdata_o  (sfifo_bencack_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign bencack_ccmd_modified = (block_encrypt_ccmd_i == GENB) ? GENU : INV;
+@@ -425,7 +428,8 @@ module csrng_ctr_drbg_gen import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_rcstage_not_empty),
+     .rready_i       (sfifo_rcstage_pop),
+     .rdata_o        (sfifo_rcstage_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign sfifo_rcstage_push = sfifo_adstage_pop;
+@@ -460,7 +464,8 @@ module csrng_ctr_drbg_gen import csrng_pkg::*; #(
+     .rvalid_o       (sfifo_genbits_not_empty),
+     .rready_i       (sfifo_genbits_pop),
+     .rdata_o        (sfifo_genbits_rdata),
+-    .depth_o        ()
++    .depth_o        (),
++    .full_o         ()
+   );
+ 
+   assign sfifo_genbits_push = sfifo_rcstage_pop;
+diff --git a/hw/ip/csrng/rtl/csrng_ctr_drbg_upd.sv b/hw/ip/csrng/rtl/csrng_ctr_drbg_upd.sv
+index 5852fe5560..629b247c2d 100644
+--- a/hw/ip/csrng/rtl/csrng_ctr_drbg_upd.sv
++++ b/hw/ip/csrng/rtl/csrng_ctr_drbg_upd.sv
+@@ -260,7 +260,8 @@ module csrng_ctr_drbg_upd #(
+     .rvalid_o (sfifo_updreq_not_empty),
+     .rready_i (sfifo_updreq_pop),
+     .rdata_o  (sfifo_updreq_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_updreq_push = sfifo_updreq_not_full && ctr_drbg_upd_req_i;
+@@ -355,7 +356,8 @@ module csrng_ctr_drbg_upd #(
+     .rvalid_o (sfifo_bencreq_not_empty),
+     .rready_i (sfifo_bencreq_pop),
+     .rdata_o  (sfifo_bencreq_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_bencreq_pop = block_encrypt_req_o && block_encrypt_rdy_i;
+@@ -395,7 +397,8 @@ module csrng_ctr_drbg_upd #(
+     .rvalid_o (sfifo_bencack_not_empty),
+     .rready_i (sfifo_bencack_pop),
+     .rdata_o  (sfifo_bencack_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_bencack_push = sfifo_bencack_not_full && block_encrypt_ack_i;
+@@ -427,7 +430,8 @@ module csrng_ctr_drbg_upd #(
+     .rvalid_o (sfifo_pdata_not_empty),
+     .rready_i (sfifo_pdata_pop),
+     .rdata_o  (sfifo_pdata_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_pdata_wdata = sfifo_updreq_pdata;
+@@ -519,7 +523,8 @@ module csrng_ctr_drbg_upd #(
+     .rvalid_o (sfifo_final_not_empty),
+     .rready_i (sfifo_final_pop),
+     .rdata_o  (sfifo_final_rdata),
+-    .depth_o  ()
++    .depth_o  (),
++    .full_o   ()
+   );
+ 
+   assign sfifo_final_wdata = {updated_key_and_v,concat_inst_id_q,concat_ccmd_q};
+diff --git a/hw/ip/edn/rtl/edn_core.sv b/hw/ip/edn/rtl/edn_core.sv
+index e64621fd8e..f86fb36339 100644
+--- a/hw/ip/edn/rtl/edn_core.sv
++++ b/hw/ip/edn/rtl/edn_core.sv
+@@ -298,7 +298,8 @@ module edn_core import edn_pkg::*; #(
+     .rvalid_o (sfifo_rescmd_not_empty),
+     .rready_i (sfifo_rescmd_pop),
+     .rdata_o  (sfifo_rescmd_rdata),
+-    .depth_o  (sfifo_rescmd_depth)
++    .depth_o  (sfifo_rescmd_depth),
++    .full_o   ()
+   );
+ 
+   // feedback cmd back into rescmd fifo
+@@ -333,7 +334,8 @@ module edn_core import edn_pkg::*; #(
+     .rvalid_o (sfifo_gencmd_not_empty),
+     .rready_i (sfifo_gencmd_pop),
+     .rdata_o  (sfifo_gencmd_rdata),
+-    .depth_o  (sfifo_gencmd_depth)
++    .depth_o  (sfifo_gencmd_depth),
++    .full_o   ()
+   );
+ 
+   // feedback cmd back into gencmd fifo
+diff --git a/hw/ip/entropy_src/rtl/entropy_src_core.sv b/hw/ip/entropy_src/rtl/entropy_src_core.sv
+index 68b72e5b88..c3621a94ce 100644
+--- a/hw/ip/entropy_src/rtl/entropy_src_core.sv
++++ b/hw/ip/entropy_src/rtl/entropy_src_core.sv
+@@ -473,7 +473,8 @@ module entropy_src_core import entropy_src_pkg::*; #(
+     .rvalid_o   (sfifo_esrng_not_empty),
+     .rdata_o    (sfifo_esrng_rdata),
+     .rready_i   (sfifo_esrng_pop),
+-    .depth_o    ()
++    .depth_o    (),
++    .full_o     ()
+   );
+ 
+   // fifo controls
+@@ -1262,7 +1263,8 @@ module entropy_src_core import entropy_src_pkg::*; #(
+     .rvalid_o   (sfifo_precon_not_empty),
+     .rdata_o    (sfifo_precon_rdata),
+     .rready_i   (sfifo_precon_pop),
+-    .depth_o    (sfifo_precon_depth)
++    .depth_o    (sfifo_precon_depth),
++    .full_o     ()
+   );
+ 
+ 
+@@ -1426,7 +1428,8 @@ module entropy_src_core import entropy_src_pkg::*; #(
+     .rvalid_o       (sfifo_esfinal_not_empty),
+     .rready_i       (sfifo_esfinal_pop),
+     .rdata_o        (sfifo_esfinal_rdata),
+-    .depth_o        (sfifo_esfinal_depth)
++    .depth_o        (sfifo_esfinal_depth),
++    .full_o         ()
+   );
+ 
+   assign fips_compliance = !es_bypass_mode && es_enable_rng && !es_enable_lfsr && !rng_bit_en;
+diff --git a/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl b/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+index 92596e4e37..a7c3b9a002 100644
+--- a/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
++++ b/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+@@ -453,6 +453,7 @@ module flash_ctrl import flash_ctrl_pkg::*; #(
+     .wready_o(prog_fifo_wready),
+     .wdata_i (prog_fifo_wdata),
+     .depth_o (prog_fifo_depth),
++    .full_o  (),
+     .rvalid_o(prog_fifo_rvalid),
+     .rready_i(prog_fifo_ren),
+     .rdata_o (prog_fifo_rdata)
+diff --git a/hw/ip/flash_ctrl/rtl/flash_phy.sv b/hw/ip/flash_ctrl/rtl/flash_phy.sv
+index cae21edc92..f2106dddb1 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_phy.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_phy.sv
+@@ -108,6 +108,7 @@ module flash_phy import flash_ctrl_pkg::*; (
+     .wready_o(seq_fifo_rdy),
+     .wdata_i (host_bank_sel),
+     .depth_o (),
++    .full_o (),
+     .rvalid_o(seq_fifo_pending),
+     .rready_i(host_req_done_o),
+     .rdata_o (rsp_bank_sel)
+@@ -170,6 +171,7 @@ module flash_phy import flash_ctrl_pkg::*; (
+       .wready_o(host_rsp_avail[bank]),
+       .wdata_i ({rd_err[bank], rd_data[bank]}),
+       .depth_o (),
++      .full_o (),
+       .rvalid_o(host_rsp_vld[bank]),
+       .rready_i(host_rsp_ack[bank]),
+       .rdata_o ({host_rsp_err[bank], host_rsp_data[bank]})
+diff --git a/hw/ip/flash_ctrl/rtl/flash_phy_rd.sv b/hw/ip/flash_ctrl/rtl/flash_phy_rd.sv
+index 9661d91a1b..f1277e36e2 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_phy_rd.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_phy_rd.sv
+@@ -285,6 +285,7 @@ module flash_phy_rd import flash_phy_pkg::*; (
+     .wready_o(rsp_fifo_rdy),
+     .wdata_i (rsp_fifo_wdata),
+     .depth_o (),
++    .full_o (),
+     .rvalid_o(rsp_fifo_vld),
+     .rready_i(data_valid_o), // pop when a match has been found
+     .rdata_o (rsp_fifo_rdata)
+@@ -434,6 +435,7 @@ module flash_phy_rd import flash_phy_pkg::*; (
+     .wready_o(data_fifo_rdy),
+     .wdata_i ({alloc_q, descram, forward, data_err, data_int}),
+     .depth_o (),
++    .full_o (),
+     .rvalid_o(fifo_data_valid),
+     .rready_i(fifo_data_ready | fifo_forward_pop),
+     .rdata_o ({alloc_q2, hint_descram, hint_forward, data_err_q, fifo_data})
+@@ -453,6 +455,7 @@ module flash_phy_rd import flash_phy_pkg::*; (
+     .wready_o(mask_fifo_rdy),
+     .wdata_i (mask_i),
+     .depth_o (),
++    .full_o (),
+     .rvalid_o(mask_valid),
+     .rready_i(fifo_data_ready | fifo_forward_pop),
+     .rdata_o (mask)
+diff --git a/hw/ip/hmac/rtl/hmac.sv b/hw/ip/hmac/rtl/hmac.sv
+index 91de2eeafd..d943d8b360 100644
+… (10 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/ip/kmac/rtl/kmac_msgfifo.sv, hw/ip/otp_ctrl/rtl/otp_ctrl.sv, hw/ip/prim_generic/rtl/prim_generic_flash_bank.sv, hw/ip/uart/rtl/uart_core.sv, hw/top_earlgrey/ip/flash_ctrl/rtl/autogen/flash_ctrl.sv

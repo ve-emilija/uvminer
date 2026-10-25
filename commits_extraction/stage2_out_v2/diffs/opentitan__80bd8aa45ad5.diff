@@ -1,0 +1,243 @@
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index 8ce39f85a6..9b146cd45f 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -82,6 +82,11 @@ module top_${top["name"]} #(
+   logic ${reset['name']}_rst_n;
+ % endfor
+ 
++  //clock wires declaration
++% for clock in top['clocks']:
++  logic ${clock['name']}_clk;
++% endfor
++
+ <%
+   interrupt_num = sum([x["width"] if "width" in x else 1 for x in top["interrupt"]])
+ %>\
+@@ -103,6 +108,11 @@ module top_${top["name"]} #(
+   logic [0:0]   msip;
+ 
+ 
++  // clock assignments
++% for clock in top['clocks']:
++  assign ${clock['name']}_clk = clk_i;
++% endfor
++
+   // Non-debug module reset == reset for everything except for the debug module
+   logic ndmreset_req;
+ 
+@@ -133,7 +143,7 @@ module top_${top["name"]} #(
+     .PipeLine            (IbexPipeLine)
+   ) core (
+     // clock and reset
+-    .clk_i                (clk_i),
++    .clk_i                (main_clk),
+     .rst_ni               (sys_rst_n),
+     .test_en_i            (1'b0),
+     // static pinning
+@@ -168,7 +178,7 @@ module top_${top["name"]} #(
+                                 // xxxxxxxxxxx      manufacturer id
+                                 // 1                required by standard
+   ) u_dm_top (
+-    .clk_i         (clk_i),
++    .clk_i         (main_clk),
+     .rst_ni        (lc_rst_n),
+     .testmode_i    (1'b0),
+     .ndmreset_o    (ndmreset_req),
+@@ -197,6 +207,7 @@ module top_${top["name"]} #(
+ % for m in top["memory"]:
+ <%
+   resets = m['reset_connections']
++  clocks = m['clock_connections']
+ %>\
+   % if m["type"] == "ram_1p":
+ <%
+@@ -220,7 +231,9 @@ module top_${top["name"]} #(
+     .SramDw(${data_width}),
+     .Outstanding(1)
+   ) tl_adapter_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+@@ -244,7 +257,9 @@ module top_${top["name"]} #(
+     .Depth(${sram_depth}),
+     .DataBitsPerMask(${int(data_width/4)})
+   ) u_ram1p_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+@@ -276,7 +291,9 @@ module top_${top["name"]} #(
+     .Outstanding(1),
+     .ErrOnWrite(1)
+   ) tl_adapter_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+@@ -300,7 +317,9 @@ module top_${top["name"]} #(
+     .Width(${data_width}),
+     .Depth(${rom_depth})
+   ) u_rom_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+@@ -330,7 +349,9 @@ module top_${top["name"]} #(
+     .ByteAccess(0),
+     .ErrOnWrite(1)
+   ) tl_adapter_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+@@ -355,7 +376,9 @@ module top_${top["name"]} #(
+     .WordsPerPage(FLASH_WORDS_PER_PAGE),
+     .DataWidth(${data_width})
+   ) u_flash_${m["name"]} (
+-    .clk_i,
++    % for key in clocks:
++    .${key}   (${clocks[key]}_clk),
++    % endfor
+     % for key in resets:
+     .${key}   (${resets[key]}_rst_n),
+     % endfor
+… (31 more diff lines in this file not shown)
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index 5e4691683e..ac5dda57e1 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -82,6 +82,9 @@ module top_earlgrey #(
+   logic sys_rst_n;
+   logic spi_device_rst_n;
+ 
++  //clock wires declaration
++  logic main_clk;
++
+   logic [53:0]  intr_vector;
+   // Interrupt source list
+   logic intr_uart_tx_watermark;
+@@ -115,6 +118,9 @@ module top_earlgrey #(
+   logic [0:0]   msip;
+ 
+ 
++  // clock assignments
++  assign main_clk = clk_i;
++
+   // Non-debug module reset == reset for everything except for the debug module
+   logic ndmreset_req;
+ 
+@@ -141,7 +147,7 @@ module top_earlgrey #(
+     .PipeLine            (IbexPipeLine)
+   ) core (
+     // clock and reset
+-    .clk_i                (clk_i),
++    .clk_i                (main_clk),
+     .rst_ni               (sys_rst_n),
+     .test_en_i            (1'b0),
+     // static pinning
+@@ -176,7 +182,7 @@ module top_earlgrey #(
+                                 // xxxxxxxxxxx      manufacturer id
+                                 // 1                required by standard
+   ) u_dm_top (
+-    .clk_i         (clk_i),
++    .clk_i         (main_clk),
+     .rst_ni        (lc_rst_n),
+     .testmode_i    (1'b0),
+     .ndmreset_o    (ndmreset_req),
+@@ -213,7 +219,7 @@ module top_earlgrey #(
+     .Outstanding(1),
+     .ErrOnWrite(1)
+   ) tl_adapter_rom (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (sys_rst_n),
+ 
+     .tl_i     (tl_rom_d_h2d),
+@@ -234,7 +240,7 @@ module top_earlgrey #(
+     .Width(32),
+     .Depth(2048)
+   ) u_rom_rom (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (sys_rst_n),
+     .cs_i     (rom_req),
+     .addr_i   (rom_addr),
+@@ -256,7 +262,7 @@ module top_earlgrey #(
+     .SramDw(32),
+     .Outstanding(1)
+   ) tl_adapter_ram_main (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (sys_rst_n),
+     .tl_i     (tl_ram_main_d_h2d),
+     .tl_o     (tl_ram_main_d_d2h),
+@@ -277,7 +283,7 @@ module top_earlgrey #(
+     .Depth(16384),
+     .DataBitsPerMask(8)
+   ) u_ram1p_ram_main (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (sys_rst_n),
+ 
+     .req_i    (ram_main_req),
+@@ -307,7 +313,7 @@ module top_earlgrey #(
+     .ByteAccess(0),
+     .ErrOnWrite(1)
+   ) tl_adapter_eflash (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (lc_rst_n),
+ 
+     .tl_i       (tl_eflash_d_h2d),
+@@ -330,7 +336,7 @@ module top_earlgrey #(
+     .WordsPerPage(FLASH_WORDS_PER_PAGE),
+     .DataWidth(32)
+   ) u_flash_eflash (
+-    .clk_i,
++    .clk_i   (main_clk),
+     .rst_ni   (lc_rst_n),
+     .host_req_i      (flash_host_req),
+     .host_addr_i     (flash_host_addr),
+@@ -357,7 +363,7 @@ module top_earlgrey #(
+       .intr_rx_timeout_o (intr_uart_rx_timeout),
+       .intr_rx_parity_err_o (intr_uart_rx_parity_err),
+ 
+-      .clk_i (clk_i),
++      .clk_i (main_clk),
+       .rst_ni (sys_rst_n)
+   );
+ 
+@@ -369,7 +375,7 @@ module top_earlgrey #(
+       .cio_gpio_en_o (cio_gpio_gpio_en_d2p_o),
+       .intr_gpio_o (intr_gpio_gpio),
+ 
+-      .clk_i (clk_i),
++      .clk_i (main_clk),
+       .rst_ni (sys_rst_n)
+   );
+ 
+@@ -389,7 +395,7 @@ module top_earlgrey #(
+       .intr_txunderflow_o (intr_spi_device_txunderflow),
+ 
+       .scanmode_i   (scanmode_i),
+-      .clk_i (clk_i),
++      .clk_i (main_clk),
+… (53 more diff lines in this file not shown)
+(14 non-HDL files also changed in this commit; not shown)

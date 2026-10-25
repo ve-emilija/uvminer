@@ -1,0 +1,303 @@
+diff --git a/hw/ip/clkmgr/data/clkmgr.sv.tpl b/hw/ip/clkmgr/data/clkmgr.sv.tpl
+index 65c61418b3..f7eb30550e 100644
+--- a/hw/ip/clkmgr/data/clkmgr.sv.tpl
++++ b/hw/ip/clkmgr/data/clkmgr.sv.tpl
+@@ -18,6 +18,7 @@
+   // This drives the register interface
+   input clk_i,
+   input rst_ni,
++  input rst_shadowed_ni,
+ 
+   // System clocks and resets
+   // These are the source clocks for the system
+@@ -148,6 +149,7 @@
+   clkmgr_reg_top u_reg (
+     .clk_i,
+     .rst_ni,
++    .rst_shadowed_ni,
+ % for src in typed_clocks.rg_srcs:
+     .clk_${src}_i,
+     .rst_${src}_ni,
+@@ -157,10 +159,10 @@
+     .reg2hw,
+     .hw2reg,
+     // SEC_CM: BUS.INTEGRITY
+-    .intg_err_o(hw2reg.fatal_err_code.de),
++    .intg_err_o(hw2reg.fatal_err_code.reg_intg.de),
+     .devmode_i(1'b1)
+   );
+-  assign hw2reg.fatal_err_code.d = 1'b1;
++  assign hw2reg.fatal_err_code.reg_intg.d = 1'b1;
+ 
+ 
+   ////////////////////////////////////////////////////
+@@ -175,6 +177,7 @@
+   logic recov_alert;
+   assign recov_alert =
+ % for src in typed_clocks.rg_srcs:
++    hw2reg.recov_err_code.${src}_update_err.de |
+     hw2reg.recov_err_code.${src}_measure_err.de |
+     hw2reg.recov_err_code.${src}_timeout_err.de${";" if loop.last else " |"}
+ % endfor
+@@ -325,9 +328,9 @@
+     .rst_ni(rst_${src}_ni),
+     .clk_ref_i(clk_aon_i),
+     .rst_ref_ni(rst_aon_ni),
+-    .en_i(clk_${src}_en & reg2hw.${src}_measure_ctrl.en.q),
+-    .max_cnt(reg2hw.${src}_measure_ctrl.max_thresh.q),
+-    .min_cnt(reg2hw.${src}_measure_ctrl.min_thresh.q),
++    .en_i(clk_${src}_en & reg2hw.${src}_meas_ctrl_shadowed.en.q),
++    .max_cnt(reg2hw.${src}_meas_ctrl_shadowed.hi.q),
++    .min_cnt(reg2hw.${src}_meas_ctrl_shadowed.lo.q),
+     .valid_o(),
+     .fast_o(${src}_fast_err),
+     .slow_o(${src}_slow_err),
+@@ -363,6 +366,16 @@
+   assign hw2reg.recov_err_code.${src}_measure_err.de = synced_${src}_err;
+   assign hw2reg.recov_err_code.${src}_timeout_err.d = 1'b1;
+   assign hw2reg.recov_err_code.${src}_timeout_err.de = synced_${src}_timeout_err;
++  assign hw2reg.recov_err_code.${src}_update_err.d = 1'b1;
++  assign hw2reg.recov_err_code.${src}_update_err.de =
++    reg2hw.${src}_meas_ctrl_shadowed.en.err_update |
++    reg2hw.${src}_meas_ctrl_shadowed.hi.err_update |
++    reg2hw.${src}_meas_ctrl_shadowed.lo.err_update;
++  assign hw2reg.fatal_err_code.${src}_storage_err.d = 1'b1;
++  assign hw2reg.fatal_err_code.${src}_storage_err.de =
++    reg2hw.${src}_meas_ctrl_shadowed.en.err_storage |
++    reg2hw.${src}_meas_ctrl_shadowed.hi.err_storage |
++    reg2hw.${src}_meas_ctrl_shadowed.lo.err_storage;
+ 
+ % endfor
+ 
+diff --git a/hw/ip/clkmgr/dv/env/clkmgr_scoreboard.sv b/hw/ip/clkmgr/dv/env/clkmgr_scoreboard.sv
+index 62c9cd0f51..e723892d73 100644
+--- a/hw/ip/clkmgr/dv/env/clkmgr_scoreboard.sv
++++ b/hw/ip/clkmgr/dv/env/clkmgr_scoreboard.sv
+@@ -305,15 +305,15 @@ class clkmgr_scoreboard extends cip_base_scoreboard #(
+       "measure_ctrl_regwen": begin
+         if (addr_phase_write) measure_ctrl_regwen = item.a_data;
+       end
+-      "io_measure_ctrl": begin
++      "io_meas_ctrl_shadowed": begin
+       end
+-      "io_div2_measure_ctrl": begin
++      "io_div2_meas_ctrl_shadowed": begin
+       end
+-      "io_div4_measure_ctrl": begin
++      "io_div4_meas_ctrl_shadowed": begin
+       end
+-      "main_measure_ctrl": begin
++      "main_meas_ctrl_shadowed": begin
+       end
+-      "usb_measure_ctrl": begin
++      "usb_meas_ctrl_shadowed": begin
+       end
+       "recov_err_code": begin
+         do_read_check = 1'b0;
+diff --git a/hw/ip/clkmgr/dv/env/seq_lib/clkmgr_base_vseq.sv b/hw/ip/clkmgr/dv/env/seq_lib/clkmgr_base_vseq.sv
+index 8352b36027..32d57aca73 100644
+--- a/hw/ip/clkmgr/dv/env/seq_lib/clkmgr_base_vseq.sv
++++ b/hw/ip/clkmgr/dv/env/seq_lib/clkmgr_base_vseq.sv
+@@ -63,11 +63,11 @@ class clkmgr_base_vseq extends cip_base_vseq #(
+   local function void disable_unnecessary_exclusions();
+     ral.get_excl_item().enable_excl("clkmgr_reg_block.clk_enables", 0);
+     ral.get_excl_item().enable_excl("clkmgr_reg_block.clk_hints", 0);
+-    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_measure_ctrl.en", 0);
+-    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_div2_measure_ctrl.en", 0);
+-    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_div4_measure_ctrl.en", 0);
+-    ral.get_excl_item().enable_excl("clkmgr_reg_block.main_measure_ctrl.en", 0);
+-    ral.get_excl_item().enable_excl("clkmgr_reg_block.usb_measure_ctrl.en", 0);
++    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_meas_ctrl_shadowed.en", 0);
++    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_div2_meas_ctrl_shadowed.en", 0);
++    ral.get_excl_item().enable_excl("clkmgr_reg_block.io_div4_meas_ctrl_shadowed.en", 0);
++    ral.get_excl_item().enable_excl("clkmgr_reg_block.main_meas_ctrl_shadowed.en", 0);
++    ral.get_excl_item().enable_excl("clkmgr_reg_block.usb_meas_ctrl_shadowed.en", 0);
+     `uvm_info(`gfn, "Adjusted exclusions", UVM_MEDIUM)
+     ral.get_excl_item().print_exclusions(UVM_MEDIUM);
+   endfunction
+@@ -176,19 +176,19 @@ class clkmgr_base_vseq extends cip_base_vseq #(
+     `uvm_info(`gfn, $sformatf("Disabling frequency measurement for %0s", which.name), UVM_MEDIUM)
+     case (which)
+       ClkMesrIo: begin
+-        csr_wr(.ptr(ral.io_measure_ctrl.en), .value(0));
++        csr_wr(.ptr(ral.io_meas_ctrl_shadowed.en), .value(0));
+       end
+       ClkMesrIoDiv2: begin
+-        csr_wr(.ptr(ral.io_div2_measure_ctrl.en), .value(0));
++        csr_wr(.ptr(ral.io_div2_meas_ctrl_shadowed.en), .value(0));
+       end
+       ClkMesrIoDiv4: begin
+-        csr_wr(.ptr(ral.io_div4_measure_ctrl.en), .value(0));
++        csr_wr(.ptr(ral.io_div4_meas_ctrl_shadowed.en), .value(0));
+       end
+       ClkMesrMain: begin
+-        csr_wr(.ptr(ral.main_measure_ctrl.en), .value(0));
++        csr_wr(.ptr(ral.main_meas_ctrl_shadowed.en), .value(0));
+       end
+       ClkMesrUsb: begin
+-        csr_wr(.ptr(ral.usb_measure_ctrl.en), .value(0));
++        csr_wr(.ptr(ral.usb_meas_ctrl_shadowed.en), .value(0));
+       end
+       default: ;
+     endcase
+@@ -204,34 +204,34 @@ class clkmgr_base_vseq extends cip_base_vseq #(
+               ), UVM_MEDIUM)
+     case (which)
+       ClkMesrIo: begin
+-        ral.io_measure_ctrl.en.set(1);
+-        ral.io_measure_ctrl.min_thresh.set(min_threshold);
+-        ral.io_measure_ctrl.max_thresh.set(max_threshold);
+-        csr_update(.csr(ral.io_measure_ctrl));
++        ral.io_meas_ctrl_shadowed.en.set(1);
++        ral.io_meas_ctrl_shadowed.lo.set(min_threshold);
++        ral.io_meas_ctrl_shadowed.hi.set(max_threshold);
++        csr_update(.csr(ral.io_meas_ctrl_shadowed));
+       end
+       ClkMesrIoDiv2: begin
+-        ral.io_div2_measure_ctrl.en.set(1);
+-        ral.io_div2_measure_ctrl.min_thresh.set(min_threshold);
+-        ral.io_div2_measure_ctrl.max_thresh.set(max_threshold);
+-        csr_update(.csr(ral.io_div2_measure_ctrl));
++        ral.io_div2_meas_ctrl_shadowed.en.set(1);
++        ral.io_div2_meas_ctrl_shadowed.lo.set(min_threshold);
++        ral.io_div2_meas_ctrl_shadowed.hi.set(max_threshold);
++        csr_update(.csr(ral.io_div2_meas_ctrl_shadowed));
+       end
+       ClkMesrIoDiv4: begin
+-        ral.io_div4_measure_ctrl.en.set(1);
+-        ral.io_div4_measure_ctrl.min_thresh.set(min_threshold);
+-        ral.io_div4_measure_ctrl.max_thresh.set(max_threshold);
+-        csr_update(.csr(ral.io_div4_measure_ctrl));
++        ral.io_div4_meas_ctrl_shadowed.en.set(1);
++        ral.io_div4_meas_ctrl_shadowed.lo.set(min_threshold);
++        ral.io_div4_meas_ctrl_shadowed.hi.set(max_threshold);
++        csr_update(.csr(ral.io_div4_meas_ctrl_shadowed));
+       end
+       ClkMesrMain: begin
+-        ral.main_measure_ctrl.en.set(1);
+-        ral.main_measure_ctrl.min_thresh.set(min_threshold);
+-        ral.main_measure_ctrl.max_thresh.set(max_threshold);
+-        csr_update(.csr(ral.main_measure_ctrl));
++        ral.main_meas_ctrl_shadowed.en.set(1);
++        ral.main_meas_ctrl_shadowed.lo.set(min_threshold);
++        ral.main_meas_ctrl_shadowed.hi.set(max_threshold);
++        csr_update(.csr(ral.main_meas_ctrl_shadowed));
+       end
+       ClkMesrUsb: begin
+-        ral.usb_measure_ctrl.en.set(1);
+-        ral.usb_measure_ctrl.min_thresh.set(min_threshold);
+-        ral.usb_measure_ctrl.max_thresh.set(max_threshold);
+-        csr_update(.csr(ral.usb_measure_ctrl));
++        ral.usb_meas_ctrl_shadowed.en.set(1);
++        ral.usb_meas_ctrl_shadowed.lo.set(min_threshold);
++        ral.usb_meas_ctrl_shadowed.hi.set(max_threshold);
++        csr_update(.csr(ral.usb_meas_ctrl_shadowed));
+       end
+       default: ;
+     endcase
+diff --git a/hw/ip/clkmgr/dv/tb.sv b/hw/ip/clkmgr/dv/tb.sv
+index f2ba474b3d..3abf78f102 100644
+--- a/hw/ip/clkmgr/dv/tb.sv
++++ b/hw/ip/clkmgr/dv/tb.sv
+@@ -74,6 +74,7 @@ module tb;
+   clkmgr dut (
+     .clk_i (clk),
+     .rst_ni(rst_n),
++    .rst_shadowed_ni(rst_n),
+ 
+     .clk_main_i (clk_main),
+     .rst_main_ni(rst_main_n),
+diff --git a/hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv b/hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv
+index 912d728282..507df73540 100644
+--- a/hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv
++++ b/hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv
+@@ -24,6 +24,7 @@
+   // This drives the register interface
+   input clk_i,
+   input rst_ni,
++  input rst_shadowed_ni,
+ 
+   // System clocks and resets
+   // These are the source clocks for the system
+@@ -172,6 +173,7 @@
+   clkmgr_reg_top u_reg (
+     .clk_i,
+     .rst_ni,
++    .rst_shadowed_ni,
+     .clk_io_i,
+     .rst_io_ni,
+     .clk_io_div2_i,
+@@ -187,10 +189,10 @@
+     .reg2hw,
+     .hw2reg,
+     // SEC_CM: BUS.INTEGRITY
+-    .intg_err_o(hw2reg.fatal_err_code.de),
++    .intg_err_o(hw2reg.fatal_err_code.reg_intg.de),
+     .devmode_i(1'b1)
+   );
+-  assign hw2reg.fatal_err_code.d = 1'b1;
++  assign hw2reg.fatal_err_code.reg_intg.d = 1'b1;
+ 
+ 
+   ////////////////////////////////////////////////////
+@@ -204,14 +206,19 @@
+ 
+   logic recov_alert;
+   assign recov_alert =
++    hw2reg.recov_err_code.io_update_err.de |
+     hw2reg.recov_err_code.io_measure_err.de |
+     hw2reg.recov_err_code.io_timeout_err.de |
++    hw2reg.recov_err_code.io_div2_update_err.de |
+     hw2reg.recov_err_code.io_div2_measure_err.de |
+     hw2reg.recov_err_code.io_div2_timeout_err.de |
++    hw2reg.recov_err_code.io_div4_update_err.de |
+     hw2reg.recov_err_code.io_div4_measure_err.de |
+     hw2reg.recov_err_code.io_div4_timeout_err.de |
++    hw2reg.recov_err_code.main_update_err.de |
+     hw2reg.recov_err_code.main_measure_err.de |
+     hw2reg.recov_err_code.main_timeout_err.de |
++    hw2reg.recov_err_code.usb_update_err.de |
+     hw2reg.recov_err_code.usb_measure_err.de |
+     hw2reg.recov_err_code.usb_timeout_err.de;
+ 
+@@ -492,9 +499,9 @@
+     .rst_ni(rst_io_ni),
+     .clk_ref_i(clk_aon_i),
+     .rst_ref_ni(rst_aon_ni),
+-    .en_i(clk_io_en & reg2hw.io_measure_ctrl.en.q),
+-    .max_cnt(reg2hw.io_measure_ctrl.max_thresh.q),
+-    .min_cnt(reg2hw.io_measure_ctrl.min_thresh.q),
++    .en_i(clk_io_en & reg2hw.io_meas_ctrl_shadowed.en.q),
++    .max_cnt(reg2hw.io_meas_ctrl_shadowed.hi.q),
++    .min_cnt(reg2hw.io_meas_ctrl_shadowed.lo.q),
+     .valid_o(),
+     .fast_o(io_fast_err),
+     .slow_o(io_slow_err),
+@@ -530,6 +537,16 @@
+   assign hw2reg.recov_err_code.io_measure_err.de = synced_io_err;
+   assign hw2reg.recov_err_code.io_timeout_err.d = 1'b1;
+   assign hw2reg.recov_err_code.io_timeout_err.de = synced_io_timeout_err;
++  assign hw2reg.recov_err_code.io_update_err.d = 1'b1;
++  assign hw2reg.recov_err_code.io_update_err.de =
++    reg2hw.io_meas_ctrl_shadowed.en.err_update |
++    reg2hw.io_meas_ctrl_shadowed.hi.err_update |
++    reg2hw.io_meas_ctrl_shadowed.lo.err_update;
++  assign hw2reg.fatal_err_code.io_storage_err.d = 1'b1;
++  assign hw2reg.fatal_err_code.io_storage_err.de =
++    reg2hw.io_meas_ctrl_shadowed.en.err_storage |
++    reg2hw.io_meas_ctrl_shadowed.hi.err_storage |
++    reg2hw.io_meas_ctrl_shadowed.lo.err_storage;
+ 
+   logic io_div2_fast_err;
+   logic io_div2_slow_err;
+@@ -544,9 +561,9 @@
+     .rst_ni(rst_io_div2_ni),
+     .clk_ref_i(clk_aon_i),
+     .rst_ref_ni(rst_aon_ni),
+-    .en_i(clk_io_div2_en & reg2hw.io_div2_measure_ctrl.en.q),
+-    .max_cnt(reg2hw.io_div2_measure_ctrl.max_thresh.q),
+-    .min_cnt(reg2hw.io_div2_measure_ctrl.min_thresh.q),
++    .en_i(clk_io_div2_en & reg2hw.io_div2_meas_ctrl_shadowed.en.q),
+… (112 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr_reg_pkg.sv, hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr_reg_top.sv, hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr.sv, hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr_pkg.sv, hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+(3 non-HDL files also changed in this commit; not shown)

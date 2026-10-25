@@ -1,0 +1,72 @@
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl.sv
+index 17921cb03c..80e83ceef6 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl.sv
+@@ -471,8 +471,8 @@ module flash_ctrl (
+   `ASSERT_KNOWN(TlAReadyKnownO_A,       tl_o.a_ready     )
+   `ASSERT_KNOWN(FlashKnownO_A,          {flash_o.req, flash_o.rd, flash_o.prog, flash_o.pg_erase,
+                                          flash_o.bk_erase})
+-  `ASSERT_VALID_DATA(FlashAddrKnown_A,  flash_o.req, flash_o.addr)
+-  `ASSERT_VALID_DATA(FlashProgKnown_A,  flash_o.prog & flash_o.req, flash_o.prog_data)
++  `ASSERT_KNOWN_IF(FlashAddrKnown_A,    flash_o.addr, flash_o.req)
++  `ASSERT_KNOWN_IF(FlashProgKnown_A,    flash_o.prog_data, flash_o.prog & flash_o.req)
+   `ASSERT_KNOWN(IntrProgEmptyKnownO_A,  intr_prog_empty_o)
+   `ASSERT_KNOWN(IntrProgLvlKnownO_A,    intr_prog_lvl_o  )
+   `ASSERT_KNOWN(IntrProgRdFullKnownO_A, intr_rd_full_o   )
+diff --git a/hw/ip/prim/rtl/prim_assert.sv b/hw/ip/prim/rtl/prim_assert.sv
+index 66e284d537..7e67adaae4 100644
+--- a/hw/ip/prim/rtl/prim_assert.sv
++++ b/hw/ip/prim/rtl/prim_assert.sv
+@@ -131,19 +131,19 @@
+   `ASSERT(__name, $rose(__sig) |=> !(__sig), __clk, __rst)                                    \
+ `endif
+ 
+-// Assert that valid is known after reset and data is known when valid == 1
+-`define ASSERT_VALID_DATA(__name, __valid, __dat, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+-`ifdef INC_ASSERT                                                                                           \
+-  `ASSERT_KNOWN(__name``KnownValid, __valid, __clk, __rst)                                                  \
+-  `ASSERT_NEVER(__name``KnownData, (__valid) && $isunknown(__dat), __clk, __rst)                            \
+-`endif
+-
+-// Same as ASSERT_VALID_DATA, but also assert that ready is known after reset
+-`define ASSERT_VALID_READY_DATA(__name, __valid, __ready, __dat, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
+-`ifdef INC_ASSERT                                                                                                          \
+-  `ASSERT_KNOWN(__name``KnownValid, __valid, __clk, __rst)                                                                 \
+-  `ASSERT_KNOWN(__name``KnownReady, __ready, __clk, __rst)                                                                 \
+-  `ASSERT_NEVER(__name``KnownData, (__valid) && $isunknown(__dat), __clk, __rst)                                           \
++// Assert that a property is true only when an enable signal is set.  It can be called as a module
++// (or interface) body item.
++`define ASSERT_IF(__name, __prop, __enable, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
++`ifdef INC_ASSERT                                                                                     \
++  `ASSERT(__name, (__enable) |-> (__prop), __clk, __rst)                                              \
++`endif
++
++// Assert that signal has a known value (each bit is either '0' or '1') after reset if enable is
++// set.  It can be called as a module (or interface) body item.
++`define ASSERT_KNOWN_IF(__name, __sig, __enable, __clk = `ASSERT_DEFAULT_CLK, __rst = `ASSERT_DEFAULT_RST) \
++`ifdef INC_ASSERT                                                                                          \
++  `ASSERT_KNOWN(__name``KnownEnable, __enable, __clk, __rst)                                               \
++  `ASSERT_IF(__name, !$isunknown(__sig), __enable, __clk, __rst)                                           \
+ `endif
+ 
+ ///////////////////////
+diff --git a/hw/ip/tlul/rtl/tlul_assert.sv b/hw/ip/tlul/rtl/tlul_assert.sv
+index a27c80ab92..c0498c7098 100644
+--- a/hw/ip/tlul/rtl/tlul_assert.sv
++++ b/hw/ip/tlul/rtl/tlul_assert.sv
+@@ -272,12 +272,12 @@ module tlul_assert #(
+ 
+   // a_* should be known when a_valid == 1 (a_opcode and a_param are already covered above)
+   // This also covers ASSERT_KNOWN of a_valid
+-  `ASSERT_VALID_DATA(aKnown_A, h2d.a_valid, {h2d.a_size, h2d.a_source, h2d.a_address,
+-      h2d.a_mask, h2d.a_user})
++  `ASSERT_KNOWN_IF(aKnown_A, {h2d.a_size, h2d.a_source, h2d.a_address, h2d.a_mask, h2d.a_user},
++    h2d.a_valid)
+ 
+   // d_* should be known when d_valid == 1 (d_opcode, d_param, d_size already covered above)
+   // This also covers ASSERT_KNOWN of d_valid
+-  `ASSERT_VALID_DATA(dKnown_A, d2h.d_valid, {d2h.d_source, d2h.d_sink, d2h.d_error, d2h.d_user})
++  `ASSERT_KNOWN_IF(dKnown_A, {d2h.d_source, d2h.d_sink, d2h.d_error, d2h.d_user}, d2h.d_valid)
+ 
+   //  make sure ready is not X after reset
+   `ASSERT_KNOWN(aReadyKnown_A, d2h.a_ready)

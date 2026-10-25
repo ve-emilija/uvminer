@@ -1,0 +1,304 @@
+diff --git a/hw/ip/aes/dv/env/aes_env_cfg.sv b/hw/ip/aes/dv/env/aes_env_cfg.sv
+index a40942a27c..73d3cc0696 100644
+--- a/hw/ip/aes/dv/env/aes_env_cfg.sv
++++ b/hw/ip/aes/dv/env/aes_env_cfg.sv
+@@ -76,6 +76,12 @@ class aes_env_cfg extends cip_base_env_cfg #(.RAL_T(aes_reg_block));
+   int            mal_error_pct              = 5;
+   int            random_reset_pct           = 10;
+ 
++  // clear register percentage
++  // percentage of items that will try to clear
++  // one or more registers
++  int            clear_reg_pct              = 0;
++
++
+ 
+   // rand variables
+   // 0: C model 1: OPEN_SSL/BORING_SSL
+@@ -90,9 +96,9 @@ class aes_env_cfg extends cip_base_env_cfg #(.RAL_T(aes_reg_block));
+ 
+ 
+   // constraints
+-  constraint c_num_messages { num_messages inside {[num_messages_min : num_messages_max] };}
+-  constraint c_ref_model    { ref_model    dist   { 0 :/ use_c_model_pct,
+-                                                    1 :/ (100 - use_c_model_pct) }; }
++  constraint c_num_messages {num_messages inside {[num_messages_min : num_messages_max]};}
++  constraint c_ref_model    {ref_model    dist   { 0 :/ use_c_model_pct,
++                                                    1 :/ (100 - use_c_model_pct)};}
+ 
+ 
+   function void post_randomize();
+@@ -125,19 +131,19 @@ class aes_env_cfg extends cip_base_env_cfg #(.RAL_T(aes_reg_block));
+     string str = "";
+     str = super.convert2string();
+     str = {str,  $sformatf("\n\t ----| AES ENVIRONMENT CONFIG \t ") };
+-    str = {str,  $sformatf("\n\t ----| Max Number of message %d \t ", num_messages_max) };
+-    str = {str,  $sformatf("\n\t ----| Min Number of message %d \t ", num_messages_min) };
+-    str = {str,  $sformatf("\n\t ----| Max message len %d bytes \t ", message_len_max) };
+-    str = {str,  $sformatf("\n\t ----| Min message len %d bytes \t ", message_len_min) };
+-    str = {str,  $sformatf("\n\t ----| Host response speed %s   \t ", host_resp_speed.name()) };
++    str = {str,  $sformatf("\n\t ----| Max Number of message %d \t ", num_messages_max)};
++    str = {str,  $sformatf("\n\t ----| Min Number of message %d \t ", num_messages_min)};
++    str = {str,  $sformatf("\n\t ----| Max message len %d bytes \t ", message_len_max)};
++    str = {str,  $sformatf("\n\t ----| Min message len %d bytes \t ", message_len_min)};
++    str = {str,  $sformatf("\n\t ----| Host response speed %s   \t ", host_resp_speed.name())};
+     str = {str,  $sformatf("\n\t ----| Reference model:\t    %s              \t ",
+-         (ref_model==0) ? "C-MODEL" : "OPEN_SSL" ) };
+-    str = {str,  $sformatf("\n\t ----| num_messages # %d \t ", num_messages) };
+-    str = {str,  $sformatf("\n\t ----| ECB Weight: %d         \t ", ecb_weight) };
+-    str = {str,  $sformatf("\n\t ----| CBC Weight: %d         \t ", cbc_weight) };
+-    str = {str,  $sformatf("\n\t ----| CFB Weight: %d         \t ", cfb_weight) };
+-    str = {str,  $sformatf("\n\t ----| OFB Weight: %d         \t ", ofb_weight) };
+-    str = {str,  $sformatf("\n\t ----| CTR Weight: %d         \t ", ctr_weight) };
++         (ref_model==0) ? "C-MODEL" : "OPEN_SSL" )};
++    str = {str,  $sformatf("\n\t ----| num_messages # %d \t ", num_messages)};
++    str = {str,  $sformatf("\n\t ----| ECB Weight: %d         \t ", ecb_weight)};
++    str = {str,  $sformatf("\n\t ----| CBC Weight: %d         \t ", cbc_weight)};
++    str = {str,  $sformatf("\n\t ----| CFB Weight: %d         \t ", cfb_weight)};
++    str = {str,  $sformatf("\n\t ----| OFB Weight: %d         \t ", ofb_weight)};
++    str = {str,  $sformatf("\n\t ----| CTR Weight: %d         \t ", ctr_weight)};
+     str = {str,  $sformatf("\n\t ----| key mask:   %b         \t ", key_mask)};
+     str = {str, "\n"};
+     return str;
+diff --git a/hw/ip/aes/dv/env/aes_env_pkg.sv b/hw/ip/aes/dv/env/aes_env_pkg.sv
+index 2e58130c8f..4c1c959cfc 100644
+--- a/hw/ip/aes/dv/env/aes_env_pkg.sv
++++ b/hw/ip/aes/dv/env/aes_env_pkg.sv
+@@ -27,7 +27,13 @@ package aes_env_pkg;
+ 
+   typedef enum int { AES_CFG=0, AES_DATA=1, AES_ERR_INJ=2 } aes_item_type_e;
+ 
+-  // functions
++  typedef struct packed {
++    bit          data_out;
++    bit          data_in;
++    bit          iv;
++    bit          key;
++  } clear_t;
++
+ 
+   // package sources
+  `include "aes_env_cfg.sv"
+diff --git a/hw/ip/aes/dv/env/aes_message_item.sv b/hw/ip/aes/dv/env/aes_message_item.sv
+index 1c547cc120..0cf64aad0f 100644
+--- a/hw/ip/aes/dv/env/aes_message_item.sv
++++ b/hw/ip/aes/dv/env/aes_message_item.sv
+@@ -5,7 +5,6 @@
+ class aes_message_item extends uvm_sequence_item;
+ 
+   `uvm_object_utils(aes_message_item)
+-
+   `uvm_object_new
+ 
+   ///////////////////////////////////////
+@@ -40,6 +39,10 @@ class aes_message_item extends uvm_sequence_item;
+   // fixed IV
+   bit    fixed_iv_en          = 0;
+ 
++  // clear register percentage
++  // percentage of items that will try to clear
++  // one or more registers
++  int    clear_reg_pct        = 0;
+ 
+ 
+   // predefined values for fixed mode
+@@ -143,12 +146,12 @@ class aes_message_item extends uvm_sequence_item;
+   constraint c_mode {
+     solve has_config_error before aes_mode;
+     solve cfg_error_type before aes_mode;
+-    if (!(has_config_error && cfg_error_type[0]) ) {
++    if (!(has_config_error && cfg_error_type[0])) {
+       aes_mode dist   { AES_ECB := ecb_weight,
+                         AES_CBC := cbc_weight,
+                         AES_CFB := cfb_weight,
+                         AES_OFB := ofb_weight,
+-                        AES_CTR := ctr_weight };
++                        AES_CTR := ctr_weight};
+      } else {
+        // the mode will be randomized to a random
+        // non legal value later.
+@@ -160,35 +163,39 @@ class aes_message_item extends uvm_sequence_item;
+     if (error_types[0])
+       {
+       has_config_error dist { 0 :/ (100 - config_error_pct),
+-                              1 :/ config_error_pct    };
++                              1 :/ config_error_pct};
+       }
+-    else { has_config_error == 0; }
++    else { has_config_error == 0;}
+   }
+ 
+   constraint c_config_error_type {
+     solve has_config_error before cfg_error_type;
+     if (has_config_error) {
+-      cfg_error_type inside { [1:3] };
++      cfg_error_type inside {[1:3]};
+     } else {
+-      cfg_error_type ==2'b00;
++      cfg_error_type == 2'b00;
+     }
+   }
+ 
+    constraint c_manual_operation {
+                   manual_operation dist { 0:/ (100 - manual_operation_pct),
+-                                          1:/ manual_operation_pct };
++                                          1:/ manual_operation_pct};
+    };
+ 
+ 
+   function void add_data_item(aes_seq_item item);
+-    for(int i=0; i < 4 ; i++ ) begin
++    for (int i=0; i < 4 ; i++) begin
+       // data_in.push_front (data_in[3:0])
+       input_msg  = { input_msg , item.data_in[i][7:0], item.data_in[i][15:8], item.data_in[i][23:16]
+                     ,item.data_in[i][31:24]};
+       // data_in.push_front (data_in[3:0])
+       output_msg = { output_msg, item.data_out[i][7:0], item.data_out[i][15:8],
+                      item.data_out[i][23:16],item.data_out[i][31:24] };
++      `uvm_info(`gfn, $sformatf("\n\t ---| adding to 0x%0h to data, length is now: %0d",
++               {item.data_in[i][7:0], item.data_in[i][15:8],item.data_in[i][23:16], item.data_in[i][31:24]},
++               input_msg.size()), UVM_LOW)
+     end
++
+   endfunction // add_data_item
+ 
+ 
+@@ -199,13 +206,13 @@ class aes_message_item extends uvm_sequence_item;
+     this.aes_iv        = item.iv;
+ 
+     // check for valid keylen
+-    if ( item.key_len inside { 3'b001, 3'b010, 3'b100 } ) begin
++    if (item.key_len inside { 3'b001, 3'b010, 3'b100 }) begin
+       this.aes_keylen  = item.key_len;
+     end else begin
+       this.aes_keylen = 3'b100; // force to 256b
+-      `uvm_info(`gfn, $sformatf("\n\t ---| Illegal key len detected reverting to default 256"), UVM_MEDIUM)
++      `uvm_info(`gfn, $sformatf("\n\t ---| Illegal key len detected reverting to default 256"),
++                UVM_MEDIUM)
+     end
+-
+     add_data_item(item);
+   endfunction // add_start_msg_item
+ 
+@@ -221,50 +228,61 @@ class aes_message_item extends uvm_sequence_item;
+     str = super.convert2string();
+     str = {str,  $sformatf("\n\t ----| \t\t AES MESSAGE ITEM   \t      |----\t ")
+            };
+-    str = {str, "\n\t ----| " };
++    str = {str, "\n\t ----| "};
+     str = {str,  $sformatf("\n\t ----| Mode: \t  \t \t %s                         \t ",
+-                           aes_mode.name() ) };
++                           aes_mode.name())};
+     str = {str,  $sformatf("\n\t ----| Operation:   \t \t %s                         \t ",
+-                           aes_operation.name() ) };
++                           aes_operation.name())};
+     str = {str,  $sformatf("\n\t ----| has Configuration error:  %s  \t  \t        \t ",
+-                           (has_config_error==1) ? "TRUE" : "FALSE" ) };
++                           (has_config_error==1) ? "TRUE" : "FALSE")};
+     str = {str,  $sformatf("\n\t ----| Mode error en:  \t %d \n\t ----| Key_len error en: \t %d  \t         \t ",
+-                           cfg_error_type[0], cfg_error_type[1]) };
++                           cfg_error_type[0], cfg_error_type[1])};
+     str = {str,  $sformatf("\n\t ----| Message Length:  \t  \t %d             \t ",
+… (68 more diff lines in this file not shown)
+diff --git a/hw/ip/aes/dv/env/aes_scoreboard.sv b/hw/ip/aes/dv/env/aes_scoreboard.sv
+index 3efd7fd10d..d8f7f5f62f 100644
+--- a/hw/ip/aes/dv/env/aes_scoreboard.sv
++++ b/hw/ip/aes/dv/env/aes_scoreboard.sv
+@@ -12,7 +12,6 @@ class aes_scoreboard extends cip_base_scoreboard #(
+   );
+ 
+   `uvm_component_utils(aes_scoreboard)
+-
+   `uvm_component_new
+ 
+   // local variables
+@@ -20,7 +19,7 @@ class aes_scoreboard extends cip_base_scoreboard #(
+   aes_seq_item output_item;                   // item containing resulting output
+   aes_seq_item complete_item;                 // merge of input and output items
+ 
+-  bit          aes_from_rst       = 1;        // 1: nothing has happened since rst was released
++  bit          new_config         = 1;        // 1: from reset or a new config was entered
+   bit          ok_to_fwd          = 0;        // 0: item is not ready to forward
+   bit          finish_message     = 0;        // set when test is trying to end
+                                               // - to indicate the last message is finished
+@@ -103,6 +102,7 @@ class aes_scoreboard extends cip_base_scoreboard #(
+             default:     input_item.mode = AES_NONE;
+           endcase // case item.a_data[4:1]
+           input_item.clean();
++          new_config = 1;
+ 
+         end
+ 
+@@ -148,36 +148,28 @@ class aes_scoreboard extends cip_base_scoreboard #(
+ 
+       (!uvm_re_match("trigger", csr_name)): begin
+         //start triggered
+-        if (item.a_data[0]) begin
++        if (get_field_val(ral.trigger.start, item.a_data)) begin
+            ok_to_fwd    = 1;
+-           aes_from_rst = 0;
+         end
+         // clear key
+-        if (item.a_data[1]) begin
+-          if (cfg.clear_reg_w_rand) begin
+-            input_item.key = '{default: {8{$urandom()}}};
+-          end else begin
+-            input_item.key = '{default: '0};
+-          end
++        if (get_field_val(ral.trigger.key_clear, item.a_data)) begin
++          void'(input_item.key_clean(0,1));
++          new_config = 1;
++          `uvm_info(`gfn, $sformatf("\n\t ----clearing KEY"), UVM_MEDIUM)
+         end
+         // clear IV
+-        if (item.a_data[2]) begin
+-          if (cfg.clear_reg_w_rand) begin
+-            input_item.iv = {4{$urandom()}};
+-          end else begin
+-            input_item.iv = '0;
+-          end
++        if (get_field_val(ral.trigger.iv_clear, item.a_data)) begin
++          void'(input_item.iv_clean(0,1));
++          new_config = 1;
++          `uvm_info(`gfn, $sformatf("\n\t ----| clearing IV"), UVM_MEDIUM)
+         end
+         // clear data_in
+-        if (item.a_data[3]) begin
+-          if (cfg.clear_reg_w_rand) begin
+-            input_item.data_in = {4{$urandom()}};
+-          end else begin
+-            input_item.data_in = '0;
+-          end
++        if (get_field_val(ral.trigger.data_in_clear, item.a_data)) begin
++          input_item.clean_data_in();
++          `uvm_info(`gfn, $sformatf("\n\t ----| clearing DATA_IN"), UVM_MEDIUM)
+         end
+         // clear data out
+-        if (item.a_data[4]) begin
++        if (get_field_val(ral.trigger.data_out_clear, item.a_data)) begin
+           if (cfg.clear_reg_w_rand) begin
+             input_item.data_out = {4{$urandom()}};
+           end else begin
+@@ -208,20 +200,20 @@ class aes_scoreboard extends cip_base_scoreboard #(
+       if (input_item.valid && !input_item.manual_op) begin
+         case (input_item.mode)
+           AES_ECB: begin
+-            `uvm_info(`gfn, $sformatf("\n\t ----| ECB mode"), UVM_MEDIUM)
+-            if (aes_from_rst) begin
++            `uvm_info(`gfn, $sformatf("\n\t ----| ECB mode"), UVM_FULL)
++            if (new_config) begin
+               // verify that all 4 data_in and all 8 key have been updated
+-              if (input_item.data_in_valid() && input_item.key_clean(0)) begin
++              if (input_item.data_in_valid() && input_item.key_clean(0,0)) begin
+                 //clone and add to ref and rec data fifo
+                 ok_to_fwd    = 1;
+-                aes_from_rst = 0;
++                new_config = 0;
+               end
+             end else begin
+               // verify that all 4 data_in and all 8 key are clean
+               `uvm_info(`gfn, $sformatf("\n\t ----|data_inv_vld?  %b, key clean ? %b",
+-                        input_item.data_in_valid(), input_item.key_clean(1) ), UVM_MEDIUM)
+… (226 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/ip/aes/dv/env/aes_seq_item.sv, hw/ip/aes/dv/env/seq_lib/aes_base_vseq.sv, hw/ip/aes/dv/env/seq_lib/aes_clear_vseq.sv, hw/ip/aes/dv/env/seq_lib/aes_vseq_list.sv, hw/ip/aes/dv/tests/aes_clear_test.sv, hw/ip/aes/dv/tests/aes_test_pkg.sv
+(3 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,61 @@
+diff --git a/hw/ip/spi_device/dv/tb/tb.sv b/hw/ip/spi_device/dv/tb/tb.sv
+index 74601dd614..a3ed23f2fa 100644
+--- a/hw/ip/spi_device/dv/tb/tb.sv
++++ b/hw/ip/spi_device/dv/tb/tb.sv
+@@ -53,7 +53,8 @@ module tb;
+     .intr_rxf_o     (intr_rxf  ),
+     .intr_rxlvl_o   (intr_rxlvl),
+     .intr_txlvl_o   (intr_txlvl),
+-    .intr_rxerr_o   (intr_rxerr)
++    .intr_rxerr_o   (intr_rxerr),
++    .scanmode_i     (1'b0      )
+   );
+ 
+   assign sck          = spi_if.sck;
+diff --git a/hw/ip/spi_device/rtl/spi_device.sv b/hw/ip/spi_device/rtl/spi_device.sv
+index 78fdd5f3cf..8b7a64ea73 100644
+--- a/hw/ip/spi_device/rtl/spi_device.sv
++++ b/hw/ip/spi_device/rtl/spi_device.sv
+@@ -30,12 +30,10 @@ module spi_device #(
+   output logic intr_txlvl_o,       // TX FIFO below level
+   output logic intr_rxerr_o,       // RX Frame error
+   output logic intr_rxoverflow_o,  // RX Async FIFO Overflow
+-  output logic intr_txunderflow_o  // TX Async FIFO Underflow
+-);
++  output logic intr_txunderflow_o, // TX Async FIFO Underflow
+ 
+-  // TODO: make a way to connect scanmode from the top in topgen.py
+-  logic scanmode_i;
+-  assign scanmode_i = 1'b0;
++  input scanmode_i
++);
+ 
+   import spi_device_pkg::*;
+   import spi_device_reg_pkg::*;
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index 92d564e6f3..4bb4ec51d0 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -388,6 +388,9 @@ module top_earlgrey #(
+       .irq_o      (irq_plic),
+       .irq_id_o   (irq_id),
+       .msip_o     (msip),
++    % endif
++    % if m["scan"] == "true":
++      .scanmode_i   (scanmode_i),
+     % endif
+       .clk_i(${"clk_i" if m["clock"] == "main" else "clk_"+ m["clock"] + "_i"}),
+       .rst_ni(${"ndmreset_n" if m["clock"] == "main" else "rst_" + m["clock"] + "_ni"})
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index 11574bd586..d18e26fc7a 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -372,6 +372,7 @@ module top_earlgrey #(
+       .intr_rxerr_o (intr_spi_device_rxerr),
+       .intr_rxoverflow_o (intr_spi_device_rxoverflow),
+       .intr_txunderflow_o (intr_spi_device_txunderflow),
++      .scanmode_i   (scanmode_i),
+       .clk_i(clk_i),
+       .rst_ni(ndmreset_n)
+   );
+(2 non-HDL files also changed in this commit; not shown)

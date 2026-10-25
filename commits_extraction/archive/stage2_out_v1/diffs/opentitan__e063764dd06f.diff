@@ -1,0 +1,302 @@
+diff --git a/hw/ip/adc_ctrl/rtl/adc_ctrl_reg_top.sv b/hw/ip/adc_ctrl/rtl/adc_ctrl_reg_top.sv
+index 59fbf0b30b..4f2b1f65a7 100644
+--- a/hw/ip/adc_ctrl/rtl/adc_ctrl_reg_top.sv
++++ b/hw/ip/adc_ctrl/rtl/adc_ctrl_reg_top.sv
+@@ -105,6 +105,9 @@ module adc_ctrl_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/aes/rtl/aes_reg_top.sv b/hw/ip/aes/rtl/aes_reg_top.sv
+index 62ba84fecd..edc0c32b55 100644
+--- a/hw/ip/aes/rtl/aes_reg_top.sv
++++ b/hw/ip/aes/rtl/aes_reg_top.sv
+@@ -107,6 +107,9 @@ module aes_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/aon_timer/rtl/aon_timer_reg_top.sv b/hw/ip/aon_timer/rtl/aon_timer_reg_top.sv
+index a926d336d0..4d9535d41d 100644
+--- a/hw/ip/aon_timer/rtl/aon_timer_reg_top.sv
++++ b/hw/ip/aon_timer/rtl/aon_timer_reg_top.sv
+@@ -105,6 +105,9 @@ module aon_timer_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/clkmgr/rtl/clkmgr_reg_top.sv b/hw/ip/clkmgr/rtl/clkmgr_reg_top.sv
+index 52f927d21d..2f5df55842 100644
+--- a/hw/ip/clkmgr/rtl/clkmgr_reg_top.sv
++++ b/hw/ip/clkmgr/rtl/clkmgr_reg_top.sv
+@@ -103,6 +103,9 @@ module clkmgr_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/csrng/rtl/csrng_reg_top.sv b/hw/ip/csrng/rtl/csrng_reg_top.sv
+index c5f6e7b391..e6099f72f0 100644
+--- a/hw/ip/csrng/rtl/csrng_reg_top.sv
++++ b/hw/ip/csrng/rtl/csrng_reg_top.sv
+@@ -103,6 +103,9 @@ module csrng_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/edn/rtl/edn_reg_top.sv b/hw/ip/edn/rtl/edn_reg_top.sv
+index 56888c34dc..6fb7e31253 100644
+--- a/hw/ip/edn/rtl/edn_reg_top.sv
++++ b/hw/ip/edn/rtl/edn_reg_top.sv
+@@ -103,6 +103,9 @@ module edn_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/entropy_src/rtl/entropy_src_reg_top.sv b/hw/ip/entropy_src/rtl/entropy_src_reg_top.sv
+index c05df98526..a0a02b0a5f 100644
+--- a/hw/ip/entropy_src/rtl/entropy_src_reg_top.sv
++++ b/hw/ip/entropy_src/rtl/entropy_src_reg_top.sv
+@@ -103,6 +103,9 @@ module entropy_src_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl b/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+index 9a1a10cb92..44b21ddb09 100644
+--- a/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
++++ b/hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+@@ -534,7 +534,6 @@ module flash_ctrl
+     .en_ifetch_i (prim_mubi_pkg::MuBi4False),
+     .req_o       (sw_wvalid),
+     .req_type_o  (),
+-    .req_error_i (1'b0),
+     .gnt_i       (sw_wready),
+     .we_o        (),
+     .addr_o      (),
+@@ -647,7 +646,6 @@ module flash_ctrl
+     .en_ifetch_i (prim_mubi_pkg::MuBi4False),
+     .req_o       (adapter_req),
+     .req_type_o  (),
+-    .req_error_i (1'b0),
+     // if there is no valid read operation, don't hang the
+     // bus, just let things normally return
+     .gnt_i       (sw_rfifo_rvalid | rd_no_op_d),
+@@ -1323,7 +1321,6 @@ module flash_ctrl
+     .en_ifetch_i (flash_exec_en),
+     .req_o       (flash_host_req),
+     .req_type_o  (),
+-    .req_error_i (1'b0),
+     .gnt_i       (flash_host_req_rdy),
+     .we_o        (),
+     .addr_o      (flash_host_addr),
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl_core_reg_top.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl_core_reg_top.sv
+index 20aac72e67..3781800bfd 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl_core_reg_top.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl_core_reg_top.sv
+@@ -166,6 +166,9 @@ module flash_ctrl_core_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl_prim_reg_top.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl_prim_reg_top.sv
+index cc636bea56..87715af54e 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl_prim_reg_top.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl_prim_reg_top.sv
+@@ -103,6 +103,9 @@ module flash_ctrl_prim_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/gpio/rtl/gpio_reg_top.sv b/hw/ip/gpio/rtl/gpio_reg_top.sv
+index 0cab4e4e59..033f8751f4 100644
+--- a/hw/ip/gpio/rtl/gpio_reg_top.sv
++++ b/hw/ip/gpio/rtl/gpio_reg_top.sv
+@@ -103,6 +103,9 @@ module gpio_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/hmac/rtl/hmac_reg_top.sv b/hw/ip/hmac/rtl/hmac_reg_top.sv
+index 864293b915..256235b0f9 100644
+--- a/hw/ip/hmac/rtl/hmac_reg_top.sv
++++ b/hw/ip/hmac/rtl/hmac_reg_top.sv
+@@ -157,6 +157,9 @@ module hmac_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/i2c/rtl/i2c_reg_top.sv b/hw/ip/i2c/rtl/i2c_reg_top.sv
+index 0ce163e15a..ecd6866a6f 100644
+--- a/hw/ip/i2c/rtl/i2c_reg_top.sv
++++ b/hw/ip/i2c/rtl/i2c_reg_top.sv
+@@ -103,6 +103,9 @@ module i2c_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/keymgr/rtl/keymgr_reg_top.sv b/hw/ip/keymgr/rtl/keymgr_reg_top.sv
+index 26cd2e487c..d79506fd48 100644
+--- a/hw/ip/keymgr/rtl/keymgr_reg_top.sv
++++ b/hw/ip/keymgr/rtl/keymgr_reg_top.sv
+@@ -107,6 +107,9 @@ module keymgr_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/kmac/rtl/kmac_reg_top.sv b/hw/ip/kmac/rtl/kmac_reg_top.sv
+index 0b10a362a7..abc4c2ff67 100644
+--- a/hw/ip/kmac/rtl/kmac_reg_top.sv
++++ b/hw/ip/kmac/rtl/kmac_reg_top.sv
+@@ -166,6 +166,9 @@ module kmac_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/lc_ctrl/rtl/lc_ctrl_reg_top.sv b/hw/ip/lc_ctrl/rtl/lc_ctrl_reg_top.sv
+index d1cc5206c3..730069b9c9 100644
+--- a/hw/ip/lc_ctrl/rtl/lc_ctrl_reg_top.sv
++++ b/hw/ip/lc_ctrl/rtl/lc_ctrl_reg_top.sv
+@@ -103,6 +103,9 @@ module lc_ctrl_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/otbn/rtl/otbn_reg_top.sv b/hw/ip/otbn/rtl/otbn_reg_top.sv
+index 736f5eb08c..b9e169ed06 100644
+--- a/hw/ip/otbn/rtl/otbn_reg_top.sv
++++ b/hw/ip/otbn/rtl/otbn_reg_top.sv
+@@ -162,6 +162,9 @@ module otbn_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/otp_ctrl/rtl/otp_ctrl_core_reg_top.sv b/hw/ip/otp_ctrl/rtl/otp_ctrl_core_reg_top.sv
+index 87dd9ee0c2..960771c504 100644
+--- a/hw/ip/otp_ctrl/rtl/otp_ctrl_core_reg_top.sv
++++ b/hw/ip/otp_ctrl/rtl/otp_ctrl_core_reg_top.sv
+@@ -157,6 +157,9 @@ module otp_ctrl_core_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/otp_ctrl/rtl/otp_ctrl_prim_reg_top.sv b/hw/ip/otp_ctrl/rtl/otp_ctrl_prim_reg_top.sv
+index 2719973301..08f72c5a98 100644
+--- a/hw/ip/otp_ctrl/rtl/otp_ctrl_prim_reg_top.sv
++++ b/hw/ip/otp_ctrl/rtl/otp_ctrl_prim_reg_top.sv
+@@ -103,6 +103,9 @@ module otp_ctrl_prim_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/pattgen/rtl/pattgen_reg_top.sv b/hw/ip/pattgen/rtl/pattgen_reg_top.sv
+index 066f420a03..a5bb2702c3 100644
+--- a/hw/ip/pattgen/rtl/pattgen_reg_top.sv
++++ b/hw/ip/pattgen/rtl/pattgen_reg_top.sv
+@@ -103,6 +103,9 @@ module pattgen_reg_top (
+     .tl_i (tl_reg_h2d),
+     .tl_o (tl_reg_d2h),
+ 
++    .en_ifetch_i(prim_mubi_pkg::MuBi4False),
++    .intg_error_o(),
++
+     .we_o    (reg_we),
+     .re_o    (reg_re),
+     .addr_o  (reg_addr),
+diff --git a/hw/ip/pinmux/rtl/pinmux_reg_top.sv b/hw/ip/pinmux/rtl/pinmux_reg_top.sv
+index fc0430c045..bf4e0d2709 100644
+--- a/hw/ip/pinmux/rtl/pinmux_reg_top.sv
++++ b/hw/ip/pinmux/rtl/pinmux_reg_top.sv
+@@ -105,6 +105,9 @@ module pinmux_reg_top (
+     .tl_i (tl_reg_h2d),
+… (8 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/ip/pwm/rtl/pwm_reg_top.sv, hw/ip/pwrmgr/rtl/pwrmgr_reg_top.sv, hw/ip/rom_ctrl/rtl/rom_ctrl_regs_reg_top.sv, hw/ip/rstmgr/rtl/rstmgr_reg_top.sv, hw/ip/rv_core_ibex/rtl/rv_core_ibex_cfg_reg_top.sv, hw/ip/rv_dm/rtl/rv_dm_mem_reg_top.sv, hw/ip/rv_dm/rtl/rv_dm_regs_reg_top.sv, hw/ip/rv_timer/rtl/rv_timer_reg_top.sv, hw/ip/spi_device/rtl/spi_device_reg_top.sv, hw/ip/spi_host/rtl/spi_host_reg_top.sv, hw/ip/spi_host/rtl/spi_host_window.sv, hw/ip/sram_ctrl/rtl/sram_ctrl_regs_reg_top.sv, hw/ip/sysrst_ctrl/rtl/sysrst_ctrl_reg_top.sv, hw/ip/tlul/rtl/tlul_adapter_reg.sv, hw/ip/trial1/rtl/trial1_reg_top.sv, hw/ip/uart/rtl/uart_reg_top.sv, hw/ip/usbdev/rtl/usbdev_reg_top.sv, hw/top_earlgrey/ip/ast/rtl/ast_reg_top.sv, hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr_reg_top.sv, hw/top_earlgrey/ip/flash_ctrl/rtl/autogen/flash_ctrl_core_reg_top.sv, hw/top_earlgrey/ip/flash_ctrl/rtl/autogen/flash_ctrl_prim_reg_top.sv, hw/top_earlgrey/ip/pinmux/rtl/autogen/pinmux_reg_top.sv, hw/top_earlgrey/ip/pwrmgr/rtl/autogen/pwrmgr_reg_top.sv, hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr_reg_top.sv, hw/top_earlgrey/ip/sensor_ctrl/rtl/sensor_ctrl_reg_top.sv, hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_top.sv, hw/top_earlgrey/ip_autogen/rv_plic/rtl/rv_plic_reg_top.sv, util/reggen/reg_top.sv.tpl

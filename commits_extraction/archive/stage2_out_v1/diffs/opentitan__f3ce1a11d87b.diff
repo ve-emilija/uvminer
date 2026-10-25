@@ -1,0 +1,302 @@
+diff --git a/hw/top_earlgrey/ip/ast/rtl/aon_osc.sv b/hw/top_earlgrey/ip/ast/rtl/aon_osc.sv
+index 73f2506f6c..00625c444e 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/aon_osc.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/aon_osc.sv
+@@ -16,26 +16,23 @@ module aon_osc (
+ );
+ 
+ `ifndef AST_BYPASS_CLK
++`ifndef SYNTHESIS
+ // Behavioral Model
+ ////////////////////////////////////////
+ timeunit 1ns / 10ps;
+ import ast_bhv_pkg::* ;
+ 
+ localparam time AonClkPeriod = 5000ns; // 5000ns (200Khz)
+-logic clk, en_dly;
++logic clk;
+ 
+ initial begin
+   clk = 1'b0;
+   $display("\nAON Clock Period: %0dns", AonClkPeriod);
+-  en_dly = 1'b0;  // to block init X
+-  #(AON_EN_RDLY + VCAON_POK_RDLY +1) en_dly = 1'b1;
+ end
+ 
+-// Enable 5us RC Delay
+-logic aon_en_dly, aon_clk_dly;
+-
+-assign #(AON_EN_RDLY) aon_en_dly = aon_en_i;
+-assign aon_clk_dly = aon_en_dly && en_dly;
++// Enable 5us RC Delay on rise
++logic en_osc_re;
++buf #(AON_EN_RDLY, 0) b0 (en_osc_re, (vcore_pok_h_i && aon_en_i));
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -44,11 +41,20 @@ logic en_osc;
+ always begin
+   #(AonClkPeriod/2) clk = ~clk && en_osc;
+ end
++`else  // of SYBTHESIS
++// SYNTHESIS/LINTER
++///////////////////////////////////////
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && aon_en_i;
++
++logic clk, en_osc;
++assign clk = 1'b0;
++`endif  // of SYBTHESIS
+ `else  // of AST_BYPASS_CLK
+-// SYNTHESIS/VERILATOR/LINTER/FPGA
++// VERILATOR/FPGA
+ ///////////////////////////////////////
+-logic aon_clk_dly;
+-assign aon_clk_dly = 1'b1;
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && aon_en_i;
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -64,9 +70,7 @@ prim_clock_gating #(
+ );
+ `endif
+ 
+-logic en_osc_re, en_osc_fe;
+-
+-assign en_osc_re = vcore_pok_h_i && aon_en_i && aon_clk_dly;
++logic en_osc_fe;
+ 
+ // Syncronize en_osc to clk FE for glitch free disable
+ always_ff @( negedge clk, negedge vcore_pok_h_i ) begin
+diff --git a/hw/top_earlgrey/ip/ast/rtl/ast.sv b/hw/top_earlgrey/ip/ast/rtl/ast.sv
+index 23b512cc1c..845827f7b3 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/ast.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/ast.sv
+@@ -122,7 +122,7 @@ module ast #(
+   input [8-1:0] fla_obs_i,                    // FLASH Observe Bus
+   input [8-1:0] otp_obs_i,                    // OTP Observe Bus
+   input [8-1:0] otm_obs_i,                    // OT Modules Observe Bus
+-  output ast_pkg::obs_cnt_t obs_cnt_o,        // Observe Control
++  output ast_pkg::ast_obs_ctrl_t obs_ctrl_o,  // Observe Control
+ 
+   // pad mux/pad related
+   input [Pad2AstInWidth-1:0] padmux2ast_i,    // IO_2_DFT Input Signals
+@@ -168,11 +168,11 @@ assign dft_scan_md_o    = prim_mubi_pkg::MuBi4False;
+ assign scan_mode        = 1'b0;
+ assign scan_shift_en_o  = 1'b0;
+ assign scan_reset_no    = 1'b1;
+-assign obs_cnt_o        = '{
+-                             obgsl: 4'h0,
+-                             obmsl: 4'h0,
+-                             obmen: prim_mubi_pkg::MuBi4False
+-                           };
++assign obs_ctrl_o = '{
++                       obgsl: 4'h0,
++                       obmsl: ast_pkg::ObsNon,
++                       obmen: prim_mubi_pkg::MuBi4False
++                     };
+ 
+ 
+ ///////////////////////////////////////
+diff --git a/hw/top_earlgrey/ip/ast/rtl/ast_pkg.sv b/hw/top_earlgrey/ip/ast/rtl/ast_pkg.sv
+index d7c9062445..d1ab3d4fee 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/ast_pkg.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/ast_pkg.sv
+@@ -134,29 +134,29 @@ typedef struct packed {
+ } clks_osc_byp_t;
+ 
+ typedef enum logic [4-1:0] {
+-  Nmd    = 4'd0,
+-  Ast    = 4'd1,
+-  Fla    = 4'd2,
+-  Otp    = 4'd3,
+-  Ot0    = 4'd4,
+-  Ot1    = 4'd5,
+-  Ot2    = 4'd6,
+-  Ot3    = 4'd7,
+-  Rs0    = 4'd8,
+-  Rs1    = 4'd9,
+-  Rs2    = 4'd10,
+-  Rs3    = 4'd11,
+-  Rs4    = 4'd12,
+-  Rs5    = 4'd13,
+-  Rs6    = 4'd14,
+-  Rs7    = 4'd15
++  ObsNon = 4'h0,  // No module observed (disable)
++  ObsAst = 4'h1,  // Observe AST
++  ObsFla = 4'h2,  // Observe FLASH
++  ObsOtp = 4'h3,  // Observe OTP
++  ObsOt0 = 4'h4,  // Observe OT0
++  ObsOt1 = 4'h5,  // Observe OT1
++  ObsOt2 = 4'h6,  // Observe OT2
++  ObsOt3 = 4'h7,  // Observe OT3
++  ObsRs0 = 4'h8,  // RESERVED
++  ObsRs1 = 4'h9,  // RESERVED
++  ObsRs2 = 4'hA,  // RESERVED
++  ObsRs3 = 4'hB,  // RESERVED
++  ObsRs4 = 4'hC,  // RESERVED
++  ObsRs5 = 4'hD,  // RESERVED
++  ObsRs6 = 4'hE,  // RESERVED
++  ObsRs7 = 4'hF   // RESERVED
+ } ast_omdl_e;
+ 
+ typedef struct packed {
+   logic [4-1:0]          obgsl;
+   ast_omdl_e             obmsl;
+   prim_mubi_pkg::mubi4_t obmen;
+-} ast_obs_cnt_t;
++} ast_obs_ctrl_t;
+ 
+ endpackage  // of ast_pkg
+ `endif  // of __AST_PKG_SV
+diff --git a/hw/top_earlgrey/ip/ast/rtl/io_osc.sv b/hw/top_earlgrey/ip/ast/rtl/io_osc.sv
+index e7f561bfb0..819bd5f5de 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/io_osc.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/io_osc.sv
+@@ -16,26 +16,23 @@ module io_osc (
+ );
+ 
+ `ifndef AST_BYPASS_CLK
++`ifndef SYNTHESIS
+ // Behavioral Model
+ ////////////////////////////////////////
+ timeunit 1ns / 1ps;
+ import ast_bhv_pkg::* ;
+ 
+ localparam real IoClkPeriod = 1000000/96;  // ~10416.666667ps (96Mhz)
+-logic clk, en_dly;
++logic clk;
+ 
+ initial begin
+   clk = 1'b0;
+   $display("\nIO Clock Period: %0dps", IoClkPeriod);
+-  en_dly = 1'b0;  // to block init X
+-  #(IO_EN_RDLY + VCAON_POK_RDLY + 1) en_dly = 1'b1;
+ end
+ 
+-// Enable 5us RC Delay
+-logic io_en_dly, io_clk_dly;
+-
+-assign #(IO_EN_RDLY) io_en_dly = io_en_i;
+-assign io_clk_dly = io_en_dly && en_dly;
++// Enable 5us RC Delay on rise
++logic en_osc_re;
++buf #(IO_EN_RDLY, 0) b0 (en_osc_re, (vcore_pok_h_i && io_en_i));
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -44,11 +41,20 @@ logic en_osc;
+ always begin
+    #(IoClkPeriod/2000) clk = ~clk && en_osc;
+ end
++`else  // of SYBTHESIS
++// SYNTHESIS/LINTER
++///////////////////////////////////////
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && io_en_i;
++
++logic clk, en_osc;
++assign clk = 1'b0;
++`endif  // of SYBTHESIS
+ `else  // of AST_BYPASS_CLK
+-// SYNTHESIS/VERILATOR/LINTER/FPGA
++// VERILATOR/FPGA
+ ///////////////////////////////////////
+-logic io_clk_dly;
+-assign io_clk_dly = 1'b1;
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && io_en_i;
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -64,9 +70,7 @@ prim_clock_gating #(
+ );
+ `endif
+ 
+-logic en_osc_re, en_osc_fe;
+-
+-assign en_osc_re = vcore_pok_h_i && io_en_i && io_clk_dly;
++logic en_osc_fe;
+ 
+ // Syncronize en_osc to clk FE for glitch free disable
+ always_ff @( negedge clk, negedge vcore_pok_h_i ) begin
+diff --git a/hw/top_earlgrey/ip/ast/rtl/sys_osc.sv b/hw/top_earlgrey/ip/ast/rtl/sys_osc.sv
+index 08d12cbf00..140b4de965 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/sys_osc.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/sys_osc.sv
+@@ -17,27 +17,24 @@ module sys_osc (
+ );
+ 
+ `ifndef AST_BYPASS_CLK
++`ifndef SYNTHESIS
+ // Behavioral Model
+ ////////////////////////////////////////
+ timeunit  1ns / 1ps;
+ import ast_bhv_pkg::* ;
+ 
+ localparam real SysClkPeriod = 10000; // 10000ps (100Mhz)
+-logic clk, en_dly;
++logic clk;
+ shortreal jitter;
+ 
+ initial begin
+   clk  = 1'b0;
+   $display("\nSYS Clock Period: %0dps", SysClkPeriod);
+-  en_dly = 1'b0;  // to block init X
+-  #(SYS_EN_RDLY + VCAON_POK_RDLY + 1) en_dly = 1'b1;
+ end
+ 
+-// Enable 5us RC Delay
+-logic sys_en_dly, sys_clk_dly;
+-
+-assign #(SYS_EN_RDLY) sys_en_dly = sys_en_i;
+-assign sys_clk_dly = sys_en_dly && en_dly;
++// Enable 5us RC Delay on rise
++logic en_osc_re;
++buf #(SYS_EN_RDLY, 0) b0 (en_osc_re, (vcore_pok_h_i && sys_en_i));
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -48,11 +45,20 @@ always begin
+   jitter = sys_jen_i ? $urandom_range(2000, 0) : 0;
+   #((SysClkPeriod+jitter)/2000) clk = ~clk && en_osc;
+ end
++`else  // of SYBTHESIS
++// SYNTHESIS/LINTER
++///////////////////////////////////////
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && sys_en_i;
++
++logic clk, en_osc;
++assign clk = 1'b0;
++`endif  // of SYBTHESIS
+ `else  // of AST_BYPASS_CLK
+-// SYNTHESIS/VERILATOR/LINTER/FPGA
+-////////////////////////////////////////
+-logic sys_clk_dly;
+-assign sys_clk_dly = 1'b1;
++// VERILATOR/FPGA
++///////////////////////////////////////
++logic en_osc_re;
++assign en_osc_re = vcore_pok_h_i && sys_en_i;
+ 
+ // Clock Oscillator
+ ////////////////////////////////////////
+@@ -68,9 +74,7 @@ prim_clock_gating #(
+ );
+ `endif
+ 
+-logic en_osc_re, en_osc_fe;
+-
+-assign en_osc_re = vcore_pok_h_i && sys_en_i && sys_clk_dly;
++logic en_osc_fe;
+ 
+ // Syncronize en_osc to clk FE for glitch free disable
+ always_ff @( negedge clk, negedge vcore_pok_h_i ) begin
+diff --git a/hw/top_earlgrey/ip/ast/rtl/usb_osc.sv b/hw/top_earlgrey/ip/ast/rtl/usb_osc.sv
+index 9de7f19532..a95213f29d 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/usb_osc.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/usb_osc.sv
+… (75 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/top_earlgrey/rtl/autogen/chip_earlgrey_asic.sv, hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv, hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv, hw/top_earlgrey/rtl/chip_earlgrey_verilator.sv, util/topgen/templates/chiplevel.sv.tpl

@@ -1,0 +1,53 @@
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index 98877f24d0..c9cf0c5ef2 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -84,6 +84,7 @@ typedef struct packed {
+ nbits = block.get_n_bits(["q","qe","re"]) - 1
+ packbit = 0
+ %>
++% if nbits > 0:
+ typedef struct packed {
+ % for r in block.regs:
+   ######################## multiregister ###########################
+@@ -130,6 +131,7 @@ typedef struct packed {
+   % endif
+ % endfor
+ } ${block.name}_reg2hw_t;
++% endif
+ 
+ /////////////////////////////////////////////////////////////////////
+ // Internal design logic to register
+@@ -138,6 +140,7 @@ typedef struct packed {
+ nbits = block.get_n_bits(["d","de"]) - 1
+ packbit = 0
+ %>
++% if nbits > 0:
+ typedef struct packed {
+ % for r in block.regs:
+   ######################## multiregister ###########################
+@@ -178,6 +181,7 @@ typedef struct packed {
+   % endif
+ % endfor
+ } ${block.name}_hw2reg_t;
++% endif
+ 
+   // Register Address
+ % for r in block.get_regs_flat():
+diff --git a/util/reggen/reg_top.tpl.sv b/util/reggen/reg_top.tpl.sv
+index 7531b51575..e5414bb517 100644
+--- a/util/reggen/reg_top.tpl.sv
++++ b/util/reggen/reg_top.tpl.sv
+@@ -26,8 +26,12 @@ module ${block.name}_reg_top ${print_param(params)}(
+ 
+ % endif
+   // To HW
++% if block.get_n_bits(["q","qe","re"]):
+   output ${block.name}_reg_pkg::${block.name}_reg2hw_t reg2hw, // Write
++% endif
++% if block.get_n_bits(["d","de"]):
+   input  ${block.name}_reg_pkg::${block.name}_hw2reg_t hw2reg, // Read
++% endif
+ 
+   // Config
+   input devmode_i // If 1, explicit error return for unmapped register access

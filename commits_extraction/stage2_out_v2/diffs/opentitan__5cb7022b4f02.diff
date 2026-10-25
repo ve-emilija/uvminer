@@ -1,0 +1,51 @@
+diff --git a/hw/ip/prim/abstract/prim_clock_gating.sv b/hw/ip/prim/abstract/prim_clock_gating.sv
+index 4765c4abcd..9424d9a4df 100644
+--- a/hw/ip/prim/abstract/prim_clock_gating.sv
++++ b/hw/ip/prim/abstract/prim_clock_gating.sv
+@@ -1,8 +1,6 @@
+ // Copyright lowRISC contributors.
+ // Licensed under the Apache License, Version 2.0, see LICENSE for details.
+ // SPDX-License-Identifier: Apache-2.0
+-//
+-// Common Library: Clock Gating cell
+ 
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+diff --git a/hw/ip/prim/abstract/prim_pad_wrapper.sv b/hw/ip/prim/abstract/prim_pad_wrapper.sv
+index b8dc6e879f..e18b7e36c1 100644
+--- a/hw/ip/prim/abstract/prim_pad_wrapper.sv
++++ b/hw/ip/prim/abstract/prim_pad_wrapper.sv
+@@ -5,7 +5,6 @@
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+ 
+-// prim_pad_wrapper using the generic implementation
+ module prim_pad_wrapper #(
+   parameter              Impl   = "generic",
+   parameter int unsigned AttrDw = 6
+diff --git a/hw/ip/prim/abstract/prim_ram_2p.sv b/hw/ip/prim/abstract/prim_ram_2p.sv
+index de79252605..46a74f644c 100644
+--- a/hw/ip/prim/abstract/prim_ram_2p.sv
++++ b/hw/ip/prim/abstract/prim_ram_2p.sv
+@@ -5,7 +5,6 @@
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+ 
+-// prim_ram_2p using the generic implementation
+ module prim_ram_2p #(
+   parameter int Width    = 32, // bit
+   parameter int Depth    = 128,
+diff --git a/hw/ip/prim/abstract/prim_rom.sv b/hw/ip/prim/abstract/prim_rom.sv
+index b0adecc528..8f73e1925e 100644
+--- a/hw/ip/prim/abstract/prim_rom.sv
++++ b/hw/ip/prim/abstract/prim_rom.sv
+@@ -2,6 +2,9 @@
+ // Licensed under the Apache License, Version 2.0, see LICENSE for details.
+ // SPDX-License-Identifier: Apache-2.0
+ 
++// TODO: This module is a hard-coded stopgap to select an implementation of an
++// "abstract module". This module is to be replaced by generated code.
++
+ module prim_rom #(
+   parameter  int Width     = 32,
+   parameter  int Depth     = 2048, // 8kB default

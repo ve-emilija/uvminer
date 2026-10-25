@@ -1,0 +1,137 @@
+diff --git a/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv b/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+index 12e70fcc4f..6c348100e9 100644
+--- a/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
++++ b/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+@@ -76,7 +76,7 @@ if n_alerts > reg_dw:
+ if not k:
+   comma = ''
+ if k < n_alerts-1:
+-  prefix = space;%>${prefix}hw2reg.cause_word${w}.a${k}.d${comma}
++  prefix = space;%>${prefix}hw2reg.alert_cause${w}.a${k}.d${comma}
+ %endfor
+ ${space}} = '1;
+ <%
+@@ -94,22 +94,22 @@ if n_alerts > reg_dw:
+ if not k:
+   comma = ''
+ if k < n_alerts-1:
+-  prefix = space;%>${prefix}hw2reg.cause_word${w}.a${k}.de${comma}
++  prefix = space;%>${prefix}hw2reg.alert_cause${w}.a${k}.de${comma}
+ %endfor
+ ${space}} = hw2reg_wrap.alert_cause;
+   //----------------------------------------------------------------------------
+ 
+   // if a local alert is enabled and it fires,
+   // we have to set the corresponding cause bit
+-  assign { hw2reg.cause_local.la3.d,
+-           hw2reg.cause_local.la2.d,
+-           hw2reg.cause_local.la1.d,
+-           hw2reg.cause_local.la0.d } = '1;
++  assign { hw2reg.loc_alert_cause.la3.d,
++           hw2reg.loc_alert_cause.la2.d,
++           hw2reg.loc_alert_cause.la1.d,
++           hw2reg.loc_alert_cause.la0.d } = '1;
+ 
+-  assign { hw2reg.cause_local.la3.de,
+-           hw2reg.cause_local.la2.de,
+-           hw2reg.cause_local.la1.de,
+-           hw2reg.cause_local.la0.de } = hw2reg_wrap.loc_alert_cause;
++  assign { hw2reg.loc_alert_cause.la3.de,
++           hw2reg.loc_alert_cause.la2.de,
++           hw2reg.loc_alert_cause.la1.de,
++           hw2reg.loc_alert_cause.la0.de } = hw2reg_wrap.loc_alert_cause;
+ 
+   // autolock can clear these regs automatically upon entering escalation
+   // note: the class must be activated for this to occur
+diff --git a/hw/ip/alert_handler/rtl/alert_handler_esc_timer.sv b/hw/ip/alert_handler/rtl/alert_handler_esc_timer.sv
+index 7a7843facd..ac69c5a085 100644
+--- a/hw/ip/alert_handler/rtl/alert_handler_esc_timer.sv
++++ b/hw/ip/alert_handler/rtl/alert_handler_esc_timer.sv
+@@ -227,22 +227,23 @@ module alert_handler_esc_timer (
+   //////////////////////////////////////////////////////
+ 
+   // a clear should always bring us back to idle
+-  `ASSERT(CheckClr, clr_i && state_q != Timeout |=> state_q == Idle, clk_i, !rst_ni)
++  `ASSERT(CheckClr, clr_i && state_q != alert_pkg::Timeout |=>
++      state_q == alert_pkg::Idle, clk_i, !rst_ni)
+   // if currently in idle and not enabled, must remain here
+   `ASSERT(CheckEn,  state_q == alert_pkg::Idle && !en_i |=>
+       state_q == alert_pkg::Idle, clk_i, !rst_ni)
+   // Check if accumulation trigger correctly captured
+-  `ASSERT(CheckAccumTrig0,  accum_trig_i && state_q == Idle && en_i |=>
+-      state_q == Phase0, clk_i, !rst_ni)
+-  `ASSERT(CheckAccumTrig1,  accum_trig_i && state_q == Timeout && en_i |=>
+-      state_q == Phase0, clk_i, !rst_ni)
++  `ASSERT(CheckAccumTrig0,  accum_trig_i && state_q == alert_pkg::Idle && en_i |=>
++      state_q == alert_pkg::Phase0, clk_i, !rst_ni)
++  `ASSERT(CheckAccumTrig1,  accum_trig_i && state_q == alert_pkg::Timeout && en_i |=>
++      state_q == alert_pkg::Phase0, clk_i, !rst_ni)
+   // Check if timeout correctly captured
+-  `ASSERT(CheckTimeout0, !accum_trig_i && state_q == Idle && timeout_en_i && en_i |=>
+-      state_q == Timeout, clk_i, !rst_ni)
+-  `ASSERT(CheckTimeout1, !accum_trig_i && state_q == Timeout && timeout_en_i |=>
+-      state_q == Timeout, clk_i, !rst_ni)
+-  `ASSERT(CheckTimeout2, !accum_trig_i && state_q == Timeout && !timeout_en_i |=>
+-      state_q == Idle, clk_i, !rst_ni)
++  `ASSERT(CheckTimeout0, !accum_trig_i && state_q == alert_pkg::Idle && timeout_en_i && en_i |=>
++      state_q == alert_pkg::Timeout, clk_i, !rst_ni)
++  `ASSERT(CheckTimeout1, !accum_trig_i && state_q == alert_pkg::Timeout && timeout_en_i |=>
++      state_q == alert_pkg::Timeout, clk_i, !rst_ni)
++  `ASSERT(CheckTimeout2, !accum_trig_i && state_q == alert_pkg::Timeout && !timeout_en_i |=>
++      state_q == alert_pkg::Idle, clk_i, !rst_ni)
+   // Check if timeout correctly triggers escalation
+   `ASSERT(CheckTimeoutTrig, state_q == alert_pkg::Timeout && timeout_en_i &&
+       cnt_q == timeout_cyc_i |=> state_q == alert_pkg::Phase0, clk_i, !rst_ni)
+diff --git a/hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv b/hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv
+index d5ed1e3447..539d350ad8 100644
+--- a/hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv
++++ b/hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv
+@@ -100,31 +100,31 @@ module alert_handler_reg_wrap (
+   // if an alert is enabled and it fires,
+   // we have to set the corresponding cause bit
+ 
+-  assign { hw2reg.cause_word.a3.d,
+-           hw2reg.cause_word.a2.d,
+-           hw2reg.cause_word.a1.d,
+-           hw2reg.cause_word.a0.d
++  assign { hw2reg.alert_cause.a3.d,
++           hw2reg.alert_cause.a2.d,
++           hw2reg.alert_cause.a1.d,
++           hw2reg.alert_cause.a0.d
+            } = '1;
+ 
+ 
+-  assign { hw2reg.cause_word.a3.de,
+-           hw2reg.cause_word.a2.de,
+-           hw2reg.cause_word.a1.de,
+-           hw2reg.cause_word.a0.de
++  assign { hw2reg.alert_cause.a3.de,
++           hw2reg.alert_cause.a2.de,
++           hw2reg.alert_cause.a1.de,
++           hw2reg.alert_cause.a0.de
+            } = hw2reg_wrap.alert_cause;
+   //----------------------------------------------------------------------------
+ 
+   // if a local alert is enabled and it fires,
+   // we have to set the corresponding cause bit
+-  assign { hw2reg.cause_local.la3.d,
+-           hw2reg.cause_local.la2.d,
+-           hw2reg.cause_local.la1.d,
+-           hw2reg.cause_local.la0.d } = '1;
+-
+-  assign { hw2reg.cause_local.la3.de,
+-           hw2reg.cause_local.la2.de,
+-           hw2reg.cause_local.la1.de,
+-           hw2reg.cause_local.la0.de } = hw2reg_wrap.loc_alert_cause;
++  assign { hw2reg.loc_alert_cause.la3.d,
++           hw2reg.loc_alert_cause.la2.d,
++           hw2reg.loc_alert_cause.la1.d,
++           hw2reg.loc_alert_cause.la0.d } = '1;
++
++  assign { hw2reg.loc_alert_cause.la3.de,
++           hw2reg.loc_alert_cause.la2.de,
++           hw2reg.loc_alert_cause.la1.de,
++           hw2reg.loc_alert_cause.la0.de } = hw2reg_wrap.loc_alert_cause;
+ 
+   // autolock can clear these regs automatically upon entering escalation
+   // note: the class must be activated for this to occur

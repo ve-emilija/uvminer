@@ -1,0 +1,303 @@
+diff --git a/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv b/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+index 6c348100e9..5684505702 100644
+--- a/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
++++ b/hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+@@ -12,12 +12,15 @@ module alert_handler_reg_wrap (
+   output tlul_pkg::tl_d2h_t               tl_o,
+   // interrupt
+   output logic [alert_pkg::N_CLASSES-1:0] irq_o,
++  // State information for HW crashdump
++  output alert_pkg::alert_crashdump_t     crashdump_o,
+   // hw2reg
+   input  alert_pkg::hw2reg_wrap_t         hw2reg_wrap,
+   // reg2hw
+   output alert_pkg::reg2hw_wrap_t         reg2hw_wrap
+ );
+ 
++
+   //////////////////////////////////////////////////////
+   // reg instance
+   //////////////////////////////////////////////////////
+@@ -97,7 +100,8 @@ if k < n_alerts-1:
+   prefix = space;%>${prefix}hw2reg.alert_cause${w}.a${k}.de${comma}
+ %endfor
+ ${space}} = hw2reg_wrap.alert_cause;
+-  //----------------------------------------------------------------------------
++
++  //////////////////////////////////////////////////////////////////////////////
+ 
+   // if a local alert is enabled and it fires,
+   // we have to set the corresponding cause bit
+@@ -111,6 +115,7 @@ ${space}} = hw2reg_wrap.alert_cause;
+            hw2reg.loc_alert_cause.la1.de,
+            hw2reg.loc_alert_cause.la0.de } = hw2reg_wrap.loc_alert_cause;
+ 
++  // ping timeout in cycles
+   // autolock can clear these regs automatically upon entering escalation
+   // note: the class must be activated for this to occur
+   assign { hw2reg.classd_clren.d,
+@@ -168,7 +173,7 @@ if not k:
+ if k < n_alerts-1:
+   prefix = space;%>${prefix}reg2hw.alert_en${w}.en_a${k}.q${comma}
+ %endfor
+-  //----------------------------------------------------------------------------
++  //////////////////////////////////////////////////////////////////////////////
+ 
+   //////////////////////////////////////////////////////////////////////////////
+   // classification mapping
+@@ -188,7 +193,7 @@ if not k:
+ if k < n_alerts-1:
+   prefix = space;%>${prefix}reg2hw.alert_class${w}.class_a${k}.q${comma}
+ %endfor
+-  //----------------------------------------------------------------------------
++  //////////////////////////////////////////////////////////////////////////////
+ 
+   // local alert enable and class assignments
+   assign reg2hw_wrap.loc_alert_en = { reg2hw.loc_alert_en.en_la3.q,
+@@ -200,7 +205,7 @@ if k < n_alerts-1:
+                                          reg2hw.loc_alert_class.class_la2.q[1:0],
+                                          reg2hw.loc_alert_class.class_la1.q[1:0],
+                                          reg2hw.loc_alert_class.class_la0.q[1:0]};
+-  // ping timeout in cycles
++
+   assign reg2hw_wrap.ping_timeout_cyc = reg2hw.ping_timeout_cyc.q;
+ 
+   // class enable
+@@ -298,4 +303,35 @@ if k < n_alerts-1:
+                                          reg2hw.classa_phase1_cyc.q,
+                                          reg2hw.classa_phase0_cyc.q};
+ 
++  //////////////////////////////////////////////////////
++  // crashdump output
++  //////////////////////////////////////////////////////
++
++  // alert cause output <%
++prefix = '  assign crashdump_o.alert_cause = { '
++space  = '';
++for k in range(len(prefix)):
++  space += ' '
++comma = ','
++w = '' %>
++%for k in range(n_alerts-1,-1,-1):
++<%
++if n_alerts > reg_dw:
++  w = int(k / reg_dw)
++if not k:
++  comma = ' };'
++if k < n_alerts-1:
++  prefix = space;%>${prefix}reg2hw.alert_cause${w}.a${k}.q${comma}
++%endfor
++
++  // local alert cause register output
++  assign crashdump_o.loc_alert_cause = { reg2hw.loc_alert_cause.la3.q,
++                                         reg2hw.loc_alert_cause.la2.q,
++                                         reg2hw.loc_alert_cause.la1.q,
++                                         reg2hw.loc_alert_cause.la0.q };
++
++  assign crashdump_o.class_accum_cnt = hw2reg_wrap.class_accum_cnt;
++  assign crashdump_o.class_esc_cnt   = hw2reg_wrap.class_esc_cnt;
++  assign crashdump_o.class_esc_state = hw2reg_wrap.class_esc_state;
++
+ endmodule : alert_handler_reg_wrap
+diff --git a/hw/ip/alert_handler/doc/alert_pkg.tpl.sv b/hw/ip/alert_handler/doc/alert_pkg.tpl.sv
+index 4b7322ade8..2b6209ffd4 100644
+--- a/hw/ip/alert_handler/doc/alert_pkg.tpl.sv
++++ b/hw/ip/alert_handler/doc/alert_pkg.tpl.sv
+@@ -27,14 +27,26 @@ package alert_pkg;
+                             Phase0 = 3'b100, Phase1 = 3'b101, Phase2 = 3'b110,
+                             Phase3 = 3'b111} cstate_e;
+ 
++  // struct containing the current alert handler state
++  // can be used to gather crashdump information in HW
++  typedef struct packed {
++    // alerts
++    logic    [NAlerts-1:0]                  alert_cause;     // alert cause bits
++    logic    [N_LOC_ALERT-1:0]              loc_alert_cause; // local alert cause bits
++    // class state
++    logic    [N_CLASSES-1:0][AccuCntDw-1:0] class_accum_cnt; // current accumulator value
++    logic    [N_CLASSES-1:0][EscCntDw-1:0]  class_esc_cnt;   // current escalation counter value
++    cstate_e [N_CLASSES-1:0]                class_esc_state; // current escalation protocol state
++  } alert_crashdump_t;
++
+   // breakout wrapper structs
+   typedef struct packed {
+     // alerts
+     logic    [NAlerts-1:0]                  alert_cause;     // alert cause bits
+     logic    [N_LOC_ALERT-1:0]              loc_alert_cause; // local alert cause bits
+     // class state
+-    logic    [N_CLASSES-1:0]                class_trig;      // class has been triggered
+-    logic    [N_CLASSES-1:0]                class_esc_trig;  // escalation has triggered
++    logic    [N_CLASSES-1:0]                class_trig;      // class trigger
++    logic    [N_CLASSES-1:0]                class_esc_trig;  // escalation trigger
+     logic    [N_CLASSES-1:0][AccuCntDw-1:0] class_accum_cnt; // current accumulator value
+     logic    [N_CLASSES-1:0][EscCntDw-1:0]  class_esc_cnt;   // current escalation counter value
+     cstate_e [N_CLASSES-1:0]                class_esc_state; // current escalation protocol state
+diff --git a/hw/ip/alert_handler/rtl/alert_handler.sv b/hw/ip/alert_handler/rtl/alert_handler.sv
+index 76d2592924..8d0ba13146 100644
+--- a/hw/ip/alert_handler/rtl/alert_handler.sv
++++ b/hw/ip/alert_handler/rtl/alert_handler.sv
+@@ -9,27 +9,29 @@
+ //
+ 
+ module alert_handler (
+-  input                      clk_i,
+-  input                      rst_ni,
++  input                                    clk_i,
++  input                                    rst_ni,
+   // Bus Interface (device)
+-  input  tlul_pkg::tl_h2d_t  tl_i,
+-  output tlul_pkg::tl_d2h_t  tl_o,
++  input  tlul_pkg::tl_h2d_t                tl_i,
++  output tlul_pkg::tl_d2h_t                tl_o,
+   // Interrupt Requests
+-  output logic [alert_pkg::N_CLASSES-1:0] irq_o,
++  output logic [alert_pkg::N_CLASSES-1:0]  irq_o,
++  // State information for HW crashdump
++  output alert_pkg::alert_crashdump_t      crashdump_o,
+   // Entropy Input from TRNG
+-  input                                   entropy_i,
++  input                                    entropy_i,
+   // Alert Sources
+-  input        [alert_pkg::NAlerts-1:0]   alert_pi,
+-  input        [alert_pkg::NAlerts-1:0]   alert_ni,
+-  output logic [alert_pkg::NAlerts-1:0]   ack_po,
+-  output logic [alert_pkg::NAlerts-1:0]   ack_no,
+-  output logic [alert_pkg::NAlerts-1:0]   ping_po,
+-  output logic [alert_pkg::NAlerts-1:0]   ping_no,
++  input        [alert_pkg::NAlerts-1:0]    alert_pi,
++  input        [alert_pkg::NAlerts-1:0]    alert_ni,
++  output logic [alert_pkg::NAlerts-1:0]    ack_po,
++  output logic [alert_pkg::NAlerts-1:0]    ack_no,
++  output logic [alert_pkg::NAlerts-1:0]    ping_po,
++  output logic [alert_pkg::NAlerts-1:0]    ping_no,
+   // Escalation outputs
+-  output logic [alert_pkg::N_ESC_SEV-1:0] esc_po,
+-  output logic [alert_pkg::N_ESC_SEV-1:0] esc_no,
+-  input        [alert_pkg::N_ESC_SEV-1:0] resp_pi,
+-  input        [alert_pkg::N_ESC_SEV-1:0] resp_ni
++  output logic [alert_pkg::N_ESC_SEV-1:0]  esc_po,
++  output logic [alert_pkg::N_ESC_SEV-1:0]  esc_no,
++  input        [alert_pkg::N_ESC_SEV-1:0]  resp_pi,
++  input        [alert_pkg::N_ESC_SEV-1:0]  resp_ni
+ );
+ 
+   //////////////////////////////////////////////////////
+@@ -45,6 +47,7 @@ module alert_handler (
+     .tl_i        ,
+     .tl_o        ,
+     .irq_o       ,
++    .crashdump_o ,
+     .hw2reg_wrap ,
+     .reg2hw_wrap
+   );
+diff --git a/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv b/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+index 5dd8e1d76d..fedc0f6c88 100644
+--- a/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
++++ b/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+@@ -11,112 +11,140 @@ typedef struct packed {
+ 
+   struct packed {
+     struct packed {
+-      logic q; // [832]
++      logic q; // [840]
+     } classa;
+     struct packed {
+-      logic q; // [831]
++      logic q; // [839]
+     } classb;
+     struct packed {
+-      logic q; // [830]
++      logic q; // [838]
+     } classc;
+     struct packed {
+-      logic q; // [829]
++      logic q; // [837]
+     } classd;
+   } intr_state;
+   struct packed {
+     struct packed {
+-      logic q; // [828]
++      logic q; // [836]
+     } classa;
+     struct packed {
+-      logic q; // [827]
++      logic q; // [835]
+     } classb;
+     struct packed {
+-      logic q; // [826]
++      logic q; // [834]
+     } classc;
+     struct packed {
+-      logic q; // [825]
++      logic q; // [833]
+     } classd;
+   } intr_enable;
+   struct packed {
+     struct packed {
+-      logic q; // [824]
+-      logic qe; // [823]
++      logic q; // [832]
++      logic qe; // [831]
+     } classa;
+     struct packed {
+-      logic q; // [822]
+-      logic qe; // [821]
++      logic q; // [830]
++      logic qe; // [829]
+     } classb;
+     struct packed {
+-      logic q; // [820]
+-      logic qe; // [819]
++      logic q; // [828]
++      logic qe; // [827]
+     } classc;
+     struct packed {
+-      logic q; // [818]
+-      logic qe; // [817]
++      logic q; // [826]
++      logic qe; // [825]
+     } classd;
+   } intr_test;
+   struct packed {
+-    logic [0:0] q; // [816:816]
++    logic [0:0] q; // [824:824]
+   } regen;
+   struct packed {
+-    logic [23:0] q; // [815:792]
++    logic [23:0] q; // [823:800]
+   } ping_timeout_cyc;
+   struct packed {
+     struct packed {
+-      logic q; // [791]
++      logic q; // [799]
+     } en_a0;
+     struct packed {
+-      logic q; // [790]
++      logic q; // [798]
+     } en_a1;
+     struct packed {
+-      logic q; // [789]
++      logic q; // [797]
+     } en_a2;
+     struct packed {
+-      logic q; // [788]
++      logic q; // [796]
+     } en_a3;
+   } alert_en;
+   struct packed {
+     struct packed {
+-      logic [1:0] q; // [787:786]
++      logic [1:0] q; // [795:794]
+     } class_a0;
+     struct packed {
+-      logic [1:0] q; // [785:784]
++      logic [1:0] q; // [793:792]
+     } class_a1;
+     struct packed {
+-      logic [1:0] q; // [783:782]
++      logic [1:0] q; // [791:790]
+     } class_a2;
+     struct packed {
+… (71 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/ip/alert_handler/rtl/alert_handler_reg_top.sv, hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv, hw/ip/alert_handler/rtl/alert_pkg.sv
+(2 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,303 @@
+diff --git a/src/aes/coverage/aes_cov_if.sv b/src/aes/coverage/aes_cov_if.sv
+index 7606496b..e78bfb2e 100644
+--- a/src/aes/coverage/aes_cov_if.sv
++++ b/src/aes/coverage/aes_cov_if.sv
+@@ -80,7 +80,10 @@ interface aes_cov_if
+         input logic [KV_ENTRY_ADDR_W-1:0] kv_key_present_slot,
+         input kv_write_filter_metrics_t kv_write_metrics,
+         input caliptra2aes_t caliptra2aes,
+-        input aes2caliptra_t aes2caliptra
++        input aes2caliptra_t aes2caliptra,
++
++        input logic kv_key_write_en,
++        input logic [3:0][7:0] edn_bus_bytes
+     );
+ 
+     covergroup aes_clp_wrapper_cov_grp @(posedge clk);
+@@ -135,6 +138,8 @@ interface aes_cov_if
+         kv_write_write_dest_valid_cp: coverpoint kv_write.write_dest_valid;
+         kv_wr_resp_error_cp:          coverpoint kv_wr_resp.error;
+ 
++        MaskNonZero_cp: coverpoint (kv_key_write_en && (edn_bus_bytes != 32'h0));
++
+         busy_o_cp: coverpoint busy_o;
+ 
+         // Interrupt
+@@ -187,7 +192,6 @@ interface aes_cov_if
+     aes_ocp_lock_flow_grp   aes_ocp_lock_flow_grp1   = new();
+ 
+ 
+-
+ endinterface
+ 
+ 
+diff --git a/src/aes/rtl/aes_clp_wrapper.sv b/src/aes/rtl/aes_clp_wrapper.sv
+index eff04e88..4c760956 100644
+--- a/src/aes/rtl/aes_clp_wrapper.sv
++++ b/src/aes/rtl/aes_clp_wrapper.sv
+@@ -23,6 +23,7 @@
+ //======================================================================
+ 
+ `include "caliptra_prim_assert.sv"
++`include "caliptra_prim_module_name_macros.svh"
+ `include "caliptra_reg_field_defines.svh"
+ `include "kv_macros.svh"
+ 
+@@ -481,7 +482,26 @@ aes_key_kv_read
+     .expected_key_size(aes_expected_key_size)
+ );
+ 
+-logic [(keymgr_pkg::KeyWidth/32)-1:0][3:0][7:0] kv_key_reg;
++// Masked KV sideload key storage: the key is stored as two boolean shares as
++// it is gathered from the KeyVault. kv_key_masked holds (key ^ m), kv_key_mask
++// holds the per-dword mask m sourced from the Trivium PRNG. The AES core XORs
++// the shares to reconstruct the key, so the raw key never exists in one flop.
++logic [(keymgr_pkg::KeyWidth/32)-1:0][3:0][7:0] kv_key_masked;
++logic [(keymgr_pkg::KeyWidth/32)-1:0][3:0][7:0] kv_key_mask;
++// Trivium output viewed as bytes, matching the kv key byte swizzle below
++logic [3:0][7:0] edn_bus_bytes;
++assign edn_bus_bytes = edn_bus;
++
++// SEC_CM: KEY.MASKING. Compute the masked key word (key ^ mask) through the
++// caliptra_prim xor2 cell rather than a behavioral '^'.
++logic [31:0] kv_key_write_data_masked;
++`CALIPTRA_PRIM_MODULE_NAME(xor2) #(
++  .Width(32)
++) u_kv_key_mask_xor (
++  .in0_i (kv_key_write_data),
++  .in1_i (edn_bus_bytes),
++  .out_o (kv_key_write_data_masked)
++);
+ 
+ // AES KV write is only supported for key-release in ocp-lock mode, with the AES-ECB-decrypt use-case
+ // Key size is in bytes
+@@ -543,15 +563,29 @@ generate
+     for (g_byte = 0; g_byte < 4; g_byte++) begin
+       always_ff @(posedge clk or negedge reset_n) begin
+         if (~reset_n) begin
+-          kv_key_reg[g_dword][g_byte] <= '0;
+-        end else if(debugUnlock_or_scan_mode_switch) begin
+-          kv_key_reg[g_dword][g_byte] <= '0;
+-        // zeroize the buffered KeyVault value when reading in a new key
++          kv_key_masked[g_dword][g_byte] <= '0;
++          kv_key_mask  [g_dword][g_byte] <= '0;
++        // Debug/scan forces a clear (highest priority after reset) so key material
++        // never persists into a debug session.
++        end else if (debugUnlock_or_scan_mode_switch) begin
++          kv_key_masked[g_dword][g_byte] <= '0;
++          kv_key_mask  [g_dword][g_byte] <= '0;
++        // An active KV write takes priority over the stale-error clear below.
+         // On the first beat, the least-sig dword is set, all other dwords set to 0
+         end else if (kv_key_write_en && (g_dword > 0) && (kv_key_write_offset < AES_KV_KEY_DW_WIDTH'(g_dword))) begin
+-          kv_key_reg[g_dword][g_byte] <= 0;
++          kv_key_masked[g_dword][g_byte] <= '0;
++          kv_key_mask  [g_dword][g_byte] <= '0;
++        // mask each key dword as it is gathered: the Trivium is advanced by
++        // kv_key_write_en (see en_i), so edn_bus provides a fresh 32b mask word
++        // aligned to this dword's write beat.
+         end else if (kv_key_write_en && (kv_key_write_offset == AES_KV_KEY_DW_WIDTH'(g_dword))) begin
+-          kv_key_reg[g_dword][g_byte] <= kv_key_write_data[3-g_byte];
++          kv_key_masked[g_dword][g_byte] <= kv_key_write_data_masked[8*(3-g_byte) +: 8];
++          kv_key_mask  [g_dword][g_byte] <= edn_bus_bytes[3-g_byte];
++        // On any read client error with no active write this beat, zeroize so
++        // partial/garbage key material never persists.
++        end else if (kv_key_error != KV_SUCCESS) begin
++          kv_key_masked[g_dword][g_byte] <= '0;
++          kv_key_mask  [g_dword][g_byte] <= '0;
+         end
+       end
+     end
+@@ -571,8 +605,8 @@ always_ff @(posedge clk or negedge reset_n) begin
+   end
+   else if (kv_key_done && (kv_key_error == KV_SUCCESS)) begin //key is copied, drive valid to aes
+     keymgr_key.valid <= '1;
+-    keymgr_key.key[0] <= kv_key_reg;
+-    keymgr_key.key[1] <= '0;
++    keymgr_key.key[0] <= kv_key_masked; //share 0: key ^ mask
++    keymgr_key.key[1] <= kv_key_mask;   //share 1: mask
+   end
+ end
+ 
+@@ -653,7 +687,7 @@ u_caliptra_prim_trivium
+     .clk_i(clk),
+     .rst_ni(reset_n),
+ 
+-    .en_i                (edn_req.edn_req),
++    .en_i                (edn_req.edn_req | kv_key_write_en),
+     .allow_lockup_i      ('0), // Not used.
+     .seed_en_i           (trivium_seed_en),
+     .seed_done_o         (), // Not used.
+diff --git a/src/doe/rtl/doe_cbc.sv b/src/doe/rtl/doe_cbc.sv
+index 61424e40..c58a11c0 100644
+--- a/src/doe/rtl/doe_cbc.sv
++++ b/src/doe/rtl/doe_cbc.sv
+@@ -73,6 +73,7 @@ module doe_cbc
+ 
+    //interface with kv
+    output kv_write_t kv_write,
++   input  kv_wr_resp_t kv_wr_resp,
+    input  logic ocp_lock_en, // Synth-time constant strap input instead of ocp_lock_in_progress
+    input  logic doe_cmd_lock, // Prevent new DOE commands once FMC/RT execution begins
+    input  logic debugUnlock_or_scan_mode_switch
+@@ -251,6 +252,7 @@ doe_fsm1
+ 
+   //interface with kv
+   .kv_write(kv_write),
++  .kv_wr_resp(kv_wr_resp),
+ 
+   //interface with client
+   .src_write_en(doe_block_write_en),
+diff --git a/src/doe/rtl/doe_ctrl.sv b/src/doe/rtl/doe_ctrl.sv
+index 8561f015..a8a86f8d 100644
+--- a/src/doe/rtl/doe_ctrl.sv
++++ b/src/doe/rtl/doe_ctrl.sv
+@@ -102,6 +102,7 @@ module doe_ctrl
+         .busy_o(busy_o),
+         .clear_obf_secrets(clear_obf_secrets),
+         .kv_write(kv_write),
++        .kv_wr_resp(kv_wr_resp),
+         .ocp_lock_en(ocp_lock_en), // Synth-time constant strap input instead of ocp_lock_in_progress
+         .doe_cmd_lock(doe_cmd_lock),
+         .debugUnlock_or_scan_mode_switch(debugUnlock_or_scan_mode_switch)
+diff --git a/src/doe/rtl/doe_fsm.sv b/src/doe/rtl/doe_fsm.sv
+index 9a1ebf81..e3c5d5d9 100644
+--- a/src/doe/rtl/doe_fsm.sv
++++ b/src/doe/rtl/doe_fsm.sv
+@@ -48,6 +48,7 @@ module doe_fsm
+ 
+     //interface with kv
+     output kv_write_t kv_write,
++    input  kv_wr_resp_t kv_wr_resp,
+ 
+     //interface with client
+     output logic src_write_en,
+@@ -161,7 +162,7 @@ always_comb arc_DOE_WAIT_DOE_BLOCK = init_done & ~dest_data_avail;
+ //done with this phase, but not done with the whole block
+ always_comb arc_DOE_WRITE_DOE_BLOCK = dest_write_done & ~block_done;
+ //done with this phase and the block is complete
+-always_comb arc_DOE_WRITE_DOE_DONE = dest_write_done & block_done;
++always_comb arc_DOE_WRITE_DOE_DONE = flow_error | (dest_write_done & block_done);
+ 
+ //state combo block
+ always_comb begin : kv_doe_fsm
+@@ -206,14 +207,15 @@ always_comb begin : kv_doe_fsm
+             else if (arc_DOE_WAIT_DOE_BLOCK) kv_doe_fsm_ns = DOE_BLOCK;
+         end
+         DOE_WRITE: begin
+-            dest_write_en = kv_write_allow; // If rule-check fails, no data is written to KV and FSM hangs in this state
++            dest_write_en = kv_write_allow; // If rule-check fails, no data is written to KV
+             //increment dest offset each clock, clear when done
+             dest_write_offset_en = kv_write_allow;
+             dest_write_offset_nxt = dest_write_offset + 'd1;
+-            flow_error = !kv_write_allow;
++            flow_error = !kv_write_allow | kv_wr_resp.error;
+ 
+-            //go back to idle if dest done, and done with blocks
+-            if      (zeroize ) kv_doe_fsm_ns = DOE_IDLE;
++            //go back to idle if zeroize or kv write error
++            if      (zeroize) kv_doe_fsm_ns = DOE_IDLE;
++            //go to done if we are done with blocks
+             else if (arc_DOE_WRITE_DOE_DONE) kv_doe_fsm_ns = DOE_DONE;
+             //go back to block stage for next block if not done with blocks
+             else if (arc_DOE_WRITE_DOE_BLOCK) begin 
+@@ -278,7 +280,10 @@ kv_write_rule_check kv_write_rules
+ //drive outputs to kv
+ always_comb kv_write.write_en = dest_write_en;
+ always_comb kv_write.write_offset = dest_write_offset;
+-always_comb kv_write.write_dest_valid = running_hek ? OCP_LOCK_HEK_SEED_DEST_VALID : 'd3; //FIXME tie off dest valid, or let FW program? 
++// dest_valid only on the final beat (mirrors kv_write_client write_last), so an
++// aborted/partial write leaves the slot dest_valid=0 and thus unreadable.
++always_comb kv_write.write_dest_valid = (dest_write_en & dest_write_done & block_done) ?
++                                        (running_hek ? OCP_LOCK_HEK_SEED_DEST_VALID : 'd3) : '0;
+ always_comb kv_write.write_entry = dest_addr;
+ //swizzle big endian result to little endian storage
+ always_comb kv_write.write_data = dest_write_en ? dest_data[(DEST_NUM_DWORDS-1) - dest_write_offset[DEST_OFFSET_W-1:0]] : '0;
+diff --git a/src/doe/tb/doe_cbc_tb.sv b/src/doe/tb/doe_cbc_tb.sv
+index 15f9e6fb..244acf3b 100644
+--- a/src/doe/tb/doe_cbc_tb.sv
++++ b/src/doe/tb/doe_cbc_tb.sv
+@@ -151,6 +151,7 @@ module doe_cbc_tb();
+              .busy_o(),
+              .error_intr(),
+              .notif_intr(),
++             .kv_wr_resp('0),
+              .ocp_lock_en(1'b0),
+              .doe_cmd_lock(1'b0),
+              .debugUnlock_or_scan_mode_switch(1'b0)
+diff --git a/src/doe/tb/doe_ctrl_32bit_tb.sv b/src/doe/tb/doe_ctrl_32bit_tb.sv
+index 2e7a7978..62d12da1 100644
+--- a/src/doe/tb/doe_ctrl_32bit_tb.sv
++++ b/src/doe/tb/doe_ctrl_32bit_tb.sv
+@@ -132,6 +132,7 @@ module doe_ctrl_32bit_tb();
+              .hresp_o(hresp_o_tb),
+              .hreadyout_o(hreadyout_o_tb),
+              .hrdata_o(hrdata_o_tb),
++             .kv_wr_resp('0),
+              .ocp_lock_en(1'b0),
+              .doe_cmd_lock(1'b0),
+              .debugUnlock_or_scan_mode_switch(1'b0)
+diff --git a/src/doe/tb/doe_ctrl_64bit_tb.sv b/src/doe/tb/doe_ctrl_64bit_tb.sv
+index 3a6d59c9..c661fab4 100644
+--- a/src/doe/tb/doe_ctrl_64bit_tb.sv
++++ b/src/doe/tb/doe_ctrl_64bit_tb.sv
+@@ -122,6 +122,7 @@ module doe_ctrl_64bit_tb();
+              .hresp_o(hresp_o_tb),
+              .hreadyout_o(hreadyout_o_tb),
+              .hrdata_o(hrdata_o_tb),
++             .kv_wr_resp('0),
+              .ocp_lock_en(1'b0),
+              .doe_cmd_lock(1'b0),
+              .debugUnlock_or_scan_mode_switch(1'b0)
+diff --git a/src/doe/tb/doe_ctrl_tb.sv b/src/doe/tb/doe_ctrl_tb.sv
+index 2d77204c..86438433 100644
+--- a/src/doe/tb/doe_ctrl_tb.sv
++++ b/src/doe/tb/doe_ctrl_tb.sv
+@@ -133,6 +133,7 @@ module doe_ctrl_tb();
+              .hresp_o(hresp_o_tb),
+              .hreadyout_o(hreadyout_o_tb),
+              .hrdata_o(hrdata_o_tb),
++             .kv_wr_resp('0),
+              .ocp_lock_en(1'b0),
+              .doe_cmd_lock(1'b0),
+              .debugUnlock_or_scan_mode_switch(1'b0)
+diff --git a/src/integration/asserts/caliptra_top_sva.sv b/src/integration/asserts/caliptra_top_sva.sv
+index 83ef5c5f..fcc5c012 100644
+--- a/src/integration/asserts/caliptra_top_sva.sv
++++ b/src/integration/asserts/caliptra_top_sva.sv
+@@ -398,7 +398,7 @@ module caliptra_top_sva
+       if (dword < HMAC_TAG_NUM_DWORDS) begin
+         kv_hmac_tag_w_flow:       assert property (
+                                               @(posedge `SVA_RDC_CLK)
+-                                              (`HMAC_PATH.kv_write_done & ~`SOC_IFC_TOP_PATH.ss_ocp_lock_in_progress) |-> (`KEYVAULT_PATH.kv_reg1.hwif_out.KEY_ENTRY[`HMAC_PATH.kv_write_ctrl_reg.write_entry][dword].data.value == `HMAC_PATH.kv_reg[(`HMAC_PATH.TAG_NUM_DWORDS-1) - dword])
++                                              (`HMAC_PATH.kv_write_done & ~`SOC_IFC_TOP_PATH.ss_ocp_lock_in_progress & (`HMAC_PATH.kv_write_error == 0)) |-> (`KEYVAULT_PATH.kv_reg1.hwif_out.KEY_ENTRY[`HMAC_PATH.kv_write_ctrl_reg.write_entry][dword].data.value == `HMAC_PATH.kv_reg[(`HMAC_PATH.TAG_NUM_DWORDS-1) - dword])
+                                               )
+                                   else $display("SVA ERROR: HMAC384 tag mismatch!, 0x%04x, 0x%04x", `KEYVAULT_PATH.kv_reg1.hwif_out.KEY_ENTRY[`HMAC_PATH.kv_write_ctrl_reg.write_entry][dword].data.value, `HMAC_PATH.kv_reg[(`HMAC_PATH.TAG_NUM_DWORDS-1) - dword]);                    
+ 
+@@ -538,24 +538,27 @@ module caliptra_top_sva
+   property aes_new_key_fully_overwrites_old_key;
+       logic [(keymgr_pkg::KeyWidth/32)-1:0][3:0][7:0] keymgr_key_prev;
+       @(posedge `SVA_RDC_CLK) disable iff (~`SVA_RST)
+-      ($past(`AES_CLP_PATH.keymgr_key.valid) && !`AES_CLP_PATH.keymgr_key.valid, keymgr_key_prev = $past(`AES_CLP_PATH.keymgr_key.key[0])) ##0
++      ($past(`AES_CLP_PATH.keymgr_key.valid) && !`AES_CLP_PATH.keymgr_key.valid, keymgr_key_prev = $past(`AES_CLP_PATH.keymgr_key.key[0] ^ `AES_CLP_PATH.keymgr_key.key[1])) ##0
+       (!`AES_CLP_PATH.keymgr_key.valid)[*0:$] ##1
+       `AES_CLP_PATH.keymgr_key.valid
+       |->
+-      (dw_all_different_or_all_same(keymgr_key_prev, `AES_CLP_PATH.keymgr_key.key[0]) == 1);
++      (dw_all_different_or_all_same(keymgr_key_prev, `AES_CLP_PATH.keymgr_key.key[0] ^ `AES_CLP_PATH.keymgr_key.key[1]) == 1);
+   endproperty
+   AES_KV_rd_full_key: assert property (aes_new_key_fully_overwrites_old_key)
+                       else $display("SVA ERROR: AES core partially read new key into keyvault and kept partial old key!");
+ 
+-  // AES core contains a local reg that buffers the key when reading from KeyVault.
+-  // Enforce that this reg is cleared to 0 when reading in a new key.
++  // AES core buffers the KV sideload key as two masked shares
++  // (kv_key_masked = key ^ m, kv_key_mask = m).
++  // Enforce that both share stages are cleared to 0 for the not-yet-read
++  // dwords when reading in a new key.
+   AES_KV_rd_reg_clr:  assert property (
+                                       @(posedge `SVA_RDC_CLK)
+                                       (`AES_CLP_PATH.aes_key_kv_read.write_en && `AES_CLP_PATH.aes_key_kv_read.write_offset == 0)
+                                       |=>
+… (25 more diff lines in this file not shown)
+… files not shown (diff cap reached): src/integration/tb/caliptra_top_tb_services.sv, src/keyvault/coverage/keyvault_cov_if.sv, src/keyvault/coverage/keyvault_cov_props.sv, src/keyvault/rtl/kv.sv, src/keyvault/rtl/kv_fsm.sv, src/keyvault/rtl/kv_read_client.sv, src/keyvault/rtl/kv_write_client.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/src/kv_predictor.svh, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/src/kv_wr_rd_rst_sequence.svh, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/kv_rst_pkg.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_driver_bfm.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_fw_upd_rst_sequence.svh, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_macros.svh, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_monitor_bfm.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_transaction.svh, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_rst_pkg/src/kv_rst_warm_rst_sequence.svh
+(7 non-HDL files also changed in this commit; not shown)

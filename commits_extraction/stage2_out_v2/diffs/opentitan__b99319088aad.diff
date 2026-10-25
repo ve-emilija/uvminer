@@ -1,0 +1,90 @@
+diff --git a/hw/ip/hmac/rtl/hmac_reg_pkg.sv b/hw/ip/hmac/rtl/hmac_reg_pkg.sv
+index 789c60fa5c..a1e355bbdd 100644
+--- a/hw/ip/hmac/rtl/hmac_reg_pkg.sv
++++ b/hw/ip/hmac/rtl/hmac_reg_pkg.sv
+@@ -7,8 +7,7 @@
+ package hmac_reg_pkg;
+ 
+   // Param list
+-  localparam int KEY = 8;
+-  localparam int DIGEST = 8;
++  localparam int NumWords = 8;
+ 
+ // Register to internal design logic
+ typedef struct packed {
+diff --git a/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv b/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+index d946e4d0e5..825264f45c 100644
+--- a/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
++++ b/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+@@ -7,9 +7,8 @@
+ package rv_plic_reg_pkg;
+ 
+   // Param list
+-  localparam int IP = 32;
+-  localparam int LE = 32;
+-  localparam int IE0 = 32;
++  localparam int NumSrc = 32;
++  localparam int NumTarget = 1;
+ 
+ // Register to internal design logic
+ typedef struct packed {
+diff --git a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+index 9073e87022..59e6c80d4d 100644
+--- a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
++++ b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+@@ -7,9 +7,8 @@
+ package rv_plic_reg_pkg;
+ 
+   // Param list
+-  localparam int IP = 54;
+-  localparam int LE = 54;
+-  localparam int IE0 = 54;
++  localparam int NumSrc = 54;
++  localparam int NumTarget = 1;
+ 
+ // Register to internal design logic
+ typedef struct packed {
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index cb9df6748b..376adde2b9 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -13,7 +13,7 @@ package ${block.name}_reg_pkg;
+ 
+   // Param list
+ % endif
+-% for param in block.params:
++% for param in [p for p in block.params if p["local"] == "true"]:
+   localparam ${param["type"]} ${param["name"]} = ${param["default"]};
+ % endfor
+ 
+diff --git a/util/reggen/reg_top.tpl.sv b/util/reggen/reg_top.tpl.sv
+index 73f4982839..bc26c68a92 100644
+--- a/util/reggen/reg_top.tpl.sv
++++ b/util/reggen/reg_top.tpl.sv
+@@ -9,9 +9,10 @@
+   num_dsp  = num_wins + 1
+   num_regs = len(block.regs)
+   max_regs_char = len("{}".format(num_regs-1))
++  params = [p for p in block.params if p["local"] == "false"]
+ %>
+ 
+-module ${block.name}_reg_top (
++module ${block.name}_reg_top ${print_param(params)}(
+   input clk_i,
+   input rst_ni,
+ 
+@@ -464,3 +465,13 @@ ${msb}\
+         reg_rdata_next[${str_bits_sv(msb,lsb)}] = '0;
+ % endif
+ </%def>\
++<%def name="print_param(params)">\
++<% num_params = len(params) %>\
++% if num_params != 0:
++#(
++% for i,p in enumerate(params):
++  parameter ${p["type"]} ${p["name"]} = ${p["default"]}${"," if i != num_params-1 else ""}
++% endfor
++) \
++% endif
++</%def>\
+(8 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,190 @@
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+index 81b36e1a7c..100fc05fed 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+@@ -2633,13 +2633,7 @@ module flash_ctrl_reg_top #(
+     addr_hit[18] = (reg_addr == FLASH_CTRL_FIFO_LVL_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/gpio/rtl/gpio_reg_top.sv b/hw/ip/gpio/rtl/gpio_reg_top.sv
+index 4a6b6e4a44..89b02b0df2 100644
+--- a/hw/ip/gpio/rtl/gpio_reg_top.sv
++++ b/hw/ip/gpio/rtl/gpio_reg_top.sv
+@@ -569,13 +569,7 @@ module gpio_reg_top #(
+     addr_hit[14] = (reg_addr == GPIO_CTRL_EN_INPUT_FILTER_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/hmac/rtl/hmac_reg_top.sv b/hw/ip/hmac/rtl/hmac_reg_top.sv
+index 059202e73f..c490d463cf 100644
+--- a/hw/ip/hmac/rtl/hmac_reg_top.sv
++++ b/hw/ip/hmac/rtl/hmac_reg_top.sv
+@@ -977,13 +977,7 @@ module hmac_reg_top #(
+     addr_hit[24] = (reg_addr == HMAC_MSG_LENGTH_UPPER_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/rv_plic/rtl/rv_plic_reg_top.sv b/hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+index cc04467dde..774739c818 100644
+--- a/hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
++++ b/hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+@@ -3875,13 +3875,7 @@ module rv_plic_reg_top #(
+     addr_hit[37] = (reg_addr == RV_PLIC_MSIP0_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/rv_timer/rtl/rv_timer_reg_top.sv b/hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+index 457ca0aa5c..aeb2e88346 100644
+--- a/hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
++++ b/hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+@@ -400,13 +400,7 @@ module rv_timer_reg_top #(
+     addr_hit[8] = (reg_addr == RV_TIMER_INTR_TEST0_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/spi_device/rtl/spi_device_reg_top.sv b/hw/ip/spi_device/rtl/spi_device_reg_top.sv
+index f57ad5563c..1fbd94751f 100644
+--- a/hw/ip/spi_device/rtl/spi_device_reg_top.sv
++++ b/hw/ip/spi_device/rtl/spi_device_reg_top.sv
+@@ -1149,13 +1149,7 @@ module spi_device_reg_top #(
+     addr_hit[11] = (reg_addr == SPI_DEVICE_TXF_ADDR_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/uart/rtl/uart_reg_top.sv b/hw/ip/uart/rtl/uart_reg_top.sv
+index fcba5b0039..1a59d737dc 100644
+--- a/hw/ip/uart/rtl/uart_reg_top.sv
++++ b/hw/ip/uart/rtl/uart_reg_top.sv
+@@ -1422,13 +1422,7 @@ module uart_reg_top #(
+     addr_hit[11] = (reg_addr == UART_TIMEOUT_CTRL_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/ip/usbuart/rtl/usbuart_reg_top.sv b/hw/ip/usbuart/rtl/usbuart_reg_top.sv
+index a1cd51fbad..ac36a1a85f 100644
+--- a/hw/ip/usbuart/rtl/usbuart_reg_top.sv
++++ b/hw/ip/usbuart/rtl/usbuart_reg_top.sv
+@@ -1534,13 +1534,7 @@ module usbuart_reg_top #(
+     addr_hit[13] = (reg_addr == USBUART_USBPARAM_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/hw/top_earlgrey/rtl/rv_plic_reg_top.sv b/hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+index 7a28583f51..c294504166 100644
+--- a/hw/top_earlgrey/rtl/rv_plic_reg_top.sv
++++ b/hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+@@ -6184,13 +6184,7 @@ module rv_plic_reg_top #(
+     addr_hit[60] = (reg_addr == RV_PLIC_MSIP0_OFFSET);
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin
+diff --git a/util/reggen/reg_top.tpl.sv b/util/reggen/reg_top.tpl.sv
+index c2b6499b17..a0fa7935f8 100644
+--- a/util/reggen/reg_top.tpl.sv
++++ b/util/reggen/reg_top.tpl.sv
+@@ -245,13 +245,7 @@ ${finst_gen(finst_name, fsig_name, msb, lsb, swaccess, swrdaccess, swwraccess, h
+     % endfor
+   end
+ 
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      addrmiss <= 1'b0;
+-    end else if (reg_re || reg_we) begin
+-      addrmiss <= ~|addr_hit;
+-    end
+-  end
++  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+ 
+   // Check sub-word write is permitted
+   always_comb begin

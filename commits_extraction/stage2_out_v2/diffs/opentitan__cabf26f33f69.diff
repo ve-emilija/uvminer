@@ -1,0 +1,303 @@
+diff --git a/hw/ip/padctrl/fpv/tb/padctrl_tb.sv b/hw/ip/padctrl/fpv/tb/padctrl_tb.sv
+index e4fc0e590b..91939b055d 100644
+--- a/hw/ip/padctrl/fpv/tb/padctrl_tb.sv
++++ b/hw/ip/padctrl/fpv/tb/padctrl_tb.sv
+@@ -4,8 +4,12 @@
+ //
+ // Testbench module for padctrl. Intended to use with a formal tool.
+ 
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module padctrl_tb #(
+-  parameter Impl = "generic"
++  parameter integer Impl = `PRIM_DEFAULT_IMPL
+ ) (
+   input wire                                    clk_i,
+   input wire                                    rst_ni,
+diff --git a/hw/ip/padctrl/fpv/vip/padctrl_assert.sv b/hw/ip/padctrl/fpv/vip/padctrl_assert.sv
+index cadba49cfd..150de48161 100644
+--- a/hw/ip/padctrl/fpv/vip/padctrl_assert.sv
++++ b/hw/ip/padctrl/fpv/vip/padctrl_assert.sv
+@@ -5,8 +5,13 @@
+ // Assertions for padring. Intended to use with a formal tool.
+ // Note that only the mandatory pad attributes are tested here.
+ 
++
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module padctrl_assert #(
+-  parameter Impl = "generic"
++  parameter integer Impl = `PRIM_DEFAULT_IMPL
+ ) (
+   input                                       clk_i,
+   input                                       rst_ni,
+@@ -20,6 +25,8 @@ module padctrl_assert #(
+               [padctrl_reg_pkg::AttrDw-1:0]   dio_attr_o
+ );
+ 
++  import prim_pkg::*;
++
+   // symbolic vars for FPV
+   int unsigned mio_sel;
+   int unsigned dio_sel;
+@@ -31,14 +38,14 @@ module padctrl_assert #(
+   `ASSUME(NMioRange_M, mio_sel < padctrl_reg_pkg::NMioPads, clk_i, !rst_ni)
+   `ASSUME(NMioStable_M, ##1 $stable(mio_sel), clk_i, !rst_ni)
+ 
+-  if (Impl == "generic") begin : gen_mio_generic
++  if (impl_e'(Impl) == ImplGeneric) begin : gen_mio_generic
+     `ASSERT(MioWarl_A, padctrl.reg2hw.mio_pads[mio_sel].qe |=>
+         !(|padctrl.mio_attr_q[mio_sel][padctrl_reg_pkg::AttrDw-1:6]),
+         clk_i, !rst_ni)
+     `ASSERT(MioAttr_A, padctrl.reg2hw.mio_pads[mio_sel].qe |=>
+       mio_attr_o[mio_sel][5:0] == $past(padctrl.reg2hw.mio_pads[mio_sel].q[5:0]),
+       clk_i, !rst_ni)
+-  end else if (Impl == "xilinx") begin : gen_mio_xilinx
++  end else if (impl_e'(Impl) == ImplXilinx) begin : gen_mio_xilinx
+     `ASSERT(MioWarl_A, padctrl.reg2hw.mio_pads[mio_sel].qe |=>
+         !(|padctrl.mio_attr_q[mio_sel][padctrl_reg_pkg::AttrDw-1:2]),
+         clk_i, !rst_ni)
+@@ -56,15 +63,14 @@ module padctrl_assert #(
+ 
+   `ASSUME(NDioRange_M, dio_sel < padctrl_reg_pkg::NDioPads, clk_i, !rst_ni)
+   `ASSUME(NDioStable_M, ##1 $stable(dio_sel), clk_i, !rst_ni)
+-
+-  if (Impl == "generic") begin : gen_dio_generic
++  if (impl_e'(Impl) == ImplGeneric) begin : gen_dio_generic
+     `ASSERT(DioWarl_A, padctrl.reg2hw.dio_pads[dio_sel].qe |=>
+         !(|padctrl.dio_attr_q[dio_sel][padctrl_reg_pkg::AttrDw-1:6]),
+         clk_i, !rst_ni)
+     `ASSERT(DioAttr_A, padctrl.reg2hw.dio_pads[dio_sel].qe |=>
+       dio_attr_o[dio_sel][5:0] == $past(padctrl.reg2hw.dio_pads[dio_sel].q[5:0]),
+       clk_i, !rst_ni)
+-  end else if (Impl == "xilinx") begin : gen_dio_xilinx
++  end else if (impl_e'(Impl) == ImplXilinx) begin : gen_dio_xilinx
+     `ASSERT(DioWarl_A, padctrl.reg2hw.dio_pads[dio_sel].qe |=>
+         !(|padctrl.dio_attr_q[dio_sel][5:2]),
+         clk_i, !rst_ni)
+diff --git a/hw/ip/padctrl/rtl/padctrl.sv b/hw/ip/padctrl/rtl/padctrl.sv
+index f4c368fa91..c6e84ee37f 100644
+--- a/hw/ip/padctrl/rtl/padctrl.sv
++++ b/hw/ip/padctrl/rtl/padctrl.sv
+@@ -7,9 +7,13 @@
+ // to be consumed on the chiplevel.
+ //
+ 
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module padctrl #(
+-  parameter Impl = "generic" // "generic", "xilinx"...
+-  ) (
++  parameter integer Impl = `PRIM_DEFAULT_IMPL
++) (
+   input                                       clk_i,
+   input                                       rst_ni,
+   // Bus Interface (device)
+@@ -22,6 +26,8 @@ module padctrl #(
+               [padctrl_reg_pkg::AttrDw-1:0]   dio_attr_o
+ );
+ 
++  import prim_pkg::*;
++
+   //////////////////////////////////////////////////////
+   // This controls the WARL'ness of the CSRs
+   // needs to be in line with the corresponding
+@@ -29,10 +35,10 @@ module padctrl #(
+   //////////////////////////////////////////////////////
+ 
+   logic [padctrl_reg_pkg::AttrDw-1:0] warl_mask;
+-  if (Impl == "generic") begin : gen_generic
++  if (impl_e'(Impl) == ImplGeneric) begin : gen_generic
+     // all attributes supported
+     assign warl_mask = padctrl_reg_pkg::AttrDw'(6'h3F);
+-  end else if (Impl == "xilinx") begin : gen_xilinx
++  end else if (impl_e'(Impl) == ImplXilinx) begin : gen_xilinx
+     // only OD and INV supported
+     assign warl_mask = padctrl_reg_pkg::AttrDw'(2'h3);
+   end else begin : gen_failure
+diff --git a/hw/ip/padctrl/rtl/padring.sv b/hw/ip/padctrl/rtl/padring.sv
+index f932229356..5e0a96ab7b 100644
+--- a/hw/ip/padctrl/rtl/padring.sv
++++ b/hw/ip/padctrl/rtl/padring.sv
+@@ -6,8 +6,13 @@
+ // The module instantiates the technology dependent pads, and connects them
+ // to the MIOs/DIOs and pad attributes coming from the padctrl block.
+ //
++
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module padring #(
+-  parameter Impl = "generic" // this determines the pad implementation
++  parameter integer Impl = `PRIM_DEFAULT_IMPL // this determines the pad implementation
+ ) (
+   // pad input
+   input wire                                   clk_pad_i,
+diff --git a/hw/ip/prim/abstract/prim_clock_gating.sv b/hw/ip/prim/abstract/prim_clock_gating.sv
+index 9424d9a4df..07cf22388e 100644
+--- a/hw/ip/prim/abstract/prim_clock_gating.sv
++++ b/hw/ip/prim/abstract/prim_clock_gating.sv
+@@ -6,11 +6,11 @@
+ // "abstract module". This module is to be replaced by generated code.
+ 
+ `ifndef PRIM_DEFAULT_IMPL
+-  `define PRIM_DEFAULT_IMPL generic
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
+ `endif
+ 
+ module prim_clock_gating #(
+-  parameter Impl = "generic"
++  parameter integer Impl = `PRIM_DEFAULT_IMPL
+ ) (
+   input        clk_i,
+   input        en_i,
+@@ -18,14 +18,16 @@ module prim_clock_gating #(
+   output logic clk_o
+ );
+ 
+-  if (Impl == "generic") begin : gen_generic
++  import prim_pkg::*;
++
++  if (impl_e'(Impl) == ImplGeneric) begin : gen_generic
+     prim_generic_clock_gating u_impl_generic (
+       .clk_i,
+       .en_i,
+       .test_en_i,
+       .clk_o
+     );
+-  end else if (Impl == "xilinx") begin : gen_xilinx
++  end else if (impl_e'(Impl) == ImplXilinx) begin : gen_xilinx
+     prim_xilinx_clock_gating u_impl_xilinx (
+       .clk_i,
+       .en_i,
+diff --git a/hw/ip/prim/abstract/prim_flash.sv b/hw/ip/prim/abstract/prim_flash.sv
+index 6ecd88ef50..f09fdef4ce 100644
+--- a/hw/ip/prim/abstract/prim_flash.sv
++++ b/hw/ip/prim/abstract/prim_flash.sv
+@@ -6,14 +6,15 @@
+ // "abstract module". This module is to be replaced by generated code.
+ 
+ `ifndef PRIM_DEFAULT_IMPL
+-  `define PRIM_DEFAULT_IMPL generic
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
+ `endif
+ 
+ module prim_flash #(
++  parameter integer Impl = `PRIM_DEFAULT_IMPL,
++
+   parameter int PagesPerBank = 256, // pages per bank
+   parameter int WordsPerPage = 256, // words per page
+   parameter int DataWidth   = 32, // bits per word
+-  parameter Impl = "generic",
+ 
+   //Do not touch - Derived parameters
+   parameter int PageW = $clog2(PagesPerBank),
+@@ -40,7 +41,9 @@ module prim_flash #(
+   output logic                 init_busy_o
+ );
+ 
+-  if (Impl == "generic" || Impl == "xilinx") begin : gen_flash
++  import prim_pkg::*;
++
++  if (impl_e'(Impl) == ImplGeneric || impl_e'(Impl) == ImplXilinx) begin : gen_flash
+     prim_generic_flash #(
+       .PagesPerBank(PagesPerBank),
+       .WordsPerPage(WordsPerPage),
+diff --git a/hw/ip/prim/abstract/prim_pad_wrapper.sv b/hw/ip/prim/abstract/prim_pad_wrapper.sv
+index e18b7e36c1..2584cdb2b4 100644
+--- a/hw/ip/prim/abstract/prim_pad_wrapper.sv
++++ b/hw/ip/prim/abstract/prim_pad_wrapper.sv
+@@ -5,8 +5,13 @@
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+ 
++
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module prim_pad_wrapper #(
+-  parameter              Impl   = "generic",
++  parameter int          Impl   = `PRIM_DEFAULT_IMPL,
+   parameter int unsigned AttrDw = 6
+ ) (
+   inout  wire        inout_io, // bidirectional pad
+@@ -17,8 +22,10 @@ module prim_pad_wrapper #(
+   input [AttrDw-1:0] attr_i
+ );
+ 
++  import prim_pkg::*;
++
+   // The generic implementation is NOT synthesizable
+-  if (Impl == "generic") begin : gen_pad_generic
++  if (impl_e'(Impl) == ImplGeneric) begin : gen_pad_generic
+     prim_generic_pad_wrapper #(
+       .AttrDw(AttrDw)
+     ) i_pad_wrapper (
+@@ -28,7 +35,7 @@ module prim_pad_wrapper #(
+       .oe_i,
+       .attr_i
+     );
+-  end else if (Impl == "xilinx") begin : gen_pad_xilinx
++  end else if (impl_e'(Impl) == ImplXilinx) begin : gen_pad_xilinx
+     prim_xilinx_pad_wrapper #(
+       .AttrDw(AttrDw)
+     ) i_pad_wrapper (
+diff --git a/hw/ip/prim/abstract/prim_ram_1p.sv b/hw/ip/prim/abstract/prim_ram_1p.sv
+index 1d9dce68cc..9da25f061f 100644
+--- a/hw/ip/prim/abstract/prim_ram_1p.sv
++++ b/hw/ip/prim/abstract/prim_ram_1p.sv
+@@ -5,11 +5,16 @@
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+ 
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+ module prim_ram_1p #(
++  parameter integer Impl            = `PRIM_DEFAULT_IMPL,
++
+   parameter int Width           = 32, // bit
+   parameter int Depth           = 128,
+   parameter int DataBitsPerMask = 1, // Number of data bits per bit of write mask
+-  parameter Impl                = "generic",
+   localparam int Aw             = $clog2(Depth) // derived parameter
+ ) (
+   input clk_i,
+@@ -24,9 +29,11 @@ module prim_ram_1p #(
+   output logic [Width-1:0] rdata_o
+ );
+ 
++  import prim_pkg::*;
++
+   `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+ 
+-  if (Impl == "generic" || Impl == "xilinx") begin : gen_mem_generic
++  if (impl_e'(Impl) == ImplGeneric || impl_e'(Impl) == ImplXilinx) begin : gen_mem_generic
+     prim_generic_ram_1p #(
+       .Width(Width),
+       .Depth(Depth),
+diff --git a/hw/ip/prim/abstract/prim_ram_2p.sv b/hw/ip/prim/abstract/prim_ram_2p.sv
+index 65d17d3821..3f25fe7293 100644
+--- a/hw/ip/prim/abstract/prim_ram_2p.sv
++++ b/hw/ip/prim/abstract/prim_ram_2p.sv
+@@ -5,14 +5,19 @@
+ // TODO: This module is a hard-coded stopgap to select an implementation of an
+ // "abstract module". This module is to be replaced by generated code.
+ 
++
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
++`endif
++
+… (38 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/ip/prim/abstract/prim_rom.sv, hw/ip/prim/rtl/prim_pkg.sv, hw/ip/prim/rtl/prim_ram_2p_adv.sv
+(16 non-HDL files also changed in this commit; not shown)

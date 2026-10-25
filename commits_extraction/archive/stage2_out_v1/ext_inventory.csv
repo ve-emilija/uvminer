@@ -1,0 +1,380 @@
+repo,ext,file_changes,commits,commits_nonbulk,distinct_paths,first_seen,last_seen,added,deleted,top_dirs,examples
+caliptra-rtl,.sv,3629,424,422,886,2023-03-06,2026-10-24,333809,51184,src/soc_ifc/rtl (391) | src/riscv_core/veer_el2 (281) | src/soc_ifc/uvmf_soc_ifc (224),src/aes/rtl/aes_cipher_control.sv | src/aes/rtl/aes_cipher_control_fsm.sv
+caliptra-rtl,<pr_hash>,297,297,297,1,2024-04-09,2026-10-24,297,296,.github/workflow_metadata (297),.github/workflow_metadata/pr_hash | .github/workflow_metadata/pr_hash
+caliptra-rtl,<pr_timestamp>,297,297,297,1,2024-04-09,2026-10-24,297,296,.github/workflow_metadata (297),.github/workflow_metadata/pr_timestamp | .github/workflow_metadata/pr_timestamp
+caliptra-rtl,.yml,1100,291,289,418,2023-03-06,2026-10-24,12387,2700,src/integration/test_suites (264) | src/integration/stimulus (185) | .github/workflows (87),.github/workflows/build-test-verilator.yml | src/spi_host/config/compile.yml
+caliptra-rtl,.svh,2143,246,244,734,2023-03-06,2026-10-22,151384,22250,src/soc_ifc/uvmf_soc_ifc (921) | src/keyvault/uvmf_kv (297) | src/integration/rtl (161),src/prim/rtl/prim_assert_dummy_macros.svh | src/prim/rtl/prim_assert_sec_cm.svh
+caliptra-rtl,.c,1089,217,215,212,2023-03-06,2026-10-22,75591,21639,src/integration/test_suites (1087) | src/ecc/tb (2),src/integration/test_suites/smoke_test_qspi/smoke_test_qspi.c | src/integration/test_suites/smoke_test_trng/smoke_test_trng.c
+caliptra-rtl,.md,279,214,212,30,2023-02-14,2026-10-24,10331,2896,docs (156) | . (84) | src/uart/doc (9),README.md | README.md
+caliptra-rtl,.h,1343,186,184,247,2023-03-06,2026-10-22,97585,46626,src/integration/test_suites (1184) | src/integration/rtl (97) | src/soc_ifc/rtl (38),src/integration/rtl/caliptra_reg.h | src/integration/test_suites/smoke_test_qspi/caliptra_isr.h
+caliptra-rtl,.rdl,247,121,119,36,2023-03-06,2026-10-22,12541,2273,src/soc_ifc/rtl (119) | src/integration/rtl (18) | src/keyvault/rtl (17),src/spi_host/data/spi_host.rdl | src/integration/rtl/caliptra_reg.rdl
+caliptra-rtl,.vf,1276,89,87,117,2023-03-06,2026-10-22,24350,9584,src/integration/config (243) | src/integration/uvmf_caliptra_top (113) | src/soc_ifc/config (102),src/spi_host/config/spi_host.vf | src/integration/config/caliptra_top_tb.vf
+caliptra-rtl,<Makefile>,107,60,58,42,2023-03-06,2026-10-06,4380,615,tools/scripts (52) | src/soc_ifc/uvmf_soc_ifc (11) | src/libs/uvmf (8),src/spi_host/tb/Makefile | src/spi_host/tb/Makefile
+caliptra-rtl,<adams-bridge>,53,53,53,1,2024-10-29,2026-10-21,53,52,submodules (53),submodules/adams-bridge | submodules/adams-bridge
+caliptra-rtl,.sh,86,52,50,20,2023-03-06,2026-10-05,1564,299,tools/scripts (36) | .github/scripts (32) | src/integration/test_suites (9),tools/scripts/reg_doc_gen.sh | tools/scripts/reg_doc_gen.sh
+caliptra-rtl,.py,65,47,45,22,2023-03-06,2026-10-22,4635,340,tools/scripts (42) | .github/scripts (6) | src/entropy_combiner/tb (4),tools/scripts/reg_gen.py | .github/scripts/build_tests_matrix.py
+caliptra-rtl,.ld,98,30,29,40,2023-03-06,2026-10-05,3004,2299,src/integration/test_suites (98),src/integration/test_suites/caliptra_fmc/caliptra_fmc.ld | src/integration/test_suites/caliptra_rt/caliptra_rt.ld
+caliptra-rtl,.s,51,23,21,17,2023-03-06,2026-10-05,229951,224697,src/integration/test_suites (51),src/integration/test_suites/smoke_test_ahb_mux/smoke_test_ahb_mux.s | src/integration/test_suites/smoke_test_ecc/smoke_test_ecc.s
+caliptra-rtl,.png,104,19,19,92,2023-11-01,2026-10-21,0,0,docs/images (104),docs/images/Caliptra_CDC_JTAG_code_snippet.png | docs/images/Caliptra_HW_diagram.png
+caliptra-rtl,.yaml,174,20,18,96,2023-03-06,2026-08-21,6012,312,src/soc_ifc/uvmf_soc_ifc (61) | src/keyvault/uvmf_kv (45) | src/hmac/uvmf_2022 (17),src/soc_ifc/uvmf_soc_ifc/soc_ifc_status_interface.yaml | src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/cptra_status_pkg/yaml/cptra_status_interface.yaml
+caliptra-rtl,.v,45,20,18,23,2023-03-06,2026-09-25,5359,895,src/riscv_core/veer_el2 (10) | src/sha512/rtl (10) | src/hmac/rtl (6),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/rtl/verilog/verilog_dut.v | src/sha512/rtl/sha512_h_constants.v
+caliptra-rtl,.cfg,38,17,15,31,2023-03-06,2026-08-27,247,20,tools/scripts/openocd (9) | tools/dvsim/tools (7) | src/integration/coverage (2),src/keyvault/uvmf_kv/coverage/config/uvmf_kv_cm_hier.cfg | src/soc_ifc/uvmf_soc_ifc/coverage/config/uvmf_soc_ifc_cm_hier.cfg
+caliptra-rtl,.hjson,29,11,11,16,2023-03-16,2026-10-22,5750,1608,tools/dvsim (8) | src/entropy_src/data (6) | src/csrng/data (5),src/csrng/data/csrng.hjson | src/entropy_src/data/entropy_src.hjson
+caliptra-rtl,.tcl,26,12,11,16,2023-03-06,2026-08-05,1413,37,src/integration/test_suites (17) | tools/dvsim/tools (7) | src/integration/config (2),src/integration/test_suites/infinite_loop/peripheral_access.tcl | src/integration/test_suites/infinite_loop/peripheral_access.tcl
+caliptra-rtl,.pdf,22,12,11,7,2023-03-06,2026-04-10,0,0,docs (20) | src/ecc/formal (2),docs/Caliptra_Hardware_Spec.pdf | docs/Caliptra_Hardware_Specification.pdf
+caliptra-rtl,.txt,32,11,10,28,2023-03-06,2026-06-12,2746,85,src/sha512/formal (12) | src/integration/tb (6) | src/integration/test_suites (5),Release_notes.txt | src/integration/test_suites/infinite_loop/mem_access_golden.txt
+caliptra-rtl,.makefile,10,10,10,1,2023-06-07,2026-04-22,185,83,src/integration/test_suites (10),src/integration/test_suites/fw_test_rom/fw_test_rom.makefile | src/integration/test_suites/fw_test_rom/fw_test_rom.makefile
+caliptra-rtl,.cpp,17,11,9,10,2023-03-06,2026-08-19,457,132,src/sha512/formal (6) | src/integration/tb (3) | src/uart/tb (2),src/spi_host/tb/test_spi_host_tb.cpp | src/integration/tb/test_caliptra_top_tb.cpp
+caliptra-rtl,.hex,28,10,8,18,2023-03-06,2026-08-01,7005,473,src/ecc/tb (18) | src/mldsa/tb (5) | src/integration/test_suites (2),src/integration/test_suites/iccm_lock/dccm.hex | src/integration/test_suites/iccm_lock/iccm_lock.hex
+caliptra-rtl,.json,15,9,8,4,2023-03-17,2026-10-22,3545,1332,src/entropy_src/data (6) | src/csrng/data (5) | src/uart/data (2),src/spi_host/data/spi_host.json | src/csrng/data/csrng.json
+caliptra-rtl,.vlt,33,8,7,19,2023-03-16,2026-08-19,300,108,src/prim/lint (5) | src/spi_host/config (4) | src/caliptra_prim/lint (4),src/aes/lint/aes.vlt | src/csrng/lint/csrng.vlt
+caliptra-rtl,<riscv_rev_info>,7,7,7,1,2024-11-11,2026-09-25,38,33,src/riscv_core/veer_el2 (7),src/riscv_core/veer_el2/rtl/riscv_rev_info | src/riscv_core/veer_el2/rtl/riscv_rev_info
+caliptra-rtl,.f,132,8,6,116,2023-03-06,2026-08-21,835,210,src/soc_ifc/uvmf_soc_ifc (36) | src/libs/uvmf (24) | src/pcrvault/uvmf_pv (16),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/kv_sve.F | src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/tb/testbench/top_filelist_hdl.f
+caliptra-rtl,.do,72,8,6,58,2023-03-06,2025-02-07,1795,139,src/soc_ifc/uvmf_soc_ifc (18) | src/keyvault/uvmf_kv (12) | src/libs/uvmf (8),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/compile.do | src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/run.do
+caliptra-rtl,.csv,31,8,6,26,2023-03-06,2025-07-29,291,3,src/soc_ifc/uvmf_soc_ifc (10) | src/keyvault/uvmf_kv (7) | src/pcrvault/uvmf_pv (4),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/docs/interfaces.csv | src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/interface_packages/kv_read_pkg/src/kv_read_infact_coverage_strategy.csv
+caliptra-rtl,<fw_test_rom>,6,6,6,1,2023-05-16,2025-03-21,0,0,src/integration/test_suites (6),src/integration/test_suites/fw_test_rom/fw_test_rom | src/integration/test_suites/fw_test_rom/fw_test_rom
+caliptra-rtl,<fw_test_rom_fw>,6,6,6,1,2023-05-16,2025-03-21,0,0,src/integration/test_suites (6),src/integration/test_suites/fw_test_rom/fw_test_rom_fw | src/integration/test_suites/fw_test_rom/fw_test_rom_fw
+caliptra-rtl,.compile,162,7,5,150,2023-03-06,2026-08-21,1023,10,src/soc_ifc/uvmf_soc_ifc (51) | src/pcrvault/uvmf_pv (23) | src/keyvault/uvmf_kv (23),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/rtl/dut.compile | src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/hdl.compile
+caliptra-rtl,.vinfo,130,7,5,120,2023-03-06,2026-08-21,504,1,src/soc_ifc/uvmf_soc_ifc (40) | src/pcrvault/uvmf_pv (18) | src/keyvault/uvmf_kv (18),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/rtl/verilog/verilog_dut.vinfo | src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/hdl.vinfo
+caliptra-rtl,.mk,37,5,5,37,2026-05-28,2026-10-05,738,0,src/integration/test_suites (36) | tools/dvsim (1),src/integration/test_suites/directed_kv_debug_scan_bypass/directed_kv_debug_scan_bypass.mk | src/integration/test_suites/directed_kv_enforcement/directed_kv_enforcement.mk
+caliptra-rtl,.waiver,23,6,5,16,2023-03-06,2026-08-19,390,84,src/prim/lint (6) | src/caliptra_prim/lint (4) | src/csrng/lint (3),src/csrng/lint/csrng.waiver | src/entropy_src/lint/entropy_src.waiver
+caliptra-rtl,.vh,9,6,5,2,2023-03-06,2026-09-25,781,391,src/riscv_core/veer_el2 (9),src/riscv_core/veer_el2/rtl/el2_pdef.vh | src/riscv_core/veer_el2/rtl/el2_param.vh
+caliptra-rtl,<.gitignore>,6,6,5,3,2023-03-06,2026-08-05,23,2,. (3) | src/soc_ifc (2) | src/integration (1),src/integration/.gitignore | src/soc_ifc/.gitignore
+caliptra-rtl,.xlsx,5,5,5,3,2023-07-26,2025-08-29,0,0,docs (5),docs/Caliptra_TestPlan.xlsx | docs/Caliptra_TestPlan.xlsx
+caliptra-rtl,.svg,8,4,4,6,2023-03-16,2026-08-19,101,2,src/uart/doc (4) | docs/images (3) | tools/dv-classes/common_ifs (1),src/uart/doc/block_diagram.svg | src/uart/doc/dv/tb.svg
+caliptra-rtl,.luctrl,4,4,4,2,2023-08-14,2023-09-13,18,18,src/sha512/formal (2) | src/hmac/formal (2),src/sha512/formal/model/refinement.luctrl | src/sha512/formal/model/refinement.luctrl
+caliptra-rtl,.luref,4,4,4,2,2023-08-14,2023-09-13,1130,1130,src/sha512/formal (2) | src/hmac/formal (2),src/sha512/formal/model/SHA512.luref | src/sha512/formal/model/SHA512.luref
+caliptra-rtl,<.svproject>,34,5,3,34,2023-03-06,2025-02-07,544,0,src/soc_ifc/uvmf_soc_ifc (9) | src/sha512/uvmf_sha512 (5) | src/pcrvault/uvmf_pv (5),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/.svproject | src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/.svproject
+caliptra-rtl,<.project>,33,5,3,33,2023-03-06,2025-02-07,1053,0,src/soc_ifc/uvmf_soc_ifc (9) | src/pcrvault/uvmf_pv (5) | src/keyvault/uvmf_kv (5),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/.project | src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/.project
+caliptra-rtl,.lock,5,3,3,3,2026-08-18,2026-08-27,1187,13,tools/dvsim/python (2) | tools/scripts/python (2) | . (1),flake.lock | tools/dvsim/python/uv.lock
+caliptra-rtl,<aes_rev_info>,3,3,3,1,2024-12-21,2025-02-13,33,19,src/aes/rtl (3),src/aes/rtl/aes_rev_info | src/aes/rtl/aes_rev_info
+caliptra-rtl,.rsp,28,3,2,26,2023-03-06,2023-05-08,16956,2,src/doe/tb (10) | src/sha512/tb (8) | src/integration/tb (5),src/integration/tb/vectors/SHA384LongMsg.rsp | src/integration/tb/vectors/SHA384ShortMsg.rsp
+caliptra-rtl,.core,16,2,2,16,2026-08-18,2026-08-27,385,0,tools/dv-classes/dv_utils (4) | tools/dv-classes/common_ifs (3) | tools/dv-classes/prim (3),tools/dv-classes/common_ifs/common_ifs.core | tools/dv-classes/common_ifs/pins_ifs.core
+caliptra-rtl,.gdb,6,2,2,3,2023-06-26,2023-07-07,106,0,src/integration/test_suites (6),src/integration/test_suites/infinite_loop/dump_registers.gdb | src/integration/test_suites/infinite_loop/mem_access.gdb
+caliptra-rtl,.flow,5,4,2,4,2023-03-06,2025-02-07,66,5,src/soc_ifc/uvmf_soc_ifc (2) | src/integration/uvmf_caliptra_top (1) | src/pcrvault/uvmf_pv (1),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/bcr_overlay.flow | src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/project_benches/soc_ifc/sim/bcr_overlay.flow
+caliptra-rtl,.svi,4,3,2,2,2023-03-06,2023-06-01,849,59,src/integration/tb (2) | src/riscv_core/veer_el2 (2),src/riscv_core/veer_el2/tb/dasm.svi | src/integration/tb/dasm.svi
+caliptra-rtl,.toml,3,2,2,2,2026-08-18,2026-08-21,100,1,tools/dvsim/python (2) | tools/scripts/python (1),tools/dvsim/python/pyproject.toml | tools/scripts/python/pyproject.toml
+caliptra-rtl,<cdecode>,3,3,2,1,2023-03-06,2026-09-25,282,8,src/riscv_core/veer_el2 (3),src/riscv_core/veer_el2/rtl/dec/cdecode | src/riscv_core/veer_el2/rtl/dec/cdecode
+caliptra-rtl,<clp_mapfile>,2,2,2,1,2023-09-29,2023-10-02,36,36,coverage/config (2),coverage/config/clp_mapfile | coverage/config/clp_mapfile
+caliptra-rtl,<test_dilithium5>,2,2,2,1,2024-10-29,2024-11-05,0,0,src/mldsa/tb (2),src/mldsa/tb/test_dilithium5 | src/mldsa/tb/test_dilithium5
+caliptra-rtl,.config,14,3,1,14,2023-03-06,2023-04-11,252,0,src/ecc/uvmf_ecc (2) | src/hmac/uvmf_2022 (2) | src/integration/uvmf_caliptra_top (2),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/tbx.config | src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/veloce.config
+caliptra-rtl,<questa_run_32>,8,2,1,4,2023-03-06,2024-06-27,64,64,src/libs/uvmf (8),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/questa_run_32 | src/libs/uvmf/qvip_ahb_lite_slave_dir/uvmf_tb/questa_run_32
+caliptra-rtl,<questa_run_64>,8,2,1,4,2023-03-06,2024-06-27,64,64,src/libs/uvmf (8),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/questa_run_64 | src/libs/uvmf/qvip_ahb_lite_slave_dir/uvmf_tb/questa_run_64
+caliptra-rtl,.sigs,7,3,1,7,2023-03-06,2023-04-11,119,0,src/ecc/uvmf_ecc (1) | src/hmac/uvmf_2022 (1) | src/integration/uvmf_caliptra_top (1),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/xwaves.sigs
+caliptra-rtl,.vhd,7,3,1,7,2023-03-06,2023-04-11,147,0,src/ecc/uvmf_ecc (1) | src/hmac/uvmf_2022 (1) | src/integration/uvmf_caliptra_top (1),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/rtl/vhdl/vhdl_dut.vhd
+caliptra-rtl,<bcr_testlist>,7,3,1,7,2023-03-06,2023-04-11,133,0,src/ecc/uvmf_ecc (1) | src/hmac/uvmf_2022 (1) | src/integration/uvmf_caliptra_top (1),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/bcr_testlist
+caliptra-rtl,<testlist>,7,3,1,7,2023-03-06,2023-04-11,140,0,src/ecc/uvmf_ecc (1) | src/hmac/uvmf_2022 (1) | src/integration/uvmf_caliptra_top (1),src/keyvault/uvmf_kv/uvmf_template_output/project_benches/kv/sim/testlist
+caliptra-rtl,.wlf,6,2,1,3,2023-03-06,2026-09-11,0,0,src/ecc/uvmf_ecc (2) | src/hmac/uvmf_2022 (2) | src/sha512/uvmf_sha512 (2),src/ecc/uvmf_ecc/uvmf_template_output/project_benches/ECC/sim/vsim.wlf | src/hmac/uvmf_2022/uvmf_template_output/project_benches/HMAC/sim/vsim.wlf
+caliptra-rtl,<transcript>,6,2,1,3,2023-03-06,2026-09-11,3777,3777,src/ecc/uvmf_ecc (2) | src/hmac/uvmf_2022 (2) | src/sha512/uvmf_sha512 (2),src/ecc/uvmf_ecc/uvmf_template_output/project_benches/ECC/sim/transcript | src/hmac/uvmf_2022/uvmf_template_output/project_benches/HMAC/sim/transcript
+caliptra-rtl,.cmd,4,2,1,2,2023-03-06,2024-06-27,89,89,src/libs/uvmf (4),src/libs/uvmf/qvip_ahb_lite_slave_dir/qvip_ahb_lite_slave_dir.cmd | src/libs/uvmf/qvip_apb5_slave_dir/qvip_apb5_slave_dir.cmd
+caliptra-rtl,.exe,4,3,1,2,2023-03-06,2024-08-27,0,0,src/ecc/tb (4),src/ecc/tb/ecc_secp384r1.exe | src/ecc/tb/ecdsa_secp384r1.exe
+caliptra-rtl,<ius_run_32>,4,2,1,2,2023-03-06,2024-06-27,44,44,src/libs/uvmf (4),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/ius_run_32 | src/libs/uvmf/qvip_apb5_slave_dir/uvm_tb/ius_run_32
+caliptra-rtl,<ius_run_64>,4,2,1,2,2023-03-06,2024-06-27,44,44,src/libs/uvmf (4),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/ius_run_64 | src/libs/uvmf/qvip_apb5_slave_dir/uvm_tb/ius_run_64
+caliptra-rtl,<vcs_run_32>,4,2,1,2,2023-03-06,2024-06-27,44,44,src/libs/uvmf (4),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/vcs_run_32 | src/libs/uvmf/qvip_apb5_slave_dir/uvm_tb/vcs_run_32
+caliptra-rtl,<vcs_run_64>,4,2,1,2,2023-03-06,2024-06-27,44,44,src/libs/uvmf (4),src/libs/uvmf/qvip_ahb_lite_slave_dir/uvm_tb/vcs_run_64 | src/libs/uvmf/qvip_apb5_slave_dir/uvm_tb/vcs_run_64
+caliptra-rtl,.ccf,3,1,1,3,2026-08-05,2026-08-05,63,0,tools/dvsim/tools (3),tools/dvsim/tools/xcelium/common.ccf | tools/dvsim/tools/xcelium/cover.ccf
+caliptra-rtl,.nix,3,1,1,3,2026-08-18,2026-08-18,198,0,. (1) | tools/dvsim/python (1) | tools/scripts/python (1),flake.nix | tools/dvsim/python/default.nix
+caliptra-rtl,.rc,2,2,1,1,2023-03-06,2026-10-05,124,124,src/integration/test_suites (2),src/integration/test_suites/caliptra_demo/demo.rc
+caliptra-rtl,<LICENSE>,2,2,1,1,2023-02-14,2023-03-06,202,0,. (2),LICENSE
+caliptra-rtl,<decode>,2,2,1,1,2023-03-06,2024-11-11,637,5,src/riscv_core/veer_el2 (2),src/riscv_core/veer_el2/rtl/dec/decode
+caliptra-rtl,.db,1,1,1,1,2024-05-14,2024-05-14,0,0,docs/images (1),docs/images/Thumbs.db
+caliptra-rtl,.hvp,1,1,1,1,2023-05-30,2023-05-30,16,0,src/integration/testplan (1),src/integration/testplan/caliptra_top.hvp
+caliptra-rtl,.jpeg,1,1,1,1,2025-03-07,2025-03-07,0,0,docs/images (1),docs/images/cw310_cwhusky.jpeg
+caliptra-rtl,<.gitmodules>,1,1,1,1,2024-10-29,2024-10-29,3,0,. (1),.gitmodules
+caliptra-rtl,<CODEOWNERS>,1,1,1,1,2026-03-30,2026-03-30,9,0,.github (1),.github/CODEOWNERS
+caliptra-rtl,<caliptra_tlul_rev_info>,1,1,1,1,2024-12-19,2024-12-19,12,0,src/caliptra_tlul/rtl (1),src/caliptra_tlul/rtl/caliptra_tlul_rev_info
+caliptra-rtl,<cover_reg_top_toggle_excl>,1,1,1,1,2026-08-05,2026-08-05,3,0,tools/dvsim/tools (1),tools/dvsim/tools/xcelium/cover_reg_top_toggle_excl
+caliptra-rtl,<csrdecode_m>,1,1,1,1,2024-11-11,2024-11-11,18,4,src/riscv_core/veer_el2 (1),src/riscv_core/veer_el2/rtl/dec/csrdecode_m
+caliptra-rtl,<csrdecode_mu>,1,1,1,1,2024-11-11,2024-11-11,343,0,src/riscv_core/veer_el2 (1),src/riscv_core/veer_el2/rtl/dec/csrdecode_mu
+caliptra-rtl,<fw_test_lms24>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms24/fw_test_lms24
+caliptra-rtl,<fw_test_lms32>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms32/fw_test_lms32
+caliptra-rtl,<fw_test_lms_n24_w1_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w1_h10/fw_test_lms_n24_w1_h10
+caliptra-rtl,<fw_test_lms_n24_w1_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w1_h15/fw_test_lms_n24_w1_h15
+caliptra-rtl,<fw_test_lms_n24_w1_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w1_h20/fw_test_lms_n24_w1_h20
+caliptra-rtl,<fw_test_lms_n24_w1_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w1_h5/fw_test_lms_n24_w1_h5
+caliptra-rtl,<fw_test_lms_n24_w2_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w2_h10/fw_test_lms_n24_w2_h10
+caliptra-rtl,<fw_test_lms_n24_w2_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w2_h15/fw_test_lms_n24_w2_h15
+caliptra-rtl,<fw_test_lms_n24_w2_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w2_h20/fw_test_lms_n24_w2_h20
+caliptra-rtl,<fw_test_lms_n24_w2_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w2_h5/fw_test_lms_n24_w2_h5
+caliptra-rtl,<fw_test_lms_n24_w4_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w4_h10/fw_test_lms_n24_w4_h10
+caliptra-rtl,<fw_test_lms_n24_w4_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w4_h15/fw_test_lms_n24_w4_h15
+caliptra-rtl,<fw_test_lms_n24_w4_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w4_h20/fw_test_lms_n24_w4_h20
+caliptra-rtl,<fw_test_lms_n24_w4_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w4_h5/fw_test_lms_n24_w4_h5
+caliptra-rtl,<fw_test_lms_n24_w8_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w8_h10/fw_test_lms_n24_w8_h10
+caliptra-rtl,<fw_test_lms_n24_w8_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w8_h15/fw_test_lms_n24_w8_h15
+caliptra-rtl,<fw_test_lms_n24_w8_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w8_h20/fw_test_lms_n24_w8_h20
+caliptra-rtl,<fw_test_lms_n24_w8_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n24_w8_h5/fw_test_lms_n24_w8_h5
+caliptra-rtl,<fw_test_lms_n32_w1_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w1_h10/fw_test_lms_n32_w1_h10
+caliptra-rtl,<fw_test_lms_n32_w1_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w1_h15/fw_test_lms_n32_w1_h15
+caliptra-rtl,<fw_test_lms_n32_w1_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w1_h20/fw_test_lms_n32_w1_h20
+caliptra-rtl,<fw_test_lms_n32_w1_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w1_h5/fw_test_lms_n32_w1_h5
+caliptra-rtl,<fw_test_lms_n32_w2_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w2_h10/fw_test_lms_n32_w2_h10
+caliptra-rtl,<fw_test_lms_n32_w2_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w2_h15/fw_test_lms_n32_w2_h15
+caliptra-rtl,<fw_test_lms_n32_w2_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w2_h20/fw_test_lms_n32_w2_h20
+caliptra-rtl,<fw_test_lms_n32_w2_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w2_h5/fw_test_lms_n32_w2_h5
+caliptra-rtl,<fw_test_lms_n32_w4_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w4_h10/fw_test_lms_n32_w4_h10
+caliptra-rtl,<fw_test_lms_n32_w4_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w4_h15/fw_test_lms_n32_w4_h15
+caliptra-rtl,<fw_test_lms_n32_w4_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w4_h20/fw_test_lms_n32_w4_h20
+caliptra-rtl,<fw_test_lms_n32_w4_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w4_h5/fw_test_lms_n32_w4_h5
+caliptra-rtl,<fw_test_lms_n32_w8_h10>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w8_h10/fw_test_lms_n32_w8_h10
+caliptra-rtl,<fw_test_lms_n32_w8_h15>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w8_h15/fw_test_lms_n32_w8_h15
+caliptra-rtl,<fw_test_lms_n32_w8_h20>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w8_h20/fw_test_lms_n32_w8_h20
+caliptra-rtl,<fw_test_lms_n32_w8_h5>,1,1,1,1,2024-02-25,2024-02-25,0,0,src/integration/test_suites (1),src/integration/test_suites/fw_test_lms_n32_w8_h5/fw_test_lms_n32_w8_h5
+caliptra-rtl,<README>,5,1,0,5,2023-03-06,2023-03-06,61,0,src/integration/config (4) | tools (1),
+caliptra-rtl,.ucdb,3,1,0,3,2023-03-06,2023-03-06,0,0,src/ecc/uvmf_ecc (3),
+caliptra-rtl,.xml,3,1,0,3,2023-03-06,2023-03-06,349,0,src/ecc/uvmf_ecc (1) | src/hmac/uvmf_2022 (1) | src/sha512/uvmf_sha512 (1),
+caliptra-rtl,.bat,2,1,0,2,2023-03-06,2023-03-06,12,0,src/hmac/uvmf_2022 (1) | src/sha512/uvmf_sha512 (1),
+caliptra-rtl,<csrdecode>,1,1,0,1,2023-03-06,2023-03-06,276,0,src/riscv_core/veer_el2 (1),
+opentitan,.sv,54557,12812,12809,5818,2019-08-31,2026-10-22,2607778,1394542,hw/dv/sv (4412) | hw/top_earlgrey/dv (2635) | hw/top_earlgrey/ip (2556),hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv | hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+opentitan,.hjson,14821,6824,6820,1359,2019-08-31,2026-10-23,486697,190521,hw/top_earlgrey/data (2370) | hw/top_earlgrey/ip (920) | hw/top_earlgrey/dv (838),hw/vendor/lowrisc_ibex.lock.hjson | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv.lock.hjson
+opentitan,.c,16421,6014,6010,1600,2019-08-31,2026-10-23,445892,182991,sw/device/tests (6821) | sw/device/lib (4909) | sw/device/silicon_creator (3385),sw/boot_rom/spi_device.c | sw/lib/usbdev.c
+opentitan,<BUILD>,9348,4493,4491,808,2020-07-16,2026-10-22,111433,47557,sw/device/silicon_creator (2851) | sw/device/tests (1741) | sw/device/lib (942),sw/host/vendor/google_verible_verilog_syntax_py/BUILD | hw/ip/prim/util/vendor/google_verible_verilog_syntax_py/BUILD
+opentitan,.md,10015,4076,4072,1528,2019-08-31,2026-10-23,324731,154959,hw/top_earlgrey/ip_autogen (458) | hw/ip/otbn (396) | sw/device/lib (349),doc/ug/github_notes.md | doc/ug/github_notes.md
+opentitan,.h,7636,3733,3729,1160,2019-08-31,2026-10-23,234582,109810,sw/device/lib (3582) | sw/device/silicon_creator (1937) | sw/device/tests (705),hw/ip/spi_device/sw/spi_device_regs.h | hw/ip/flash_ctrl/sw/flash_ctrl_regs.h
+opentitan,.py,7810,3482,3479,1014,2019-08-31,2026-10-23,283067,124990,hw/ip/otbn (1580) | util (932) | util/reggen (807),hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_log_to_trace_csv.py | hw/vendor/lowrisc_ibex/dv/uvm/sim.py
+opentitan,.core,6650,2504,2501,1218,2019-08-31,2026-10-18,51601,15271,hw/ip/prim (698) | hw/top_earlgrey/ip_autogen (427) | hw/top_earlgrey (372),hw/vendor/lowrisc_ibex/ibex_core.core | hw/ip/tlul/adapter_reg.core
+opentitan,.rs,6537,1865,1863,765,2020-02-05,2026-10-22,177192,68703,sw/host/opentitanlib (2941) | sw/host/tests (1392) | sw/host/opentitantool (641),sw/device/tock/boards/opentitan/build.rs | sw/device/tock/boards/opentitan/src/io.rs
+opentitan,.cc,3210,1612,1609,445,2019-08-31,2026-10-21,161794,105746,sw/device/lib (1359) | sw/device/silicon_creator (927) | hw/ip/otbn (233),hw/vendor/lowrisc_ibex/dv/riscv_compliance/ibex_riscv_compliance.cc | hw/vendor/lowrisc_ibex/dv/verilator/simutil_verilator/cpp/verilator_sim_ctrl.cc
+opentitan,.sv.tpl,2543,1383,1381,356,2019-08-31,2026-10-22,45468,24739,util/topgen/templates (276) | util/reggen (239) | hw/ip/flash_ctrl (192),util/uvmdvgen/csr_vseq.sv.tpl | util/uvmdvgen/vseq_list.sv.tpl
+opentitan,.bzl,2072,1296,1293,249,2021-08-25,2026-10-22,45515,29111,rules (682) | rules/opentitan (413) | sw/device/silicon_creator (165),rules/autogen.bzl | rules/bugfix.bzl
+opentitan,.s,3093,874,871,987,2019-08-31,2026-10-20,189344,115214,sw/otbn/crypto (1568) | sw/vendor/riscv_compliance (662) | sw/device/silicon_creator (240),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/sample/sample.S | sw/boot_rom/crt0.S
+opentitan,.yml,1046,822,819,76,2019-08-31,2026-10-20,16531,10634,. (411) | .github/workflows (224) | hw/ip/otbn (169),hw/vendor/lowrisc_ibex/azure-pipelines.yml | hw/vendor/lowrisc_ibex/src_files.yml
+opentitan,.sh,1172,756,752,211,2019-08-31,2026-09-28,13791,7490,ci/scripts (360) | util (149) | ci (70),util/syn_yosys.sh | ci/run_sw_build.sh
+opentitan,.build,1321,694,693,95,2019-09-17,2022-06-22,15577,15577,sw/device/tests (315) | sw/device/lib (312) | sw/device/silicon_creator (242),meson.build | sw/boot_rom/meson.build
+opentitan,.hjson.tpl,850,655,654,63,2019-10-04,2026-10-16,20105,10585,hw/ip/flash_ctrl (108) | hw/ip/otp_ctrl (80) | hw/ip/clkmgr (73),util/uvmdvgen/testplan.hjson.tpl | util/uvmdvgen/testplan.hjson.tpl
+opentitan,.waiver,855,488,485,223,2019-08-31,2026-10-18,7002,1840,hw/ip/prim (158) | hw/top_earlgrey/lint (67) | hw/ip/prim_generic (65),hw/top_earlgrey/rtl/ascentlint.waiver | hw/ip/aes/lint/aes.waiver
+opentitan,.tcl,794,440,438,176,2019-08-31,2026-10-16,10919,3960,hw/top_earlgrey/cdc (116) | hw/formal/tools (88) | hw/dv/tools (64),hw/formal/fpv.tcl | hw/lint/cdc_lint.tcl
+opentitan,.svh,514,388,386,92,2019-08-31,2026-09-25,13787,3361,hw/dv/sv (212) | hw/vendor/lowrisc_ibex (75) | hw/ip/prim (59),hw/top_earlgrey/dv/tb/chip_hier_macros.svh | hw/dv/sv/tl_agent/tl_if_connect_macros.svh
+opentitan,.svg,927,387,385,620,2019-08-31,2026-10-20,170489,39396,hw/top_earlgrey/ip_autogen (69) | hw/top_darjeeling/ip_autogen (51) | hw/top_englishbreakfast/ip_autogen (33),hw/ip/alert_handler/doc/alert_handler_alert_rxtx.svg | hw/ip/alert_handler/doc/alert_handler_block_diagram.svg
+opentitan,.bazel,4474,344,342,1331,2020-01-14,2026-09-23,75793,74010,third_party/rust/crates (3728) | third_party/cargo/remote (355) | . (88),sw/vendor/google_googletest/BUILD.bazel | sw/vendor/google_googletest/googlemock/test/BUILD.bazel
+opentitan,.toml,356,298,297,42,2019-10-21,2026-09-04,1707,1197,third_party/rust (109) | . (74) | sw/host/rom_ext_image_tools (26),site/landing/config.toml | site/docs/config.toml
+opentitan,<Makefile>,450,281,277,86,2019-08-31,2026-10-08,7824,6344,hw (103) | hw/vendor/lowrisc_ibex (70) | sw/vendor/riscv_compliance (37),hw/vendor/lowrisc_ibex/dv/uvm/Makefile | hw/ip/hmac/dv/Makefile
+opentitan,.txt,356,280,277,85,2019-08-31,2026-10-20,30049,18439,. (174) | hw/ip/otbn (36) | hw/vendor/lowrisc_ibex (20),python-requirements.txt | python-requirements.txt
+opentitan,.vlt,494,264,261,189,2019-08-31,2026-10-08,2590,717,hw/ip/prim (54) | hw/vendor/lowrisc_ibex (32) | hw/top_earlgrey/ip_autogen (32),hw/vendor/lowrisc_ibex/lint/verilator_waiver.vlt | hw/vendor/lowrisc_ibex/lint/verilator_waiver.vlt
+opentitan,.json,882,249,249,287,2019-10-16,2026-10-21,603745,577770,sw/vendor/wycheproof (322) | sw/host/penetrationtests (317) | sw/host/opentitanlib (97),hw/vendor/pulp_riscv_dbg/doc/dmi_protocol.json | site/landing/data/partner_quotes.json
+opentitan,.cfg,471,241,238,90,2019-08-31,2026-10-18,4915,2110,hw/top_earlgrey/dv (113) | hw/top_earlgrey/ip (82) | hw/dv/tools (60),hw/vendor/lowrisc_ibex/dv/uvm/cover.cfg | hw/dv/tools/vcs/cover.cfg
+opentitan,.lock,272,233,233,23,2020-02-05,2026-10-14,82241,53792,. (118) | third_party/rust (104) | third_party/rust/crates (12),sw/device/tock/boards/opentitan/Cargo.lock | sw/device/tock/boards/opentitan/Cargo_remote.lock
+opentitan,.ld,467,218,214,83,2019-08-31,2026-10-11,6160,2230,sw/device/silicon_creator (150) | sw/device/lib (106) | sw/device/silicon_owner (50),sw/boot_rom/rom_link.ld | sw/boot_rom/rom_link.ld
+opentitan,.patch,362,185,183,139,2019-08-31,2026-10-01,24968,15525,hw/vendor/patches (132) | sw/vendor/patches (77) | hw/top_englishbreakfast/util (40),hw/vendor/patches/pulp_riscv_dbg/0001-Use-lowrisc-instead-of-PULP-primitives.patch | hw/vendor/patches/pulp_riscv_dbg/0001-lint-cleanup-Fix-lint-warning-in-debug_rom-fix-inden.patch
+opentitan,.el,364,184,182,133,2019-10-25,2026-10-08,54533,13408,hw/top_earlgrey/dv (45) | hw/ip/kmac (25) | hw/top_earlgrey/ip_autogen (24),hw/dv/tools/vcs/common_cov_excl.el | hw/ip/uart/dv/cov/uart_cov_excl.el
+opentitan,.h.tpl,224,175,173,34,2019-10-28,2026-09-09,4417,1568,util/dtgen (42) | sw/device/tests (36) | util/topgen/templates (34),hw/top_earlgrey/doc/top_earlgrey.h.tpl | hw/top_earlgrey/doc/top_earlgrey.h.tpl
+opentitan,.mk,274,169,167,56,2019-08-31,2026-01-16,3054,2296,hw/dv/tools (110) | hw/dv/data (22) | sw/otbn/code-snippets (22),sw/exts/common/options.mk | hw/dv/tools/rules.mk
+opentitan,.md.tpl,255,161,160,71,2019-08-31,2026-10-18,3623,5671,util/uvmdvgen (63) | hw/ip_templates/otp_ctrl (29) | hw/ip_templates/pwrmgr (21),util/uvmdvgen/dv_plan.md.tpl | util/uvmdvgen/plan.md.tpl
+opentitan,.core.tpl,393,147,145,106,2019-08-31,2026-09-11,2638,753,hw/ip_templates/alert_handler (52) | hw/ip_templates/flash_ctrl (45) | hw/ip_templates/otp_ctrl (38),util/uvmdvgen/env.core.tpl | util/fpvgen/fusesoc.core.tpl
+opentitan,.c.tpl,158,132,130,17,2020-04-22,2026-08-18,3676,1406,util/topgen/templates (56) | util/dtgen (36) | util/make_new_dif/templates (16),hw/top_earlgrey/data/top_earlgrey.c.tpl | hw/top_earlgrey/data/top_earlgrey.c.tpl
+opentitan,.html,543,114,111,262,2019-08-31,2026-09-22,12029,7455,hw/vendor/lowrisc_ibex (137) | sw/vendor/coremark (136) | site/docs/layouts (98),site/docs/layouts/_default/list.html | site/docs/layouts/_default/single.html
+opentitan,.xdc,166,111,109,15,2019-08-31,2026-10-18,3379,2231,hw/top_earlgrey/data (140) | hw/top_englishbreakfast/data (23) | hw/vendor/lowrisc_ibex (3),hw/top_earlgrey/data/placement.xdc | hw/top_earlgrey/data/placement.xdc
+opentitan,.tpl,220,99,97,62,2019-08-31,2026-10-09,3076,891,util/topgen/templates (131) | util/uvmdvgen (9) | hw/ip_templates/alert_handler (7),util/uvmdvgen/Makefile.tpl | util/uvmdvgen/Makefile.tpl
+opentitan,.sdc,117,90,88,38,2020-01-15,2026-10-08,4267,1480,hw/top_earlgrey/syn (64) | hw/ip/aes (6) | hw/vendor/lowrisc_ibex (5),hw/vendor/lowrisc_ibex/syn/ibex_core.nangate.sdc | hw/syn/tools/dc/constraints.sdc
+opentitan,.csv,462,88,87,64,2021-03-23,2026-10-18,3887,2447,hw/top_earlgrey/formal (316) | hw/top_darjeeling/formal (145) | hw/top_earlgrey/fpv (1),hw/top_earlgrey/fpv/fconn_csvs/top_earlgrey_conn.csv | hw/top_earlgrey/formal/fconn_csvs/top_earlgrey_conn.csv
+opentitan,<.gitignore>,104,84,81,38,2019-08-31,2026-02-10,477,261,. (36) | hw/vendor/lowrisc_ibex (22) | sw/vendor/riscv_compliance (7),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/.gitignore | .gitignore
+opentitan,.exp,324,78,77,146,2020-12-11,2026-09-16,1079,451,hw/ip/otbn (164) | sw/otbn/crypto (160),hw/ip/otbn/dv/otbnsim/test/simple/insns/add.exp | hw/ip/otbn/dv/otbnsim/test/simple/insns/addi.exp
+opentitan,<WORKSPACE>,69,69,68,3,2020-01-14,2024-09-17,628,438,. (65) | sw/vendor/google_googletest (2) | util/lowrisc_misc-linters (2),sw/vendor/google_googletest/WORKSPACE | WORKSPACE
+opentitan,<.bazelrc>,69,68,67,2,2021-09-07,2026-09-14,318,126,. (60) | ci (9),.bazelrc | .bazelrc
+opentitan,.rst,325,67,66,72,2019-08-31,2026-10-16,7857,1809,hw/vendor/lowrisc_ibex (325),hw/vendor/lowrisc_ibex/doc/cs_registers.rst | hw/vendor/lowrisc_ibex/doc/exception_interrupts.rst
+opentitan,.yaml,184,67,64,38,2019-08-31,2026-10-16,14509,3501,hw/vendor/lowrisc_ibex (165) | util/site/site-builder (8) | signing/tokens (5),hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/csr_description.yaml | hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/testlist.yaml
+opentitan,.css,121,66,64,33,2019-08-31,2026-07-23,7252,4938,site/book-theme/css (36) | site/book-theme (16) | site/earlgrey-diagram/src (14),hw/vendor/lowrisc_ibex/doc/_static/theme_overrides.css | util/docgen/md_html.css
+opentitan,<Dockerfile>,61,57,55,5,2019-08-31,2026-10-08,432,256,util/container (53) | site/redirector/docs (3) | site/redirector/landing (3),site/landing/redirector/Dockerfile | site/redirector/Dockerfile
+opentitan,.scss,141,54,54,38,2019-10-22,2024-07-11,2732,2732,site/docs/assets (80) | site/landing/assets (61),site/docs/assets/scss/style.scss | site/docs/assets/scss/_base.scss
+opentitan,.der,183,50,50,127,2021-02-04,2025-08-29,0,0,sw/device/silicon_creator (169) | sw/host/hsmtool (12) | sw/host/rom_ext_image_tools (2),sw/host/rom_ext_image_tools/signer/dev/test_key_private.der | sw/host/rom_ext_image_tools/signer/dev/test_key_private.der
+opentitan,.vrefine,72,51,49,28,2021-03-04,2026-10-02,16747,12289,hw/ip/entropy_src (19) | hw/ip/aes (18) | hw/ip/pattgen (5),hw/ip/aes/dv/cov/aes_cov.vRefine | hw/ip/aes/dv/cov/aes_cov.vRefine
+opentitan,.js,82,48,46,25,2019-08-31,2026-06-21,5893,4416,util/site-dashboard (21) | site/book-theme (20) | site/landing/static (10),site/landing/static/js/tiny-slider.js | sw/vendor/coremark/docs/html/javascript/main.js
+opentitan,.ld.tpl,49,47,46,4,2020-05-11,2026-08-14,286,105,util/topgen/templates (31) | hw/ip/otbn (14) | hw/top_earlgrey/data (2),hw/top_earlgrey/data/top_earlgrey_memory.ld.tpl | hw/ip/otbn/data/otbn.ld.tpl
+opentitan,<COMMITTERS>,45,45,45,1,2019-11-04,2026-09-30,73,45,. (45),COMMITTERS | COMMITTERS
+opentitan,.png,140,42,41,86,2019-08-31,2026-09-22,0,0,doc/getting_started/install_vivado (22) | doc/ug/install_instructions (20) | hw/top_earlgrey/ip (19),doc/ug/install_instructions/img/install_vivado/step1.png | doc/ug/install_instructions/img/install_vivado/step2.png
+opentitan,.ccf,48,38,37,9,2020-01-15,2026-09-28,283,125,hw/dv/tools (38) | hw/vendor/lowrisc_ibex (3) | hw/ip_templates/pwm (3),hw/vendor/lowrisc_ibex/dv/uvm/cover.ccf | hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/cover.ccf
+opentitan,.bin,94,35,34,36,2019-08-31,2025-06-16,4,4,sw/device/silicon_creator (78) | sw/host/rom_ext_image_tools (7) | sw/host/opentitanlib (4),hw/ip/rv_core_ibex/dv/tests/bin/ibex_sanity_test.bin | sw/device/rom_exts/keys/testing/hello_world.bin
+opentitan,<CODEOWNERS>,33,33,33,2,2019-09-17,2025-11-12,210,150,.github (31) | sw/vendor/freertos_freertos_kernel (2),.github/CODEOWNERS | .github/CODEOWNERS
+opentitan,.rs.tpl,48,32,30,7,2020-11-11,2025-10-17,527,212,util/topgen/templates (38) | sw/device/silicon_creator (8) | sw/device/rom_exts (2),sw/device/rom_exts/manifest.rs.tpl | sw/device/rom_exts/manifest.rs.tpl
+opentitan,.cc.tpl,32,31,30,3,2021-09-13,2026-06-26,2514,876,util/make_new_dif (14) | util/make_new_dif/templates (13) | hw/ip/otp_ctrl (5),util/make_new_dif/dif_autogen_unittest.cc.tpl | util/make_new_dif/dif_autogen_unittest.cc.tpl
+opentitan,<BLOCKFILE>,30,30,30,1,2023-05-06,2026-08-27,409,285,. (30),BLOCKFILE | BLOCKFILE
+opentitan,.pem,142,29,29,84,2020-11-04,2026-08-18,649,223,sw/device/silicon_creator (116) | sw/device/tests (12) | sw/host/hsmtool (12),sw/device/rom_exts/keys/test_key_private.pem | sw/device/rom_exts/keys/test_key_public.pem
+opentitan,.f,73,30,29,27,2019-08-31,2026-08-20,636,398,hw/vendor/lowrisc_ibex (36) | hw/ip/rv_dm (7) | hw/ip/rv_core_ibex (6),hw/vendor/lowrisc_ibex/dv/uvm/ibex_dv.f | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/files.f
+opentitan,.vbl,67,30,29,41,2020-04-17,2026-10-08,345,42,hw/top_darjeeling/ip_autogen (8) | hw/top_earlgrey/ip_autogen (8) | hw/ip_templates/otp_ctrl (6),hw/lint/tools/veriblelint/rules.vbl | hw/lint/tools/veriblelint/rules.vbl
+opentitan,.bzl.tpl,45,26,26,14,2024-12-19,2025-09-30,152,48,hw/ip_templates/clkmgr (5) | hw/ip_templates/pwrmgr (5) | hw/ip_templates/rstmgr (4),hw/ip_templates/alert_handler/defs.bzl.tpl | hw/ip_templates/clkmgr/defs.bzl.tpl
+opentitan,.json5,53,25,25,34,2024-03-19,2026-08-12,659,72,sw/host/ot_transports (28) | sw/host/opentitanlib (18) | sw/device/silicon_creator (7),sw/device/silicon_creator/lib/ownership/testdata/basic_owner.json5 | sw/device/silicon_creator/lib/ownership/testdata/basic_owner.json5
+opentitan,<otbn-as>,25,25,25,1,2020-07-14,2021-06-22,1389,112,hw/ip/otbn (25),hw/ip/otbn/util/otbn-as | hw/ip/otbn/util/otbn-as
+opentitan,<fpv_all>,23,23,22,1,2019-08-31,2021-10-01,147,147,hw/formal (23),hw/formal/fpv_all | hw/formal/fpv_all
+opentitan,.cfg.tpl,24,20,19,5,2020-11-05,2026-09-23,237,66,util/topgen/templates (12) | util/tlgen (10) | hw/ip_templates/clkmgr (1),util/tlgen/xbar_cover.cfg.tpl | util/tlgen/xbar_cover.cfg.tpl
+opentitan,<otbn-rig>,20,20,19,2,2020-08-07,2024-02-01,304,119,hw/ip/otbn (20),hw/ip/otbn/util/otbn-rig | hw/ip/otbn/util/otbn-rig
+opentitan,.cpp,28,17,16,16,2020-07-13,2026-06-24,911,72,hw/ip/otbn (12) | hw/ip/aes (9) | hw/ip/kmac (6),hw/vendor/pulp_riscv_dbg/tb/tb_top_verilator.cpp | hw/ip/aes/pre_sca/alma/cpp/verilator_tb_aes_sbox.cpp
+opentitan,<.clang-format>,24,18,16,14,2019-08-31,2026-08-12,120,59,. (6) | hw/vendor/lowrisc_ibex (2) | sw/vendor/google_googletest (2),hw/vendor/lowrisc_ibex/.clang-format | sw/vendor/google_googletest/.clang-format
+opentitan,.bzlmod,16,16,16,1,2024-07-16,2025-01-10,0,190,. (16),WORKSPACE.bzlmod | WORKSPACE.bzlmod
+opentitan,.hbs,16,16,16,1,2023-03-01,2026-07-23,769,398,site/book-theme (16),site/book-theme/index.hbs | site/book-theme/index.hbs
+opentitan,.tcl.tpl,16,16,16,2,2024-04-24,2025-06-09,111,22,hw/ip_templates/rv_plic (15) | hw/ip_templates/alert_handler (1),hw/ip_templates/alert_handler/fpv/tb/esc_after_load.tcl.tpl | hw/ip_templates/rv_plic/fpv/tb/coverage_waivers.tcl.tpl
+opentitan,<otbn-objdump>,15,15,15,1,2020-07-20,2021-09-23,236,102,hw/ip/otbn (15),hw/ip/otbn/util/otbn-objdump | hw/ip/otbn/util/otbn-objdump
+opentitan,.ic,32,14,14,20,2019-11-20,2022-04-13,397,26,hw/vendor/lowrisc_ibex (32),hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/riscvOVPsim.ic | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/target/ml/riscvOVPsim.ic
+opentitan,.conf,20,15,14,11,2019-10-21,2025-09-16,118,65,sw/device/silicon_creator (10) | site/redirector/docs (3) | site/redirector/landing (3),site/landing/redirector/redirector.conf | site/redirector/redirector.conf
+opentitan,.sgdc,16,14,14,3,2022-06-28,2026-10-05,2017,175,hw/top_darjeeling/ip (10) | hw/top_earlgrey/ip (5) | hw/top_englishbreakfast/ip (1),hw/top_earlgrey/ip/ast/data/ast_cdc_abstract.sgdc | hw/top_darjeeling/ip/ast/data/ast_cdc_abstract.sgdc
+opentitan,.include,15,15,14,1,2019-11-07,2022-04-26,202,202,sw/vendor/riscv_compliance (15),sw/vendor/riscv_compliance/riscv-target/opentitan/device/rv32imc/Makefile.include | sw/vendor/riscv_compliance/riscv-target/opentitan/device/rv32imc/Makefile.include
+opentitan,.dockerfile,14,14,14,2,2019-11-13,2023-04-16,96,96,site/docs (7) | util/site/site-builder (7),site/docs/builder.Dockerfile | site/docs/builder.Dockerfile
+opentitan,<LICENSE>,25,15,13,16,2019-08-31,2026-05-19,1966,918,sw/vendor/google_googletest (8) | hw/vendor/lowrisc_ibex (2) | hw/vendor/tinyfpga_tinyfpga-bootloader (2),site/docs/static/LICENSE | site/docs/static/LICENSE
+opentitan,.in,14,14,13,4,2020-01-14,2024-09-17,310,358,. (8) | hw/vendor/lowrisc_ibex (2) | sw/vendor/google_googletest (2),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/MANIFEST.in | sw/vendor/google_googletest/googletest/scripts/gtest-config.in
+opentitan,.nix,13,13,13,1,2026-07-07,2026-10-14,274,69,. (13),flake.nix | flake.nix
+opentitan,.inc,19,12,12,8,2020-05-18,2026-10-12,2008,1676,hw/ip/prim (8) | sw/device/lib (4) | sw/otbn/crypto (4),hw/ip/prim/dv/prim_present/crypto_dpi_present/boxes.inc | hw/ip/prim/dv/prim_present/crypto_dpi_present/comline.inc
+opentitan,<fpv>,13,13,12,1,2019-08-31,2021-10-01,173,173,hw/formal (13),hw/formal/fpv | hw/formal/fpv
+opentitan,.vbw,13,11,11,6,2020-07-13,2025-05-30,23,5,hw/vendor/lowrisc_ibex (7) | hw/top_earlgrey/lint (3) | hw/top_earlgrey/dv (1),hw/vendor/lowrisc_ibex/lint/verible_waiver.vbw | hw/vendor/lowrisc_ibex/lint/verible_waiver.vbw
+opentitan,.env,12,12,11,3,2022-07-22,2024-08-02,48,5,hw/top_earlgrey/rdc (10) | hw/top_earlgrey/cdc (2),hw/top_earlgrey/rdc/chip_earlgrey_asic.env | hw/top_earlgrey/rdc/chip_earlgrey_asic.env
+opentitan,.mak,36,11,10,19,2019-08-31,2022-04-12,2086,1518,hw/vendor/lowrisc_ibex (17) | sw/vendor/coremark (10) | sw/vendor/eembc_coremark (5),sw/benchmarks/coremark/top_earlgrey/core_portme.mak | sw/device/benchmarks/coremark/top_earlgrey/core_portme.mak
+opentitan,.lib,18,11,10,11,2019-12-02,2025-11-09,200283,100732,hw/ip/usbdev (10) | hw/vendor/lowrisc_ibex (2) | hw/ip/aes (2),hw/vendor/lowrisc_ibex/syn/cmos_cells.lib | hw/vendor/lowrisc_ibex/syn/cmos_cells.lib
+opentitan,.do,14,12,10,6,2019-08-31,2024-02-01,230,64,hw/formal (8) | hw/vendor/lowrisc_ibex (3) | hw/dv/tools (2),hw/formal/rtl_diff.do | hw/formal/lec_sv2v.do
+opentitan,.waiver.tpl,11,11,10,5,2022-03-30,2026-09-23,123,75,hw/ip_templates/rv_core_ibex (4) | hw/ip_templates/rv_plic (2) | hw/ip_templates/pinmux (2),hw/ip_templates/rv_plic/lint/rv_plic.waiver.tpl | hw/ip_templates/pinmux/lint/pinmux.waiver.tpl
+opentitan,.v,37,11,9,19,2019-08-31,2026-09-16,3319,2369,hw/vendor/tinyfpga_tinyfpga-bootloader (25) | hw/ip/otbn (8) | hw/vendor/lowrisc_ibex (4),hw/vendor/lowrisc_ibex/syn/prim_clock_gating.v | hw/vendor/tinyfpga_tinyfpga-bootloader/common/edge_detect.v
+opentitan,.ini,20,9,9,5,2020-01-14,2025-06-27,77,55,hw/ip/otbn (12) | . (6) | sw/vendor/google_googletest (2),sw/vendor/google_googletest/platformio.ini | hw/ip/otbn/dv/otbnsim/mypy.ini
+opentitan,<README>,10,10,9,7,2019-08-31,2022-06-24,104,56,hw/ip/i2c (2) | hw/ip/tlul (2) | sw/vendor/google_googletest (2),hw/ip/i2c/dv/README | sw/vendor/cryptoc/README
+opentitan,<.bazelignore>,9,9,9,1,2021-09-21,2025-06-11,12,6,. (9),.bazelignore | .bazelignore
+opentitan,.csr,11,8,8,5,2024-03-27,2024-11-19,52,35,sw/device/silicon_creator (11),sw/device/silicon_creator/manuf/keys/fake/fake_ca.csr | sw/device/silicon_creator/manuf/keys/fake/fake_ca.csr
+opentitan,.set,11,9,8,2,2023-12-01,2024-03-15,3895,2858,hw/ip/aes (6) | hw/ip/kmac (5),hw/ip/aes/pre_sca/prolead/aes_cipher_core_config.set | hw/ip/aes/pre_sca/prolead/aes_cipher_core_config.set
+opentitan,.vsdx,10,8,8,5,2021-04-12,2023-05-04,0,0,hw/ip/entropy_src (5) | hw/ip/edn (4) | hw/ip/csrng (1),hw/ip/csrng/doc/csrng_blk_diag.vsdx | hw/ip/edn/doc/edn_blk_diag.vsdx
+opentitan,.build.tpl,9,8,8,3,2021-09-16,2022-06-06,104,104,util/topgen/templates (6) | util/autogen_testutils/templates (2) | util/autogen_testutils (1),util/topgen/templates/meson.build.tpl | util/topgen/templates/meson.build.tpl
+opentitan,.dcrypto,8,8,8,6,2020-07-20,2021-11-30,81,54,sw/device/silicon_creator (5) | hw/ip/otbn (1) | sw/otbn/code-snippets (1),hw/ip/otbn/code-snippets/LICENSE.dcrypto | sw/otbn/code-snippets/LICENSE.dcrypto
+opentitan,<Doxyfile>,8,8,8,2,2020-04-08,2025-03-27,227,33,util/doxygen (5) | site/doxygen (3),util/doxygen/Doxyfile | util/doxygen/Doxyfile
+opentitan,<otbn-ld>,8,8,8,1,2020-07-20,2021-10-26,142,34,hw/ip/otbn (8),hw/ip/otbn/util/otbn-ld | hw/ip/otbn/util/otbn-ld
+opentitan,.rsp,132,8,7,83,2019-08-31,2024-11-11,76052,48274,sw/host/cryptotest (96) | hw/dv/sv (36),hw/dv/sv/test_vectors/HMAC_RFC4868.rsp | hw/dv/sv/test_vectors/SHA256LongMsg.rsp
+opentitan,.rsa_sig,46,7,7,19,2023-06-25,2024-05-24,12,13,sw/device/silicon_creator (36) | signing/rom_tests/signatures (10),signing/rom_tests/signatures/empty_test_sigverify_spx_fpga_cw310.rsa_sig | signing/rom_tests/signatures/empty_test_sigverify_spx_sim_dv.rsa_sig
+opentitan,.sig,36,7,7,16,2023-06-07,2023-07-19,4,1,signing/rom_tests/signatures (36),signing/rom_tests/signatures/empty_test_slot_a_fpga_cw310.sig | signing/rom_tests/signatures/empty_test_slot_a_sim_dv.sig
+opentitan,<FUSESOC_IGNORE>,11,7,7,6,2021-03-16,2024-11-26,5,5,hw/top_earlgrey/ip_autogen (4) | hw/top_darjeeling (2) | hw/ip_templates/flash_ctrl (2),hw/ip_templates/FUSESOC_IGNORE | hw/top_darjeeling/FUSESOC_IGNORE
+opentitan,.bazel.tpl,7,7,7,4,2025-02-11,2025-09-30,86,40,hw/ip_templates/pwrmgr (2) | hw/ip_templates/rstmgr (2) | hw/ip_templates/clkmgr (2),hw/ip_templates/pwrmgr/util/BUILD.bazel.tpl | hw/ip_templates/rstmgr/util/BUILD.bazel.tpl
+opentitan,<.bazelversion>,7,7,7,1,2021-08-25,2026-05-06,7,6,. (7),.bazelversion | .bazelversion
+opentitan,<.gitattributes>,7,7,7,1,2022-06-07,2025-03-21,43,9,. (7),.gitattributes | .gitattributes
+opentitan,.vmem,8,6,6,6,2020-05-14,2025-03-20,14195,13169,sw/device/tock (4) | sw/host/opentitanlib (3) | sw/device/silicon_creator (1),sw/device/tock/prebuilt/opentitan.32.vmem | sw/device/tock/prebuilt/opentitan.64.vmem
+opentitan,.def,6,6,6,2,2019-11-20,2022-04-12,299,173,hw/vendor/lowrisc_ibex (4) | sw/device/lib (2),hw/vendor/lowrisc_ibex/dv/cs_registers/reg_driver/csr_listing.def | hw/vendor/lowrisc_ibex/dv/cs_registers/reg_driver/csr_listing.def
+opentitan,.cquery,6,5,5,4,2022-05-17,2026-08-06,28,10,util/py/scripts (3) | rules (2) | ci/scripts (1),rules/output.cquery | rules/output.cquery
+opentitan,.ys,6,6,5,3,2019-12-02,2025-12-19,71,19,hw/vendor/lowrisc_ibex (3) | hw/ip/aes (3),hw/vendor/lowrisc_ibex/syn/syn.ys | hw/vendor/lowrisc_ibex/syn/syn.ys
+opentitan,<lint>,6,6,5,2,2019-08-31,2026-09-22,34,34,hw/lint (4) | hw/top_englishbreakfast/ip (2),hw/lint/lint | hw/lint/lint
+opentitan,<xfile>,6,6,5,4,2021-12-09,2026-08-18,4,2,hw/ip/flash_ctrl (2) | hw/top_earlgrey/ip_autogen (2) | hw/ip_templates/flash_ctrl (1),hw/ip/flash_ctrl/dv/tools/xcelium/xfile | hw/ip_templates/flash_ctrl/dv/tools/xcelium/xfile
+opentitan,.inc.tpl,5,5,5,1,2021-09-13,2021-09-20,391,194,util/make_new_dif (5),util/make_new_dif/dif_autogen.inc.tpl | util/make_new_dif/dif_autogen.inc.tpl
+opentitan,.rdl,5,5,5,2,2024-11-06,2025-07-11,416,8,util/reggen/systemrdl (3) | hw/ip/aes (2),util/reggen/systemrdl/udp.rdl | util/reggen/systemrdl/udp.rdl
+opentitan,.xml,5,5,5,4,2020-04-08,2024-03-27,910,380,hw/ip/usbdev (3) | site/docs/doxygen (1) | site/doxygen (1),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod.xml | site/docs/doxygen/layout.xml
+opentitan,<.flake8>,5,5,5,3,2020-03-24,2025-07-01,27,3,. (3) | hw/vendor/lowrisc_ibex (1) | hw/ip/otbn (1),.flake8 | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/.flake8
+opentitan,<CLA>,5,5,5,2,2019-11-01,2026-09-04,191,88,. (3) | util/lowrisc_misc-linters (2),CLA | util/lowrisc_misc-linters/CLA
+opentitan,.d,143,4,4,82,2022-08-05,2025-12-19,20442,238,hw/vendor/lowrisc_ibex (143),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/euvm/riscv/gen/isa/custom/riscv_custom_instr.d | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/euvm/riscv/gen/isa/custom/riscv_custom_instr_enum.d
+opentitan,<Makefrag>,55,5,4,25,2019-10-22,2022-04-26,632,632,sw/vendor/riscv_compliance (55),sw/vendor/riscv_compliance/riscv-test-suite/rv32i/Makefrag | sw/vendor/riscv_compliance/riscv-test-suite/rv32im/Makefrag
+opentitan,.object,11,4,4,7,2023-04-21,2026-08-18,0,0,signing/softhsm/tokens (11),signing/softhsm/tokens/1fb9bf0b-6f47-74b5-05b9-e1ccf1488ff0/token.object | signing/softhsm/tokens/1fb9bf0b-6f47-74b5-05b9-e1ccf1488ff0/30272913-d12b-af71-8cc9-c2686e538e23.object
+opentitan,.elf,8,4,4,4,2020-05-14,2023-06-22,0,0,sw/device/silicon_creator (6) | sw/device/tock (2),sw/device/tock/prebuilt/opentitan.elf | sw/device/tock/prebuilt/opentitan.elf
+opentitan,.el.tpl,6,5,4,2,2019-10-25,2024-04-01,123,90,util/tlgen (4) | util/uvmdvgen (2),util/uvmdvgen/cov_excl.el.tpl | util/tlgen/xbar_cov_excl.el.tpl
+opentitan,.md5,5,5,4,3,2019-08-31,2022-04-12,18,12,sw/vendor/coremark (2) | hw/vendor/lowrisc_ibex (2) | sw/vendor/eembc_coremark (1),sw/vendor/coremark/coremark.md5 | sw/vendor/eembc_coremark/coremark.md5
+opentitan,.mmi,5,5,4,1,2019-08-31,2021-08-30,42,42,util/fpga (5),util/fpga/bram_load.mmi | util/fpga/bram_load.mmi
+opentitan,<lint_all>,5,5,4,1,2019-08-31,2019-11-05,79,79,hw/lint (5),hw/lint/lint_all | hw/lint/lint_all
+opentitan,.dexp,4,4,4,2,2024-09-05,2025-08-29,3,2,sw/otbn/crypto (4),sw/otbn/crypto/tests/mul_test.dexp | sw/otbn/crypto/tests/p384_ecdsa_verify_test.dexp
+opentitan,.example,4,4,4,1,2020-09-09,2022-05-27,25,25,test (4),test/test-localconf.yaml.example | test/test-localconf.yaml.example
+opentitan,.exclude,4,4,4,3,2024-11-11,2026-06-22,18,9,hw/top_earlgrey/ip_autogen (2) | hw/ip/pwm (1) | hw/ip_templates/pwm (1),hw/ip/pwm/dv/cov/toggle.exclude | hw/ip_templates/pwm/dv/cov/toggle.exclude
+opentitan,<rust-toolchain>,4,4,4,2,2020-02-05,2021-07-21,1,1,sw/device/tock (2) | sw/host/rom_ext_image_tools (2),sw/device/tock/boards/opentitan/rust-toolchain | sw/host/rom_ext_image_tools/rust-toolchain
+opentitan,.not_yet,21,3,3,9,2025-01-10,2025-08-21,4200,38,hw/ip_templates/otp_ctrl (7) | hw/top_darjeeling/ip_autogen (7) | hw/top_earlgrey/ip_autogen (7),hw/ip_templates/otp_ctrl/data/dif_otp_ctrl.c.tpl.not_yet | hw/ip_templates/otp_ctrl/data/dif_otp_ctrl.h.tpl.not_yet
+opentitan,.proof,10,3,3,4,2025-05-30,2026-08-20,907,149,hw/vendor/lowrisc_ibex (10),hw/vendor/lowrisc_ibex/dv/formal/thm/btype.proof | hw/vendor/lowrisc_ibex/dv/formal/thm/ibex.proof
+opentitan,.spx_sig,7,3,3,4,2023-06-25,2024-07-01,0,0,signing/rom_tests/signatures (7),signing/rom_tests/signatures/empty_test_sigverify_spx_fpga_cw310.spx_sig | signing/rom_tests/signatures/empty_test_sigverify_spx_sim_dv.spx_sig
+opentitan,.base64,6,3,3,4,2020-12-15,2021-04-23,9,9,sw/device/silicon_creator (4) | sw/device/rom_exts (2),sw/device/rom_exts/keys/testing/hello_world.sign.base64 | sw/device/rom_exts/keys/testing/hello_world_digest.base64
+opentitan,.sby.j2,5,3,3,2,2020-11-05,2022-04-12,28,55,hw/vendor/lowrisc_ibex (5),hw/vendor/lowrisc_ibex/formal/data_ind_timing/run.sby.j2 | hw/vendor/lowrisc_ibex/formal/icache/run.sby.j2
+opentitan,.o,4,4,3,3,2019-08-31,2025-03-06,0,0,hw/ip/rv_core_ibex (2) | sw/device/silicon_creator (2),hw/ip/rv_core_ibex/dv/tests/bin/ibex_sanity_test.o | sw/device/silicon_creator/imm_rom_ext/prebuilts/nop.o
+opentitan,<cdc_lint>,4,4,3,1,2019-08-31,2019-11-05,33,33,hw/lint (4),hw/lint/cdc_lint | hw/lint/cdc_lint
+opentitan,<clang-format>,4,3,3,3,2020-04-23,2021-03-05,5,1,hw/top_englishbreakfast/data (2) | hw/top_earlgrey/data (1) | util/topgen/templates (1),hw/top_earlgrey/data/clang-format | hw/top_englishbreakfast/data/clang-format
+opentitan,<rdc_lint>,4,4,3,1,2019-08-31,2019-11-05,34,34,hw/lint (4),hw/lint/rdc_lint | hw/lint/rdc_lint
+opentitan,<rtl_diff_all>,4,4,3,1,2019-08-31,2022-04-14,84,3,hw/formal (4),hw/formal/rtl_diff_all | hw/formal/rtl_diff_all
+opentitan,.bit,3,3,3,3,2022-04-15,2024-04-24,9,0,hw/bitstream (1) | hw/bitstream/universal (1) | signing (1),hw/bitstream/skip.bit | hw/bitstream/universal/skip.bit
+opentitan,.dcm,3,3,3,2,2020-05-13,2024-03-27,525,522,hw/ip/usbdev (3),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod-rescue.dcm | hw/ip/usbdev/pmod/tusb1106pmod-kicad/power.dcm
+opentitan,.kicad_pcb,3,3,3,2,2020-05-13,2024-03-27,1926,1027,hw/ip/usbdev (3),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod.kicad_pcb | hw/ip/usbdev/pmod/tusb1106pmod-kicad/usbphy.kicad_pcb
+opentitan,.pro,3,3,3,2,2020-05-13,2024-03-27,86,43,hw/ip/usbdev (3),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod.pro | hw/ip/usbdev/pmod/tusb1106pmod-kicad/usbphy.pro
+opentitan,.sch,3,3,3,2,2020-05-13,2024-03-27,916,486,hw/ip/usbdev (3),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod.sch | hw/ip/usbdev/pmod/tusb1106pmod-kicad/usbphy.sch
+opentitan,<.dockerignore>,3,3,3,1,2020-03-02,2022-06-06,70,4,. (3),.dockerignore | .dockerignore
+opentitan,<COPYRIGHT>,3,3,3,2,2020-02-05,2021-07-21,10,10,sw/device/tock (3),sw/device/tock/boards/opentitan/COPYRIGHT | sw/device/tock/COPYRIGHT
+opentitan,<opentitan-pgm-fpga>,3,3,3,1,2020-08-27,2022-05-23,74,74,util/opentitan-pgm-fpga (3),util/opentitan-pgm-fpga/opentitan-pgm-fpga | util/opentitan-pgm-fpga/opentitan-pgm-fpga
+opentitan,<opentitan_earlgrey_usbdev_expected-uart>,3,3,3,1,2020-11-24,2022-01-21,20,11,hw/top_earlgrey/util (3),hw/top_earlgrey/util/opentitan_earlgrey_usbdev_expected-uart | hw/top_earlgrey/util/opentitan_earlgrey_usbdev_expected-uart
+opentitan,<opentitan_earlgrey_usbdev_expected-usb>,3,3,3,1,2020-11-24,2022-01-21,153,36,hw/top_earlgrey/util (3),hw/top_earlgrey/util/opentitan_earlgrey_usbdev_expected-usb | hw/top_earlgrey/util/opentitan_earlgrey_usbdev_expected-usb
+opentitan,<python>,3,3,3,3,2021-04-27,2022-12-16,3,0,hw/ip/aes (1) | hw/ip/kmac (1) | hw/ip/otbn (1),hw/ip/aes/pre_syn/python | hw/ip/kmac/pre_syn/python
+opentitan,<sym-lib-table>,3,3,3,2,2020-05-13,2024-03-27,8,5,hw/ip/usbdev (3),hw/ip/usbdev/pmod/dualpmod-kicad/sym-lib-table | hw/ip/usbdev/pmod/tusb1106pmod-kicad/sym-lib-table
+opentitan,.reference_output,417,3,2,193,2019-10-22,2022-04-26,7938,7938,sw/vendor/riscv_compliance (417),sw/vendor/riscv_compliance/riscv-test-suite/rv32i/references/I-ADD-01.reference_output | sw/vendor/riscv_compliance/riscv-test-suite/rv32i/references/I-ADDI-01.reference_output
+opentitan,.pc.in,8,2,2,4,2020-01-14,2022-06-24,39,39,sw/vendor/google_googletest (8),sw/vendor/google_googletest/googlemock/cmake/gmock.pc.in | sw/vendor/google_googletest/googlemock/cmake/gmock_main.pc.in
+opentitan,.pump,8,2,2,4,2020-01-14,2022-06-24,961,961,sw/vendor/google_googletest (8),sw/vendor/google_googletest/googlemock/include/gmock/gmock-generated-actions.h.pump | sw/vendor/google_googletest/googlemock/include/gmock/gmock-generated-function-mockers.h.pump
+opentitan,.webp,6,2,2,5,2026-07-16,2026-08-04,0,0,doc/getting_started (6),doc/getting_started/cw340-bottom-lowres.webp | doc/getting_started/cw340-bottom.webp
+opentitan,.kicad_mod,4,2,2,2,2020-11-27,2024-03-27,496,496,hw/ip/usbdev (4),hw/ip/usbdev/pmod/tusb1106pmod-kicad/ti-part/footprints.pretty/TUSB1105RGTR.kicad_mod | hw/ip/usbdev/pmod/tusb1106pmod-kicad/ti-part/footprints.pretty/TUSB1106PWR.kicad_mod
+opentitan,<CONTRIBUTORS>,4,2,2,2,2020-01-14,2022-06-24,78,78,sw/vendor/google_googletest (4),sw/vendor/google_googletest/googlemock/CONTRIBUTORS | sw/vendor/google_googletest/googletest/CONTRIBUTORS
+opentitan,<compare>,4,3,2,2,2019-08-31,2019-10-31,115,115,hw/ip/rv_core_ibex (2) | hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/dv/uvm/compare | hw/ip/rv_core_ibex/dv/compare
+opentitan,<run>,4,3,2,2,2019-08-31,2019-10-17,327,327,hw/dv/sv (2) | hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/run | hw/dv/sv/tl_agent/run
+opentitan,<sim>,4,3,2,2,2019-08-31,2019-10-31,183,183,hw/ip/rv_core_ibex (2) | hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/dv/uvm/sim | hw/ip/rv_core_ibex/dv/sim
+opentitan,.bat,3,3,2,2,2019-08-31,2020-02-05,72,0,hw/vendor/lowrisc_ibex (3),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/docs/make.bat | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/docs/make.bat
+opentitan,.vlt.tpl,3,3,2,2,2022-03-30,2025-01-07,2,3,hw/ip_templates/rv_plic (2) | hw/ip_templates/alert_handler (1),hw/ip_templates/rv_plic/lint/rv_plic.vlt.tpl | hw/ip_templates/alert_handler/lint/alert_handler.vlt.tpl
+opentitan,<ChangeLog>,3,3,2,1,2019-10-22,2022-04-26,276,276,sw/vendor/riscv_compliance (3),sw/vendor/riscv_compliance/ChangeLog | sw/vendor/riscv_compliance/ChangeLog
+opentitan,<fail_patterns>,3,3,2,1,2019-08-31,2020-10-01,4,4,hw/dv/tools (3),hw/dv/tools/fail_patterns | hw/dv/tools/fail_patterns
+opentitan,.cmake,2,2,2,1,2020-01-14,2022-06-24,358,358,sw/vendor/google_googletest (2),sw/vendor/google_googletest/googletest/cmake/internal_utils.cmake | sw/vendor/google_googletest/googletest/cmake/internal_utils.cmake
+opentitan,.cmake.in,2,2,2,1,2020-01-14,2022-06-24,9,9,sw/vendor/google_googletest (2),sw/vendor/google_googletest/googletest/cmake/Config.cmake.in | sw/vendor/google_googletest/googletest/cmake/Config.cmake.in
+opentitan,.cppclean,2,2,2,1,2020-01-14,2022-06-24,115,115,sw/vendor/google_googletest (2),sw/vendor/google_googletest/googlemock/scripts/generator/README.cppclean | sw/vendor/google_googletest/googlemock/scripts/generator/README.cppclean
+opentitan,.dis,2,2,2,1,2020-05-14,2021-07-21,536019,536019,sw/device/tock (2),sw/device/tock/prebuilt/opentitan.dis | sw/device/tock/prebuilt/opentitan.dis
+opentitan,.edalize,2,2,2,1,2020-08-27,2022-05-23,25,25,util/opentitan-pgm-fpga (2),util/opentitan-pgm-fpga/LICENSE.edalize | util/opentitan-pgm-fpga/LICENSE.edalize
+opentitan,.ico,2,2,2,1,2019-11-07,2024-07-11,0,0,site/landing/static (2),site/landing/static/favicon.ico | site/landing/static/favicon.ico
+opentitan,.la.in,2,2,2,1,2020-01-14,2022-06-24,21,21,sw/vendor/google_googletest (2),sw/vendor/google_googletest/googletest/cmake/libgtest.la.in | sw/vendor/google_googletest/googletest/cmake/libgtest.la.in
+opentitan,.pdf,2,2,2,1,2021-03-04,2021-08-26,0,0,hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/doc/03_reference/pdfs/riscv-epmp.pdf | hw/vendor/lowrisc_ibex/doc/03_reference/pdfs/riscv-epmp.pdf
+opentitan,.sail,2,2,2,1,2025-05-30,2025-12-19,96,2,hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/dv/formal/spec/main.sail | hw/vendor/lowrisc_ibex/dv/formal/spec/main.sail
+opentitan,.snapshot,2,2,2,1,2019-11-01,2024-11-20,13,13,ci (2),ci/README.snapshot | ci/README.snapshot
+opentitan,.swp,2,2,2,1,2020-06-10,2020-07-25,0,0,hw/formal (2),hw/formal/.lec_sv2v.do.swp | hw/formal/.lec_sv2v.do.swp
+opentitan,<.browserslistrc>,2,2,2,1,2023-02-28,2023-04-04,1,1,site/earlgrey-diagram (2),site/earlgrey-diagram/.browserslistrc | site/earlgrey-diagram/.browserslistrc
+opentitan,<.git-blame-ignore-revs>,2,2,2,1,2020-08-06,2022-12-01,33,33,sw/vendor/llvm_clang_rt_profile (2),sw/vendor/llvm_clang_rt_profile/.git-blame-ignore-revs | sw/vendor/llvm_clang_rt_profile/.git-blame-ignore-revs
+opentitan,<.history_*shell*>,2,2,2,1,2022-03-05,2022-03-28,500,500,sw/host/opentitanlib (2),sw/host/opentitanlib/src/bootstrap/.history_*shell* | sw/host/opentitanlib/src/bootstrap/.history_*shell*
+opentitan,<book-theme>,2,2,2,1,2023-05-25,2023-08-16,1,1,doc/guides/getting_started (2),doc/guides/getting_started/book-theme | doc/guides/getting_started/book-theme
+opentitan,<check-status>,2,2,2,1,2021-03-04,2026-06-11,11,1,hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/scripts/check-status | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/scripts/check-status
+opentitan,<common_toggle_excl>,2,2,2,1,2021-08-17,2021-08-19,15,15,hw/dv/tools (2),hw/dv/tools/xcelium/common_toggle_excl | hw/dv/tools/xcelium/common_toggle_excl
+opentitan,<fp-info-cache>,2,2,2,1,2020-11-27,2024-03-27,85303,85303,hw/ip/usbdev (2),hw/ip/usbdev/pmod/tusb1106pmod-kicad/fp-info-cache | hw/ip/usbdev/pmod/tusb1106pmod-kicad/fp-info-cache
+opentitan,<fp-lib-table>,2,2,2,1,2020-11-27,2024-03-27,3,3,hw/ip/usbdev (2),hw/ip/usbdev/pmod/tusb1106pmod-kicad/fp-lib-table | hw/ip/usbdev/pmod/tusb1106pmod-kicad/fp-lib-table
+opentitan,<generation>,2,2,2,1,2023-04-21,2026-08-18,0,0,signing/softhsm/tokens (2),signing/softhsm/tokens/1fb9bf0b-6f47-74b5-05b9-e1ccf1488ff0/generation | signing/softhsm/tokens/1fb9bf0b-6f47-74b5-05b9-e1ccf1488ff0/generation
+opentitan,<lec_sv2v>,2,2,2,1,2019-09-18,2020-06-26,24,24,hw/formal (2),hw/formal/lec_sv2v | hw/formal/lec_sv2v
+opentitan,<usbphy>,2,2,2,1,2020-11-27,2024-03-27,35,35,hw/ip/usbdev (2),hw/ip/usbdev/pmod/tusb1106pmod-kicad/usbphy | hw/ip/usbdev/pmod/tusb1106pmod-kicad/usbphy
+opentitan,.hpp,58,1,1,58,2020-11-13,2020-11-13,8596,0,hw/ip/kmac (58),hw/ip/kmac/dv/dpi/vendor/kerukuro_digestpp/algorithm/blake.hpp | hw/ip/kmac/dv/dpi/vendor/kerukuro_digestpp/algorithm/blake2.hpp
+opentitan,<testlist>,4,2,1,2,2019-08-31,2019-09-03,52,52,hw/vendor/lowrisc_ibex (4),hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/testlist | hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/testlist
+opentitan,.url,3,1,1,3,2021-08-26,2021-08-26,18,0,sw/vendor/freertos_freertos_kernel (3),sw/vendor/freertos_freertos_kernel/GitHub-FreeRTOS-Kernel-Home.url | sw/vendor/freertos_freertos_kernel/Quick_Start_Guide.url
+opentitan,<data>,3,2,1,2,2024-12-23,2026-09-22,2,1,hw/top_englishbreakfast/ip (3),hw/top_englishbreakfast/ip/ast/data
+opentitan,<doc>,3,2,1,2,2024-12-23,2026-09-22,2,1,hw/top_englishbreakfast/ip (3),hw/top_englishbreakfast/ip/ast/doc
+opentitan,<rtl_diff>,3,3,1,1,2019-08-31,2024-02-01,36,2,hw/formal (3),hw/formal/rtl_diff
+opentitan,.bsd,2,2,1,1,2019-10-22,2022-04-26,9,9,sw/vendor/riscv_compliance (2),sw/vendor/riscv_compliance/COPYING.BSD
+opentitan,.mistletoe,2,2,1,1,2019-08-31,2019-10-22,21,21,util/docgen (2),util/docgen/LICENSE.mistletoe
+opentitan,.sifive,2,2,1,2,2019-08-31,2020-07-13,404,0,hw/vendor/pulp_riscv_dbg (2),hw/vendor/pulp_riscv_dbg/tb/LICENSE.SiFive
+opentitan,.spike,2,2,1,1,2020-04-16,2022-04-26,27,27,sw/vendor/riscv_compliance (2),sw/vendor/riscv_compliance/riscv-test-suite/deprecated/rv32ui/src/Makefrag.spike
+opentitan,.verible_lint,2,2,1,1,2021-10-25,2024-02-01,1,1,hw/lint/tools (2),hw/lint/tools/veriblelint/lowrisc-styleguide.rules.verible_lint
+opentitan,.vf,2,2,1,1,2019-08-31,2019-10-17,6,6,hw/dv/sv (2),hw/dv/sv/tl_agent/test.vf
+opentitan,.wavedrom,2,2,1,1,2019-08-31,2020-05-15,24,24,util/wavegen (2),util/wavegen/LICENSE.wavedrom
+opentitan,<NOTICE>,2,2,1,1,2024-01-08,2024-02-01,20,1,. (2),NOTICE
+opentitan,<cdc_lint_all>,2,2,1,1,2019-08-31,2019-11-05,74,74,hw/lint (2),hw/lint/cdc_lint_all
+opentitan,<cover_reg_top_toggle_excl>,2,2,1,1,2021-08-17,2024-02-01,8,1,hw/dv/tools (2),hw/dv/tools/xcelium/cover_reg_top_toggle_excl
+opentitan,<iss_cmp>,2,2,1,1,2019-08-31,2019-09-03,40,40,hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/iss_cmp
+opentitan,<iss_sim>,2,2,1,1,2019-08-31,2019-09-03,191,191,hw/vendor/lowrisc_ibex (2),hw/vendor/lowrisc_ibex/vendor/google_riscv-dv/iss_sim
+opentitan,<ls>,2,2,1,1,2019-08-31,2019-10-22,2,2,util/docgen/examples (2),util/docgen/examples/ls
+opentitan,<pass_fail>,2,2,1,1,2019-08-31,2020-10-01,34,34,hw/dv/tools (2),hw/dv/tools/pass_fail
+opentitan,<pass_patterns>,2,2,1,1,2019-08-31,2020-10-01,1,1,hw/dv/tools (2),hw/dv/tools/pass_patterns
+opentitan,<post-checkout>,2,2,1,1,2022-12-19,2024-02-01,7,1,util/git/hooks (2),util/git/hooks/post-checkout
+opentitan,<rdc_lint_all>,2,2,1,1,2019-08-31,2019-11-05,74,74,hw/lint (2),hw/lint/rdc_lint_all
+opentitan,<run_dir_limiter>,2,2,1,1,2019-08-31,2020-10-01,28,28,hw/dv/tools (2),hw/dv/tools/run_dir_limiter
+opentitan,<step2>,2,2,1,1,2019-08-31,2020-05-15,12,12,util/wavegen/examples (2),util/wavegen/examples/step2
+opentitan,<step3>,2,2,1,1,2019-08-31,2020-05-15,5,5,util/wavegen/examples (2),util/wavegen/examples/step3
+opentitan,<step4>,2,2,1,1,2019-08-31,2020-05-15,7,7,util/wavegen/examples (2),util/wavegen/examples/step4
+opentitan,<step5>,2,2,1,1,2019-08-31,2020-05-15,18,18,util/wavegen/examples (2),util/wavegen/examples/step5
+opentitan,<step6>,2,2,1,1,2019-08-31,2020-05-15,7,7,util/wavegen/examples (2),util/wavegen/examples/step6
+opentitan,<step7>,2,2,1,1,2019-08-31,2020-05-15,7,7,util/wavegen/examples (2),util/wavegen/examples/step7
+opentitan,<step7a>,2,2,1,1,2019-08-31,2020-05-15,7,7,util/wavegen/examples (2),util/wavegen/examples/step7a
+opentitan,<step7b>,2,2,1,1,2019-08-31,2020-05-15,7,7,util/wavegen/examples (2),util/wavegen/examples/step7b
+opentitan,<step7c>,2,2,1,1,2019-08-31,2020-05-15,14,14,util/wavegen/examples (2),util/wavegen/examples/step7c
+opentitan,<step7d>,2,2,1,1,2019-08-31,2020-05-15,29,29,util/wavegen/examples (2),util/wavegen/examples/step7d
+opentitan,<step8-Bforb>,2,2,1,1,2019-08-31,2020-05-15,12,12,util/wavegen/examples (2),util/wavegen/examples/step8-Bforb
+opentitan,<step8>,2,2,1,1,2019-08-31,2020-05-15,12,12,util/wavegen/examples (2),util/wavegen/examples/step8
+opentitan,<step8a>,2,2,1,1,2019-08-31,2020-05-15,11,11,util/wavegen/examples (2),util/wavegen/examples/step8a
+opentitan,<tickbug2>,2,2,1,1,2019-08-31,2020-05-15,27,27,util/wavegen/examples (2),util/wavegen/examples/tickbug2
+opentitan,<tickbug>,2,2,1,1,2019-08-31,2020-05-15,14,14,util/wavegen/examples (2),util/wavegen/examples/tickbug
+opentitan,.bash,1,1,1,1,2022-07-28,2022-07-28,30,0,third_party/github (1),third_party/github/release.template.bash
+opentitan,.bash.template,1,1,1,1,2021-11-12,2021-11-12,13,0,rules/scripts (1),rules/scripts/license_check.bash.template
+opentitan,.berkeley,1,1,1,1,2020-07-13,2020-07-13,24,0,hw/vendor/pulp_riscv_dbg (1),hw/vendor/pulp_riscv_dbg/tb/LICENSE.Berkeley
+opentitan,.default,1,1,1,1,2022-08-05,2022-08-05,2,2,hw/vendor/lowrisc_ibex (1),hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/riscv_dv_extension/riscv_core_setting.sv.default
+opentitan,.ecdsa_sig,1,1,1,1,2025-12-01,2025-12-01,0,0,sw/device/tests (1),sw/device/tests/penetrationtests/firmware/testdata/bl0_firmware_fpga_cw340_rom_ext.ecdsa_sig
+opentitan,.hexdump,1,1,1,1,2024-03-19,2024-03-19,3,0,util/sh/scripts (1),util/sh/scripts/c.hexdump
+opentitan,.jpg,1,1,1,1,2025-10-01,2025-10-01,0,0,doc/images (1),doc/images/otboot.jpg
+opentitan,.net,1,1,1,1,2020-05-13,2020-05-13,274,0,hw/ip/usbdev (1),hw/ip/usbdev/pmod/dualpmod-kicad/dualpmod.net
+opentitan,.readme,1,1,1,1,2021-08-26,2021-08-26,58,0,sw/vendor/freertos_freertos_kernel (1),sw/vendor/freertos_freertos_kernel/include/stdint.readme
+opentitan,.sby,1,1,1,1,2020-07-13,2020-07-13,27,0,hw/vendor/lowrisc_ibex (1),hw/vendor/lowrisc_ibex/formal/icache/run.sby
+opentitan,.tiny_sha3,1,1,1,1,2024-07-30,2024-07-30,21,0,sw/otbn/crypto (1),sw/otbn/crypto/LICENSE.tiny_sha3
+opentitan,.vbl.tpl,1,1,1,1,2025-05-30,2025-05-30,9,0,hw/ip_templates/rv_core_ibex (1),hw/ip_templates/rv_core_ibex/lint/rv_core_ibex.vbl.tpl
+opentitan,.woff2,1,1,1,1,2023-06-10,2023-06-10,0,0,site/book-theme (1),"site/book-theme/Recursive_wght,CASL@300__800,0_5.woff2"
+opentitan,<.gitmodules>,1,1,1,1,2021-08-26,2021-08-26,6,0,sw/vendor/freertos_freertos_kernel (1),sw/vendor/freertos_freertos_kernel/.gitmodules
+opentitan,<.mdbookignore>,1,1,1,1,2025-04-02,2025-04-02,7,0,. (1),.mdbookignore
+opentitan,<OWNERS>,1,1,1,1,2019-11-15,2019-11-15,3,0,sw/vendor/cryptoc (1),sw/vendor/cryptoc/OWNERS
+opentitan,<build_bazel>,1,1,1,1,2025-07-18,2025-07-18,7,0,release/devbundle (1),release/devbundle/build_bazel
+opentitan,<module_bazel>,1,1,1,1,2025-07-18,2025-07-18,7,0,release/devbundle (1),release/devbundle/module_bazel
+opentitan,<sudoconf>,1,1,1,1,2021-09-28,2021-09-28,2,0,util/container (1),util/container/sudoconf
+opentitan,.dat,1,1,0,1,2019-08-31,2019-08-31,1,0,hw/ip/hmac (1),
+opentitan,.yapf,1,1,0,1,2019-08-31,2019-08-31,6,0,. (1),
+opentitan,<flist>,1,1,0,1,2019-08-31,2019-08-31,1,0,hw/vendor/lowrisc_ibex (1),

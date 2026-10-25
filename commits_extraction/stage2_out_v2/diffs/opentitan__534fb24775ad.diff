@@ -1,0 +1,148 @@
+diff --git a/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv b/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+index e0d578562c..c6ea0456de 100644
+--- a/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
++++ b/hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+@@ -543,7 +543,7 @@ typedef struct packed {
+     4'b 0001, // index[ 1] ALERT_HANDLER_INTR_ENABLE
+     4'b 0001, // index[ 2] ALERT_HANDLER_INTR_TEST
+     4'b 0001, // index[ 3] ALERT_HANDLER_REGEN
+-    4'b 1111, // index[ 4] ALERT_HANDLER_PING_TIMEOUT_CYC
++    4'b 0111, // index[ 4] ALERT_HANDLER_PING_TIMEOUT_CYC
+     4'b 0001, // index[ 5] ALERT_HANDLER_ALERT_EN
+     4'b 0001, // index[ 6] ALERT_HANDLER_ALERT_CLASS
+     4'b 0001, // index[ 7] ALERT_HANDLER_ALERT_CAUSE
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+index 67fda9b888..7c4c617f86 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+@@ -302,7 +302,7 @@ typedef struct packed {
+     4'b 0001, // index[15] FLASH_CTRL_BANK_CFG_REGWEN
+     4'b 0001, // index[16] FLASH_CTRL_MP_BANK_CFG
+     4'b 0001, // index[17] FLASH_CTRL_OP_STATUS
+-    4'b 1111, // index[18] FLASH_CTRL_STATUS
++    4'b 0111, // index[18] FLASH_CTRL_STATUS
+     4'b 1111, // index[19] FLASH_CTRL_SCRATCH
+     4'b 0011  // index[20] FLASH_CTRL_FIFO_LVL
+   };
+diff --git a/hw/ip/padctrl/rtl/padctrl_reg_pkg.sv b/hw/ip/padctrl/rtl/padctrl_reg_pkg.sv
+index bc14ebcc3b..aaa1efc51b 100644
+--- a/hw/ip/padctrl/rtl/padctrl_reg_pkg.sv
++++ b/hw/ip/padctrl/rtl/padctrl_reg_pkg.sv
+@@ -59,11 +59,11 @@ typedef struct packed {
+   // Register width information to check illegal writes
+   localparam logic [3:0] PADCTRL_PERMIT [6] = '{
+     4'b 0001, // index[0] PADCTRL_REGEN
+-    4'b 1111, // index[1] PADCTRL_DIO_PADS
++    4'b 0111, // index[1] PADCTRL_DIO_PADS
+     4'b 1111, // index[2] PADCTRL_MIO_PADS0
+     4'b 1111, // index[3] PADCTRL_MIO_PADS1
+     4'b 1111, // index[4] PADCTRL_MIO_PADS2
+-    4'b 1111  // index[5] PADCTRL_MIO_PADS3
++    4'b 0111  // index[5] PADCTRL_MIO_PADS3
+   };
+ endpackage
+ 
+diff --git a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+index fe83192433..566fb12a3b 100644
+--- a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
++++ b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+@@ -108,7 +108,7 @@ typedef struct packed {
+   // Register width information to check illegal writes
+   localparam logic [3:0] RV_TIMER_PERMIT [9] = '{
+     4'b 0001, // index[0] RV_TIMER_CTRL
+-    4'b 1111, // index[1] RV_TIMER_CFG0
++    4'b 0111, // index[1] RV_TIMER_CFG0
+     4'b 1111, // index[2] RV_TIMER_TIMER_V_LOWER0
+     4'b 1111, // index[3] RV_TIMER_TIMER_V_UPPER0
+     4'b 1111, // index[4] RV_TIMER_COMPARE_LOWER0_0
+diff --git a/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv b/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+index a044fc62f5..ff5fc2244e 100644
+--- a/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
++++ b/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+@@ -256,10 +256,10 @@ typedef struct packed {
+     4'b 0001, // index[ 0] SPI_DEVICE_INTR_STATE
+     4'b 0001, // index[ 1] SPI_DEVICE_INTR_ENABLE
+     4'b 0001, // index[ 2] SPI_DEVICE_INTR_TEST
+-    4'b 1111, // index[ 3] SPI_DEVICE_CONTROL
++    4'b 0111, // index[ 3] SPI_DEVICE_CONTROL
+     4'b 0011, // index[ 4] SPI_DEVICE_CFG
+     4'b 1111, // index[ 5] SPI_DEVICE_FIFO_LEVEL
+-    4'b 1111, // index[ 6] SPI_DEVICE_ASYNC_FIFO_LEVEL
++    4'b 0111, // index[ 6] SPI_DEVICE_ASYNC_FIFO_LEVEL
+     4'b 0001, // index[ 7] SPI_DEVICE_STATUS
+     4'b 1111, // index[ 8] SPI_DEVICE_RXF_PTR
+     4'b 1111, // index[ 9] SPI_DEVICE_TXF_PTR
+diff --git a/hw/ip/uart/rtl/uart_reg_pkg.sv b/hw/ip/uart/rtl/uart_reg_pkg.sv
+index d0c63609ad..1424965c13 100644
+--- a/hw/ip/uart/rtl/uart_reg_pkg.sv
++++ b/hw/ip/uart/rtl/uart_reg_pkg.sv
+@@ -322,7 +322,7 @@ typedef struct packed {
+     4'b 0001, // index[ 5] UART_RDATA
+     4'b 0001, // index[ 6] UART_WDATA
+     4'b 0001, // index[ 7] UART_FIFO_CTRL
+-    4'b 1111, // index[ 8] UART_FIFO_STATUS
++    4'b 0111, // index[ 8] UART_FIFO_STATUS
+     4'b 0001, // index[ 9] UART_OVRD
+     4'b 0011, // index[10] UART_VAL
+     4'b 1111  // index[11] UART_TIMEOUT_CTRL
+diff --git a/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv b/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+index 9d1f9648ab..2f831d9040 100644
+--- a/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
++++ b/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+@@ -330,12 +330,12 @@ typedef struct packed {
+     4'b 0001, // index[ 5] USBUART_RDATA
+     4'b 0001, // index[ 6] USBUART_WDATA
+     4'b 0001, // index[ 7] USBUART_FIFO_CTRL
+-    4'b 1111, // index[ 8] USBUART_FIFO_STATUS
++    4'b 0111, // index[ 8] USBUART_FIFO_STATUS
+     4'b 0001, // index[ 9] USBUART_OVRD
+     4'b 0011, // index[10] USBUART_VAL
+     4'b 1111, // index[11] USBUART_TIMEOUT_CTRL
+-    4'b 1111, // index[12] USBUART_USBSTAT
+-    4'b 1111  // index[13] USBUART_USBPARAM
++    4'b 0111, // index[12] USBUART_USBSTAT
++    4'b 0111  // index[13] USBUART_USBPARAM
+   };
+ endpackage
+ 
+diff --git a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+index 70f1b6c9c5..d58a0bfc2c 100644
+--- a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
++++ b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+@@ -355,9 +355,9 @@ typedef struct packed {
+   // Register width information to check illegal writes
+   localparam logic [3:0] RV_PLIC_PERMIT [63] = '{
+     4'b 1111, // index[ 0] RV_PLIC_IP0
+-    4'b 1111, // index[ 1] RV_PLIC_IP1
++    4'b 0111, // index[ 1] RV_PLIC_IP1
+     4'b 1111, // index[ 2] RV_PLIC_LE0
+-    4'b 1111, // index[ 3] RV_PLIC_LE1
++    4'b 0111, // index[ 3] RV_PLIC_LE1
+     4'b 0001, // index[ 4] RV_PLIC_PRIO0
+     4'b 0001, // index[ 5] RV_PLIC_PRIO1
+     4'b 0001, // index[ 6] RV_PLIC_PRIO2
+@@ -413,7 +413,7 @@ typedef struct packed {
+     4'b 0001, // index[56] RV_PLIC_PRIO52
+     4'b 0001, // index[57] RV_PLIC_PRIO53
+     4'b 1111, // index[58] RV_PLIC_IE00
+-    4'b 1111, // index[59] RV_PLIC_IE01
++    4'b 0111, // index[59] RV_PLIC_IE01
+     4'b 0001, // index[60] RV_PLIC_THRESHOLD0
+     4'b 0001, // index[61] RV_PLIC_CC0
+     4'b 0001  // index[62] RV_PLIC_MSIP0
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index c9cf0c5ef2..b12cda3834 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -207,8 +207,10 @@ typedef struct packed {
+   localparam logic [3:0] ${block.name.upper()}_PERMIT [${block.get_n_regs_flat()}] = '{
+ % for i,r in enumerate(block.get_regs_flat()):
+ <% index_str = "{}".format(i).rjust(max_regs_char) %>\
+-  % if r.width > 16:
++  % if r.width > 24:
+     4'b 1111${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
++  % elif r.width > 16:
++    4'b 0111${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
+   % elif r.width > 8:
+     4'b 0011${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
+   % else:

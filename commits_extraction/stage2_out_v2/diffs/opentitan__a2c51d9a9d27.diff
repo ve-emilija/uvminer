@@ -1,0 +1,127 @@
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index ed0bd281ce..98877f24d0 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -17,11 +17,14 @@ package ${block.name}_reg_pkg;
+   localparam ${param["type"]} ${param["name"]} = ${param["default"]};
+ % endfor
+ 
++% if block.contains_multiregs():
+ /////////////////////////////////////////////////////////////////////
+ // Typedefs for multiregs
+ /////////////////////////////////////////////////////////////////////
++
+ % for r in block.regs:
+-% if r.is_multi_reg() and r.get_n_bits(["q"]):
++  ## in this case we have a homogeneous multireg, with only one replicated field
++  % if r.is_multi_reg() and r.get_n_bits(["q"]) and r.ishomog:
+ typedef struct packed {
+   logic [${r.get_field_flat(0).get_n_bits()-1}:0] q;
+   % if r.get_field_flat(0).hwqe:
+@@ -31,9 +34,49 @@ typedef struct packed {
+   logic re;
+   % endif
+ } ${block.name + "_reg2hw_" + r.name + "_mreg_t"};
+-% endif
++  ## in this case we have an inhomogeneous multireg, with several different fields per register
++  % elif r.is_multi_reg() and r.get_n_bits(["q"]) and not r.ishomog:
++typedef struct packed {
++    % for f in r.get_reg_flat(0).fields:
++  struct packed {
++    logic [${f.get_n_bits()-1}:0] q;
++      % if f.hwqe:
++    logic qe;
++      % endif
++      % if f.hwre:
++    logic re;
++      % endif
++  } ${f.get_basename()};
++    %endfor
++} ${block.name + "_reg2hw_" + r.name + "_mreg_t"};
++  %endif
+ % endfor
+ 
++% for r in block.regs:
++ ## in this case we have a homogeneous multireg, with only one replicated field
++  % if r.is_multi_reg() and r.get_n_bits(["d"]) and r.ishomog:
++typedef struct packed {
++  logic [${r.get_field_flat(0).get_n_bits(["d"])-1}:0] d;
++    % if not r.get_reg_flat(0).hwext:
++  logic de;
++    % endif
++} ${block.name + "_hw2reg_" + r.name + "_mreg_t"};
++  ## in this case we have an inhomogeneous multireg, with several different fields per register
++  % elif r.is_multi_reg() and r.get_n_bits(["d"]) and not r.ishomog:
++typedef struct packed {
++    % for f in r.get_reg_flat(0).fields:
++  struct packed {
++    logic [${f.get_n_bits(["d"])-1}:0] d;
++      % if not r.hwext:
++    logic de;
++      % endif
++  } ${f.get_basename()};
++    %endfor
++} ${block.name + "_hw2reg_" + r.name + "_mreg_t"};
++  % endif
++% endfor
++
++% endif
+ /////////////////////////////////////////////////////////////////////
+ // Register to internal design logic
+ /////////////////////////////////////////////////////////////////////
+@@ -88,21 +131,6 @@ typedef struct packed {
+ % endfor
+ } ${block.name}_reg2hw_t;
+ 
+-/////////////////////////////////////////////////////////////////////
+-// Typedefs for multiregs
+-/////////////////////////////////////////////////////////////////////
+-
+-% for r in block.regs:
+-% if r.is_multi_reg() and r.get_n_bits(["d"]):
+-typedef struct packed {
+-  logic [${r.get_field_flat(0).get_n_bits()-1}:0] d;
+-  % if not r.get_reg_flat(0).hwext:
+-  logic de;
+-  % endif
+-} ${block.name + "_hw2reg_" + r.name + "_mreg_t"};
+-% endif
+-% endfor
+-
+ /////////////////////////////////////////////////////////////////////
+ // Internal design logic to register
+ /////////////////////////////////////////////////////////////////////
+diff --git a/util/reggen/reg_top.tpl.sv b/util/reggen/reg_top.tpl.sv
+index 0aa529a322..7531b51575 100644
+--- a/util/reggen/reg_top.tpl.sv
++++ b/util/reggen/reg_top.tpl.sv
+@@ -200,7 +200,11 @@ ${finst_gen(finst_name, fsig_name, msb, lsb, swaccess, swrdaccess, swwraccess, h
+           % for f in sr.fields:
+ <%
+             finst_name = sr.name + "_" + f.name
+-            fsig_name = r.name + "[%d]" % k
++            if r.ishomog:
++              fsig_name = r.name + "[%d]" % k
++              k = k + 1
++            else:
++              fsig_name = r.name + "[%d]" % k + "." + f.get_basename()
+             msb = f.msb
+             lsb = f.lsb
+             swaccess = f.swaccess
+@@ -212,11 +216,14 @@ ${finst_gen(finst_name, fsig_name, msb, lsb, swaccess, swrdaccess, swwraccess, h
+             hwext = sr.hwext
+             resval = f.resval
+             regwen = sr.regwen
+-            k = k + 1
+ %>
+   // F[${f.name}]: ${f.msb}:${f.lsb}
+ ${finst_gen(finst_name, fsig_name, msb, lsb, swaccess, swrdaccess, swwraccess, hwaccess, hwqe, hwre, hwext, resval, regwen)}
+           % endfor
++<%
++          if not r.ishomog:
++            k += 1
++%>
+         % endif
+       ## for: mreg_flat
+       % endfor
+(2 non-HDL files also changed in this commit; not shown)

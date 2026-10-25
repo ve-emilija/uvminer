@@ -1,0 +1,198 @@
+diff --git a/hw/ip/prim/abstract/prim_rom.sv b/hw/ip/prim/abstract/prim_rom.sv
+index 64bda533dd..1bd8439671 100644
+--- a/hw/ip/prim/abstract/prim_rom.sv
++++ b/hw/ip/prim/abstract/prim_rom.sv
+@@ -11,7 +11,8 @@ module prim_rom #(
+   input                        clk_i,
+   input        [Aw-1:0]        addr_i,
+   input                        cs_i,
+-  output logic [Width-1:0]     dout_o
++  output logic [Width-1:0]     dout_o,
++  output logic                 dvalid_o
+ );
+ 
+   if (Impl == "generic") begin: gen_mem_generic
+@@ -22,7 +23,8 @@ module prim_rom #(
+       .clk_i,
+       .addr_i,
+       .cs_i,
+-      .dout_o
++      .dout_o,
++      .dvalid_o
+     );
+   end else if (Impl == "xilinx") begin: gen_rom_xilinx
+     prim_xilinx_rom #(
+@@ -32,7 +34,8 @@ module prim_rom #(
+       .clk_i,
+       .addr_i,
+       .cs_i,
+-      .dout_o
++      .dout_o,
++      .dvalid_o
+     );
+   end else begin : gen_rom_unsupported_impl
+     // TODO: Find code that works across tools and causes a compile failure
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_rom.sv b/hw/ip/prim_generic/rtl/prim_generic_rom.sv
+index 39508feb1d..c400c672de 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_rom.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_rom.sv
+@@ -10,7 +10,8 @@ module prim_generic_rom #(
+   input                        clk_i,
+   input        [Aw-1:0]        addr_i,
+   input                        cs_i,
+-  output logic [Width-1:0]     dout_o
++  output logic [Width-1:0]     dout_o,
++  output logic                 dvalid_o
+ );
+ 
+   logic [Width-1:0] mem [Depth];
+@@ -21,6 +22,10 @@ module prim_generic_rom #(
+     end
+   end
+ 
++  always_ff @(posedge clk_i) begin
++    dvalid_o <= cs_i;
++  end
++
+   // ******************************************************************************
+   // ASSERTIONS
+   // ******************************************************************************
+@@ -51,4 +56,3 @@ module prim_generic_rom #(
+     end
+   `endif
+ endmodule
+-
+diff --git a/hw/ip/prim_xilinx/rtl/prim_xilinx_rom.sv b/hw/ip/prim_xilinx/rtl/prim_xilinx_rom.sv
+index ab178bb1e7..2d53b718bb 100644
+--- a/hw/ip/prim_xilinx/rtl/prim_xilinx_rom.sv
++++ b/hw/ip/prim_xilinx/rtl/prim_xilinx_rom.sv
+@@ -21,7 +21,9 @@ module prim_xilinx_rom #(
+   input                        clk_i,
+   input        [Aw-1:0]        addr_i,
+   input                        cs_i,
+-  output logic [Width-1:0]     dout_o
++  output logic [Width-1:0]     dout_o,
++  output logic                 dvalid_o
++
+ );
+ 
+   `ifdef ROM_INIT_FILE
+@@ -52,6 +54,11 @@ module prim_xilinx_rom #(
+     end
+   `endif
+ 
++  always_ff @(posedge clk_i) begin
++    dvalid_o <= cs_i;
++  end
++
++
+   // ******************************************************************************
+   // ASSERTIONS
+   // ******************************************************************************
+@@ -65,4 +72,3 @@ module prim_xilinx_rom #(
+   `endif // VERILATOR
+ 
+ endmodule
+-
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index f3e1d24f19..3d785079c6 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -276,12 +276,10 @@ module top_earlgrey #(
+     .clk_i,
+     .cs_i     (${m["name"]}_req),
+     .addr_i   (${m["name"]}_addr),
+-    .dout_o   (${m["name"]}_rdata)
++    .dout_o   (${m["name"]}_rdata),
++    .dvalid_o (${m["name"]}_rvalid)
+   );
+ 
+-  always_ff @(posedge clk_i) begin
+-    ${m["name"]}_rvalid <= ${m["name"]}_req;
+-  end
+   % elif m["type"] == "eflash":
+ 
+   // flash controller to eflash communication
+diff --git a/hw/top_earlgrey/dv/tb/chip_hier_macros.svh b/hw/top_earlgrey/dv/tb/chip_hier_macros.svh
+index 3002633cf7..d0e63bfa95 100644
+--- a/hw/top_earlgrey/dv/tb/chip_hier_macros.svh
++++ b/hw/top_earlgrey/dv/tb/chip_hier_macros.svh
+@@ -9,7 +9,7 @@
+ `define SPI_DEVICE_HIER `CHIP_HIER.spi_device
+ `define CPU_HIER        `CHIP_HIER.core
+ `define RAM_MAIN_HIER   `CHIP_HIER.u_ram1p_ram_main
+-`define ROM_HIER        `CHIP_HIER.u_ram1p_rom
++`define ROM_HIER        `CHIP_HIER.u_rom_rom
+ `define FLASH_HIER      `CHIP_HIER.u_flash_eflash
+ `define FLASH0_MEM_HIER `FLASH_HIER.gen_flash_banks[0].u_flash.gen_flash.u_impl_generic.u_mem
+ `define FLASH1_MEM_HIER `FLASH_HIER.gen_flash_banks[1].u_flash.gen_flash.u_impl_generic.u_mem
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index 910b6ca828..0e5733f4ad 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -185,19 +185,17 @@ module top_earlgrey #(
+     .tdo_oe_o         (       )
+   );
+ 
+-  // sram device
++  // ROM device
+   logic        rom_req;
+-  logic        rom_we;
+   logic [10:0] rom_addr;
+-  logic [31:0] rom_wdata;
+-  logic [31:0] rom_wmask;
+   logic [31:0] rom_rdata;
+   logic        rom_rvalid;
+ 
+   tlul_adapter_sram #(
+     .SramAw(11),
+     .SramDw(32),
+-    .Outstanding(1)
++    .Outstanding(1),
++    .ErrOnWrite(1)
+   ) tl_adapter_rom (
+     .clk_i,
+     .rst_ni   (ndmreset_n),
+@@ -207,31 +205,26 @@ module top_earlgrey #(
+ 
+     .req_o    (rom_req),
+     .gnt_i    (1'b1), // Always grant as only one requester exists
+-    .we_o     (rom_we),
++    .we_o     (),
+     .addr_o   (rom_addr),
+-    .wdata_o  (rom_wdata),
+-    .wmask_o  (rom_wmask),
++    .wdata_o  (),
++    .wmask_o  (),
+     .rdata_i  (rom_rdata),
+     .rvalid_i (rom_rvalid),
+     .rerror_i (2'b00)
+   );
+ 
+-  prim_ram_1p #(
++  prim_rom #(
+     .Width(32),
+-    .Depth(2048),
+-    .DataBitsPerMask(8)
+-  ) u_ram1p_rom (
++    .Depth(2048)
++  ) u_rom_rom (
+     .clk_i,
+-    .rst_ni   (ndmreset_n),
+-
+-    .req_i    (rom_req),
+-    .write_i  (rom_we),
++    .cs_i     (rom_req),
+     .addr_i   (rom_addr),
+-    .wdata_i  (rom_wdata),
+-    .wmask_i  (rom_wmask),
+-    .rvalid_o (rom_rvalid),
+-    .rdata_o  (rom_rdata)
++    .dout_o   (rom_rdata),
++    .dvalid_o (rom_rvalid)
+   );
++
+   // sram device
+   logic        ram_main_req;
+   logic        ram_main_we;
+(2 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,303 @@
+diff --git a/hw/ip/mbx/rtl/mbx.sv b/hw/ip/mbx/rtl/mbx.sv
+index 989ee49535..b9e6fb9b3f 100644
+--- a/hw/ip/mbx/rtl/mbx.sv
++++ b/hw/ip/mbx/rtl/mbx.sv
+@@ -17,6 +17,7 @@ module mbx
+   input  logic                                      rst_ni,
+   // Comportable interrupt to the OT
+   output logic                                      intr_mbx_ready_o,
++  output logic                                      intr_mbx_abort_o,
+   // Custom interrupt to the system requester
+   output logic                                      doe_intr_support_o,
+   output logic                                      doe_intr_en_o,
+@@ -48,7 +49,7 @@ module mbx
+   // Control and Status signals of the host interface
+   //////////////////////////////////////////////////////////////////////////////
+ 
+-  logic hostif_event_intr;
++  logic hostif_event_intr_ready, hostif_event_intr_abort;
+   logic hostif_address_range_valid;
+   logic sysif_control_abort_write;
+ 
+@@ -88,8 +89,10 @@ module mbx
+     .tl_host_i                           ( tl_host_i                          ),
+     .tl_host_o                           ( tl_host_o                          ),
+     .intg_err_i                          ( alert_signal                       ),
+-    .event_intr_i                        ( hostif_event_intr                  ),
+-    .irq_o                               ( intr_mbx_ready_o                   ),
++    .event_intr_ready_i                  ( hostif_event_intr_ready            ),
++    .event_intr_abort_i                  ( hostif_event_intr_abort            ),
++    .intr_ready_o                        ( intr_mbx_ready_o                   ),
++    .intr_abort_o                        ( intr_mbx_abort_o                   ),
+     .alert_rx_i                          ( alert_rx_i                         ),
+     .alert_tx_o                          ( alert_tx_o                         ),
+     // Access to the control register
+@@ -209,7 +212,8 @@ module mbx
+     // Interface to the host port
+     .imbx_state_error_o        ( imbx_state_error              ),
+     .imbx_pending_o            ( imbx_pending                  ),
+-    .imbx_irq_host_o           ( hostif_event_intr             ),
++    .imbx_irq_ready_o          ( hostif_event_intr_ready       ),
++    .imbx_irq_abort_o          ( hostif_event_intr_abort       ),
+     .imbx_status_busy_update_o ( imbx_status_busy_valid        ),
+     .imbx_status_busy_o        ( imbx_status_busy              ),
+ 
+diff --git a/hw/ip/mbx/rtl/mbx_host_reg_top.sv b/hw/ip/mbx/rtl/mbx_host_reg_top.sv
+index eca6f583d4..f37020112c 100644
+--- a/hw/ip/mbx/rtl/mbx_host_reg_top.sv
++++ b/hw/ip/mbx/rtl/mbx_host_reg_top.sv
+@@ -122,13 +122,18 @@ module mbx_host_reg_top (
+   // Format: <reg>_<field>_{wd|we|qs}
+   //        or <reg>_{wd|we|qs} if field == 1 or 0
+   logic intr_state_we;
+-  logic intr_state_qs;
+-  logic intr_state_wd;
++  logic intr_state_mbx_ready_qs;
++  logic intr_state_mbx_ready_wd;
++  logic intr_state_mbx_abort_qs;
++  logic intr_state_mbx_abort_wd;
+   logic intr_enable_we;
+-  logic intr_enable_qs;
+-  logic intr_enable_wd;
++  logic intr_enable_mbx_ready_qs;
++  logic intr_enable_mbx_ready_wd;
++  logic intr_enable_mbx_abort_qs;
++  logic intr_enable_mbx_abort_wd;
+   logic intr_test_we;
+-  logic intr_test_wd;
++  logic intr_test_mbx_ready_wd;
++  logic intr_test_mbx_abort_wd;
+   logic alert_test_we;
+   logic alert_test_wd;
+   logic control_re;
+@@ -177,46 +182,75 @@ module mbx_host_reg_top (
+ 
+   // Register instances
+   // R[intr_state]: V(False)
++  //   F[mbx_ready]: 0:0
+   prim_subreg #(
+     .DW      (1),
+     .SwAccess(prim_subreg_pkg::SwAccessW1C),
+     .RESVAL  (1'h0),
+     .Mubi    (1'b0)
+-  ) u_intr_state (
++  ) u_intr_state_mbx_ready (
+     .clk_i   (clk_i),
+     .rst_ni  (rst_ni),
+ 
+     // from register interface
+     .we     (intr_state_we),
+-    .wd     (intr_state_wd),
++    .wd     (intr_state_mbx_ready_wd),
+ 
+     // from internal hardware
+-    .de     (hw2reg.intr_state.de),
+-    .d      (hw2reg.intr_state.d),
++    .de     (hw2reg.intr_state.mbx_ready.de),
++    .d      (hw2reg.intr_state.mbx_ready.d),
+ 
+     // to internal hardware
+     .qe     (),
+-    .q      (reg2hw.intr_state.q),
++    .q      (reg2hw.intr_state.mbx_ready.q),
+     .ds     (),
+ 
+     // to register interface (read)
+-    .qs     (intr_state_qs)
++    .qs     (intr_state_mbx_ready_qs)
++  );
++
++  //   F[mbx_abort]: 1:1
++  prim_subreg #(
++    .DW      (1),
++    .SwAccess(prim_subreg_pkg::SwAccessW1C),
++    .RESVAL  (1'h0),
++    .Mubi    (1'b0)
++  ) u_intr_state_mbx_abort (
++    .clk_i   (clk_i),
++    .rst_ni  (rst_ni),
++
++    // from register interface
++    .we     (intr_state_we),
++    .wd     (intr_state_mbx_abort_wd),
++
++    // from internal hardware
++    .de     (hw2reg.intr_state.mbx_abort.de),
++    .d      (hw2reg.intr_state.mbx_abort.d),
++
++    // to internal hardware
++    .qe     (),
++    .q      (reg2hw.intr_state.mbx_abort.q),
++    .ds     (),
++
++    // to register interface (read)
++    .qs     (intr_state_mbx_abort_qs)
+   );
+ 
+ 
+   // R[intr_enable]: V(False)
++  //   F[mbx_ready]: 0:0
+   prim_subreg #(
+     .DW      (1),
+     .SwAccess(prim_subreg_pkg::SwAccessRW),
+     .RESVAL  (1'h0),
+     .Mubi    (1'b0)
+-  ) u_intr_enable (
++  ) u_intr_enable_mbx_ready (
+     .clk_i   (clk_i),
+     .rst_ni  (rst_ni),
+ 
+     // from register interface
+     .we     (intr_enable_we),
+-    .wd     (intr_enable_wd),
++    .wd     (intr_enable_mbx_ready_wd),
+ 
+     // from internal hardware
+     .de     (1'b0),
+@@ -224,32 +258,76 @@ module mbx_host_reg_top (
+ 
+     // to internal hardware
+     .qe     (),
+-    .q      (reg2hw.intr_enable.q),
++    .q      (reg2hw.intr_enable.mbx_ready.q),
+     .ds     (),
+ 
+… (120 more diff lines in this file not shown)
+diff --git a/hw/ip/mbx/rtl/mbx_hostif.sv b/hw/ip/mbx/rtl/mbx_hostif.sv
+index 43166fe80e..c1067ab5a2 100644
+--- a/hw/ip/mbx/rtl/mbx_hostif.sv
++++ b/hw/ip/mbx/rtl/mbx_hostif.sv
+@@ -14,8 +14,10 @@ module mbx_hostif
+   input  tlul_pkg::tl_h2d_t           tl_host_i,
+   output tlul_pkg::tl_d2h_t           tl_host_o,
+   // Generated interrupt event
+-  input  logic                        event_intr_i,
+-  output logic                        irq_o,
++  input  logic                        event_intr_ready_i,
++  input  logic                        event_intr_abort_i,
++  output logic                        intr_ready_o,
++  output logic                        intr_abort_o,
+   // External errors
+   input  logic                        intg_err_i,
+   // Alerts
+@@ -89,18 +91,31 @@ module mbx_hostif
+     .devmode_i  ( 1'b1          )
+   );
+ 
+-  // instantiate interrupt hardware primitive
+-  prim_intr_hw #(.Width(1)) u_intr_hw (
+-    .clk_i                  ( clk_i                ),
+-    .rst_ni                 ( rst_ni               ),
+-    .event_intr_i           ( event_intr_i         ),
+-    .reg2hw_intr_enable_q_i ( reg2hw.intr_enable.q ),
+-    .reg2hw_intr_test_q_i   ( reg2hw.intr_test.q   ),
+-    .reg2hw_intr_test_qe_i  ( reg2hw.intr_test.qe  ),
+-    .reg2hw_intr_state_q_i  ( reg2hw.intr_state.q  ),
+-    .hw2reg_intr_state_de_o ( hw2reg.intr_state.de ),
+-    .hw2reg_intr_state_d_o  ( hw2reg.intr_state.d  ),
+-    .intr_o                 ( irq_o                )
++  // Instantiate interrupt hardware primitives for ready and abort IRQ
++  prim_intr_hw #(.Width(1)) u_intr_ready (
++    .clk_i                  ( clk_i                          ),
++    .rst_ni                 ( rst_ni                         ),
++    .event_intr_i           ( event_intr_ready_i             ),
++    .reg2hw_intr_enable_q_i ( reg2hw.intr_enable.mbx_ready.q ),
++    .reg2hw_intr_test_q_i   ( reg2hw.intr_test.mbx_ready.q   ),
++    .reg2hw_intr_test_qe_i  ( reg2hw.intr_test.mbx_ready.qe  ),
++    .reg2hw_intr_state_q_i  ( reg2hw.intr_state.mbx_ready.q  ),
++    .hw2reg_intr_state_de_o ( hw2reg.intr_state.mbx_ready.de ),
++    .hw2reg_intr_state_d_o  ( hw2reg.intr_state.mbx_ready.d  ),
++    .intr_o                 ( intr_ready_o                   )
++  );
++
++  prim_intr_hw #(.Width(1)) u_intr_abort (
++    .clk_i                  ( clk_i                          ),
++    .rst_ni                 ( rst_ni                         ),
++    .event_intr_i           ( event_intr_abort_i             ),
++    .reg2hw_intr_enable_q_i ( reg2hw.intr_enable.mbx_abort.q ),
++    .reg2hw_intr_test_q_i   ( reg2hw.intr_test.mbx_abort.q   ),
++    .reg2hw_intr_test_qe_i  ( reg2hw.intr_test.mbx_abort.qe  ),
++    .reg2hw_intr_state_q_i  ( reg2hw.intr_state.mbx_abort.q  ),
++    .hw2reg_intr_state_de_o ( hw2reg.intr_state.mbx_abort.de ),
++    .hw2reg_intr_state_d_o  ( hw2reg.intr_state.mbx_abort.d  ),
++    .intr_o                 ( intr_abort_o                   )
+   );
+ 
+   // Control Register
+diff --git a/hw/ip/mbx/rtl/mbx_imbx.sv b/hw/ip/mbx/rtl/mbx_imbx.sv
+index eec5aa817d..b9019c2616 100644
+--- a/hw/ip/mbx/rtl/mbx_imbx.sv
++++ b/hw/ip/mbx/rtl/mbx_imbx.sv
+@@ -12,7 +12,8 @@ module mbx_imbx #(
+   input  logic                        rst_ni,
+   output logic                        imbx_state_error_o,
+   output logic                        imbx_pending_o,
+-  output logic                        imbx_irq_host_o,
++  output logic                        imbx_irq_ready_o,
++  output logic                        imbx_irq_abort_o,
+   output logic                        imbx_status_busy_update_o,
+   output logic                        imbx_status_busy_o,
+   // Access to the control and status registers of host interface
+@@ -130,7 +131,8 @@ module mbx_imbx #(
+   // Generate host interrupt
+   //   on sys_write go, when host enters state to process the received objects
+   //   on abort
+-  assign imbx_irq_host_o = mbx_read | mbx_sys_abort;
++  assign imbx_irq_ready_o = mbx_read;
++  assign imbx_irq_abort_o = mbx_sys_abort;
+ 
+   mbx_fsm #(
+     .CfgObMbx ( 0 )
+diff --git a/hw/ip/mbx/rtl/mbx_reg_pkg.sv b/hw/ip/mbx/rtl/mbx_reg_pkg.sv
+index c98dbd260b..a323869c6f 100644
+--- a/hw/ip/mbx/rtl/mbx_reg_pkg.sv
++++ b/hw/ip/mbx/rtl/mbx_reg_pkg.sv
+@@ -18,16 +18,32 @@ package mbx_reg_pkg;
+   ///////////////////////////////////////////////
+ 
+   typedef struct packed {
+-    logic        q;
++    struct packed {
++      logic        q;
++    } mbx_ready;
++    struct packed {
++      logic        q;
++    } mbx_abort;
+   } mbx_reg2hw_intr_state_reg_t;
+ 
+   typedef struct packed {
+-    logic        q;
++    struct packed {
++      logic        q;
++    } mbx_ready;
++    struct packed {
++      logic        q;
++    } mbx_abort;
+   } mbx_reg2hw_intr_enable_reg_t;
+ 
+   typedef struct packed {
+-    logic        q;
+-    logic        qe;
++    struct packed {
++      logic        q;
++      logic        qe;
++    } mbx_ready;
++    struct packed {
++      logic        q;
++      logic        qe;
++    } mbx_abort;
+   } mbx_reg2hw_intr_test_reg_t;
+ 
+   typedef struct packed {
+@@ -113,8 +129,14 @@ package mbx_reg_pkg;
+   } mbx_reg2hw_outbound_object_size_reg_t;
+ 
+   typedef struct packed {
+-    logic        d;
+-    logic        de;
++    struct packed {
++      logic        d;
++      logic        de;
++    } mbx_ready;
+… (40 more diff lines in this file not shown)
+(1 non-HDL files also changed in this commit; not shown)

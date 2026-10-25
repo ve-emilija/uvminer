@@ -1,0 +1,105 @@
+diff --git a/hw/ip/prim/rtl/prim_clock_inverter.sv b/hw/ip/prim/rtl/prim_clock_inverter.sv
+index 4d0646d607..e24febbbf4 100644
+--- a/hw/ip/prim/rtl/prim_clock_inverter.sv
++++ b/hw/ip/prim/rtl/prim_clock_inverter.sv
+@@ -15,4 +15,7 @@ module prim_clock_inverter (
+   // Model
+   assign clk_n_o = (scanmode_i) ? clk_i : ~clk_i;
+ 
++  // make sure scanmode_i is never X (including during reset)
++  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++
+ endmodule
+diff --git a/hw/ip/spi_device/rtl/spi_device.sv b/hw/ip/spi_device/rtl/spi_device.sv
+index 732afb8df1..8c3428dc68 100644
+--- a/hw/ip/spi_device/rtl/spi_device.sv
++++ b/hw/ip/spi_device/rtl/spi_device.sv
+@@ -502,4 +502,7 @@ module spi_device #(
+     .hw2reg
+   );
+ 
++  // make sure scanmode_i is never X (including during reset)
++  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++
+ endmodule
+diff --git a/hw/ip/uart/rtl/uart.sv b/hw/ip/uart/rtl/uart.sv
+index 734e74708f..016693b70e 100644
+--- a/hw/ip/uart/rtl/uart.sv
++++ b/hw/ip/uart/rtl/uart.sv
+@@ -28,6 +28,10 @@ module uart (
+   output logic    intr_rx_parity_err_o
+ );
+ 
++  // TODO: same as in spi_device.sv, add input scanmode_i to module
++  logic scanmode_i;
++  assign scanmode_i = 1'b0;
++
+   import uart_reg_pkg::*;
+ 
+   uart_reg2hw_t reg2hw;
+@@ -45,6 +49,7 @@ module uart (
+   uart_core uart_core (
+     .clk_i,
+     .rst_ni,
++    .scanmode_i,
+     .reg2hw,
+     .hw2reg,
+ 
+@@ -64,4 +69,7 @@ module uart (
+   // always enable the driving out of TX
+   assign cio_tx_en_o = 1'b1;
+ 
++  // make sure scanmode_i is never X (including during reset)
++  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++
+ endmodule
+diff --git a/hw/ip/uart/rtl/uart_core.sv b/hw/ip/uart/rtl/uart_core.sv
+index e192082eb6..9cf4403717 100644
+--- a/hw/ip/uart/rtl/uart_core.sv
++++ b/hw/ip/uart/rtl/uart_core.sv
+@@ -8,6 +8,7 @@
+ module uart_core (
+   input                  clk_i,
+   input                  rst_ni,
++  input                  scanmode_i,
+ 
+   input  uart_reg_pkg::uart_reg2hw_t reg2hw,
+   output uart_reg_pkg::uart_hw2reg_t hw2reg,
+@@ -25,10 +26,6 @@ module uart_core (
+   output logic           intr_rx_parity_err_o
+ );
+ 
+-  // TODO: same as in spi_device.sv, add input scanmode_i to module
+-  logic scanmode_i;
+-  assign scanmode_i = 1'b0;
+-
+   import uart_reg_pkg::*;
+ 
+   logic   [15:0]  rx_val;
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index 8a7bc52292..373c87cca4 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -435,6 +435,9 @@ module top_earlgrey (
+ % endfor
+   );
+ 
++  // make sure scanmode_i is never X (including during reset)
++  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++
+ endmodule
+ <%def name="parameterize(v)">\
+     ## value type
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index 61d9a46dcf..0022526c54 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -488,4 +488,7 @@ module top_earlgrey (
+     .scanmode_i
+   );
+ 
++  // make sure scanmode_i is never X (including during reset)
++  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++
+ endmodule
+(1 non-HDL files also changed in this commit; not shown)

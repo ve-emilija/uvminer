@@ -1,0 +1,572 @@
+repo,hash,subject,body,stratum,rule_label,n_design,n_verification,n_unknown,files,diff_file,human_label,llm_label,llm_confidence,llm_reason,llm_votes,llm_agreement
+opentitan,e849d530844d8849ffdf5a2e1c0ee227255b5132,[fpv] Replace ASSERT_VALID_DATA with ASSERT_KNOWN_IF,"ASSERT_KNOWN_IF checks a signal isn't X only if some enable term is true.
+It also checks the enable term is never X. This functionality was
+previously available with ASSERT_VALID_DATA. Differences are justified
+by the following:
+
+- Alters functionality to use implication rather &&, this can provide
+  performance benefits
+- ASSERT_KNOWN_IF naming is more general (ASSERT_VALID_DATA sounds
+  targeted to interfaces with valid and data signals) and is clearly
+  associated with ASSERT_KNOWN
+
+ASSERT_VALID_READY_DATA is removed as it wasn't being used.
+
+Signed-off-by: Greg Chadwick <gac@lowrisc.org>",confident,design,3,0,0,"D M hw/ip/flash_ctrl/rtl/flash_ctrl.sv
+D M hw/ip/prim/rtl/prim_assert.sv
+D M hw/ip/tlul/rtl/tlul_assert.sv",opentitan__e849d530844d.diff,,verification,0.9,Replaces assertion macros with improved versions; changes assertion definitions and assertions in RTL files.,verification|verification|verification,1.0
+caliptra-rtl,894dc19ce1f291d9f764309f1648d0000b17b23c,Merged PR 106673: fixing sha accelerator bug,"fixing sha accelerator bug
+When padding is required in the last dword of the block, sha accelerator runs the engine twice on the same block
+Fixed by identifying when we've written the last dword of the programmed DLEN and waiting for execute or mailbox read done to move forward with padding instead of process the block right away
+
+Related work items: #466949",confident,design,1,0,0,D M src/soc_ifc/rtl/sha512_acc_top.sv,caliptra-rtl__894dc19ce1f2.diff,,design,0.9,RTL bug fix: modified state machine logic and block processing control signals in SHA accelerator module,design|design|design,1.0
+caliptra-rtl,57fb477248739a9507ed59fab7e2e22eee39104b,Merged PR 107356: fixed drbg bound check,"fixed drbg bound check
+
+Related work items: #468601",confident,design,1,0,0,D M src/hmac_drbg/rtl/hmac_drbg.sv,caliptra-rtl__57fb47724873.diff,,design,0.9,RTL logic change: fixed comparison operator in state machine bound check.,design|design|design,1.0
+opentitan,45a08a008b59b022cb044c5fab2f1d904dd9fffd,[flash_ctrl] Remove scramble for english_breakfast,"- allow flash scramble to be removed for cw305 to give some
+  fpga breathing space
+- the parameter is a Sec parameter that should be double
+  checked prior to tapeout
+
+Signed-off-by: Timothy Chen <timothytim@google.com>",review,design,6,0,1,"? M hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+D M hw/ip/flash_ctrl/rtl/flash_ctrl.sv
+D M hw/ip/flash_ctrl/rtl/flash_phy.sv
+D M hw/ip/flash_ctrl/rtl/flash_phy_core.sv
+D M hw/ip/flash_ctrl/rtl/flash_phy_scramble.sv
+D M hw/top_earlgrey/ip/flash_ctrl/rtl/autogen/flash_ctrl.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey.sv",opentitan__45a08a008b59.diff,,design,0.9,"Adds SecScrambleEn parameter to RTL modules, conditionally instantiates/removes scramble logic in flash_phy_scramble.sv",design|design|design,1.0
+opentitan,5c6da15f1b279a95d189974795edcb510c0e2323,[fpv/rstmgr] FPV compile error,"This PR fixes a compile error in FPV. I will contact the AE and see if
+they can fix it. Right now the prim_lc_sync syntax works for simulation
+but not FPV.
+
+Signed-off-by: Cindy Chen <chencindy@google.com>",review,design,1,0,1,"? M hw/ip/rstmgr/data/rstmgr.sv.tpl
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr.sv",opentitan__5c6da15f1b27.diff,,design,0.9,Changes to RTL design code: variable declarations and expressions in module templates and generated RTL files.,design|design|design,1.0
+opentitan,e31ad34ef0938177856f2adbe29380346b926a47,[ast] Update D2S review comments,Signed-off-by: Jacob Levy <jacob.levy@nuvoton.com>,confident,design,1,0,0,D M hw/top_earlgrey/ip/ast/rtl/ast.sv,opentitan__e31ad34ef093.diff,,design,0.9,"All changes are RTL code modifications: logic assignments, variable declarations, and comment cleanup in design module.",design|design|design,1.0
+opentitan,fb443abd50fb5cbcb3057d6b4933f06398174c61,[topgen] Stop pretending it's not OpenTitan-specific,"Topgen was initially designed to be a rather generic toplevel generation
+tool. That's not what it is today: it is heavily biased towards
+generating OpenTitan toplevel designs -- which is exactly what we need
+in OpenTitan. Instead of trying to keep things generic, this commit goes
+the first step towards an ""opinionated topgen"".
+
+As first step, all templates are stored not in the toplevel that is to
+be generated, but next to topgen: other components in OpenTitan expect
+files generated from these templates to be around exactly like that, so
+we cannot simply modify them at will.
+
+If necessary late",review,design,3,0,14,"D M hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
+? D hw/top_englishbreakfast/data/chip_env_pkg__params.sv.tpl
+? D hw/top_englishbreakfast/data/tb__alert_handler_connect.sv.tpl
+? D hw/top_englishbreakfast/data/tb__xbar_connect.sv.tpl
+? D hw/top_englishbreakfast/data/top_englishbreakfast.sv.tpl
+? D hw/top_englishbreakfast/data/top_englishbreakfast_pkg.sv.tpl
+? D hw/top_englishbreakfast/data/top_englishbreakfast_rnd_cnst_pkg.sv.tpl
+? D hw/top_englishbreakfast/data/xbar_env_pkg__params.sv.tpl
+? R util/topgen/templates/chip_env_pkg__params.sv.tpl
+? R util/topgen/templates/tb__alert_handler_connect.sv.tpl
+? R util/topgen/templates/tb__xbar_connect.sv.tpl
+? R util/topgen/templates/toplevel.sv.tpl
+? R util/topgen/templates/toplevel_pkg.sv.tpl
+… +2 more",opentitan__fb443abd50fb.diff,,both,0.9,"Templates generate both RTL (design) and testbench (verification) code; templates moved, autogenerated files updated.",both|design|both,0.667
+opentitan,f00f2411d248932d658249099e48d68f0e26b526,"[otbn] Define a ""smoke test"" UVM sequence","This currently fails because of a onehot assertion failure (tracked as
+issue #4168), but everything seems to load properly.
+
+Note that it assumes the directory of ELF files contains a
+""smoke.elf"" (which we will ensure with the ""make me some binaries""
+scripts).
+
+Signed-off-by: Rupert Swarbrick <rswarbrick@lowrisc.org>",confident,verification,0,3,0,"V M hw/ip/otbn/dv/uvm/env/seq_lib/otbn_single_vseq.sv
+V A hw/ip/otbn/dv/uvm/env/seq_lib/otbn_smoke_vseq.sv
+V M hw/ip/otbn/dv/uvm/env/seq_lib/otbn_vseq_list.sv",opentitan__f00f2411d248.diff,,verification,0.9,New UVM sequence class and modifications to existing testbench sequences for DV testing.,verification|verification|verification,1.0
+caliptra-rtl,053d8eb66409a5806643f98dadace4628827bf8a,[TB] Fix addr width (#785),"* MLDSA sva, keygen randomization in tb, abr submod update
+
+* Fix tb addr width",confident,verification,0,1,0,V M src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv,caliptra-rtl__053d8eb66409.diff,,verification,0.9,Changes are in testbench file only: parameter adjustments for test configuration.,verification|verification|verification,1.0
+caliptra-rtl,90d0882ebbbb5321d53a8e3665d3f1742a1b1c5c,Enable using OpenOCD for interactive debugging of simulated Caliptra core (#72),"* Added third-party code for JTAG DPI and TCP server necessary for communication with OpenOCD
+
+Signed-off-by: Maciej Kurc <mkurc@antmicro.com>
+
+* Integrated the JTAG DPI interface with the testbench
+
+Signed-off-by: Maciej Kurc <mkurc@antmicro.com>
+
+* Added a dummy infinite_loop test to exercise interactive JTAG connections
+
+Signed-off-by: Maciej Kurc <mkurc@antmicro.com>
+
+* Added OpenOCD interface and target scripts
+
+Signed-off-by: Maciej Kurc <mkurc@antmicro.com>
+
+* Increased TCP buffer size
+
+Signed-off-by: Maciej Kurc <mkurc@antmicro.com>
+
+* Added debugging capability to ",review,both,1,1,1,"D M src/integration/rtl/caliptra_top.sv
+V M src/integration/tb/caliptra_top_tb.sv
+? A src/integration/test_suites/libs/jtagdpi/jtagdpi.sv",caliptra-rtl__90d0882ebbbb.diff,,both,0.9,"RTL changes (caliptra_top.sv) and testbench changes (caliptra_top_tb.sv, new jtagdpi.sv module).",both|both|both,1.0
+caliptra-rtl,d2f4c697be049fb47ae3cfc2cf95f487537ac2fb,"[RTL, VAL] OCP LOCK register updates, fix some testbench build failures and regression issues (#965)","* Add reg defines prereq
+
+* Remove rst tests from the short regress suite to improve L0 promote runtime
+
+* Connect ocp_lock_in_progress
+
+* Update soc_ifc covergroups and regen
+
+* Move fuse_hek_seed to an offset aligned with its size and regenerate RDL
+
+* Add subsystem tests to the subsystem tb regression
+
+* Add new OCP LOCK straps and regs
+
+* extend the Subsystem test suite
+
+* [TB] Fix multi drivers in DMA COV IF
+
+* Copy-paste typo fix
+
+* Make subsytem_mode_tb a parameter to resolve init dependencies
+
+* Move SS_OCP_LOCK_CTRL.LOCK_IN_PROGRESS to cptra pwrgood domain for RDC safety
+
+* Move OCP_L",confident,both,10,9,0,"V M src/axi/coverage/axi_dma_top_cov_if.sv
+V M src/hmac/uvmf_2022/uvmf_template_output/project_benches/HMAC/tb/testbench/hdl_top.sv
+D M src/integration/rtl/caliptra_reg/caliptra_reg_defines.svh
+D M src/integration/rtl/caliptra_reg/caliptra_reg_field_defines.svh
+D M src/integration/rtl/caliptra_reg_ss/caliptra_reg_defines.svh
+D M src/integration/rtl/caliptra_reg_ss/caliptra_reg_field_defines.svh
+V M src/soc_ifc/coverage/soc_ifc_cov_if.sv
+D M src/soc_ifc/rtl/caliptra_top_reg/caliptra_top_reg_defines.svh
+D M src/soc_ifc/rtl/caliptra_top_reg/caliptra_top_reg_field_defines.svh
+D M src/soc_ifc/rtl/soc_ifc_reg.sv
+D M src/soc_ifc/rtl/soc_ifc_reg_pkg.sv
+D M src/soc_ifc/rtl/soc_ifc_reg_uvm.sv
+D M src/soc_ifc/rtl/soc_ifc_top.sv
+V M src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv
+V M src/soc_ifc/tb/soc_ifc_tb.sv
+… +4 more",caliptra-rtl__d2f4c697be04.diff,,both,0.9,RTL register defines/RTL modules updated plus testbench/coverage files modified for OCP LOCK and register changes.,both|both|both,1.0
+caliptra-rtl,52e7ca36bca5847065a28fdd70c7b97d04644697,[VAL] JTAG listen port fix (#1270),"* using ephemeral port for jtag to avoid collisions when multiple jtag test jobs are launched on the same machine
+
+* add missing ports from kv monitor feature that caused compile errors
+
+* MICROSOFT AUTOMATED PIPELINE: Stamp 'user/dev/michnorris/jtag_port_fix' with updated timestamp and hash after successful run
+
+* add SIM_DIR variable to gdb and openocd scripts for github workflow
+
+* MICROSOFT AUTOMATED PIPELINE: Stamp 'user/dev/michnorris/jtag_port_fix' with updated timestamp and hash after successful run
+
+---------
+
+Co-authored-by: Caleb <11879229+calebofearth@users.noreply.github.com>",review,verification,0,2,1,"V M src/integration/tb/caliptra_top_tb.sv
+? M src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
+V M src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv",caliptra-rtl__52e7ca36bca5.diff,,verification,0.9,Changes are to testbench files: JTAG DPI module and integration/soc_ifc testbenches. Port configuration and monitor signal additions.,verification|verification|verification,1.0
+opentitan,244a1d502b7168f7e641a6b551a6ed61b3f9c1b4,[reggen] Convert addrmiss to comb logic,"`addrmiss` was `always_ff` from `addr_hit`. It results in visible to
+next transaction. Now it is changed to combinational logic to in-phase
+with the request and response.
+
+This is related to #246.",review,design,9,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",opentitan__244a1d502b71.diff,,design,0.9,RTL logic change: converting sequential `addrmiss` to combinational assignment in register control modules.,design|design|design,1.0
+opentitan,a0ea68ee7bf16b9a8d611ccbea589078e8bc7a6b,[racl] Implement RACL checks in reggen,Signed-off-by: Robert Schilling <rschilling@rivosinc.com>,review,unknown,0,0,1,? M util/reggen/reg_top.sv.tpl,opentitan__a0ea68ee7bf1.diff,,design,0.9,Template generates RTL design code with RACL access control logic for register modules,design|design|design,1.0
+opentitan,85aca775ea25d697a28a2e5e7abdc0f374f4b53f,[dv/common] automation for csr excl,"Support automation to add exclusion in hjson
+
+Signed-off-by: Cindy Chen <chencindy@google.com>",review,verification,0,13,1,"V M hw/dv/sv/cip_lib/cip_base_vseq.sv
+V M hw/dv/sv/csr_utils/csr_excl_item.sv
+V M hw/dv/sv/csr_utils/csr_seq_lib.sv
+V M hw/dv/sv/csr_utils/csr_utils_pkg.sv
+V M hw/dv/sv/dv_lib/dv_base_env_cfg.sv
+V M hw/dv/sv/dv_lib/dv_base_reg_block.sv
+V M hw/dv/sv/dv_lib/dv_base_vseq.sv
+V M hw/ip/alert_handler/dv/env/seq_lib/alert_handler_common_vseq.sv
+V M hw/ip/gpio/dv/env/seq_lib/gpio_common_vseq.sv
+V M hw/ip/hmac/dv/env/seq_lib/hmac_common_vseq.sv
+V M hw/ip/rv_timer/dv/env/seq_lib/rv_timer_common_vseq.sv
+V M hw/ip/uart/dv/env/seq_lib/uart_common_vseq.sv
+? M util/reggen/uvm_reg.sv.tpl
+V M util/uvmdvgen/common_vseq.sv.tpl",opentitan__85aca775ea25.diff,,verification,0.9,"Changes to testbench sequences, UVM environments, and DV utility libraries for CSR exclusion automation.",verification|verification|verification,1.0
+opentitan,7c6b9cb3f7018f8568d2b17eb95ce7922b443af1,[topgen] toplevel_pkg.sv Render interrupt/alert IDs,Signed-off-by: David Schrammel <davidschrammel@rivosinc.com>,review,design,3,0,2,"D M hw/top_darjeeling/rtl/autogen/top_darjeeling_pkg.sv
+? M hw/top_darjeeling/templates/toplevel.sv.tpl
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+D M hw/top_englishbreakfast/rtl/autogen/top_englishbreakfast_pkg.sv
+? M util/topgen/templates/toplevel_pkg.sv.tpl",opentitan__7c6b9cb3f701.diff,,design,0.9,Adds interrupt ID enumerations to RTL package files and updates RTL template generation.,design|design|design,1.0
+opentitan,f198c7f6552c1cdc251aa35de2d38942d9a6da0b,[fpv/csr_assert] support all modules for CSR assert,"This PR tries to support all modules to bind csr assertion.
+1. Add a macro to define the regwen path to see if this is a UVM
+testbench or FPV testbench.
+2. Remove the previous restriction for csr_hw_reset
+3. Still keep the disable signal in case some special sequence want to
+disable the csr assertion check
+
+Signed-off-by: Cindy Chen <chencindy@google.com>",review,verification,0,3,1,"V M hw/dv/sv/dv_lib/dv_base_vseq.sv
+V M hw/ip/alert_handler/dv/sva/alert_handler_bind.sv
+V M hw/ip/flash_ctrl/dv/sva/flash_ctrl_bind.sv
+? M util/reggen/fpv_csr.sv.tpl",opentitan__f198c7f6552c.diff,,verification,0.9,Changes enable CSR formal property verification assertions in bind files and FPV templates.,verification|verification|verification,1.0
+caliptra-rtl,dd20e2b9098ba7a045b91334018482e5395081bc,resolved merge conflict,,review,both,22,11,6,"D M src/datavault/rtl/dv_reg_uvm.sv
+D M src/doe/rtl/doe_reg_uvm.sv
+D M src/ecc/rtl/ecc_reg_uvm.sv
+D M src/hmac/rtl/hmac_reg_uvm.sv
+D A src/keyvault/rtl/kv_reg_covergroups.svh
+D A src/keyvault/rtl/kv_reg_sample.svh
+D M src/keyvault/rtl/kv_reg_uvm.sv
+V M src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/registers/kv_reg_model_top_pkg.sv
+V M src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/src/kv_env_configuration.svh
+D A src/pcrvault/rtl/pv_reg_covergroups.svh
+D A src/pcrvault/rtl/pv_reg_sample.svh
+D M src/pcrvault/rtl/pv_reg_uvm.sv
+D M src/sha256/rtl/sha256_reg_uvm.sv
+D M src/sha512/rtl/sha512_reg_uvm.sv
+D A src/soc_ifc/rtl/mbox_csr_covergroups.svh
+… +24 more",caliptra-rtl__dd20e2b9098b.diff,,verification,0.9,"UVM register model coverage code: covergroups, sampling, and UVM register class enhancements.",verification|verification|verification,1.0
+caliptra-rtl,97aec38ce315a5ae6dc211e6b08799448a3d685c,Merged PR 108852: Fix for LD (linker) error and Null-Object error in UVM regressions,"Add .sdata/.srodata sections to output '.data' to include renamed sections defining reent (impure) in newlib
+Remove spurious object instance declaration in mbox_status callback to resolve NOA
+
+Related work items: #473025, #473038",confident,verification,0,6,0,"V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_cbs_mbox_csr_mbox_execute_execute.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_cbs_mbox_csr_mbox_lock_lock.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_cbs_mbox_csr_mbox_status_status.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_cbs_mbox_csr_mbox_unlock_unlock.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_model_top_pkg.sv
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/src/soc_ifc_predictor.svh",caliptra-rtl__97aec38ce315.diff,,verification,0.9,"All changes are in UVM register callbacks, predictors, and testbench infrastructure files.",verification|verification|verification,1.0
+opentitan,8d1feca5f8e6548988bc5606c8b26bb9e20adc05,[topgen] Improve matching of prefix when renaming parameters,"Topgen moves parameter prefixes like `Sec`, `RndCnst` and `MemSize` to
+the beginning when generating the top-level parameter names. This messed
+up the parameter `SecureIbex` which became `SecRvCoreIbexureIbex` in the
+top level. With this commit, prefixes are only moved if they are
+followed by an upper case letter. The parameter in the top level thus
+becomes `RvCoreIbexSecureIbex`.
+
+Signed-off-by: Pirmin Vogel <vogelpi@lowrisc.org>",review,design,3,0,1,"D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
+D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+? M util/topgen/templates/chiplevel.sv.tpl",opentitan__8d1feca5f8e6.diff,,design,0.9,Changes to RTL parameter names in design files and generator template that produces RTL code.,design|design|design,1.0
+opentitan,1b018debb830962ec53ab2b8a51ee9c6088da1fc,[xbar/dv] Update chip-level xbar to drive from each IP  ports,"1. detail discussion at #2464
+2. re-enable chip xbar tests (tmp disabled at #3040)
+3. exceptionis (non-comportable instance/port name) are handled in
+termodule.py:find_otherside_module
+  1. all mem IPs (rom, ram_main, eflash, ram_ret), which can be removed
+  when we make memory as comportable IP
+  2. corei, cored, debug_mem, dm_sba: need more discussion
+
+Signed-off-by: Weicai Yang <weicai@google.com>",review,verification,0,2,1,"? M hw/top_earlgrey/data/tb__xbar_connect.sv.tpl
+V M hw/top_earlgrey/dv/autogen/tb__xbar_connect.sv
+V M hw/top_earlgrey/dv/tb/tb.sv",opentitan__1b018debb830.diff,,verification,0.9,Changes are in testbench template and autogenerated testbench files; re-enable xbar DV tests,verification|verification|verification,1.0
+opentitan,7858f3da93d36ae9d2a5adaff1cc1333412ad328,Add missing full_o output signal of prim_fifo_sync,"prim_fifo_sync was updated to have another output port, but the callers
+weren't updated in sync. Fix that.
+
+Signed-off-by: Philipp Wagner <phw@lowrisc.org>",review,design,15,0,1,"D M hw/ip/csrng/rtl/csrng_block_encrypt.sv
+D M hw/ip/csrng/rtl/csrng_cmd_stage.sv
+D M hw/ip/csrng/rtl/csrng_ctr_drbg_cmd.sv
+D M hw/ip/csrng/rtl/csrng_ctr_drbg_gen.sv
+D M hw/ip/csrng/rtl/csrng_ctr_drbg_upd.sv
+D M hw/ip/edn/rtl/edn_core.sv
+D M hw/ip/entropy_src/rtl/entropy_src_core.sv
+? M hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+D M hw/ip/flash_ctrl/rtl/flash_phy.sv
+D M hw/ip/flash_ctrl/rtl/flash_phy_rd.sv
+D M hw/ip/hmac/rtl/hmac.sv
+D M hw/ip/kmac/rtl/kmac_msgfifo.sv
+D M hw/ip/otp_ctrl/rtl/otp_ctrl.sv
+D M hw/ip/prim_generic/rtl/prim_generic_flash_bank.sv
+D M hw/ip/uart/rtl/uart_core.sv
+… +1 more",opentitan__7858f3da93d3.diff,,design,0.9,All changes add missing RTL output port connections to prim_fifo_sync instantiations across multiple modules.,design|design|design,1.0
+opentitan,18dc61a53ea9d46a34fabee933067b243812e783,[hw/rom] Increase ROM size to 32kB.,"Increase mask ROM to 32kB to allow the mask ROM development to continue
+before we start size optimizations.
+
+Even though the mask ROM size may potentially fit within 16kB, it is
+safer to preallocate additional space while we iterate over countermeasures
+and final feature set.
+
+Signed-off-by: Miguel Osorio <miguelosorio@google.com>",confident,both,3,2,0,"D M hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+V M hw/top_earlgrey/dv/autogen/xbar_env_pkg__params.sv
+V M hw/top_earlgrey/ip/xbar_main/dv/autogen/xbar_env_pkg__params.sv
+D M hw/top_earlgrey/ip/xbar_main/rtl/autogen/tl_main_pkg.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv",opentitan__18dc61a53ea9.diff,,design,0.9,All changes are parameter updates in RTL packages defining ROM size and address masks.,design|design|design,1.0
+opentitan,f3ce1a11d87b9a040d0ca556bacba68eec9980c6,[AST] Add 2 DFT padmux2ast (remove 2 analog DFT inputs) and solve AST Lint/Synth OSCs issue,Signed-off-by: Jacob Levy <jacob.levy@opentitan.org>,review,design,10,0,1,"D M hw/top_earlgrey/ip/ast/rtl/aon_osc.sv
+D M hw/top_earlgrey/ip/ast/rtl/ast.sv
+D M hw/top_earlgrey/ip/ast/rtl/ast_pkg.sv
+D M hw/top_earlgrey/ip/ast/rtl/io_osc.sv
+D M hw/top_earlgrey/ip/ast/rtl/sys_osc.sv
+D M hw/top_earlgrey/ip/ast/rtl/usb_osc.sv
+D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_asic.sv
+D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
+D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv
+D M hw/top_earlgrey/rtl/chip_earlgrey_verilator.sv
+? M util/topgen/templates/chiplevel.sv.tpl",opentitan__f3ce1a11d87b.diff,,design,0.9,"All changes are RTL design code: oscillator modules, package definitions, and chip-level RTL modifications.",design|design|design,1.0
+opentitan,798ad2892fe5c83ca333a62128a7babc1999abbf,[flash_ctrl] Make data / metadata memories a single entry,Signed-off-by: Timothy Chen <timothytim@google.com>,confident,design,1,0,0,D M hw/ip/prim_generic/rtl/prim_generic_flash_bank.sv,opentitan__798ad2892fe5.diff,,design,0.9,RTL module restructuring: consolidates separate data/metadata memory instances into single unified memory instances,design|design|design,1.0
+opentitan,3dae173dfce14efc20ca4e645cf9548b4780f9b7,[darjeeling] Fix undriven input ports,"There was no driver on otp_cfg, although since that's a DFT input it
+has not led to simulation failures.
+
+The only other chip-level Z/X signals are all a product of DIO/MIO
+signals being undriven and are harmless provided that the pinmux
+(for MIOs) or output enables (DIOs) are set appropriately before
+the signals are used.
+
+Specifically, MIOs (excepting 0 which is the TAP strap input) are
+left floating (Z) when unused, and the SPI interfaces are undriven
+in the cast of DUT SPI Host 0 output and connected to X in the
+case of DUT SPI Device 0 input.
+
+Signed-off-by: Adrian Lees <a.lees@lowrisc.or",review,design,3,0,1,"D M hw/ip/prim_generic/rtl/prim_otp_cfg_pkg.sv
+D M hw/top_darjeeling/rtl/autogen/chip_darjeeling_asic.sv
+D M hw/top_darjeeling/rtl/autogen/chip_darjeeling_cw310.sv
+? M hw/top_darjeeling/templates/chiplevel.sv.tpl",opentitan__3dae173dfce1.diff,,design,0.9,RTL changes: fix package parameter type and add signal drivers for undriven input ports,design|design|design,1.0
+opentitan,0fce3219170e585565e0fdd77dbcecb90d7972e7,"[pwm,dv] Simplify how we override reg_param in pwm_perf_vseq","Rather than overriding a constraint with a slightly modified version
+of itself, just give an explicit distribution to the thing we care
+about.
+
+Signed-off-by: Rupert Swarbrick <rswarbrick@lowrisc.org>",confident,verification,0,1,0,V M hw/ip/pwm/dv/env/seq_lib/pwm_perf_vseq.sv,opentitan__0fce3219170e.diff,,verification,0.9,Changes to UVM sequence constraint declarations in testbench file.,verification|verification|verification,1.0
+caliptra-rtl,e7bdee492b51b0d05d1ace1d3203ddd14d97bb39,[DOCS] SHA3 documentation added (#957),"* [DOC] SHA3 system level added
+
+* [RTL] Whitespace changes to config_defines.svh
+
+* [DOCS] SHA3 block-level documentation
+
+Co-authored by: Hakim Filali <hfilali@lowrisc.org>
+
+---------
+
+Co-authored-by: Mojtaba Bisheh-Niasar <102058313+mojtaba-bisheh@users.noreply.github.com>",confident,design,1,0,0,D M src/integration/rtl/config_defines.svh,caliptra-rtl__e7bdee492b51.diff,,neither,0.9,Only whitespace realignment in config_defines.svh; no functional or structural changes.,neither|neither|neither,1.0
+opentitan,5be8ec7acdeb3460b634aebfa2474e0f280bc5a7,"Revert ""[ast] fixing always_comb lint""","This reverts commit e8bfccf76c80a082870348b4f2acfec2a27b3c17. The
+change here doesn't work at all (you can't put #(...) delays inside an
+always_comb).
+
+Undo the change for now: we can try to fix things properly when CI is
+working again.
+
+Signed-off-by: Rupert Swarbrick <rswarbrick@lowrisc.org>",confident,design,4,0,0,"D M hw/top_earlgrey/ip/ast/rtl/vcaon_pgd.sv
+D M hw/top_earlgrey/ip/ast/rtl/vcc_pgd.sv
+D M hw/top_earlgrey/ip/ast/rtl/vcmain_pgd.sv
+D M hw/top_earlgrey/ip/ast/rtl/vio_pgd.sv",opentitan__5be8ec7acdeb.diff,,design,0.9,"Reverts RTL changes to always_comb blocks in design modules, changing procedural block syntax.",design|design|design,1.0
+opentitan,68e557f5c31f8e876a366be140384e7e7a2413c0,[tlul] update wording from sanity to smoke,Signed-off-by: Cindy Chen <chencindy@google.com>,review,verification,0,3,1,"V R hw/ip/tlul/generic_dv/env/seq_lib/xbar_smoke_vseq.sv
+V M hw/ip/tlul/generic_dv/env/seq_lib/xbar_stress_all_vseq.sv
+V M hw/ip/tlul/generic_dv/env/seq_lib/xbar_vseq_list.sv
+? M util/tlgen/xbar.dv.sv.tpl",opentitan__68e557f5c31f.diff,,verification,0.9,"All changes are in testbench sequences and DV templates, renaming sanity to smoke test.",verification|verification|verification,1.0
+caliptra-rtl,6ce648b259e815eeaa24bc07caf80ebc2f5e93e7,[RTL] Key Vault security hardening and AES key masking (#1388),"* fix bug in kv where fw update reset would unlock entries with no protection
+	add fw update reset window qualifier to block accesses and assert errors
+	abort kv accesses when errors are encountered to prevent partial access
+
+* make key vault errors when using doe terminate the operation and lock it
+
+* better key masking implementation
+
+* address comments from copilot review
+changed test case for doe to match the actual abort implementation
+update aes assertion to work with masked key
+update aes key clearing priority so that errors don't inadvertently clear one dword
+update uvmfkv predictor fo",confident,both,8,18,0,"V M src/aes/coverage/aes_cov_if.sv
+D M src/aes/rtl/aes_clp_wrapper.sv
+D M src/doe/rtl/doe_cbc.sv
+D M src/doe/rtl/doe_ctrl.sv
+D M src/doe/rtl/doe_fsm.sv
+V M src/doe/tb/doe_cbc_tb.sv
+V M src/doe/tb/doe_ctrl_32bit_tb.sv
+V M src/doe/tb/doe_ctrl_64bit_tb.sv
+V M src/doe/tb/doe_ctrl_tb.sv
+V M src/integration/asserts/caliptra_top_sva.sv
+V M src/integration/tb/caliptra_top_tb_services.sv
+V M src/keyvault/coverage/keyvault_cov_if.sv
+V M src/keyvault/coverage/keyvault_cov_props.sv
+D M src/keyvault/rtl/kv.sv
+D M src/keyvault/rtl/kv_fsm.sv
+… +11 more",caliptra-rtl__6ce648b259e8.diff,,both,0.9,RTL changes to AES/DOE/KV modules plus testbench updates and assertions in verification files.,both|both|both,1.0
+opentitan,3a47f4b7a930c1a406bae667cec18fae481792f5,Update pulp_riscv_dbg to pulp-platform/riscv-dbg@9155bfc,"Update code from upstream repository https://github.com/pulp-
+platform/riscv-dbg to revision
+9155bfc3006589d255cbfc4aa4df83e1567acbf3
+
+* Update CHANGELOG.md (bluew)
+* tb: Ignore comb warnings (bluew)
+* dmi_jtag: Update `dmi` `op` field based on DMI response (Andreas
+  Kurth)
+* dmi_jtag: Add mechanism for capturing failed DM op (Andreas Kurth)
+* dmi_jtag: Set busy error only if no sticky error is set (Andreas
+  Kurth)
+* tb: Fix make vcsify (bluew)
+* tb: Rewrite buggy openocd test script in Python (bluew)
+* tb/Makefile: Use tabs (bluew)
+* tb: Fix testbench build (bluew)
+* dm_mem: Clear state of ",review,verification,0,3,9,"? M hw/vendor/pulp_riscv_dbg/src/dm_csrs.sv
+? M hw/vendor/pulp_riscv_dbg/src/dm_mem.sv
+? M hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv
+? M hw/vendor/pulp_riscv_dbg/src/dm_top.sv
+? A hw/vendor/pulp_riscv_dbg/src/dmi_bscane_tap.sv
+? A hw/vendor/pulp_riscv_dbg/src/dmi_intf.sv
+? M hw/vendor/pulp_riscv_dbg/src/dmi_jtag.sv
+? M hw/vendor/pulp_riscv_dbg/src/dmi_jtag_tap.sv
+? A hw/vendor/pulp_riscv_dbg/src/dmi_test.sv
+V A hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/jtag_intf.sv
+V A hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/jtag_test.sv
+V A hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/tb_jtag_dmi.sv",opentitan__3a47f4b7a930.diff,,both,0.9,"Vendored update with RTL design changes (dm_*.sv) and testbench/verification files (tb/*.sv, dmi_test.sv)",both|both|both,1.0
+caliptra-rtl,566686e662943f4d53e4bdc9e47758cdf7c78f89,[TB] fix hmac directed test (#846),"* fix hmac directed test
+
+* MICROSOFT AUTOMATED PIPELINE: Stamp 'mojtaba-hmac' with updated timestamp and hash after successful run",confident,verification,0,1,0,V M src/hmac/tb/hmac_ctrl_tb.sv,caliptra-rtl__566686e66294.diff,,verification,0.9,Changes to testbench file (hmac_ctrl_tb.sv) fixing signal initialization in directed test.,verification|verification|verification,1.0
+opentitan,41496e95cf3b408c52a4c13d055c26bbf9b75e07,[otp_ctrl/dv] Update scoreboard template,Signed-off-by: Guillermo Maturana <maturana@opentitan.org>,review,verification,0,1,1,"? M hw/ip/otp_ctrl/data/otp_ctrl_scoreboard.sv.tpl
+V M hw/ip/otp_ctrl/dv/env/otp_ctrl_scoreboard.sv",opentitan__41496e95cf3b.diff,,verification,0.9,Changes to scoreboard template and generated scoreboard file - testbench verification code,verification|verification|verification,1.0
+opentitan,fc13136c047ebbd95d7ac0c3da8588d5028f3ace,[clkmgr] Change measure_ctrl registers to shadowed,Signed-off-by: Timothy Chen <timothytim@google.com>,review,both,6,3,1,"? M hw/ip/clkmgr/data/clkmgr.sv.tpl
+V M hw/ip/clkmgr/dv/env/clkmgr_scoreboard.sv
+V M hw/ip/clkmgr/dv/env/seq_lib/clkmgr_base_vseq.sv
+V M hw/ip/clkmgr/dv/tb.sv
+D M hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv
+D M hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr_reg_pkg.sv
+D M hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr_reg_top.sv
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr.sv
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr_pkg.sv
+D M hw/top_earlgrey/rtl/autogen/top_earlgrey.sv",opentitan__fc13136c047e.diff,,both,0.9,"RTL design changes (shadowed registers, new ports) plus testbench updates (scoreboard, sequences).",both|both|both,1.0
+opentitan,39faf3879f251b6d77a2f5b241d2cf054718df58,[tlul_adapter_sram] Fix to avoid X on invalid read data,Signed-off-by: Michael Schaffner <msf@opentitan.org>,confident,design,1,0,0,D M hw/ip/tlul/rtl/tlul_adapter_sram.sv,opentitan__39faf3879f25.diff,,design,0.9,"RTL design changes to module logic: added mask field to struct, mask computation, and read data masking",design|design|design,1.0
+opentitan,b1b24f98e3d4c401cf6743d1002122cdb96d42b5,"[dv,jtag] Teach jtag_dmi_reg_frontdoor to handle resets","This ensures that a DMI operation that is in flight will be
+aborted (rather than hanging) if a reset gets asserted.
+
+Signed-off-by: Rupert Swarbrick <rswarbrick@lowrisc.org>",confident,verification,0,1,0,V M hw/dv/sv/jtag_dmi_agent/jtag_dmi_reg_frontdoor.sv,opentitan__b1b24f98e3d4.diff,,verification,0.9,"Changes to jtag_dmi_reg_frontdoor.sv testbench/UVM frontdoor class, modifying DMI operation handling for reset scenarios.",verification|verification|verification,1.0
+caliptra-rtl,ce475e3f28d0bbfaa7b3eda7dc232088b7ecea82,Merged PR 114881: UVM mailbox sequence fix for invalid PAUSER access check,"Change register check approach to avoid an edge case where new dlen/cmd = old dlen/cmd and flags false error
+
+Related work items: #511911",confident,verification,0,1,0,V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/sequences/mbox/soc_ifc/soc_ifc_env_mbox_sequence_base.svh,caliptra-rtl__ce475e3f28d0.diff,,verification,0.9,"Changes to UVM sequence testbench code, fixing register check logic in mailbox test sequence.",verification|verification|verification,1.0
+opentitan,634ca67a2e18e865c8ba7d26a38e39e9c5d7b884,[cw310] Remove POR connected to SRSTn,"This signal had the potential to cause confusion, since the CW310's
+connectors are pinned out according to ARM's standard, and for ARM,
+SRSTn is actually a non-debug module reset, not a full POR.
+
+On the side, removing the connection will prevent the unintialized
+Olimex JTAG adapter from pulling POR down, which can be a surprising
+failure mode for tests.
+
+Signed-off-by: Alexander Williams <awill@opentitan.org>",review,design,1,0,1,"D M hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
+? M util/topgen/templates/chiplevel.sv.tpl",opentitan__634ca67a2e18.diff,,design,0.9,Removes RTL signal connections and pad definitions from chip-level design module and its generator template.,design|design|design,1.0
+caliptra-rtl,b921a1694bc504a680df64bcf3e3ca775c6d294f,Merged PR 115522: Added ECC coverage,"Added ECC coverage
+Added smoke tests for trigging ECC errors
+Fixed sha256 random test issue
+
+Related work items: #494327",confident,both,4,6,0,"V A src/ecc/coverage/ecc_top_cov_bind.sv
+V A src/ecc/coverage/ecc_top_cov_if.sv
+D M src/ecc/rtl/ecc_dsa_ctrl.sv
+D M src/ecc/rtl/ecc_reg.sv
+V M src/ecc/tb/ecc_top_tb.sv
+D M src/hmac/rtl/hmac.sv
+V M src/integration/asserts/caliptra_top_sva.sv
+V M src/integration/tb/caliptra_top_tb_services.sv
+V M src/sha256/tb/sha256_random_test.sv
+D M src/sha512/rtl/sha512.sv",caliptra-rtl__b921a1694bc5.diff,,both,0.9,RTL fixes in ecc_dsa_ctrl.sv and ecc_reg.sv plus new coverage files and testbench modifications.,both|both|both,1.0
+opentitan,e008a3331fd2388b072e1cc17a6c674d193f4a33,[aes/dv] Implemented clering functionality from trigger reg,Signed-off-by: Rasmus Madsen <rasmus.madsen@wdc.com>,confident,verification,0,10,0,"V M hw/ip/aes/dv/env/aes_env_cfg.sv
+V M hw/ip/aes/dv/env/aes_env_pkg.sv
+V M hw/ip/aes/dv/env/aes_message_item.sv
+V M hw/ip/aes/dv/env/aes_scoreboard.sv
+V M hw/ip/aes/dv/env/aes_seq_item.sv
+V M hw/ip/aes/dv/env/seq_lib/aes_base_vseq.sv
+V A hw/ip/aes/dv/env/seq_lib/aes_clear_vseq.sv
+V M hw/ip/aes/dv/env/seq_lib/aes_vseq_list.sv
+V A hw/ip/aes/dv/tests/aes_clear_test.sv
+V M hw/ip/aes/dv/tests/aes_test_pkg.sv",opentitan__e008a3331fd2.diff,,verification,0.9,"All changes are in dv/ testbench files: UVM sequences, scoreboards, environment configuration, and test files.",verification|verification|verification,1.0
+opentitan,15708d771f630b2ad90f0b27db45f2a51375ca8b,"[hw,mbx,rtl] No IRQ muxing between ready and abort",Signed-off-by: Robert Schilling <rschilling@rivosinc.com>,confident,design,5,0,0,"D M hw/ip/mbx/rtl/mbx.sv
+D M hw/ip/mbx/rtl/mbx_host_reg_top.sv
+D M hw/ip/mbx/rtl/mbx_hostif.sv
+D M hw/ip/mbx/rtl/mbx_imbx.sv
+D M hw/ip/mbx/rtl/mbx_reg_pkg.sv",opentitan__15708d771f63.diff,,design,0.9,"Changes modify RTL module interfaces, signals, and register structures; no testbench or verification code altered.",design|design|design,1.0
+opentitan,e063764dd06f0c61dad3f992cee794d13679c716,[tlul] Add access latency and ifetch to adapter_reg,Signed-off-by: Michael Schaffner <msf@google.com>,review,design,47,0,2,"D M hw/ip/adc_ctrl/rtl/adc_ctrl_reg_top.sv
+D M hw/ip/aes/rtl/aes_reg_top.sv
+D M hw/ip/aon_timer/rtl/aon_timer_reg_top.sv
+D M hw/ip/clkmgr/rtl/clkmgr_reg_top.sv
+D M hw/ip/csrng/rtl/csrng_reg_top.sv
+D M hw/ip/edn/rtl/edn_reg_top.sv
+D M hw/ip/entropy_src/rtl/entropy_src_reg_top.sv
+? M hw/ip/flash_ctrl/data/flash_ctrl.sv.tpl
+D M hw/ip/flash_ctrl/rtl/flash_ctrl_core_reg_top.sv
+D M hw/ip/flash_ctrl/rtl/flash_ctrl_prim_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/i2c/rtl/i2c_reg_top.sv
+D M hw/ip/keymgr/rtl/keymgr_reg_top.sv
+D M hw/ip/kmac/rtl/kmac_reg_top.sv
+… +34 more",opentitan__e063764dd06f.diff,,design,0.9,"RTL design changes adding port connections (en_ifetch_i, intg_error_o) to register adapter modules",design|design|design,1.0
+caliptra-rtl,7ee36b74e20c41d0b14665129500cd4674b9c956,Merged PR 102845: Fixes for vault state machine spurious increments of offsets,"Some spurious increments to vault offsets were found, fixing them here.
+
+Resetting vault offset when transitioning to done state.
+Only incrementing the offset for gen hash logic when writing.
+
+Related work items: #454988, #454989",confident,design,2,0,0,"D M src/keyvault/rtl/kv_fsm.sv
+D M src/pcrvault/rtl/pv_gen_hash.sv",caliptra-rtl__7ee36b74e20c.diff,,design,0.9,Changes fix RTL logic in state machines and offset increment conditions in hardware modules.,design|design|design,1.0
+caliptra-rtl,8bb19ac0b1decac7da43fc69aa64eb2a8f22ab7c,Formal sha512 (#144),"* SHA512 formal aip ready for revieew
+
+* remove artefacts
+
+* Minor readme update
+
+* Updated headers
+
+* Update on copyright
+
+---------
+
+Co-authored-by: ludwig247 <tobas.ludwig@lubis-eda.com>",confident,verification,0,3,0,"V A src/sha512/formal/properties/fv_constraints.sv
+V A src/sha512/formal/properties/fv_sha512.sv
+V A src/sha512/formal/properties/fv_sha512_pkg.sv",caliptra-rtl__8bb19ac0b1de.diff,,verification,0.9,"Formal properties, bind statements, and assertions for SHA512 verification via formal methods.",verification|verification|verification,1.0
+caliptra-rtl,3171cda77a06363e9cd0987dbe10a989a7808a59,"Increased mbox size to 256KB, ROM to 96KB and DCCM/ICCM to 256KB (#681)","* increase mbox to 256KB
+moved direct access to end of memory map to avoid moving existing registers
+
+* update rdptr size in status reg
+
+* fixing test params for new mbox size
+
+* fixing more uses of old param
+
+* shortening test so it passes in promote pipeline
+
+* MICROSOFT AUTOMATED PIPELINE: Stamp 'user/dev/michnorris/mbox_params' with updated timestamp and hash after successful run
+
+* MICROSOFT AUTOMATED PIPELINE: Stamp 'user/dev/michnorris/mbox_params' with updated timestamp and hash after successful run
+
+* updating some hard coded addresses that were missed after moving the ",confident,both,16,7,0,"D M src/axi/rtl/axi_dma_ctrl.sv
+D M src/integration/rtl/caliptra_reg_defines.svh
+D M src/integration/rtl/caliptra_top.sv
+D M src/integration/rtl/config_defines.svh
+V M src/integration/tb/caliptra_top_tb.sv
+V M src/integration/tb/caliptra_top_tb_pkg.sv
+V M src/integration/tb/caliptra_top_tb_services.sv
+V M src/integration/tb/caliptra_top_tb_soc_bfm.sv
+D M src/riscv_core/veer_el2/rtl/common_defines.sv
+D M src/riscv_core/veer_el2/rtl/el2_param.vh
+V M src/soc_ifc/coverage/soc_ifc_cov_if.sv
+D M src/soc_ifc/rtl/caliptra_top_reg_defines.svh
+D M src/soc_ifc/rtl/mbox.sv
+D M src/soc_ifc/rtl/mbox_csr.sv
+D M src/soc_ifc/rtl/mbox_csr_pkg.sv
+… +8 more",caliptra-rtl__3171cda77a06.diff,,both,0.9,RTL design parameter/register changes plus testbench parameter updates for memory size increases.,both|both|both,1.0
+opentitan,12e3dd9c231754fa533afbc8255a33b0e03bca5b,[pwrmgrr/|rstmgr] Moved fault_status regs into LC domain,"Addresses #12284
+
+Signed-off-by: Joshua Park <jeoong@google.com>
+
+[PWRMGR/RSTMGR/REG_TOP] This PR is a fix to resolve the issue in PR #12284.
+
+Fault status registers, error detection logics, and alert propagation logics are moved to LC domain.
+
+pwrmgr : clk_esc_i and rst_esc_ni are renamed to clk_lc_i and rst_lc_ni
+rstmgr : clk_i and rst_ni on por domain are changed to lc domain except scanmode sync logic, LC rstmgr_ctrl, and sys rstmgr_ctrl
+reg_top : 1. err_q generation logic is moved to LC domain
+          2. sync clock/reset are connected to corresponding registers
+
+     sync:
+            1",review,both,8,7,2,"V M hw/ip/pwrmgr/dv/env/seq_lib/pwrmgr_esc_clk_rst_malfunc_vseq.sv
+V M hw/ip/pwrmgr/dv/sva/pwrmgr_bind.sv
+V M hw/ip/pwrmgr/dv/sva/pwrmgr_sec_cm_checker_assert.sv
+V M hw/ip/pwrmgr/dv/tb.sv
+D M hw/ip/pwrmgr/rtl/pwrmgr.sv
+? M hw/ip/rstmgr/data/rstmgr.sv.tpl
+V M hw/ip/rstmgr/dv/env/seq_lib/rstmgr_base_vseq.sv
+V M hw/ip/rstmgr/dv/sva/rstmgr_bind.sv
+V M hw/ip/rstmgr/dv/tb.sv
+D M hw/ip/rstmgr/rtl/rstmgr_reg_top.sv
+D M hw/top_earlgrey/ip/pwrmgr/rtl/autogen/pwrmgr_reg_top.sv
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr.sv
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr_reg_pkg.sv
+D M hw/top_earlgrey/ip/rstmgr/rtl/autogen/rstmgr_reg_top.sv
+D M hw/top_earlgrey/ip_autogen/alert_handler/rtl/alert_handler_reg_pkg.sv
+… +2 more",opentitan__12e3dd9c2317.diff,,both,0.9,RTL design changes to pwrmgr/rstmgr plus corresponding testbench and assertion updates,both|both|both,1.0
+opentitan,1b52a40bbaed67eef3cbf5eeda83ad1daba9c9dc,[rv_timer/dv] mtimecmp update support,"In base seq, add writing mtimecmp option to clear interrupt
+Signed-off-by: Cindy Chen <chencindy@google.com>",confident,verification,0,2,0,"V M hw/ip/rv_timer/dv/env/rv_timer_scoreboard.sv
+V M hw/ip/rv_timer/dv/env/seq_lib/rv_timer_base_vseq.sv",opentitan__1b52a40bbaed.diff,,verification,0.9,Changes to scoreboard and base sequence for DV testbench logic; no RTL design changes.,verification|verification|verification,1.0
+opentitan,cbd5679ed9707e74e09a1375bbfa76b1d4c2396f,[otp_ctrl/dv] Update template for env_cov,"This makes the template a bit more generic.
+
+Signed-off-by: Michael Schaffner <msf@opentitan.org>",review,verification,0,1,1,"? M hw/ip/otp_ctrl/data/otp_ctrl_env_cov.sv.tpl
+V M hw/ip/otp_ctrl/dv/env/otp_ctrl_env_cov.sv",opentitan__cbd5679ed970.diff,,verification,0.9,Changes to coverage template and autogenerated coverage file. No RTL design logic modified.,verification|verification|verification,1.0
+opentitan,8be9186d4579d60fb17188de66c3ff69aad2d53d,[clkmgr] Add asserts known,Signed-off-by: Timothy Chen <timothytim@google.com>,review,design,1,0,1,"? M hw/ip/clkmgr/data/clkmgr.sv.tpl
+D M hw/top_earlgrey/ip/clkmgr/rtl/autogen/clkmgr.sv",opentitan__8be9186d4579.diff,,verification,0.9,Commit adds assertion statements using ASSERT_KNOWN macros to RTL files for verification purposes.,verification|verification|verification,1.0

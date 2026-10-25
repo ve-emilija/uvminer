@@ -1,0 +1,303 @@
+diff --git a/hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv b/hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv
+index f83848288d..545dd9310c 100644
+--- a/hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv
++++ b/hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv
+@@ -21,8 +21,7 @@ module core_ibex_tb_top;
+     .clk_i(clk),
+     .rst_ni(rst_n),
+     .test_en_i(1'b1),
+-    .core_id_i('0),
+-    .cluster_id_i('0),
++    .hart_id_i(32'b0),
+     .boot_addr_i(`BOOT_ADDR), // align with spike boot address
+     .irq_i('0),
+     .irq_id_i('0),
+diff --git a/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv b/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+index 3bba30f512..c9660c9c2d 100644
+--- a/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
++++ b/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+@@ -22,9 +22,7 @@ module rv_core_ibex #(
+ 
+   input  logic        test_en_i,     // enable all clock gates for testing
+ 
+-  // Core ID, Cluster ID and boot address are considered more or less static
+-  input  logic [ 3:0] core_id_i,
+-  input  logic [ 5:0] cluster_id_i,
++  input  logic [31:0] hart_id_i,
+   input  logic [31:0] boot_addr_i,
+ 
+   // Instruction memory interface
+@@ -105,8 +103,7 @@ module rv_core_ibex #(
+ 
+      .test_en_i,
+ 
+-     .core_id_i,
+-     .cluster_id_i,
++     .hart_id_i,
+      .boot_addr_i,
+ 
+      .instr_req_o,
+@@ -244,8 +241,7 @@ module rv_core_ibex #(
+     .rst_ni           ( rst_ni                 ),
+ 
+     .fetch_enable_i   ( fetch_enable_i         ),
+-    .core_id_i        ( core_id_i              ),
+-    .cluster_id_i     ( cluster_id_i           ),
++    .hart_id_i        ( hart_id_i              ),
+ 
+     .valid_i          ( rvfi_valid             ),
+     .pc_i             ( rvfi_pc_rdata          ),
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index da2890672b..bae971b76d 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -116,8 +116,7 @@ module top_earlgrey (
+     .rst_ni               (ndmreset_n),
+     .test_en_i            (1'b0),
+     // static pinning
+-    .core_id_i            (4'b0000),
+-    .cluster_id_i         (6'b000000),
++    .hart_id_i            (32'b0),
+     .boot_addr_i          (ADDR_SPACE_ROM),
+     // TL-UL buses
+     .tl_i_o               (tl_corei_h_h2d),
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index a64c23f59e..8128ba7b6e 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -128,8 +128,7 @@ module top_earlgrey (
+     .rst_ni               (ndmreset_n),
+     .test_en_i            (1'b0),
+     // static pinning
+-    .core_id_i            (4'b0000),
+-    .cluster_id_i         (6'b000000),
++    .hart_id_i            (32'b0),
+     .boot_addr_i          (ADDR_SPACE_ROM),
+     // TL-UL buses
+     .tl_i_o               (tl_corei_h_h2d),
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey_usb.sv b/hw/top_earlgrey/rtl/top_earlgrey_usb.sv
+index a9b0b67629..fd79548bfc 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey_usb.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey_usb.sv
+@@ -93,8 +93,7 @@ module top_earlgrey_usb #(
+     .rst_ni               (ndmreset_n),
+     .test_en_i            (1'b0),
+     // static pinning
+-    .core_id_i            (4'b0000),
+-    .cluster_id_i         (6'b000000),
++    .hart_id_i            (32'b0),
+     .boot_addr_i          (ADDR_SPACE_RAM_MAIN + 'h1000),  // no ROM for now, straight out of SRAM
+     // TL-UL buses
+     .tl_i_o               (tl_h_h2d[TlCorei]),
+diff --git a/hw/vendor/lowrisc_ibex/dv/riscv_compliance/rtl/ibex_riscv_compliance.sv b/hw/vendor/lowrisc_ibex/dv/riscv_compliance/rtl/ibex_riscv_compliance.sv
+index d8e88a2bf4..58d1ec81d6 100644
+--- a/hw/vendor/lowrisc_ibex/dv/riscv_compliance/rtl/ibex_riscv_compliance.sv
++++ b/hw/vendor/lowrisc_ibex/dv/riscv_compliance/rtl/ibex_riscv_compliance.sv
+@@ -110,8 +110,7 @@ module ibex_riscv_compliance (
+ 
+       .test_en_i             ('b0),
+ 
+-      .core_id_i             (4'b0),
+-      .cluster_id_i          (6'b0),
++      .hart_id_i             (32'b0),
+       // First instruction executed is at 0x0 + 0x80
+       .boot_addr_i           (32'h00000000),
+ 
+@@ -120,6 +119,7 @@ module ibex_riscv_compliance (
+       .instr_rvalid_i        (host_rvalid[CoreI]),
+       .instr_addr_o          (host_addr[CoreI]),
+       .instr_rdata_i         (host_rdata[CoreI]),
++      .instr_err_i           (host_err[CoreI]),
+ 
+       .data_req_o            (host_req[CoreD]),
+       .data_gnt_i            (host_gnt[CoreD]),
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/common/irq_agent/irq_master_driver.sv b/hw/vendor/lowrisc_ibex/dv/uvm/common/irq_agent/irq_master_driver.sv
+index 64e58b3502..23ad25a6a3 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/common/irq_agent/irq_master_driver.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/common/irq_agent/irq_master_driver.sv
+@@ -52,7 +52,10 @@ class irq_master_driver extends uvm_driver #(irq_seq_item);
+     vif.irq_external <= trans.irq_external;
+     vif.irq_fast     <= trans.irq_fast;
+     vif.irq_nm       <= trans.irq_nm;
+-    @(posedge vif.clock);
++    // We hold the interrupt high for two cycles as Ibex is level sensitive,
++    // so this guarantees that Ibex will respond appropriately to the
++    // interrupt
++    repeat (2) @(posedge vif.clock);
+     drive_reset_value();
+   endtask : drive_seq_item
+ 
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_dut_probe_if.sv b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_dut_probe_if.sv
+index d285b7f2f6..48fa34cdc7 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_dut_probe_if.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_dut_probe_if.sv
+@@ -6,6 +6,10 @@
+ interface core_ibex_dut_probe_if(input logic clk);
+   logic illegal_instr;
+   logic ecall;
++  logic wfi;
++  logic ebreak;
++  logic dret;
++  logic mret;
+   logic fetch_enable;
+   logic debug_req;
+ endinterface
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env.sv b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env.sv
+index f2b04f1079..58af297360 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env.sv
+@@ -25,7 +25,7 @@ class core_ibex_env extends uvm_env;
+                           create("data_if_slave_agent", this);
+     instr_if_slave_agent = ibex_mem_intf_slave_agent::type_id::
+                            create("instr_if_slave_agent", this);
+-    if (cfg.enable_irq_seq) begin
++    if (cfg.enable_irq_stress_seq || cfg.enable_irq_single_seq) begin
+       irq_agent = irq_master_agent::type_id::create("irq_agent", this);
+     end
+     // Create virtual sequencer
+@@ -36,7 +36,7 @@ class core_ibex_env extends uvm_env;
+     super.connect_phase(phase);
+     vseqr.data_if_seqr = data_if_slave_agent.sequencer;
+     vseqr.instr_if_seqr = instr_if_slave_agent.sequencer;
+-    if (cfg.enable_irq_seq) begin
++    if (cfg.enable_irq_stress_seq || cfg.enable_irq_single_seq) begin
+       vseqr.irq_seqr = irq_agent.sequencer;
+     end
+   endfunction : connect_phase
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env_cfg.sv b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env_cfg.sv
+index 8c352d867a..388bc24778 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env_cfg.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env_cfg.sv
+@@ -4,18 +4,33 @@
+ 
+ class core_ibex_env_cfg extends uvm_object;
+ 
+-  bit enable_irq_seq;
+-  bit enable_debug_seq;
++  bit       enable_irq_stress_seq;
++  bit       enable_irq_single_seq;
++  bit       enable_debug_stress_seq;
++  bit       enable_debug_single_seq;
++  bit[31:0] max_interval;
++  bit       require_signature_addr;
++  bit[31:0] signature_addr;
+ 
+   `uvm_object_utils_begin(core_ibex_env_cfg)
+-    `uvm_field_int(enable_irq_seq,   UVM_DEFAULT)
+-    `uvm_field_int(enable_debug_seq, UVM_DEFAULT)
++    `uvm_field_int(enable_irq_stress_seq,   UVM_DEFAULT)
++    `uvm_field_int(enable_irq_single_seq,   UVM_DEFAULT)
++    `uvm_field_int(enable_debug_single_seq, UVM_DEFAULT)
++    `uvm_field_int(enable_debug_stress_seq, UVM_DEFAULT)
++    `uvm_field_int(max_interval, UVM_DEFAULT)
++    `uvm_field_int(require_signature_addr, UVM_DEFAULT)
++    `uvm_field_int(signature_addr, UVM_DEFAULT)
+   `uvm_object_utils_end
+ 
+   function new(string name = "");
+     super.new(name);
+-    void'($value$plusargs("enable_irq_seq=%0d", enable_irq_seq));
+-    void'($value$plusargs("enable_debug_seq=%0d", enable_debug_seq));
++    void'($value$plusargs("enable_irq_stress_seq=%0d", enable_irq_stress_seq));
++    void'($value$plusargs("enable_irq_single_seq=%0d", enable_irq_single_seq));
++    void'($value$plusargs("enable_debug_stress_seq=%0d", enable_debug_stress_seq));
++    void'($value$plusargs("enable_debug_single_seq=%0d", enable_debug_single_seq));
++    void'($value$plusargs("max_interval=%0d", max_interval));
++    void'($value$plusargs("require_signature_addr=%0d", require_signature_addr));
++    void'($value$plusargs("signature_addr=%0h", signature_addr));
+   endfunction
+ 
+ endclass
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_vseqr.sv b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_vseqr.sv
+index 068b20a108..f3af18e782 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_vseqr.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_vseqr.sv
+@@ -7,9 +7,9 @@
+ // ---------------------------------------------
+ class core_ibex_vseqr extends uvm_sequencer;
+ 
+-  ibex_mem_intf_slave_sequencer data_if_seqr;
+-  ibex_mem_intf_slave_sequencer instr_if_seqr;
+-  irq_master_sequencer          irq_seqr;
++  ibex_mem_intf_slave_sequencer                   data_if_seqr;
++  ibex_mem_intf_slave_sequencer                   instr_if_seqr;
++  irq_master_sequencer                            irq_seqr;
+ 
+   `uvm_component_utils(core_ibex_vseqr)
+   `uvm_component_new
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_asm_program_gen.sv b/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_asm_program_gen.sv
+index a3c9da7d2e..1abe405039 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_asm_program_gen.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_asm_program_gen.sv
+@@ -21,35 +21,19 @@ class ibex_asm_program_gen extends riscv_asm_program_gen;
+     // with ibex.
+     cfg.check_misa_init_val = 1'b0;
+     cfg.check_xstatus = 1'b0;
+-    // The ibex core load the program from 0x80
+-    // Some address is reserved for hardware interrupt handling, need to decide if we need to copy
+-    // the init program from crt0.S later.
+     instr_stream.push_back(".macro init");
+     instr_stream.push_back(".endm");
+     instr_stream.push_back(".section .text.init");
+     instr_stream.push_back(".globl _start");
+     instr_stream.push_back(".option norvc");
+-    // 0x0 - 0x4F is reserved for trap/interrupt handling
+-    repeat (20) begin
+-      instr_stream.push_back("j mtvec_handler");
+-    end
+-    // 0x50 debug mode entry
++    // 0x0 debug mode entry
+     instr_stream.push_back("j debug_rom");
+-    // 0x54 debug mode exception handler
++    // 0x4 debug mode exception handler
+     instr_stream.push_back("j debug_exception");
+     // Align the start section to 0x80
+     instr_stream.push_back(".align 7");
+-    instr_stream.push_back("_start: j _reset_entry");
+-    // ibex reserves 0x84-0x8C for trap handling, redirect everything mtvec_handler
+-    // 0x84 illegal instruction
+-    instr_stream.push_back("j mtvec_handler");
+-    // 0x88 ECALL instruction handler
+-    instr_stream.push_back("j mtvec_handler");
+-    // 0x8C LSU error
+-    instr_stream.push_back("j mtvec_handler");
+     instr_stream.push_back(".option rvc");
+-    // Starting point of the reset entry
+-    instr_stream.push_back("_reset_entry:");
++    instr_stream.push_back("_start:");
+   endfunction
+ 
+ endclass
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_core_setting.sv b/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_core_setting.sv
+index 38b84121b8..4f4c598736 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_core_setting.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_core_setting.sv
+@@ -34,6 +34,9 @@ riscv_instr_name_t unsupported_instr[] = {FENCEI};
+ // ISA supported by the processor
+ riscv_instr_group_t supported_isa[$] = {RV32I, RV32M, RV32C};
+ 
++// Interrupt mode support
++mtvec_mode_t supported_interrupt_mode[$] = {VECTORED};
++
+ // Debug mode support
+ bit support_debug_mode = 1;
+ 
+diff --git a/hw/vendor/lowrisc_ibex/dv/uvm/tb/core_ibex_tb_top.sv b/hw/vendor/lowrisc_ibex/dv/uvm/tb/core_ibex_tb_top.sv
+index 1eaab876c1..251ea86453 100644
+--- a/hw/vendor/lowrisc_ibex/dv/uvm/tb/core_ibex_tb_top.sv
++++ b/hw/vendor/lowrisc_ibex/dv/uvm/tb/core_ibex_tb_top.sv
+@@ -18,14 +18,12 @@ module core_ibex_tb_top;
+   core_ibex_dut_probe_if dut_if(.clk(clk));
+ 
+   // TODO(taliu) Resolve the tied-off ports
+-  ibex_core_tracing #(.DmHaltAddr(`BOOT_ADDR + 'h50),
+-                      .DmExceptionAddr(`BOOT_ADDR + 'h54)
+-  ) dut (
++  ibex_core_tracing #(.DmHaltAddr(`BOOT_ADDR + 'h0),
++                      .DmExceptionAddr(`BOOT_ADDR + 'h4)) dut (
+     .clk_i(clk),
+     .rst_ni(rst_n),
+     .test_en_i(1'b1),
+… (25 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_base_test.sv, hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_report_server.sv, hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_seq_lib.sv, hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_test_lib.sv, hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_test_pkg.sv, hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_vseq.sv, hw/vendor/lowrisc_ibex/examples/fpga/artya7-100/rtl/ram_1p.sv, hw/vendor/lowrisc_ibex/examples/fpga/artya7-100/rtl/top_artya7_100.sv, hw/vendor/lowrisc_ibex/examples/sim/tb/ibex_tracing_tb.sv, hw/vendor/lowrisc_ibex/rtl/ibex_alu.sv, hw/vendor/lowrisc_ibex/rtl/ibex_compressed_decoder.sv, hw/vendor/lowrisc_ibex/rtl/ibex_controller.sv, hw/vendor/lowrisc_ibex/rtl/ibex_core.sv, hw/vendor/lowrisc_ibex/rtl/ibex_core_tracing.sv, hw/vendor/lowrisc_ibex/rtl/ibex_cs_registers.sv, hw/vendor/lowrisc_ibex/rtl/ibex_decoder.sv, hw/vendor/lowrisc_ibex/rtl/ibex_ex_block.sv, hw/vendor/lowrisc_ibex/rtl/ibex_fetch_fifo.sv, hw/vendor/lowrisc_ibex/rtl/ibex_id_stage.sv, hw/vendor/lowrisc_ibex/rtl/ibex_if_stage.sv, hw/vendor/lowrisc_ibex/rtl/ibex_load_store_unit.sv, hw/vendor/lowrisc_ibex/rtl/ibex_multdiv_fast.sv, hw/vendor/lowrisc_ibex/rtl/ibex_multdiv_slow.sv, hw/vendor/lowrisc_ibex/rtl/ibex_pkg.sv, hw/vendor/lowrisc_ibex/rtl/ibex_pmp.sv, hw/vendor/lowrisc_ibex/rtl/ibex_prefetch_buffer.sv, hw/vendor/lowrisc_ibex/rtl/ibex_register_file_ff.sv, hw/vendor/lowrisc_ibex/rtl/ibex_register_file_latch.sv, hw/vendor/lowrisc_ibex/rtl/ibex_tracer.sv, hw/vendor/lowrisc_ibex/rtl/ibex_tracer_pkg.sv
+(46 non-HDL files also changed in this commit; not shown)

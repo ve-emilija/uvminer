@@ -1,0 +1,85 @@
+diff --git a/hw/ip/prim/abstract/prim_rom.sv b/hw/ip/prim/abstract/prim_rom.sv
+index 1bd8439671..b0adecc528 100644
+--- a/hw/ip/prim/abstract/prim_rom.sv
++++ b/hw/ip/prim/abstract/prim_rom.sv
+@@ -9,6 +9,7 @@ module prim_rom #(
+   parameter  int Aw        = $clog2(Depth)
+ ) (
+   input                        clk_i,
++  input                        rst_ni,
+   input        [Aw-1:0]        addr_i,
+   input                        cs_i,
+   output logic [Width-1:0]     dout_o,
+@@ -21,6 +22,7 @@ module prim_rom #(
+       .Depth(Depth)
+     ) u_impl_generic (
+       .clk_i,
++      .rst_ni,
+       .addr_i,
+       .cs_i,
+       .dout_o,
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_rom.sv b/hw/ip/prim_generic/rtl/prim_generic_rom.sv
+index c400c672de..398a9fbfaf 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_rom.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_rom.sv
+@@ -8,6 +8,7 @@ module prim_generic_rom #(
+   parameter  int Aw        = $clog2(Depth)
+ ) (
+   input                        clk_i,
++  input                        rst_ni,
+   input        [Aw-1:0]        addr_i,
+   input                        cs_i,
+   output logic [Width-1:0]     dout_o,
+@@ -22,8 +23,12 @@ module prim_generic_rom #(
+     end
+   end
+ 
+-  always_ff @(posedge clk_i) begin
+-    dvalid_o <= cs_i;
++  always_ff @(posedge clk_i or negedge rst_ni) begin
++    if (!rst_ni) begin
++      dvalid_o <= 1'b0;
++    end else begin
++      dvalid_o <= cs_i;
++    end
+   end
+ 
+   // ******************************************************************************
+diff --git a/hw/ip/tlul/rtl/tlul_adapter_sram.sv b/hw/ip/tlul/rtl/tlul_adapter_sram.sv
+index 3004a0551e..fac39c42c0 100644
+--- a/hw/ip/tlul/rtl/tlul_adapter_sram.sv
++++ b/hw/ip/tlul/rtl/tlul_adapter_sram.sv
+@@ -125,7 +125,7 @@ module tlul_adapter_sram #(
+   }; // Store the request only. Doesn't have to store data
+   assign reqfifo_rready = tl_o.d_valid & tl_i.d_ready ;
+ 
+-  assign rspfifo_wvalid = rvalid_i ;
++  assign rspfifo_wvalid = rvalid_i & reqfifo_rvalid;
+   assign rspfifo_wdata  = '{
+     data:  rdata_i,
+     error: rerror_i[1]  // Only care for Uncorrectable error
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index 3d785079c6..92d564e6f3 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -274,6 +274,7 @@ module top_earlgrey #(
+     .Depth(${rom_depth})
+   ) u_rom_${m["name"]} (
+     .clk_i,
++    .rst_ni   (ndmreset_n),
+     .cs_i     (${m["name"]}_req),
+     .addr_i   (${m["name"]}_addr),
+     .dout_o   (${m["name"]}_rdata),
+diff --git a/hw/top_earlgrey/rtl/top_earlgrey.sv b/hw/top_earlgrey/rtl/top_earlgrey.sv
+index 0e5733f4ad..4a6fad95a8 100644
+--- a/hw/top_earlgrey/rtl/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/top_earlgrey.sv
+@@ -219,6 +219,7 @@ module top_earlgrey #(
+     .Depth(2048)
+   ) u_rom_rom (
+     .clk_i,
++    .rst_ni   (ndmreset_n),
+     .cs_i     (rom_req),
+     .addr_i   (rom_addr),
+     .dout_o   (rom_rdata),
+(1 non-HDL files also changed in this commit; not shown)

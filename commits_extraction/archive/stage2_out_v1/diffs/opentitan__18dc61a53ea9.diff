@@ -1,0 +1,86 @@
+diff --git a/hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv b/hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+index e4adcad026..13f908a97d 100644
+--- a/hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
++++ b/hw/ip/rom_ctrl/rtl/rom_ctrl_reg_pkg.sv
+@@ -11,7 +11,7 @@ package rom_ctrl_reg_pkg;
+ 
+   // Address widths within the block
+   parameter int RegsAw = 7;
+-  parameter int RomAw = 14;
++  parameter int RomAw = 15;
+ 
+   ///////////////////////////////////////////////
+   // Typedefs for registers for regs interface //
+@@ -134,8 +134,8 @@ package rom_ctrl_reg_pkg;
+   };
+ 
+   // Window parameters for rom interface
+-  parameter logic [RomAw-1:0] ROM_CTRL_ROM_OFFSET = 14'h 0;
+-  parameter int unsigned      ROM_CTRL_ROM_SIZE   = 'h 4000;
++  parameter logic [RomAw-1:0] ROM_CTRL_ROM_OFFSET = 15'h 0;
++  parameter int unsigned      ROM_CTRL_ROM_SIZE   = 'h 8000;
+ 
+ endpackage
+ 
+diff --git a/hw/top_earlgrey/dv/autogen/xbar_env_pkg__params.sv b/hw/top_earlgrey/dv/autogen/xbar_env_pkg__params.sv
+index bca3d44067..0b6ee6cb7b 100644
+--- a/hw/top_earlgrey/dv/autogen/xbar_env_pkg__params.sv
++++ b/hw/top_earlgrey/dv/autogen/xbar_env_pkg__params.sv
+@@ -14,7 +14,7 @@ tl_device_t xbar_devices[$] = '{
+         '{32'h00010000, 32'h00010fff}
+     }},
+     '{"rom_ctrl__rom", '{
+-        '{32'h00008000, 32'h0000bfff}
++        '{32'h00008000, 32'h0000ffff}
+     }},
+     '{"rom_ctrl__regs", '{
+         '{32'h411e0000, 32'h411e0fff}
+diff --git a/hw/top_earlgrey/ip/xbar_main/dv/autogen/xbar_env_pkg__params.sv b/hw/top_earlgrey/ip/xbar_main/dv/autogen/xbar_env_pkg__params.sv
+index a06cbfbfee..91d8311664 100644
+--- a/hw/top_earlgrey/ip/xbar_main/dv/autogen/xbar_env_pkg__params.sv
++++ b/hw/top_earlgrey/ip/xbar_main/dv/autogen/xbar_env_pkg__params.sv
+@@ -14,7 +14,7 @@ tl_device_t xbar_devices[$] = '{
+         '{32'h00010000, 32'h00010fff}
+     }},
+     '{"rom_ctrl__rom", '{
+-        '{32'h00008000, 32'h0000bfff}
++        '{32'h00008000, 32'h0000ffff}
+     }},
+     '{"rom_ctrl__regs", '{
+         '{32'h411e0000, 32'h411e0fff}
+diff --git a/hw/top_earlgrey/ip/xbar_main/rtl/autogen/tl_main_pkg.sv b/hw/top_earlgrey/ip/xbar_main/rtl/autogen/tl_main_pkg.sv
+index c37610b934..fd69797e27 100644
+--- a/hw/top_earlgrey/ip/xbar_main/rtl/autogen/tl_main_pkg.sv
++++ b/hw/top_earlgrey/ip/xbar_main/rtl/autogen/tl_main_pkg.sv
+@@ -32,7 +32,7 @@ package tl_main_pkg;
+ 
+   localparam logic [31:0] ADDR_MASK_RV_DM__REGS          = 32'h 00000fff;
+   localparam logic [31:0] ADDR_MASK_RV_DM__ROM           = 32'h 00000fff;
+-  localparam logic [31:0] ADDR_MASK_ROM_CTRL__ROM        = 32'h 00003fff;
++  localparam logic [31:0] ADDR_MASK_ROM_CTRL__ROM        = 32'h 00007fff;
+   localparam logic [31:0] ADDR_MASK_ROM_CTRL__REGS       = 32'h 00000fff;
+   localparam logic [0:0][31:0] ADDR_MASK_PERI                 = {
+     32'h 007fffff
+diff --git a/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv b/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+index acccb3ec72..d6297c763f 100644
+--- a/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
++++ b/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+@@ -498,7 +498,7 @@ package top_earlgrey_pkg;
+   /**
+    * Peripheral size in bytes for rom device on rom_ctrl in top earlgrey.
+    */
+-  parameter int unsigned TOP_EARLGREY_ROM_CTRL_ROM_SIZE_BYTES = 32'h4000;
++  parameter int unsigned TOP_EARLGREY_ROM_CTRL_ROM_SIZE_BYTES = 32'h8000;
+ 
+   /**
+    * Peripheral base address for cfg device on rv_core_ibex in top earlgrey.
+@@ -548,7 +548,7 @@ package top_earlgrey_pkg;
+   /**
+    * Memory size for rom in top earlgrey.
+    */
+-  parameter int unsigned TOP_EARLGREY_ROM_SIZE_BYTES = 32'h4000;
++  parameter int unsigned TOP_EARLGREY_ROM_SIZE_BYTES = 32'h8000;
+ 
+ 
+   // Enumeration of IO power domains.
+(11 non-HDL files also changed in this commit; not shown)

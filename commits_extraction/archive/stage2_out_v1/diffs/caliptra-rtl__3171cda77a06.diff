@@ -1,0 +1,304 @@
+diff --git a/src/axi/rtl/axi_dma_ctrl.sv b/src/axi/rtl/axi_dma_ctrl.sv
+index 0ab8a1d4..4686ca86 100644
+--- a/src/axi/rtl/axi_dma_ctrl.sv
++++ b/src/axi/rtl/axi_dma_ctrl.sv
+@@ -354,7 +354,7 @@ import soc_ifc_pkg::*;
+         endcase
+         cmd_inv_byte_count  = |hwif_out.byte_count.count.value[BW-1:0] ||
+                               (hwif_out.byte_count.count.value > DMA_MAX_XFER_SIZE) ||
+-                              (hwif_out.byte_count.count.value > MBOX_SIZE_BYTES &&
++                              (hwif_out.byte_count.count.value > CPTRA_MBOX_SIZE_BYTES &&
+                                ((hwif_out.ctrl.rd_route.value == axi_dma_reg__ctrl__rd_route__rd_route_e__MBOX) ||
+                                 (hwif_out.ctrl.wr_route.value == axi_dma_reg__ctrl__wr_route__wr_route_e__MBOX)));
+         // power of 2 and word-aligned
+@@ -716,7 +716,7 @@ import soc_ifc_pkg::*;
+     `CALIPTRA_ASSERT(AXI_DMA_VLD_WR_REQ_BND, wr_req_hshake |-> w_req_if.addr[AW-1:AXI_LEN_BC_WIDTH] == ((w_req_if.addr + w_req_if.byte_len) >> AXI_LEN_BC_WIDTH), clk, !rst_n)
+     // Proper configuration
+     `CALIPTRA_ASSERT_INIT(AXI_DMA_DW_32, DW == 32)
+-    `CALIPTRA_ASSERT_INIT(AXI_DMA_DW_EQ_MB, DW == MBOX_DATA_W)
++    `CALIPTRA_ASSERT_INIT(AXI_DMA_DW_EQ_MB, DW == CPTRA_MBOX_DATA_W)
+     // FIFO must have space for all requested data
+     `CALIPTRA_ASSERT(AXI_DMA_LIM_RD_CRED, rd_credits <= FIFO_BC/BC, clk, !rst_n)
+     `CALIPTRA_ASSERT(AXI_DMA_OFL_RD_CRED, rd_req_hshake |-> rd_req_byte_count <= FIFO_BC, clk, !rst_n)
+diff --git a/src/integration/rtl/caliptra_reg_defines.svh b/src/integration/rtl/caliptra_reg_defines.svh
+index f5e7a391..ffc760a4 100644
+--- a/src/integration/rtl/caliptra_reg_defines.svh
++++ b/src/integration/rtl/caliptra_reg_defines.svh
+@@ -5279,8 +5279,6 @@
+ `define ENTROPY_SRC_REG_MAIN_SM_STATE                                                               (32'he0)
+ `define ENTROPY_SRC_REG_MAIN_SM_STATE_MAIN_SM_STATE_LOW                                             (0)
+ `define ENTROPY_SRC_REG_MAIN_SM_STATE_MAIN_SM_STATE_MASK                                            (32'h1ff)
+-`define CLP_MBOX_SRAM_BASE_ADDR                                                                     (32'h30000000)
+-`define CLP_MBOX_SRAM_END_ADDR                                                                      (32'h3001ffff)
+ `define CLP_MBOX_CSR_BASE_ADDR                                                                      (32'h30020000)
+ `define CLP_MBOX_CSR_MBOX_LOCK                                                                      (32'h30020000)
+ `define MBOX_CSR_MBOX_LOCK                                                                          (32'h0)
+@@ -5313,7 +5311,7 @@
+ `define MBOX_CSR_MBOX_STATUS_SOC_HAS_LOCK_LOW                                                       (9)
+ `define MBOX_CSR_MBOX_STATUS_SOC_HAS_LOCK_MASK                                                      (32'h200)
+ `define MBOX_CSR_MBOX_STATUS_MBOX_RDPTR_LOW                                                         (10)
+-`define MBOX_CSR_MBOX_STATUS_MBOX_RDPTR_MASK                                                        (32'h1fffc00)
++`define MBOX_CSR_MBOX_STATUS_MBOX_RDPTR_MASK                                                        (32'h3fffc00)
+ `define CLP_MBOX_CSR_MBOX_UNLOCK                                                                    (32'h30020020)
+ `define MBOX_CSR_MBOX_UNLOCK                                                                        (32'h20)
+ `define MBOX_CSR_MBOX_UNLOCK_UNLOCK_LOW                                                             (0)
+@@ -6516,6 +6514,8 @@
+ `define SOC_IFC_REG_INTR_BLOCK_RF_NOTIF_GEN_IN_TOGGLE_INTR_COUNT_INCR_R                             (32'ha34)
+ `define SOC_IFC_REG_INTR_BLOCK_RF_NOTIF_GEN_IN_TOGGLE_INTR_COUNT_INCR_R_PULSE_LOW                   (0)
+ `define SOC_IFC_REG_INTR_BLOCK_RF_NOTIF_GEN_IN_TOGGLE_INTR_COUNT_INCR_R_PULSE_MASK                  (32'h1)
++`define CLP_MBOX_SRAM_BASE_ADDR                                                                     (32'h30040000)
++`define CLP_MBOX_SRAM_END_ADDR                                                                      (32'h3007ffff)
+ 
+ 
+ `endif
+\ No newline at end of file
+diff --git a/src/integration/rtl/caliptra_top.sv b/src/integration/rtl/caliptra_top.sv
+index bd1bd597..7e4af19f 100755
+--- a/src/integration/rtl/caliptra_top.sv
++++ b/src/integration/rtl/caliptra_top.sv
+@@ -59,9 +59,9 @@ module caliptra_top
+     //SRAM interface for mbox
+     output logic mbox_sram_cs,
+     output logic mbox_sram_we,
+-    output logic [MBOX_ADDR_W-1:0] mbox_sram_addr,
+-    output logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata,
+-    input  logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata,
++    output logic [CPTRA_MBOX_ADDR_W-1:0] mbox_sram_addr,
++    output logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata,
++    input  logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata,
+ 
+     //SRAM interface for imem
+     output logic imem_cs,
+@@ -252,8 +252,8 @@ module caliptra_top
+     pcr_signing_t pcr_signing_data;
+ 
+     //mailbox sram gasket
+-    mbox_sram_req_t mbox_sram_req;
+-    mbox_sram_resp_t mbox_sram_resp;
++    cptra_mbox_sram_req_t mbox_sram_req;
++    cptra_mbox_sram_resp_t mbox_sram_resp;
+ 
+     logic clear_obf_secrets;
+     logic scan_mode_switch;
+diff --git a/src/integration/rtl/config_defines.svh b/src/integration/rtl/config_defines.svh
+index c82c9c6a..d20273b1 100755
+--- a/src/integration/rtl/config_defines.svh
++++ b/src/integration/rtl/config_defines.svh
+@@ -36,7 +36,7 @@
+   // AHB Address Map
+   `define CALIPTRA_SLAVE_NAMES         {"AES"        , "MLDSA"      , "ENTROPY_SRC", "CSRNG"      , "IMEM"       , "SHA256"     , "VEER_ICCM_DMA", "VEER_DCCM_DMA", "SOC_IFC"    , "SHA512"     , "DATAVAULT"  , "PCRVAULT"   , "KEYVAULT"   , "HMAC"       , "ECC"        , "DOE_CTRL"   } /* Array of names for peripherals */
+   `define CALIPTRA_SLAVE_BASE_ADDR     {32'h1001_1000, 32'h1003_0000, 32'h2000_3000, 32'h2000_2000, 32'h0000_0000, 32'h1002_8000, 32'h4000_0000  , 32'h5000_0000  , 32'h3000_0000, 32'h1002_0000, 32'h1001_C000, 32'h1001_A000, 32'h1001_8000, 32'h1001_0000, 32'h1000_8000, 32'h1000_0000} /* Array with slave base address */
+-  `define CALIPTRA_SLAVE_MASK_ADDR     {32'h1001_1FFF, 32'h1003_FFFF, 32'h2000_3FFF, 32'h2000_2FFF, 32'h0000_BFFF, 32'h1002_FFFF, 32'h4001_FFFF  , 32'h5001_FFFF  , 32'h3003_FFFF, 32'h1002_7FFF, 32'h1001_DFFF, 32'h1001_BFFF, 32'h1001_9FFF, 32'h1001_0FFF, 32'h1000_FFFF, 32'h1000_7FFF} /* Array with slave offset address */
++  `define CALIPTRA_SLAVE_MASK_ADDR     {32'h1001_1FFF, 32'h1003_FFFF, 32'h2000_3FFF, 32'h2000_2FFF, 32'h0001_7FFF, 32'h1002_FFFF, 32'h4001_FFFF  , 32'h5001_FFFF  , 32'h3007_FFFF, 32'h1002_7FFF, 32'h1001_DFFF, 32'h1001_BFFF, 32'h1001_9FFF, 32'h1001_0FFF, 32'h1000_FFFF, 32'h1000_7FFF} /* Array with slave offset address */
+   `define CALIPTRA_SLAVE_ADDR_MASK     (`CALIPTRA_SLAVE_BASE_ADDR ^ `CALIPTRA_SLAVE_MASK_ADDR) /* Array indicating meaningful address bits for each slave */
+   `define CALIPTRA_SLAVE_ADDR_WIDTH(n) $clog2((`CALIPTRA_SLAVE_ADDR_MASK >> (`CALIPTRA_AHB_HADDR_SIZE*n)) & {`CALIPTRA_AHB_HADDR_SIZE{1'b1}}) /* Decode address width for each slave from assigned BASE/MASK address */
+   `define CALIPTRA_SLAVE_SEL_DOE         0
+@@ -90,7 +90,7 @@
+   //`define CALIPTRA_KV_NUM_READ 6
+   //`define CALIPTRA_KV_NUM_WRITE 4
+ 
+-  `define CALIPTRA_IMEM_BYTE_SIZE   49152
++  `define CALIPTRA_IMEM_BYTE_SIZE   98304
+   `define CALIPTRA_IMEM_DATA_WIDTH  64
+   `define CALIPTRA_IMEM_DEPTH       `CALIPTRA_IMEM_BYTE_SIZE / (`CALIPTRA_IMEM_DATA_WIDTH/8)
+   `define CALIPTRA_IMEM_BYTE_ADDR_W $clog2(`CALIPTRA_IMEM_BYTE_SIZE)
+diff --git a/src/integration/tb/caliptra_top_tb.sv b/src/integration/tb/caliptra_top_tb.sv
+index b4d504ff..7e8d32ee 100755
+--- a/src/integration/tb/caliptra_top_tb.sv
++++ b/src/integration/tb/caliptra_top_tb.sv
+@@ -94,9 +94,9 @@ module caliptra_top_tb (
+     logic mailbox_data_avail;
+     logic mbox_sram_cs;
+     logic mbox_sram_we;
+-    logic [14:0] mbox_sram_addr;
+-    logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata;
+-    logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata;
++    logic [CPTRA_MBOX_ADDR_W-1:0] mbox_sram_addr;
++    logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata;
++    logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata;
+ 
+     logic imem_cs;
+     logic [`CALIPTRA_IMEM_ADDR_WIDTH-1:0] imem_addr;
+diff --git a/src/integration/tb/caliptra_top_tb_pkg.sv b/src/integration/tb/caliptra_top_tb_pkg.sv
+index d98ff889..9ea5a4db 100644
+--- a/src/integration/tb/caliptra_top_tb_pkg.sv
++++ b/src/integration/tb/caliptra_top_tb_pkg.sv
+@@ -17,9 +17,9 @@ package caliptra_top_tb_pkg;
+ import soc_ifc_pkg::*;
+ 
+ `ifndef VERILATOR
+-class bitflip_mask_generator #(int MBOX_DATA_AND_ECC_W = 39);
++class bitflip_mask_generator #(int CPTRA_MBOX_DATA_AND_ECC_W = 39);
+ 
+-    rand logic [MBOX_DATA_AND_ECC_W-1:0] rand_sram_bitflip_mask;
++    rand logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] rand_sram_bitflip_mask;
+     logic do_double_bitflip;
+     constraint bitflip_c {
+         if (do_double_bitflip) {
+@@ -34,7 +34,7 @@ class bitflip_mask_generator #(int MBOX_DATA_AND_ECC_W = 39);
+         this.do_double_bitflip = 1'b0;
+     endfunction
+ 
+-    function logic [MBOX_DATA_AND_ECC_W-1:0] get_mask(bit do_double_bit = 1'b0);
++    function logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] get_mask(bit do_double_bit = 1'b0);
+         this.do_double_bitflip = do_double_bit;
+         this.randomize();
+         return this.rand_sram_bitflip_mask;
+@@ -42,8 +42,8 @@ class bitflip_mask_generator #(int MBOX_DATA_AND_ECC_W = 39);
+ 
+ endclass
+ `else
+-function static logic [soc_ifc_pkg::MBOX_DATA_AND_ECC_W-1:0] get_bitflip_mask(bit do_double_bit = 1'b0);
+-    return 2<<($urandom%(soc_ifc_pkg::MBOX_DATA_AND_ECC_W-2)) | soc_ifc_pkg::MBOX_DATA_AND_ECC_W'(do_double_bit);
++function static logic [soc_ifc_pkg::CPTRA_MBOX_DATA_AND_ECC_W-1:0] get_bitflip_mask(bit do_double_bit = 1'b0);
++    return 2<<($urandom%(soc_ifc_pkg::CPTRA_MBOX_DATA_AND_ECC_W-2)) | soc_ifc_pkg::CPTRA_MBOX_DATA_AND_ECC_W'(do_double_bit);
+ endfunction
+ `endif
+ 
+diff --git a/src/integration/tb/caliptra_top_tb_services.sv b/src/integration/tb/caliptra_top_tb_services.sv
+index de3e5bce..5581934c 100644
+--- a/src/integration/tb/caliptra_top_tb_services.sv
++++ b/src/integration/tb/caliptra_top_tb_services.sv
+@@ -34,7 +34,7 @@
+ 
+ 
+ module caliptra_top_tb_services 
+-    import soc_ifc_pkg::*; 
++    import soc_ifc_pkg::*;
+     import kv_defines_pkg::*;
+     import caliptra_top_tb_pkg::*;
+ #(
+@@ -50,9 +50,9 @@ module caliptra_top_tb_services
+     //SRAM interface for mbox
+     input  wire logic mbox_sram_cs,
+     input  wire logic mbox_sram_we,
+-    input  wire logic [MBOX_ADDR_W-1:0] mbox_sram_addr,
+-    input  wire logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata,
+-    output wire logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata,
++    input  wire logic [CPTRA_MBOX_ADDR_W-1:0] mbox_sram_addr,
++    input  wire logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata,
++    output wire logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_rdata,
+ 
+     //SRAM interface for imem
+     input  wire logic imem_cs,
+@@ -140,7 +140,7 @@ module caliptra_top_tb_services
+ 
+     string                      abi_reg[32]; // ABI register names
+ 
+-    logic [MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata_bitflip;
++    logic [CPTRA_MBOX_DATA_AND_ECC_W-1:0] mbox_sram_wdata_bitflip;
+     int cycleCntKillReq;
+ 
+     int                         cycleCnt_ff;
+@@ -1385,7 +1385,7 @@ endgenerate //IV_NO
+ 
+     `ifndef VERILATOR
+         initial begin
+-            automatic bitflip_mask_generator #(MBOX_DATA_AND_ECC_W) bitflip_gen = new();
++            automatic bitflip_mask_generator #(CPTRA_MBOX_DATA_AND_ECC_W) bitflip_gen = new();
+             forever begin
+                 @(posedge clk)
+                 if (~|inject_mbox_sram_error) begin
+@@ -1450,7 +1450,7 @@ endgenerate //IV_NO
+                 $display("* TESTCASE PASSED");
+                 $display("\nFinished : minstret = %0d, mcycle = %0d", `DEC.tlu.minstretl[31:0],`DEC.tlu.mcyclel[31:0]);
+                 $display("See \"exec.log\" for execution trace with register updates..\n");
+-                dump_memory_contents(MEMTYPE_LMEM, 32'h0000_0000, 32'h001_FFFF);
++                dump_memory_contents(MEMTYPE_LMEM, MBOX_DIR_START_ADDR, MBOX_DIR_END_ADDR);
+                 dump_memory_contents(MEMTYPE_DCCM, `RV_DCCM_SADR, `RV_DCCM_EADR);
+                 dump_memory_contents(MEMTYPE_ICCM, `RV_ICCM_SADR, `RV_ICCM_EADR);
+                 $finish;
+@@ -1466,7 +1466,7 @@ endgenerate //IV_NO
+         end
+         if (|cycleCntKillReq && (cycleCnt == (cycleCntKillReq + 100))) begin
+                 $error("Dumping memory contents at simulation end due to FAILURE");
+-                dump_memory_contents(MEMTYPE_LMEM, 32'h0000_0000, 32'h001_FFFF);
++                dump_memory_contents(MEMTYPE_LMEM, MBOX_DIR_START_ADDR, MBOX_DIR_END_ADDR);
+                 dump_memory_contents(MEMTYPE_DCCM, `RV_DCCM_SADR, `RV_DCCM_EADR);
+                 dump_memory_contents(MEMTYPE_ICCM, `RV_ICCM_SADR, `RV_ICCM_EADR);
+                 $finish;
+@@ -1582,11 +1582,11 @@ endgenerate //IV_NO
+         hex_file_is_empty = $system("test -s program.hex");
+         if (!hex_file_is_empty) $readmemh("program.hex",  imem_inst1.ram,0,`CALIPTRA_IMEM_BYTE_SIZE-1);
+         hex_file_is_empty = $system("test -s mailbox.hex");
+-        if (!hex_file_is_empty) $readmemh("mailbox.hex",  dummy_mbox_preloader.ram,0,32'h0001_FFFF);
++        if (!hex_file_is_empty) $readmemh("mailbox.hex",  dummy_mbox_preloader.ram,0,MBOX_DIR_MEM_SIZE);
+         hex_file_is_empty = $system("test -s dccm.hex");
+-        if (!hex_file_is_empty) $readmemh("dccm.hex",     dummy_dccm_preloader.ram,0,32'h0001_FFFF);
++        if (!hex_file_is_empty) $readmemh("dccm.hex",     dummy_dccm_preloader.ram,0,32'h0003_FFFF);
+         hex_file_is_empty = $system("test -s iccm.hex");
+-        if (!hex_file_is_empty) $readmemh("iccm.hex",     dummy_iccm_preloader.ram,0,32'h0001_FFFF);
++        if (!hex_file_is_empty) $readmemh("iccm.hex",     dummy_iccm_preloader.ram,0,32'h0003_FFFF);
+         if ($test$plusargs("CLP_BUS_LOGS")) begin
+             tp = $fopen("trace_port.csv","w");
+             el = $fopen("exec.log","w");
+@@ -1662,8 +1662,8 @@ caliptra_veer_sram_export veer_sram_export_inst (
+ //SRAM for mbox (preload raw data here)
+ caliptra_sram 
+ #(
+-    .DATA_WIDTH(MBOX_DATA_W),
+-    .DEPTH     (MBOX_DEPTH )
++    .DATA_WIDTH(CPTRA_MBOX_DATA_W),
++    .DEPTH     (CPTRA_MBOX_DEPTH )
+ )
+ dummy_mbox_preloader
+ (
+@@ -1679,8 +1679,8 @@ dummy_mbox_preloader
+ // dummy_mbox_preloader with ECC bits appended
+ caliptra_sram 
+ #(
+-    .DATA_WIDTH(MBOX_DATA_AND_ECC_W),
+-    .DEPTH     (MBOX_DEPTH         )
++    .DATA_WIDTH(CPTRA_MBOX_DATA_AND_ECC_W),
++    .DEPTH     (CPTRA_MBOX_DEPTH         )
+ )
+ mbox_ram1
+ (
+@@ -1712,9 +1712,9 @@ caliptra_sram #(
+ // This is used to load the generated ICCM hexfile prior to
+ // running slam_iccm_ram
+ caliptra_sram #(
+-     .DEPTH     (16384        ), // 128KiB
++     .DEPTH     (32768        ), // 256KiB
+      .DATA_WIDTH(64           ),
+-     .ADDR_WIDTH($clog2(16384))
++     .ADDR_WIDTH($clog2(32768))
+ 
+ ) dummy_iccm_preloader (
+     .clk_i   (clk),
+@@ -1730,9 +1730,9 @@ caliptra_sram #(
+ // This is used to load the generated DCCM hexfile prior to
+ // running slam_dccm_ram
+ caliptra_sram #(
+-     .DEPTH     (16384        ), // 128KiB
++     .DEPTH     (32768        ), // 256KiB
+      .DATA_WIDTH(64           ),
+-     .ADDR_WIDTH($clog2(16384))
++     .ADDR_WIDTH($clog2(32768))
+… (59 more diff lines in this file not shown)
+diff --git a/src/integration/tb/caliptra_top_tb_soc_bfm.sv b/src/integration/tb/caliptra_top_tb_soc_bfm.sv
+index 2b9edd62..cb614080 100644
+--- a/src/integration/tb/caliptra_top_tb_soc_bfm.sv
++++ b/src/integration/tb/caliptra_top_tb_soc_bfm.sv
+@@ -21,6 +21,7 @@
+ module caliptra_top_tb_soc_bfm
+ import axi_pkg::*;
+ import soc_ifc_pkg::*;
++import mbox_pkg::*;
+ import caliptra_top_tb_pkg::*; #(
+     parameter SKIP_BRINGUP = 0
+ ) (
+diff --git a/src/riscv_core/veer_el2/rtl/common_defines.sv b/src/riscv_core/veer_el2/rtl/common_defines.sv
+index 33a2ea04..22bb06e4 100644
+--- a/src/riscv_core/veer_el2/rtl/common_defines.sv
++++ b/src/riscv_core/veer_el2/rtl/common_defines.sv
+@@ -16,9 +16,9 @@
+ 
+ 
+ // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
+-// This is an automatically generated file by cwhitehead on Wed Nov 20 18:12:03 PST 2024
++// This is an automatically generated file by michnorris on Tue Jan  7 15:37:27 PST 2025
+ //
+… (69 more diff lines in this file not shown)
+… files not shown (diff cap reached): src/riscv_core/veer_el2/rtl/el2_param.vh, src/soc_ifc/coverage/soc_ifc_cov_if.sv, src/soc_ifc/rtl/caliptra_top_reg_defines.svh, src/soc_ifc/rtl/mbox.sv, src/soc_ifc/rtl/mbox_csr.sv, src/soc_ifc/rtl/mbox_csr_pkg.sv, src/soc_ifc/rtl/mbox_csr_uvm.sv, src/soc_ifc/rtl/mbox_pkg.sv, src/soc_ifc/rtl/sha512_acc_top.sv, src/soc_ifc/rtl/soc_ifc_arb.sv, src/soc_ifc/rtl/soc_ifc_pkg.sv, src/soc_ifc/rtl/soc_ifc_top.sv, src/soc_ifc/tb/soc_ifc_tb.sv, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_model_top_pkg.sv
+(55 non-HDL files also changed in this commit; not shown)

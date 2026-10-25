@@ -1,0 +1,305 @@
+diff --git a/src/datavault/rtl/dv_reg_uvm.sv b/src/datavault/rtl/dv_reg_uvm.sv
+index 4c4ac071..644a583b 100644
+--- a/src/datavault/rtl/dv_reg_uvm.sv
++++ b/src/datavault/rtl/dv_reg_uvm.sv
+@@ -3,130 +3,274 @@
+ package dv_reg_uvm;
+     `include "uvm_macros.svh"
+     import uvm_pkg::*;
+-    
++    `include "dv_reg_covergroups.svh"
+     // Reg - dv_reg::StickyDataVaultCtrl
+     class dv_reg__StickyDataVaultCtrl extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        dv_reg__StickyDataVaultCtrl_bit_cg lock_entry_bit_cg[1];
++        dv_reg__StickyDataVaultCtrl_fld_cg fld_cg;
+         rand uvm_reg_field lock_entry;
+ 
+         function new(string name = "dv_reg__StickyDataVaultCtrl");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.lock_entry = new("lock_entry");
+             this.lock_entry.configure(this, 1, 0, "RW", 0, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(lock_entry_bit_cg[bt]) lock_entry_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : dv_reg__StickyDataVaultCtrl
+ 
+     // Reg - dv_reg::StickyDataVaultReg
+     class dv_reg__StickyDataVaultReg extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        dv_reg__StickyDataVaultReg_bit_cg data_bit_cg[32];
++        dv_reg__StickyDataVaultReg_fld_cg fld_cg;
+         rand uvm_reg_field data;
+ 
+         function new(string name = "dv_reg__StickyDataVaultReg");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.data = new("data");
+             this.data.configure(this, 32, 0, "RW", 0, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(data_bit_cg[bt]) data_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : dv_reg__StickyDataVaultReg
+ 
+     // Reg - dv_reg::NonStickyDataVaultCtrl
+     class dv_reg__NonStickyDataVaultCtrl extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        dv_reg__NonStickyDataVaultCtrl_bit_cg lock_entry_bit_cg[1];
++        dv_reg__NonStickyDataVaultCtrl_fld_cg fld_cg;
+         rand uvm_reg_field lock_entry;
+ 
+         function new(string name = "dv_reg__NonStickyDataVaultCtrl");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.lock_entry = new("lock_entry");
+             this.lock_entry.configure(this, 1, 0, "RW", 0, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(lock_entry_bit_cg[bt]) lock_entry_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : dv_reg__NonStickyDataVaultCtrl
+ 
+     // Reg - dv_reg::NonStickyDataVaultReg
+     class dv_reg__NonStickyDataVaultReg extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        dv_reg__NonStickyDataVaultReg_bit_cg data_bit_cg[32];
++        dv_reg__NonStickyDataVaultReg_fld_cg fld_cg;
+         rand uvm_reg_field data;
+ 
+         function new(string name = "dv_reg__NonStickyDataVaultReg");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
+… (175 more diff lines in this file not shown)
+diff --git a/src/doe/rtl/doe_reg_uvm.sv b/src/doe/rtl/doe_reg_uvm.sv
+index 02a5da80..6639a57e 100644
+--- a/src/doe/rtl/doe_reg_uvm.sv
++++ b/src/doe/rtl/doe_reg_uvm.sv
+@@ -3,40 +3,84 @@
+ package doe_reg_uvm;
+     `include "uvm_macros.svh"
+     import uvm_pkg::*;
+-    
++    `include "doe_reg_covergroups.svh"
+     // Reg - doe_reg::DOE_IV
+     class doe_reg__DOE_IV extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        doe_reg__DOE_IV_bit_cg IV_bit_cg[32];
++        doe_reg__DOE_IV_fld_cg fld_cg;
+         rand uvm_reg_field IV;
+ 
+         function new(string name = "doe_reg__DOE_IV");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.IV = new("IV");
+             this.IV.configure(this, 32, 0, "RW", 0, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(IV_bit_cg[bt]) IV_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : doe_reg__DOE_IV
+ 
+     // Reg - doe_reg::DOE_CTRL
+     class doe_reg__DOE_CTRL extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        doe_reg__DOE_CTRL_bit_cg CMD_bit_cg[2];
++        doe_reg__DOE_CTRL_bit_cg DEST_bit_cg[5];
++        doe_reg__DOE_CTRL_fld_cg fld_cg;
+         rand uvm_reg_field CMD;
+         rand uvm_reg_field DEST;
+ 
+         function new(string name = "doe_reg__DOE_CTRL");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.CMD = new("CMD");
+             this.CMD.configure(this, 2, 0, "RW", 1, 'h0, 1, 1, 0);
+             this.DEST = new("DEST");
+             this.DEST.configure(this, 5, 2, "RW", 0, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(CMD_bit_cg[bt]) CMD_bit_cg[bt] = new();
++                foreach(DEST_bit_cg[bt]) DEST_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : doe_reg__DOE_CTRL
+ 
+     // Reg - doe_reg::DOE_STATUS
+     class doe_reg__DOE_STATUS extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        doe_reg__DOE_STATUS_bit_cg READY_bit_cg[1];
++        doe_reg__DOE_STATUS_bit_cg VALID_bit_cg[1];
++        doe_reg__DOE_STATUS_bit_cg UDS_FLOW_DONE_bit_cg[1];
++        doe_reg__DOE_STATUS_bit_cg FE_FLOW_DONE_bit_cg[1];
++        doe_reg__DOE_STATUS_bit_cg DEOBF_SECRETS_CLEARED_bit_cg[1];
++        doe_reg__DOE_STATUS_fld_cg fld_cg;
+         rand uvm_reg_field READY;
+         rand uvm_reg_field VALID;
+         rand uvm_reg_field UDS_FLOW_DONE;
+@@ -44,8 +88,13 @@ package doe_reg_uvm;
+         rand uvm_reg_field DEOBF_SECRETS_CLEARED;
+ 
+         function new(string name = "doe_reg__DOE_STATUS");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.READY = new("READY");
+@@ -58,36 +107,77 @@ package doe_reg_uvm;
+             this.FE_FLOW_DONE.configure(this, 1, 3, "RO", 1, 'h0, 1, 1, 0);
+             this.DEOBF_SECRETS_CLEARED = new("DEOBF_SECRETS_CLEARED");
+             this.DEOBF_SECRETS_CLEARED.configure(this, 1, 4, "RO", 1, 'h0, 1, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(READY_bit_cg[bt]) READY_bit_cg[bt] = new();
++                foreach(VALID_bit_cg[bt]) VALID_bit_cg[bt] = new();
++                foreach(UDS_FLOW_DONE_bit_cg[bt]) UDS_FLOW_DONE_bit_cg[bt] = new();
++                foreach(FE_FLOW_DONE_bit_cg[bt]) FE_FLOW_DONE_bit_cg[bt] = new();
++                foreach(DEOBF_SECRETS_CLEARED_bit_cg[bt]) DEOBF_SECRETS_CLEARED_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+… (639 more diff lines in this file not shown)
+diff --git a/src/ecc/rtl/ecc_reg_uvm.sv b/src/ecc/rtl/ecc_reg_uvm.sv
+index 4f037836..2e574c8c 100644
+--- a/src/ecc/rtl/ecc_reg_uvm.sv
++++ b/src/ecc/rtl/ecc_reg_uvm.sv
+@@ -3,44 +3,89 @@
+ package ecc_reg_uvm;
+     `include "uvm_macros.svh"
+     import uvm_pkg::*;
+-    
++    `include "ecc_reg_covergroups.svh"
+     // Reg - ecc_reg::ECC_NAME
+     class ecc_reg__ECC_NAME extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        ecc_reg__ECC_NAME_bit_cg NAME_bit_cg[32];
++        ecc_reg__ECC_NAME_fld_cg fld_cg;
+         rand uvm_reg_field NAME;
+ 
+         function new(string name = "ecc_reg__ECC_NAME");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+ 
+         virtual function void build();
+             this.NAME = new("NAME");
+             this.NAME.configure(this, 32, 0, "RO", 1, 'h0, 0, 1, 0);
++            if (has_coverage(UVM_CVR_REG_BITS)) begin
++                foreach(NAME_bit_cg[bt]) NAME_bit_cg[bt] = new();
++            end
++            if (has_coverage(UVM_CVR_FIELD_VALS))
++                fld_cg = new();
+         endfunction : build
+     endclass : ecc_reg__ECC_NAME
+ 
+     // Reg - ecc_reg::ECC_VERSION
+     class ecc_reg__ECC_VERSION extends uvm_reg;
++        protected uvm_reg_data_t m_current;
++        protected uvm_reg_data_t m_data;
++        protected bit            m_is_read;
++
++        ecc_reg__ECC_VERSION_bit_cg VERSION_bit_cg[32];
++        ecc_reg__ECC_VERSION_fld_cg fld_cg;
+         rand uvm_reg_field VERSION;
+ 
+         function new(string name = "ecc_reg__ECC_VERSION");
+-            super.new(name, 32, UVM_NO_COVERAGE);
++            super.new(name, 32, build_coverage(UVM_CVR_ALL));
+         endfunction : new
++        extern virtual function void sample_values();
++        extern protected virtual function void sample(uvm_reg_data_t  data,
++                                                      uvm_reg_data_t  byte_en,
++                                                      bit             is_read,
++                                                      uvm_reg_map     map);
+… (978 more diff lines in this file not shown)
+… files not shown (diff cap reached): src/hmac/rtl/hmac_reg_uvm.sv, src/keyvault/rtl/kv_reg_covergroups.svh, src/keyvault/rtl/kv_reg_sample.svh, src/keyvault/rtl/kv_reg_uvm.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/registers/kv_reg_model_top_pkg.sv, src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/src/kv_env_configuration.svh, src/pcrvault/rtl/pv_reg_covergroups.svh, src/pcrvault/rtl/pv_reg_sample.svh, src/pcrvault/rtl/pv_reg_uvm.sv, src/sha256/rtl/sha256_reg_uvm.sv, src/sha512/rtl/sha512_reg_uvm.sv, src/soc_ifc/rtl/mbox_csr_covergroups.svh, src/soc_ifc/rtl/mbox_csr_sample.svh, src/soc_ifc/rtl/mbox_csr_uvm.sv, src/soc_ifc/rtl/sha512_acc_csr_covergroups.svh, src/soc_ifc/rtl/sha512_acc_csr_sample.svh, src/soc_ifc/rtl/sha512_acc_csr_uvm.sv, src/soc_ifc/rtl/soc_ifc_reg.sv, src/soc_ifc/rtl/soc_ifc_reg_covergroups.svh, src/soc_ifc/rtl/soc_ifc_reg_sample.svh, src/soc_ifc/rtl/soc_ifc_reg_uvm.sv, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_model_top_pkg.sv, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/src/soc_ifc_env_configuration.svh, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/src/soc_ifc_environment.svh, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/cptra_ctrl_pkg/src/cptra_ctrl_transaction_coverage.svh, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/cptra_status_pkg/src/cptra_status_transaction_coverage.svh, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/soc_ifc_ctrl_pkg/src/soc_ifc_ctrl_transaction_coverage.svh, src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/soc_ifc_status_pkg/src/soc_ifc_status_transaction_coverage.svh, tools/templates/rdl/cov/main.sv, tools/templates/rdl/cov/top_pkg.sv
+(1 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,581 @@
+repo,hash,subject,body,stratum,rule_label,n_design,n_verification,n_unknown,files,diff_file,human_label,llm_label,llm_confidence,llm_reason,llm_votes,llm_agreement
+opentitan,53ef2ec43c1c1eb00b771e17fc157f5bb1103ed5,Update lowrisc_ibex to lowRISC/ibex@d14312c,"Ibex top-level interface has changed, single hart_id replaces
+cluster_id/core_id.
+
+Update code from upstream repository
+https://github.com/lowRISC/ibex.git to revision
+d14312c3cc47a7d4b34943e4febb96312353b2cc
+
+* Replace cluster_id/core_id with hart_id (lowRISC/ibex#29) (Greg
+  Chadwick)
+* CSR: Access checks on Debug CSRs (Rahul Behl)
+* [RTL] - Add PMP module (Tom Roberts)
+* Register file: update comments (Pirmin Vogel)
+* Controller: change behavior of DRET instruction (Pirmin Vogel)
+* Update interrupt mode, add debug mode WFI test (lowRISC/ibex#268)
+  (udinator)
+* Lint: Update Verilator waiver file (Philipp Wagner)
+* Update google_riscv-dv to 102791d (lowRISC/ibex#266) (taoliug)
+* Mention CREDITS.md in license header (Philipp Wagner)
+* Replace author credits in files with CREDITS.md (Philipp Wagner)
+* Add link to CREDITS.md from README.md (Philipp Wagner)
+* Add CREDITS.md file (Philipp Wagner)
+* Integrate risc-v stream generator handshake into Ibex sim flow
+  (lowRISC/ibex#264) (udinator)
+* Update google_riscv-dv to google/riscv-dv@faddfa4 (lowRISC/ibex#263)
+  (udinator)
+* Correct a typo in doc/verification.rst (Felix Yan)
+* Update documentation how to run riscv-compliance (Philipp Wagner)
+* CI: Run the compliance tests for all ISA variants (Philipp Wagner)
+* Update google_riscv-dv to e81acc9 (lowRISC/ibex#257) (taoliug)
+* Make mtvec writable, remove previous workaround (lowRISC/ibex#256)
+  (taoliug)
+* Test cleanup (lowRISC/ibex#255) (taoliug)
+* Update google_riscv-dv to 73274f2 (lowRISC/ibex#254) (taoliug)
+* Consolidate some debug generation options, and make the
+  signature_addr handshake optional (lowRISC/ibex#253) (udinator)
+* Add more debug tests (lowRISC/ibex#251) (udinator)
+* src_files.yml: Add ibex_core_tracing.sv (Pirmin Vogel)
+* ram_1p.sv: Fix rvalid_o generation (Pirmin Vogel)
+* Remove unused signal data_reg_offset (Ivan Ribeiro)
+* Add Azure Pipelines build badge to README.md (Philipp Wagner)
+* CI: Use Azure Pipelines to run lint and some DV (Philipp Wagner)
+* Update google_riscv-dv to google/riscv-dv@7cce16c (lowRISC/ibex#246)
+  (udinator)
+* ID stage: rework CSR-related pipeline flushes (Pirmin Vogel)
+* Adapt Verilator lint waiver (Pirmin Vogel)
+* Add basic debug test and modify sim flow (lowRISC/ibex#243)
+  (udinator)
+* [DV] Enable aligned load/store test (lowRISC/ibex#242) (taoliug)
+* Update google_riscv-dv to 63fa0ca (lowRISC/ibex#241) (taoliug)
+* Update google_riscv-dv to google/riscv-dv@07599f6 (lowRISC/ibex#240)
+  (udinator)
+* Fix the verbose logging issue, fix coverage/waveform options
+  (lowRISC/ibex#235) (taoliug)
+* Update google_riscv-dv to google/riscv-dv@e905e9f (lowRISC/ibex#234)
+  (udinator)
+* update ibex testbench (lowRISC/ibex#232) (udinator)
+* update ibex simulation flow (lowRISC/ibex#233) (udinator)
+* [rtl] Add support for instruction fetch errors (Tom Roberts)",review,both,26,32,1,"V M hw/ip/rv_core_ibex/dv/tb/core_ibex_tb_top.sv
+D M hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv
+D M hw/top_earlgrey/rtl/top_earlgrey_usb.sv
+V M hw/vendor/lowrisc_ibex/dv/riscv_compliance/rtl/ibex_riscv_compliance.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/common/irq_agent/irq_master_driver.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_dut_probe_if.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_env_cfg.sv
+~ M hw/vendor/lowrisc_ibex/dv/uvm/env/core_ibex_vseqr.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_asm_program_gen.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/riscv_dv_extension/ibex_core_setting.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/tb/core_ibex_tb_top.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_base_test.sv
+V A hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_report_server.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_seq_lib.sv
+V A hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_test_lib.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_test_pkg.sv
+V M hw/vendor/lowrisc_ibex/dv/uvm/tests/core_ibex_vseq.sv
+D M hw/vendor/lowrisc_ibex/examples/fpga/artya7-100/rtl/ram_1p.sv
+D M hw/vendor/lowrisc_ibex/examples/fpga/artya7-100/rtl/top_artya7_100.sv
+V M hw/vendor/lowrisc_ibex/examples/sim/tb/ibex_tracing_tb.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_alu.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_compressed_decoder.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_controller.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_core.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_core_tracing.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_cs_registers.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_decoder.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_ex_block.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_fetch_fifo.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_id_stage.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_if_stage.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_load_store_unit.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_multdiv_fast.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_multdiv_slow.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_pkg.sv
+D A hw/vendor/lowrisc_ibex/rtl/ibex_pmp.sv
+D M hw/vendor/lowrisc_ibex/rtl/ibex_prefetch_buffer.sv
+… +20 more",,,both,0.9,"Vendored upstream update with RTL changes (hart_id, PMP module) and testbench/verification changes (UVM env, sequences, probes).",both|both|both,1.0
+opentitan,819a466ebf34b6e848066ca76824229f03a94b4e,[util/reggen] Rework TL-UL to Register interaface,"- Added tlul_adapter_reg.sv for converting TL-UL to reg_if
+- Reduced one clock delay between the requests (#98)
+- Re-created register top for all IPs",review,design,10,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D A hw/ip/tlul/rtl/tlul_adapter_reg.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,"RTL design changes: new adapter module, refactored register interface logic, signal reorganization.",design|design|design,1.0
+opentitan,debaf5e526a708564285f8afa646e7e09544134a,[lint] Remove unused localparam,"FSZ is not used in reg_top anymore. So it is removed from the template
+and IP reg_tops are re-generated.",review,design,9,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,Removes unused localparam from RTL design files and generator template. No testbench or verification code changes.,design|design|design,1.0
+opentitan,5aec52814bba6ea8c2022687ee2762d2c33c82d8,Update flash tlul adapter,"The original flash tlul adapter contained a request fifo to absorb
+incoming transactions.  These transactions were then replayed
+to the flash macro.
+
+This extra outstanding capacity was not necessary as the flash macro
+is already wrapped by a flash_phy controller and should itself handle
+outstanding transactions if appropriate.
+
+Flash now uses the tlul sram adapter to just pass transactions directly
+through (while holding appropriate information for constructing tlul
+responses to host).
+
+A separate PR will be pushed to add parallel transaction handling to
+flash_phy.  This will take advantage of flash's multi-bank construction
+and long read times.",review,both,4,1,1,"D M hw/ip/flash_ctrl/rtl/flash_phy.sv
+D D hw/ip/tlul/rtl/tlul_adapter_flash.sv
+D M hw/ip/tlul/rtl/tlul_adapter_sram.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+V M hw/top_earlgrey/dv/env/chip_reg_block.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,"RTL changes: deleted flash adapter module, modified sram adapter parameters, updated top-level instantiations",design|design|design,1.0
+opentitan,ffc9e837ca752fe3eae6a986acd3380504eced25,[hw] Add additional I/O ports to Ibex,"This commit adds the new `core_sleep_o` output and the `instr_err_i`
+input to Ibex.",review,design,2,0,1,"D M hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,RTL module port additions and internal signal connections for Ibex core interface.,design|design|design,1.0
+opentitan,78607aa4cbac122713be8277eec4cc77c75cab59,[hw/formal] Adding assertion for scanmode_i input,"Scanmode_i needs to be non-X during FPV. This PR adds an assertions to all blocks that have a scanmode input.
+In addition, updated fpv.tcl to improve FPV percentage of proven assertions for many blocks (without increasing runtime significantly).",review,design,5,0,1,"D M hw/ip/prim/rtl/prim_clock_inverter.sv
+D M hw/ip/spi_device/rtl/spi_device.sv
+D M hw/ip/uart/rtl/uart.sv
+D M hw/ip/uart/rtl/uart_core.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,verification,0.9,Commit adds assertions (`ASSERT_KNOWN` macro) to check scanmode_i input validity during FPV.,verification|verification|verification,1.0
+opentitan,61e25e8e61613a5c826f41368683c859ca0cdd9a,The option is controlled through xbar_main.hjson,"By default all xbar componentns are marked with
+'pipeline' = true
+'pipeline_byp' = true
+
+This means all elements (socket1n/socketm1) have both incoming and outgoing
+FIFOs that are bypassable if the FIFO is empty
+
+Setting `pipeline_byp` to false makes it a non-bypassable fifo and incurs
+extra latency while giving better timing
+
+Setting `pipeline` to false passes through the FIFO entirely and connects
+input to output
+
+The current scheme does the following:
+remove pipelines for coreI/coreD to minimize process latency
+remove pipeliens for ROM / RAM / FLASH to minimize instruction latency
+keep pipelines to all other peripherals and memories",review,design,6,0,1,"D M hw/ip/prim/rtl/prim_arbiter.sv
+D M hw/ip/prim/rtl/prim_fifo_sync.sv
+D M hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+D M hw/ip/tlul/rtl/tlul_socket_1n.sv
+D M hw/ip/tlul/rtl/tlul_socket_m1.sv
+D M hw/top_earlgrey/rtl/xbar_main.sv
+? M util/tlgen/xbar.rtl.tpl.sv",,,design,0.9,"Changes to RTL modules: prim_fifo_sync, prim_arbiter, sockets, core logic, xbar instantiations. No testbench changes.",design|design|design,1.0
+opentitan,51461cd27e0f7bea13ae61e05e6b0ed3da2a5da7,[util/reggen] Addressed subword write.,"If write size is smaller than the register width, then responses an
+error. Previously it raises an error for subword write regardless of the
+register width.
+
+For instance, if the CPU writes a byte into a register having smaller
+than 8 valid bit, it succeeds. But if register field width is greater
+than 8, it returns error now.
+
+Errored write access won't let the register value be written",review,design,18,0,2,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_pkg.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_pkg.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart_reg_pkg.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_pkg.tpl.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,Changes RTL register modules and generator templates (.tpl.sv) that generate RTL code for subword write validation logic.,design|design|design,1.0
+opentitan,bc5d5143c03c1d3858f3f2346b3bfe0d34341ddc,[reggen] Fix the last comma (oops!),Sorry I made last minute mistake (while beautifying the codes...),review,design,9,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+D M hw/ip/gpio/rtl/gpio_reg_pkg.sv
+D M hw/ip/hmac/rtl/hmac_reg_pkg.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+D M hw/ip/uart/rtl/uart_reg_pkg.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+? M util/reggen/reg_pkg.tpl.sv",,,design,0.9,Fixes trailing comma in generated RTL register package files and template; pure syntax correction to design code.,design|design|design,1.0
+opentitan,7ff53125bd9504cf5967db7254d444963723eddb,Add option for ibex pipeline in fpga,,review,design,3,0,1,"D M hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv
+D M hw/top_earlgrey/rtl/top_earlgrey_nexysvideo.sv",,,design,0.9,Adds PipeLine parameter and instantiates tlul_fifo_sync modules in RTL design code.,design|design|design,1.0
+opentitan,e062ce2424eca071d7bcf56cdae26099327f2c3b,[alert_handler] Add templates for regfile wrapper and alert package,,review,unknown,0,0,2,"? A hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+? A hw/ip/alert_handler/doc/alert_pkg.tpl.sv",,,design,0.9,Templates generate RTL design code: register wrapper module and SystemVerilog package with parameters and structs.,design|design|design,1.0
+opentitan,de88e3a1673bdeb490b7620d0180d8805aa8a76c,[reggen] Add devmode_i to register module,"Now *_reg_top has `devmode_i` signal. It controls the error return
+behavior if LifeCyle is set to 1. If the host accesses unmapped
+registers, the register module returns normal response in case of
+LifeCycle 1b and devmode_i 1b. If LifeCycle is 0b, it always assume
+devmode is 1b.",review,design,19,0,2,"D M hw/ip/flash_ctrl/rtl/flash_ctrl.sv
+D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+? M hw/ip/rv_plic/doc/rv_plic.tpl.sv
+D M hw/ip/rv_plic/rtl/rv_plic.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbdev/rtl/usbdev.sv
+D M hw/ip/usbuart/rtl/usbuart.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,Adds devmode_i port and LifeCycle parameter to RTL register modules and instantiations; modifies error logic.,design|design|design,1.0
+opentitan,244a1d502b7168f7e641a6b551a6ed61b3f9c1b4,[reggen] Convert addrmiss to comb logic,"`addrmiss` was `always_ff` from `addr_hit`. It results in visible to
+next transaction. Now it is changed to combinational logic to in-phase
+with the request and response.
+
+This is related to #246.",review,design,9,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,RTL logic change: converting sequential always_ff to combinational assign for addrmiss signal.,design|design|design,1.0
+opentitan,44461031b60e94cd009a75b0fef6670c9c2975d0,Use prim_rom for ROM,Remove the ability for system hosts to accidentally write the ROM,review,both,3,1,2,"? M hw/ip/prim/abstract/prim_rom.sv
+D M hw/ip/prim_generic/rtl/prim_generic_rom.sv
+D M hw/ip/prim_xilinx/rtl/prim_xilinx_rom.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+V M hw/top_earlgrey/dv/tb/chip_hier_macros.svh
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,"RTL module changes: ROM primitive interface updates, adapter configuration, ROM instantiation replacement in top-level design.",design|design|design,1.0
+opentitan,b195695c8b42a5ebc5a9f59790c7c9a0b53e8ab3,Updates for ROM,"- Allow FPGA to use real ROM
+- Allow reset to be used in prim_rom
+- Qualify tlul_adapter_sram response to block d_valid if there are no pending
+  requests",review,design,3,0,2,"? M hw/ip/prim/abstract/prim_rom.sv
+D M hw/ip/prim_generic/rtl/prim_generic_rom.sv
+D M hw/ip/tlul/rtl/tlul_adapter_sram.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,All changes are RTL modifications: adding reset signal to ROM modules and qualifying adapter response logic.,design|design|design,1.0
+opentitan,3b36e060d8c21cb729256604d5ef8eb2f85c4480,[reggen] Revise devmode behavior,"Register modules aren't aware of LifeCycle anymore. It determines the
+error response based on `devmode_i` only.",review,design,9,0,1,"D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_top.sv
+D M hw/ip/gpio/rtl/gpio_reg_top.sv
+D M hw/ip/hmac/rtl/hmac_reg_top.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_top.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_top.sv
+D M hw/ip/uart/rtl/uart_reg_top.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,"Changes to RTL register modules: removes LifeCycle parameter, simplifies devmode logic in generated reg_top.sv files",design|design|design,1.0
+opentitan,4f94f88dcde47856440629ec2e707b9c5ae4306d,"[alert_handler] Regenerate regfile, add devmode_i signal",,review,both,3,1,1,"? M hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+V A hw/ip/alert_handler/dv/env/alert_handler_reg_block.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_top.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv",,,both,0.9,RTL register files (rtl/) regenerated plus new verification UVM register block (dv/).,both|both|both,1.0
+opentitan,7767f80ef5cb8d5b219249a43c7b8664c698e800,[alert_handler] Make lint clean,,review,design,2,0,1,"? M hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+D M hw/ip/alert_handler/rtl/alert_handler_esc_timer.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv",,,design,0.9,Changes fix lint issues in RTL design files: register field names and assertion macro scope qualifiers.,design|design|design,1.0
+opentitan,22ed0095bf1fcc4acbe90fa49ddc798bd0de8750,[alert_handler] Update regfile wrap and add crashdump out,,review,design,5,0,2,"? M hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+? M hw/ip/alert_handler/doc/alert_pkg.tpl.sv
+D M hw/ip/alert_handler/rtl/alert_handler.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_top.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv
+D M hw/ip/alert_handler/rtl/alert_pkg.sv",,,design,0.9,"Changes are RTL design: new crashdump output port, struct definition, register assignments, and port alignment.",design|design|design,1.0
+opentitan,c4873f3c92b7ee9146e551f1b574d4040d83acea,[reggen] Add Parameter list to the hjson format,"- add `param_list` in IP configuration
+- The parameter name can be used in `multireg[""count""]` field
+- `param_list` is added to the register package
+
+This is related to #30 #47",review,design,1,0,1,"D M hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+? M util/reggen/reg_pkg.tpl.sv",,,design,0.9,Changes add parameter definitions to RTL register package and generator template for RTL code generation.,design|design|design,1.0
+opentitan,b99319088aadf2e2874406063dc58cf969fcc475,"[reggen] Refactor reggen, add ""local"" to param","- Moved data structure into `util/reggen/data.py`
+- add `local` field in `param_list`
+  + if `local` is false, it creates parameter in reg_top.sv
+- Revised HMAC, RV_PLIC to use parameter",review,design,3,0,2,"D M hw/ip/hmac/rtl/hmac_reg_pkg.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+? M util/reggen/reg_pkg.tpl.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,RTL parameter refactoring: changes generated register package and module templates with parameter definitions.,design|design|design,1.0
+opentitan,efbad35d96aa892bffe6e677df6638117e7a1a4e,[prim_pad_wrapper] Add generic/xilinx pad wrapper,,review,design,2,0,1,"? A hw/ip/prim/abstract/prim_pad_wrapper.sv
+D A hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv
+D A hw/ip/prim_xilinx/rtl/prim_xilinx_pad_wrapper.sv",,,design,0.9,"New RTL modules for pad wrapper implementations: abstract interface and technology-specific (generic, Xilinx) implementations.",design|design|design,1.0
+opentitan,9a94b6c0c08267cb581deb3a9bb7f750185ddcc8,"[reggen] Refactor reggen, first step towards nested multiregs",,review,verification,0,1,2,"? M util/reggen/reg_pkg.tpl.sv
+? M util/reggen/reg_top.tpl.sv
+V M util/reggen/uvm_reg.tpl.sv",,,both,0.9,"Templates generate both RTL (reg_pkg.tpl.sv, reg_top.tpl.sv) and UVM verification code (uvm_reg.tpl.sv).",both|both|both,1.0
+opentitan,f9fe0056464df6e170c76f57a5dfed53dbd6e8c1,[reggen] Fix nested parameter and dimension stacking,,review,unknown,0,0,1,? M util/reggen/reg_pkg.tpl.sv,,,design,0.9,Template generates RTL register package code; fixes nested parameter dimension stacking in generated SystemVerilog,design|design|design,1.0
+opentitan,a2c51d9a9d27aca77f1b8988c6bcdbcf2f9e5316,[reggen] Add support for non-homogenous multiregs,,review,unknown,0,0,2,"? M util/reggen/reg_pkg.tpl.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,Templates generate RTL code; changes add support for non-homogeneous multiregs in register definitions.,design|design|design,1.0
+opentitan,aa150d86d23f202c89b98adfa97515c8d96f87c2,"[reggen/rv_plic] Regenerate rv_plic registers, switch to arrays",,review,design,6,0,1,"? M hw/ip/rv_plic/doc/rv_plic.tpl.sv
+D M hw/ip/rv_plic/rtl/rv_plic.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+D M hw/ip/rv_plic/rtl/rv_plic_reg_top.sv
+D M hw/top_earlgrey/rtl/rv_plic.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_top.sv",,,design,0.9,RTL regeneration: register package structs and template conversion to arrays; no testbench changes.,design|design|design,1.0
+opentitan,9a92bea9818e7fd609f29ee7f0378bcf92089519,[reggen] Fix template error in degenerate case (empty hw2reg/reg2hw),,review,unknown,0,0,2,"? M util/reggen/reg_pkg.tpl.sv
+? M util/reggen/reg_top.tpl.sv",,,design,0.9,Template changes that generate RTL code; fixes register struct generation in degenerate cases.,design|design|design,1.0
+opentitan,2cfadab0b3b2e083a888fac0eca19d7c9226406c,[topgen] Add scanmode to ip port,"If IP uses its own sw controlled reset/clock, it needs scanmode input to
+improve DFT coverage. Now topgen reads `scan` field from ip hjson and
+add `scanmode_i` port accordingly.
+
+See the example of spi_device",review,both,2,1,1,"V M hw/ip/spi_device/dv/tb/tb.sv
+D M hw/ip/spi_device/rtl/spi_device.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,both,0.9,"RTL design changes (spi_device.sv, top_earlgrey.sv) plus testbench updates (tb.sv) and template generation",both|both|both,1.0
+opentitan,e8d310e5b61710c1a484ede8125c70ca313ada34,[padctrl] Add padctrl implementation,"* [padctrl] Initial commit of regfile template and documentation
+* [padctrl] Add generated files
+* [padctrl] Add RTL implementation
+* [padctrl/prim_pad_wrapper] Make lint clean
+* [padctrl] Update documentation
+* [padctrl] Align defaults in documentation and implementation",review,both,5,1,1,"V A hw/ip/padctrl/dv/env/padctrl_reg_block.sv
+D A hw/ip/padctrl/rtl/padctrl.sv
+D A hw/ip/padctrl/rtl/padctrl_reg_pkg.sv
+D A hw/ip/padctrl/rtl/padctrl_reg_top.sv
+D A hw/ip/padctrl/rtl/padring.sv
+? M hw/ip/prim/abstract/prim_pad_wrapper.sv
+D M hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv",,,both,0.9,"Commit adds RTL design modules (padctrl.sv, padctrl_reg_pkg.sv, padctrl_reg_top.sv, padring.sv) and verification UVM register block (padctrl_reg_block.sv).",both|both|both,1.0
+opentitan,787ce311e44a3e0f89938ea7359b68ac0acc0f5d,[alert_handler] Reparameterize alert_handler regfile,,review,design,4,0,2,"? D hw/ip/alert_handler/doc/alert_handler_reg_wrap.tpl.sv
+? D hw/ip/alert_handler/doc/alert_pkg.tpl.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_top.sv
+D M hw/ip/alert_handler/rtl/alert_handler_reg_wrap.sv
+D M hw/ip/alert_handler/rtl/alert_pkg.sv",,,design,0.9,Changes RTL register package and wrapper modules; reparameterizes design registers and data structures.,design|design|design,1.0
+opentitan,534fb24775ad3ac881d983346cb9af088773bbc9,[reggen] Add 3 byte writes to r.width >= 16 < 24,"This is related to #236.
+
+Even Ibex doesn't support 3 byte write, reggen shouldn't care. Now it
+supports 3byte writes (4'b0111).",review,design,8,0,1,"D M hw/ip/alert_handler/rtl/alert_handler_reg_pkg.sv
+D M hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+D M hw/ip/padctrl/rtl/padctrl_reg_pkg.sv
+D M hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+D M hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+D M hw/ip/uart/rtl/uart_reg_pkg.sv
+D M hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+D M hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+? M util/reggen/reg_pkg.tpl.sv",,,design,0.9,Changes to RTL register package files and generator template that control register write permissions.,design|design|design,1.0
+opentitan,632c6f776cd08a143a8dd67c15e059922deafc23,[topgen] Add PINMUX & PADS to hjson,"This is a Pull-Request for defining PINMUX and PADS in hjson and
+generating complete hjson struct to helping pinmux/ pads generators.
+Purpose of this PR is to gather wide agreement what will come to the top
+and the suggested data structure in `top_earlgrey.hjson` for PINMUX and
+PADS.
+
+This PR also removes unused hjson (deprecated) and clean-up the merge
+script to make common functions to be used in validate, merge, and
+inside the template.
+
+This issue is related to #306",review,unknown,0,0,1,? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv,,,design,0.9,Template generates RTL code; parametrizes module name from hjson configuration data structure.,design|design|design,1.0
+opentitan,3193b00f3b1e4ec1f596da2116c9b7858303ef26,[top] First draft of reset controller integration,"- This PR does not implement the actual reset controller, but
+  simply wires up the top level resets as if the controller existed
+- The purpose of this PR is to get agreement on the general connectivity
+  or reset nets and ports",review,design,1,0,1,"? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,Changes wire up reset nets and ports in RTL modules; no testbench or verification code modified.,design|design|design,1.0
+opentitan,80bd8aa45ad59afd9d14b74233fae649306b5fb8,[topgen] Handle multi clock ports in topgen/module/xbar,"Construction is very similar to reset support.
+Each target is defined with a clock_connection that is used to
+connect in top_*.sv
+
+Inside validate.py, validate_clock / validate_reset are currently
+very similar, but is expected to diverge in the future/
+
+Related to #346",review,design,1,0,1,"? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,RTL generator template and RTL module changes adding clock wire declarations and routing logic.,design|design|design,1.0
+opentitan,a3ec3ba3f5f6eda1529c0ac53716459bab5140c2,[Ibex] Expose PMP-related parameters in wrapper,"PMP is disabled currently (which is the default), but still expose the
+parmaeters to have the ability to tune things in the future, and keep a
+consistent interface with Ibex.",review,design,2,0,1,"D M hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+? M hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+D M hw/top_earlgrey/rtl/top_earlgrey.sv",,,design,0.9,Adding parameters to RTL modules and passing them through module instantiations is RTL design code.,design|design|design,1.0
+opentitan,5cb7022b4f02a4c04d180ee1a94f7f643f132fae,[prim] Fix various comments,"Remove wrong comments from primitives, add the common TODO comment to
+all abstract primitives.
+
+No functional changes.",review,unknown,0,0,4,"? M hw/ip/prim/abstract/prim_clock_gating.sv
+? M hw/ip/prim/abstract/prim_pad_wrapper.sv
+? M hw/ip/prim/abstract/prim_ram_2p.sv
+? M hw/ip/prim/abstract/prim_rom.sv",,,neither,0.9,Only comment changes: removing/adding TODO and descriptive comments. No functional or structural changes.,neither|neither|neither,1.0
+opentitan,11894a6aa31ef5bcc83c47a920551d10d6151efe,[prim_ram_2p] Avoid wildcard port list,"Wildcard ports lists are discouraged in our style guide, explicitly name
+all ports instead.",review,unknown,0,0,1,? M hw/ip/prim/abstract/prim_ram_2p.sv,,,design,0.9,RTL module instantiation refactored to explicitly name ports instead of wildcard syntax.,design|design|design,1.0
+opentitan,cabf26f33f6964caba640d9638873d681ba4a6a5,[prim] Restore ability to select default implementation,"When we introduced the primitives library, we also had the possibility
+to choose a per-design default implementation for primitives. To set a
+default implementation, the synthesis script would set the
+PRIM_DEFAULT_IMPL define to values like ""xilinx"" or ""generic"", which was
+then used as default value for the Impl parameter, which is present in
+all primitives modules:
+
+```verilog
+parameter Impl = `""`PRIM_DEFAULT_IMPL`""
+```
+
+Unfortunately, this syntax to ""cast"" a define to a string isn't
+supported in Cadence LEC. As a stop-gap, we removed the functionality
+altogether. This resulted in always using the ""generic"" implementation
+for all targets, which produces suboptimal results e.g. on Xilinx FPGAs.
+
+With this commit, the original functionality is restored in a
+LEC-compatible way. Instead of using strings for PRIM_DEFAULT_IMPL, we
+now use integers. The allowed values are listed in the
+prim_pkg::impl_e enum.
+
+Implementation notes on types:
+
+* PRIM_DEFAULT_IMPL is a define passed through to tools as command line
+  options. Most/all tools only support ""primitive"" types in this way,
+  not enums; hence PRIM_DEFAULT_IMPL is an integer, and all assignments
+  to it must be integer as well. This includes the default assignment:
+
+  `ifndef PRIM_DEFAULT_IMPL
+    `define PRIM_DEFAULT_IMPL integer'(prim_pkg::ImplGeneric)
+  `endif
+
+* Since we assign the PRIM_DEFAULT_IMPL define to the Impl parameter,
+  this parameter needs to be either an integer, or cast the RHS to an
+  enum.
+
+* In this implementation we stayed with an integer type for the Impl to
+  avoid potential problems with tools don't supporting enums as
+  parameter type. (We don't know of any tool yet that doesn't support
+  it, but it seems sufficiently exotic to run into problems down the
+  road.)
+
+Thanks to Tim for an initial version of this code.
+
+Fixes #40",review,both,4,2,6,"V M hw/ip/padctrl/fpv/tb/padctrl_tb.sv
+V M hw/ip/padctrl/fpv/vip/padctrl_assert.sv
+D M hw/ip/padctrl/rtl/padctrl.sv
+D M hw/ip/padctrl/rtl/padring.sv
+? M hw/ip/prim/abstract/prim_clock_gating.sv
+? M hw/ip/prim/abstract/prim_flash.sv
+? M hw/ip/prim/abstract/prim_pad_wrapper.sv
+? M hw/ip/prim/abstract/prim_ram_1p.sv
+? M hw/ip/prim/abstract/prim_ram_2p.sv
+? M hw/ip/prim/abstract/prim_rom.sv
+D A hw/ip/prim/rtl/prim_pkg.sv
+D M hw/ip/prim/rtl/prim_ram_2p_adv.sv",,,design,0.9,"Changes are RTL parameter definitions, conditional compilation, and implementation selection logic in abstract modules.",design|design|design,1.0
+opentitan,309a47974f0ce84cab3d559a85975448dfbd7e2f,[prim] Use prim_pkg::impl_e instead of int for Impl,"All target-dependent primitives are supplied with an Impl parameter,
+which chooses the implementation target. The potential values for this
+parameter are listed in the prim_pkg::impl_e enum, which is based on
+int.
+
+This commit switches Impl over to use prim_pkg::impl_e as type, instead
+of int. Doing so avoids many casts over the code base, at the cost of
+having to pass an enum type name to the tool in the PRIM_DEFAULT_IMPL
+define. This approach is standards-compliant, but seems fragile.
+Let's give it a try nonetheless, and see how tools react to it.
+
+Tested with
+- Verilator 4.019
+- Xilinx Vivado synthesis 2018.3
+- Synopsys VCS 2019.06
+
+Note for the future: revert this commit if you run into tool issues.",review,both,2,2,6,"V M hw/ip/padctrl/fpv/tb/padctrl_tb.sv
+V M hw/ip/padctrl/fpv/vip/padctrl_assert.sv
+D M hw/ip/padctrl/rtl/padctrl.sv
+D M hw/ip/padctrl/rtl/padring.sv
+? M hw/ip/prim/abstract/prim_clock_gating.sv
+? M hw/ip/prim/abstract/prim_flash.sv
+? M hw/ip/prim/abstract/prim_pad_wrapper.sv
+? M hw/ip/prim/abstract/prim_ram_1p.sv
+? M hw/ip/prim/abstract/prim_ram_2p.sv
+? M hw/ip/prim/abstract/prim_rom.sv",,,design,0.9,Changes RTL parameter types and conditional logic in abstract/primitive modules; no testbench or verification code modified.,design|design|design,1.0
+opentitan,8d6a5ab43a52f75a0c13d47307d9cdab85ff0b11,[prim_clock_mux2] Adds a clock mux2 and updates the clk inv primitive,"The clock inverter primitive now has a parameter to optionally disable
+the scanmode bypass feature. The scanmode bypass is now realized with a
+technology dependent clock mux primitive.
+
+Note: this commit also updates the portlist of the clock inverter
+instance in spi device.",review,design,4,0,1,"? A hw/ip/prim/abstract/prim_clock_mux2.sv
+D M hw/ip/prim/rtl/prim_clock_inverter.sv
+D A hw/ip/prim_generic/rtl/prim_generic_clock_mux2.sv
+D A hw/ip/prim_xilinx/rtl/prim_xilinx_clock_mux2.sv
+D M hw/ip/spi_device/rtl/spi_device.sv",,,design,0.9,New RTL modules (clock mux primitives) and RTL modifications to existing design modules. Assertions are in RTL context.,design|design|design,1.0
+opentitan,b7c9e3bc6e851df2e2097fbf4d46faa277518b18,[param] revert to localparam for derived parameters,Signed-off-by: Scott Johnson <scottdj@google.com>,review,design,11,0,2,"? M hw/ip/prim/abstract/prim_ram_1p.sv
+? M hw/ip/prim/abstract/prim_ram_2p.sv
+D M hw/ip/prim/rtl/prim_fifo_async.sv
+D M hw/ip/prim/rtl/prim_fifo_sync.sv
+D M hw/ip/prim_generic/rtl/prim_generic_flash.sv
+D M hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv
+D M hw/ip/prim_generic/rtl/prim_generic_ram_2p.sv
+D M hw/ip/prim_xilinx/rtl/prim_xilinx_ram_2p.sv
+D M hw/ip/rv_plic/rtl/rv_plic_target.sv
+D M hw/ip/spi_device/rtl/spi_fwm_rxf_ctrl.sv
+D M hw/ip/spi_device/rtl/spi_fwm_txf_ctrl.sv
+D M hw/ip/tlul/rtl/tlul_socket_1n.sv
+D M hw/ip/usbdev/rtl/usbdev_usbif.sv",,,design,0.9,RTL parameter changes: converting parameters to localparam and removing assertion checks.,design|design|design,1.0
+opentitan,921d4d89c124aebfc319c5fe205bb683874e3a4f,Auto-generate primitives from techlib,"Instead of handcoding the abstract primitives, they are now
+auto-generated through the primgen script, hooked up as fusesoc
+generator.
+
+This requires a not-yet-released version of fusesoc to have all
+information available that our generator needs. Use
+`pip3 install --user -U -r python-requirements.txt` to get a supported
+fusesoc version for this change.
+
+After this commit, technology libraries can simply be added to the
+fusesoc search path. A technology library is expected to be similar to
+the `prim_xilinx` library we have in the tree today; copy this library
+as a starting point.
+
+```
+fusesoc --cores-root=. --cores-root=path-to-your-other-techlib run ....
+```
+
+Signed-off-by: Philipp Wagner <phw@lowrisc.org>",review,both,1,2,7,"V M hw/dv/sv/mem_bkdr_if/mem_bkdr_if.sv
+? D hw/ip/prim/abstract/prim_clock_gating.sv
+? D hw/ip/prim/abstract/prim_clock_mux2.sv
+? D hw/ip/prim/abstract/prim_flash.sv
+? D hw/ip/prim/abstract/prim_pad_wrapper.sv
+? D hw/ip/prim/abstract/prim_ram_1p.sv
+? D hw/ip/prim/abstract/prim_ram_2p.sv
+? D hw/ip/prim/abstract/prim_rom.sv
+D D hw/ip/prim/rtl/prim_pkg.sv
+V M hw/top_earlgrey/dv/tb/chip_hier_macros.svh",,,design,0.9,Commit deletes handcoded RTL abstract primitives and modifies memory interface path comments. RTL design change.,design|design|design,1.0
+caliptra-rtl,dd20e2b9098ba7a045b91334018482e5395081bc,resolved merge conflict,,review,verification,0,36,2,"V M src/datavault/rtl/dv_reg_uvm.sv
+V M src/doe/rtl/doe_reg_uvm.sv
+V M src/ecc/rtl/ecc_reg_uvm.sv
+V M src/hmac/rtl/hmac_reg_uvm.sv
+V A src/keyvault/rtl/kv_reg_covergroups.svh
+V A src/keyvault/rtl/kv_reg_sample.svh
+V M src/keyvault/rtl/kv_reg_uvm.sv
+V M src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/registers/kv_reg_model_top_pkg.sv
+V M src/keyvault/uvmf_kv/uvmf_template_output/verification_ip/environment_packages/kv_env_pkg/src/kv_env_configuration.svh
+V A src/pcrvault/rtl/pv_reg_covergroups.svh
+V A src/pcrvault/rtl/pv_reg_sample.svh
+V M src/pcrvault/rtl/pv_reg_uvm.sv
+V M src/sha256/rtl/sha256_reg_uvm.sv
+V M src/sha512/rtl/sha512_reg_uvm.sv
+V A src/soc_ifc/rtl/mbox_csr_covergroups.svh
+V A src/soc_ifc/rtl/mbox_csr_sample.svh
+V M src/soc_ifc/rtl/mbox_csr_uvm.sv
+V A src/soc_ifc/rtl/sha512_acc_csr_covergroups.svh
+V A src/soc_ifc/rtl/sha512_acc_csr_sample.svh
+V M src/soc_ifc/rtl/sha512_acc_csr_uvm.sv
+~ M src/soc_ifc/rtl/soc_ifc_reg.sv
+V A src/soc_ifc/rtl/soc_ifc_reg_covergroups.svh
+V A src/soc_ifc/rtl/soc_ifc_reg_sample.svh
+V M src/soc_ifc/rtl/soc_ifc_reg_uvm.sv
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/registers/soc_ifc_reg_model_top_pkg.sv
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/src/soc_ifc_env_configuration.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/environment_packages/soc_ifc_env_pkg/src/soc_ifc_environment.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/cptra_ctrl_pkg/src/cptra_ctrl_transaction_coverage.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/cptra_status_pkg/src/cptra_status_transaction_coverage.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/soc_ifc_ctrl_pkg/src/soc_ifc_ctrl_transaction_coverage.svh
+V M src/soc_ifc/uvmf_soc_ifc/uvmf_template_output/verification_ip/interface_packages/soc_ifc_status_pkg/src/soc_ifc_status_transaction_coverage.svh
+V A tools/templates/rdl/cov/main.sv
+V A tools/templates/rdl/cov/top_pkg.sv
+V A tools/templates/rdl/cov/uvm_reg.sv
+? A tools/templates/rdl/smp/main.sv
+? A tools/templates/rdl/smp/top_pkg.sv
+V A tools/templates/rdl/smp/uvm_reg.sv
+V A tools/templates/rdl/uvm/main.sv
+V A tools/templates/rdl/uvm/uvm_reg.sv",,,verification,0.9,"All changes are UVM register model classes, coverage groups, and testbench templates for functional verification.",verification|verification|verification,1.0

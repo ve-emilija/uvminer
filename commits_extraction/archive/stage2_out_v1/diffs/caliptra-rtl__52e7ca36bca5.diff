@@ -1,0 +1,51 @@
+diff --git a/src/integration/tb/caliptra_top_tb.sv b/src/integration/tb/caliptra_top_tb.sv
+index 39e94273..d8a88492 100755
+--- a/src/integration/tb/caliptra_top_tb.sv
++++ b/src/integration/tb/caliptra_top_tb.sv
+@@ -199,7 +199,7 @@ caliptra_top_tb_soc_bfm soc_bfm_inst (
+ // JTAG DPI
+ jtagdpi #(
+     .Name           ("jtag0"),
+-    .ListenPort     (63224)
++    .ListenPort     (0)
+ ) jtagdpi (
+     .clk_i          (core_clk),
+     .rst_ni         (cptra_rst_b),
+diff --git a/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv b/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
+index e69d719b..278b49fd 100644
+--- a/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
++++ b/src/integration/test_suites/libs/jtagdpi/jtagdpi.sv
+@@ -4,7 +4,7 @@
+ 
+ module jtagdpi #(
+   parameter string Name = "jtag0", // name of the JTAG interface (display only)
+-  parameter int ListenPort = 44853 // TCP port to listen on
++  parameter int ListenPort = 0 // TCP port to listen on (0 = OS-assigned)
+ )(
+   input  logic clk_i,
+   input  logic rst_ni,
+diff --git a/src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv b/src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv
+index 4d0907ac..61853f3e 100644
+--- a/src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv
++++ b/src/soc_ifc/tb/soc_ifc_axi_sha_acc_dis_tb.sv
+@@ -239,12 +239,19 @@ module soc_ifc_axi_sha_acc_dis_tb
+     .iccm_lock(),
+     .iccm_axs_blocked(1'b0),
+ 
++    .iccm_fmc_start_addr(),
++    .iccm_fmc_end_addr(),
++    .iccm_rt_start_addr(),
++    .iccm_rt_end_addr(),
++    .iccm_region_lock(),
++
+     .cptra_noncore_rst_b(),
+     .cptra_uc_rst_b(),
+     .clk_gating_en(),
+     .rdc_clk_dis(),
+     .fw_update_rst_window(),
+     .crypto_error(1'b0),
++    .kv_error(1'b0),
+     
+     .cptra_uncore_dmi_reg_en(1'b0),
+     .cptra_uncore_dmi_reg_wr_en(1'b0),
+(8 non-HDL files also changed in this commit; not shown)

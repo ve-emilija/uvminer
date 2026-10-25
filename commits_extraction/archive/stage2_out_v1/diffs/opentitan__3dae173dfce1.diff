@@ -1,0 +1,57 @@
+diff --git a/hw/ip/prim_generic/rtl/prim_otp_cfg_pkg.sv b/hw/ip/prim_generic/rtl/prim_otp_cfg_pkg.sv
+index 18617e23ec..c961292353 100644
+--- a/hw/ip/prim_generic/rtl/prim_otp_cfg_pkg.sv
++++ b/hw/ip/prim_generic/rtl/prim_otp_cfg_pkg.sv
+@@ -13,6 +13,6 @@ package prim_otp_cfg_pkg;
+     logic done;
+   } otp_cfg_rsp_t;
+ 
+-  parameter otp_cfg_rsp_t OTP_CFG_DEFAULT = '0;
++  parameter otp_cfg_t OTP_CFG_DEFAULT = '0;
+ 
+ endpackage // prim_otp_cfg_pkg
+diff --git a/hw/top_darjeeling/rtl/autogen/chip_darjeeling_asic.sv b/hw/top_darjeeling/rtl/autogen/chip_darjeeling_asic.sv
+index 49bd0114c6..a426dc89a5 100644
+--- a/hw/top_darjeeling/rtl/autogen/chip_darjeeling_asic.sv
++++ b/hw/top_darjeeling/rtl/autogen/chip_darjeeling_asic.sv
+@@ -1154,6 +1154,10 @@ module chip_darjeeling_asic #(
+   otp_ctrl_pkg::otp_ast_req_t otp_ctrl_otp_ast_pwr_seq;
+   otp_ctrl_pkg::otp_ast_rsp_t otp_ctrl_otp_ast_pwr_seq_h;
+ 
++  // OTP DFT configuration
++  prim_otp_cfg_pkg::otp_cfg_t otp_cfg;
++  assign otp_cfg = prim_otp_cfg_pkg::OTP_CFG_DEFAULT;
++
+   // entropy source interface
+   // The entropy source pacakge definition should eventually be moved to es
+   entropy_src_pkg::entropy_src_hw_if_req_t entropy_src_hw_if_req;
+diff --git a/hw/top_darjeeling/rtl/autogen/chip_darjeeling_cw310.sv b/hw/top_darjeeling/rtl/autogen/chip_darjeeling_cw310.sv
+index 234eb914b7..8a72d4cc28 100644
+--- a/hw/top_darjeeling/rtl/autogen/chip_darjeeling_cw310.sv
++++ b/hw/top_darjeeling/rtl/autogen/chip_darjeeling_cw310.sv
+@@ -994,6 +994,10 @@ module chip_darjeeling_cw310 #(
+   otp_ctrl_pkg::otp_ast_req_t otp_ctrl_otp_ast_pwr_seq;
+   otp_ctrl_pkg::otp_ast_rsp_t otp_ctrl_otp_ast_pwr_seq_h;
+ 
++  // OTP DFT configuration
++  prim_otp_cfg_pkg::otp_cfg_t otp_cfg;
++  assign otp_cfg = prim_otp_cfg_pkg::OTP_CFG_DEFAULT;
++
+   // entropy source interface
+   // The entropy source pacakge definition should eventually be moved to es
+   entropy_src_pkg::entropy_src_hw_if_req_t entropy_src_hw_if_req;
+diff --git a/hw/top_darjeeling/templates/chiplevel.sv.tpl b/hw/top_darjeeling/templates/chiplevel.sv.tpl
+index a6d692b30f..8cf9cdef62 100644
+--- a/hw/top_darjeeling/templates/chiplevel.sv.tpl
++++ b/hw/top_darjeeling/templates/chiplevel.sv.tpl
+@@ -471,6 +471,10 @@ module chip_${top["name"]}_${target["name"]} #(
+   otp_ctrl_pkg::otp_ast_req_t otp_ctrl_otp_ast_pwr_seq;
+   otp_ctrl_pkg::otp_ast_rsp_t otp_ctrl_otp_ast_pwr_seq_h;
+ 
++  // OTP DFT configuration
++  prim_otp_cfg_pkg::otp_cfg_t otp_cfg;
++  assign otp_cfg = prim_otp_cfg_pkg::OTP_CFG_DEFAULT;
++
+   // entropy source interface
+   // The entropy source pacakge definition should eventually be moved to es
+   entropy_src_pkg::entropy_src_hw_if_req_t entropy_src_hw_if_req;

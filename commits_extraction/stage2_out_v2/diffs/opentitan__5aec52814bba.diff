@@ -1,0 +1,304 @@
+diff --git a/hw/ip/flash_ctrl/rtl/flash_phy.sv b/hw/ip/flash_ctrl/rtl/flash_phy.sv
+index 9314f04fac..e8ccea052a 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_phy.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_phy.sv
+@@ -81,7 +81,7 @@ module flash_phy #(
+   end
+ 
+   // ready when prim_flash is ready and no ongoing host activity
+-  assign host_req_rdy_o = host_req_rdy[host_bank_sel] & new_rd_rdy;
++  assign host_req_rdy_o = host_req_rdy[host_bank_sel] & new_rd_rdy & host_req_i;
+   assign host_req_done_o = host_req_done[host_last_bank_sel];
+   assign host_rdata_o = rd_data[host_last_bank_sel];
+ 
+diff --git a/hw/ip/tlul/rtl/tlul_adapter_flash.sv b/hw/ip/tlul/rtl/tlul_adapter_flash.sv
+deleted file mode 100644
+index 847ef2319d..0000000000
+--- a/hw/ip/tlul/rtl/tlul_adapter_flash.sv
++++ /dev/null
+@@ -1,147 +0,0 @@
+-// Copyright lowRISC contributors.
+-// Licensed under the Apache License, Version 2.0, see LICENSE for details.
+-// SPDX-License-Identifier: Apache-2.0
+-
+-/**
+- * Tile-Link UL adapter for flash-like devices
+- *
+- */
+-module tlul_adapter_flash #(
+-  parameter Outstanding = 1
+-) (
+-  input   clk_i,
+-  input   rst_ni,
+-
+-  // TL-UL interface
+-  input   tlul_pkg::tl_h2d_t  tl_i,
+-  output  tlul_pkg::tl_d2h_t  tl_o,
+-
+-  // Flash interface
+-  output logic          req_o,
+-  input                 req_rdy_i,
+-  input                 req_done_i,
+-  output logic [top_pkg::FLASH_AW-1:0] addr_o,
+-  input        [top_pkg::FLASH_DW-1:0] rdata_i
+-);
+-
+-  localparam int DataBitWidth = $clog2(top_pkg::FLASH_BYTES_PER_WORD);
+-  localparam int TotalBitWidth = DataBitWidth + top_pkg::FLASH_AW;
+-
+-  import tlul_pkg::*;
+-
+-  typedef struct packed {
+-    tl_a_op_e                   req_op;
+-    logic [top_pkg::TL_SZW-1:0] req_size;
+-    logic [top_pkg::TL_AIW-1:0] req_source;
+-  } txn_attr_t ;
+-
+-  typedef struct packed {
+-    txn_attr_t                    req_attr;
+-    logic [top_pkg::FLASH_AW-1:0] req_address;
+-  } req_t ;
+-
+-  typedef struct packed {
+-    logic [top_pkg::TL_DW-1:0]  rsp_data;
+-    logic                       rsp_err;
+-    logic [top_pkg::TL_SZW-1:0] rsp_size;
+-    logic [top_pkg::TL_AIW-1:0] rsp_source;
+-  } rsp_t ;
+-
+-  localparam int ReqFifoWidth = $bits(req_t) ;
+-  localparam int RspFifoWidth = $bits(rsp_t) ;
+-
+-  req_t reqfifo_wdata, reqfifo_rdata;
+-  rsp_t rspfifo_wdata, rspfifo_rdata;
+-  logic reqfifo_rvalid;
+-  logic rspfifo_wready;
+-  txn_attr_t req_attr;
+-
+-  assign reqfifo_wdata.req_attr.req_op = tl_i.a_opcode;
+-  assign reqfifo_wdata.req_attr.req_size = tl_i.a_size;
+-  assign reqfifo_wdata.req_attr.req_source = tl_i.a_source;
+-  assign reqfifo_wdata.req_address = tl_i.a_address[DataBitWidth +: top_pkg::FLASH_AW];
+-
+-
+-  // REQ FIFO
+-  prim_fifo_sync #(
+-    .Width  (ReqFifoWidth),
+-    .Pass   (1'b1),
+-    .Depth  (Outstanding)
+-  ) u_reqfifo (
+-    .clk_i,
+-    .rst_ni,
+-    .wvalid (tl_i.a_valid),
+-    .wready (tl_o.a_ready),
+-    .wdata  (reqfifo_wdata),
+-    .depth  (),
+-    .rvalid (reqfifo_rvalid),
+-    .rready (req_o & req_rdy_i),
+-    .rdata  (reqfifo_rdata)
+-  );
+-
+-  // The FIFO above immediately pushes to the next entry when request is accepted
+-  // This is to ensure back to back reads can happen without a command gap.  So the
+-  // request attributes need to be separately saved for the response path
+-  always_ff @(posedge clk_i or negedge rst_ni) begin
+-    if (!rst_ni) begin
+-      req_attr.req_op <= Get;
+-      req_attr.req_size <= {top_pkg::TL_SZW{1'b0}};
+-      req_attr.req_source <= {top_pkg::TL_AIW{1'b0}};
+-    end else if(req_o && req_rdy_i) begin
+-      req_attr <= reqfifo_rdata.req_attr;
+-    end
+-  end
+-
+-  assign rspfifo_wdata.rsp_data = rdata_i;
+-  assign rspfifo_wdata.rsp_err = req_attr.req_op != Get;
+-  assign rspfifo_wdata.rsp_size = req_attr.req_size;
+-  assign rspfifo_wdata.rsp_source = req_attr.req_source;
+-
+-  // RSP FIFO
+-  prim_fifo_sync #(
+-    .Width  (RspFifoWidth),
+-    .Pass   (1'b1),
+-    .Depth  (Outstanding)
+-  ) u_rspfifo (
+-    .clk_i,
+-    .rst_ni,
+-    .wvalid (req_done_i),
+-    .wready (rspfifo_wready),
+-    .wdata  (rspfifo_wdata),
+-    .depth  (),
+-    .rvalid (tl_o.d_valid),
+-    .rready (tl_i.d_ready),
+-    .rdata  (rspfifo_rdata)
+… (33 more diff lines in this file not shown)
+diff --git a/hw/ip/tlul/rtl/tlul_adapter_sram.sv b/hw/ip/tlul/rtl/tlul_adapter_sram.sv
+index f8c622c9a2..3a1b281930 100644
+--- a/hw/ip/tlul/rtl/tlul_adapter_sram.sv
++++ b/hw/ip/tlul/rtl/tlul_adapter_sram.sv
+@@ -13,7 +13,8 @@ module tlul_adapter_sram #(
+   parameter int SramAw      = 12,
+   parameter int SramDw      = 32, // Current version supports TL-UL width only
+   parameter int Outstanding = 1,  // Only one request is accepted
+-  parameter bit ByteAccess  = 1   // 1: true, 0: false
++  parameter bit ByteAccess  = 1,  // 1: true, 0: false
++  parameter bit ErrOnWrite  = 0   // 1: Writes not allowed, automatically error
+ ) (
+   input   clk_i,
+   input   rst_ni,
+@@ -67,6 +68,8 @@ module tlul_adapter_sram #(
+   rsp_t rspfifo_wdata,  rspfifo_rdata;
+ 
+   logic wrsp_error;
++  logic wr_attr_error;
++  logic wr_vld_error;
+ 
+   assign tl_o = '{
+       d_valid  : reqfifo_rdata.op ? reqfifo_rvalid : rspfifo_rvalid ,
+@@ -99,14 +102,21 @@ module tlul_adapter_sram #(
+   end
+ 
+   if (ByteAccess == 1) begin : gen_wrsp_byte
+-    assign wrsp_error = (tl_i.a_opcode == PutFullData &&
++    assign wr_attr_error = (tl_i.a_opcode == PutFullData &&
+                         (tl_i.a_mask != '1 || tl_i.a_size != 2'h2));
+   end else begin : gen_wrsp_word
+-    assign wrsp_error = (tl_i.a_mask != '1 || tl_i.a_size != 2'h2);
++    assign wr_attr_error = (tl_i.a_mask != '1 || tl_i.a_size != 2'h2);
+   end
+ 
+-  // TODO: handle rvalid
+-  assign reqfifo_wvalid = req_o && gnt_i ;
++  if (ErrOnWrite == 1) begin : gen_no_writes
++    assign wr_vld_error = tl_i.a_opcode != Get;
++  end else begin : gen_writes_allowed
++    assign wr_vld_error = 1'b0;
++  end
++
++  assign wrsp_error = wr_attr_error | wr_vld_error;
++
++  assign reqfifo_wvalid = req_o & gnt_i ;
+   assign reqfifo_wdata  = '{
+     op: we_o,
+     wrsp_error: wrsp_error,
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index bae971b76d..dc95882198 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -244,7 +244,8 @@ module top_earlgrey (
+   tlul_adapter_sram #(
+     .SramAw(${addr_width}),
+     .SramDw(${data_width}),
+-    .Outstanding(1)
++    .Outstanding(1),
++    .ErrOnWrite(1)
+   ) tl_adapter_${m["name"]} (
+     .clk_i,
+     .rst_ni   (ndmreset_n),
+@@ -290,8 +291,12 @@ module top_earlgrey (
+   logic [FLASH_DW-1:0] flash_host_rdata;
+   logic [FLASH_AW-1:0] flash_host_addr;
+ 
+-  tlul_adapter_flash #(
+-    .Outstanding(1)
++  tlul_adapter_sram #(
++    .SramAw(FLASH_AW),
++    .SramDw(FLASH_DW),
++    .Outstanding(1),
++    .ByteAccess(0),
++    .ErrOnWrite(1)
+   ) tl_adapter_${m["name"]} (
+     .clk_i,
+     .rst_ni     (ndmreset_n),
+@@ -299,11 +304,15 @@ module top_earlgrey (
+     .tl_i       (tl_${m["name"]}_d_h2d),
+     .tl_o       (tl_${m["name"]}_d_d2h),
+ 
+-    .req_o      (flash_host_req),
+-    .req_rdy_i  (flash_host_req_rdy),
+-    .addr_o     (flash_host_addr),
+-    .req_done_i (flash_host_req_done),
+-    .rdata_i    (flash_host_rdata)
++    .req_o    (flash_host_req),
++    .gnt_i    (flash_host_req_rdy),
++    .we_o     (),
++    .addr_o   (flash_host_addr),
++    .wdata_o  (),
++    .wmask_o  (),
++    .rdata_i  (flash_host_rdata),
++    .rvalid_i (flash_host_req_done),
++    .rerror_i (2'b00)
+   );
+ 
+   flash_phy #(
+diff --git a/hw/top_earlgrey/dv/env/chip_reg_block.sv b/hw/top_earlgrey/dv/env/chip_reg_block.sv
+index c63707ffac..176c2673cc 100644
+--- a/hw/top_earlgrey/dv/env/chip_reg_block.sv
++++ b/hw/top_earlgrey/dv/env/chip_reg_block.sv
+@@ -6,6 +6,72 @@
+ // Do Not Edit directly
+ 
+ // Forward declare all register/memory/block classes
++typedef class spi_device_reg_intr_state;
++typedef class spi_device_reg_intr_enable;
++typedef class spi_device_reg_intr_test;
++typedef class spi_device_reg_control;
++typedef class spi_device_reg_cfg;
++typedef class spi_device_reg_fifo_level;
++typedef class spi_device_reg_async_fifo_level;
++typedef class spi_device_reg_status;
++typedef class spi_device_reg_rxf_ptr;
++typedef class spi_device_reg_txf_ptr;
++typedef class spi_device_reg_rxf_addr;
++typedef class spi_device_reg_txf_addr;
++typedef class spi_device_mem_buffer;
++typedef class spi_device_reg_block;
++
++typedef class flash_ctrl_reg_intr_state;
++typedef class flash_ctrl_reg_intr_enable;
++typedef class flash_ctrl_reg_intr_test;
++typedef class flash_ctrl_reg_control;
++typedef class flash_ctrl_reg_addr;
++typedef class flash_ctrl_reg_mp_region_cfg0;
++typedef class flash_ctrl_reg_mp_region_cfg1;
++typedef class flash_ctrl_reg_mp_region_cfg2;
++typedef class flash_ctrl_reg_mp_region_cfg3;
++typedef class flash_ctrl_reg_mp_region_cfg4;
++typedef class flash_ctrl_reg_mp_region_cfg5;
++typedef class flash_ctrl_reg_mp_region_cfg6;
++typedef class flash_ctrl_reg_mp_region_cfg7;
++typedef class flash_ctrl_reg_default_region;
++typedef class flash_ctrl_reg_mp_bank_cfg;
++typedef class flash_ctrl_reg_op_status;
++typedef class flash_ctrl_reg_status;
++typedef class flash_ctrl_reg_scratch;
++typedef class flash_ctrl_reg_fifo_lvl;
++typedef class flash_ctrl_mem_prog_fifo;
++typedef class flash_ctrl_mem_rd_fifo;
++typedef class flash_ctrl_reg_block;
++
++typedef class rv_timer_reg_ctrl;
++typedef class rv_timer_reg_cfg0;
++typedef class rv_timer_reg_timer_v_lower0;
++typedef class rv_timer_reg_timer_v_upper0;
++typedef class rv_timer_reg_compare_lower0_0;
++typedef class rv_timer_reg_compare_upper0_0;
++typedef class rv_timer_reg_intr_enable0;
++typedef class rv_timer_reg_intr_state0;
++typedef class rv_timer_reg_intr_test0;
++typedef class rv_timer_reg_block;
++
++typedef class gpio_reg_intr_state;
++typedef class gpio_reg_intr_enable;
++typedef class gpio_reg_intr_test;
++typedef class gpio_reg_data_in;
++typedef class gpio_reg_direct_out;
++typedef class gpio_reg_masked_out_lower;
++typedef class gpio_reg_masked_out_upper;
++typedef class gpio_reg_direct_oe;
++typedef class gpio_reg_masked_oe_lower;
++typedef class gpio_reg_masked_oe_upper;
++typedef class gpio_reg_intr_ctrl_en_rising;
+… (8444 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/top_earlgrey/rtl/top_earlgrey.sv
+(2 non-HDL files also changed in this commit; not shown)

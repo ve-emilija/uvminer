@@ -1,0 +1,121 @@
+diff --git a/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv b/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+index 9c68b2bf1b..70b150a66f 100644
+--- a/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+@@ -6,7 +6,6 @@
+ // PLEASE DO NOT HAND-EDIT THIS FILE. IT HAS BEEN AUTO-GENERATED WITH THE FOLLOWING COMMAND:
+ //
+ // util/topgen.py -t hw/top_earlgrey/data/top_earlgrey.hjson \
+-//                --tpl hw/top_earlgrey/data/ \
+ //                -o hw/top_earlgrey/ \
+ //                --rnd_cnst_seed 4881560218908238235
+ 
+diff --git a/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv b/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+index 630d78ff31..176022455b 100644
+--- a/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
++++ b/hw/top_earlgrey/rtl/autogen/top_earlgrey_pkg.sv
+@@ -6,7 +6,6 @@
+ // PLEASE DO NOT HAND-EDIT THIS FILE. IT HAS BEEN AUTO-GENERATED WITH THE FOLLOWING COMMAND:
+ //
+ // util/topgen.py -t hw/top_earlgrey/data/top_earlgrey.hjson \
+-//                --tpl hw/top_earlgrey/data/ \
+ //                -o hw/top_earlgrey/ \
+ //                --rnd_cnst_seed 4881560218908238235
+ 
+diff --git a/hw/top_earlgrey/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv b/hw/top_earlgrey/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
+index 019924144c..c0a6739382 100644
+--- a/hw/top_earlgrey/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
++++ b/hw/top_earlgrey/rtl/autogen/top_earlgrey_rnd_cnst_pkg.sv
+@@ -6,7 +6,6 @@
+ // PLEASE DO NOT HAND-EDIT THIS FILE. IT HAS BEEN AUTO-GENERATED WITH THE FOLLOWING COMMAND:
+ //
+ // util/topgen.py -t hw/top_earlgrey/data/top_earlgrey.hjson \
+-//                --tpl hw/top_earlgrey/data/ \
+ //                -o hw/top_earlgrey/ \
+ //                --rnd_cnst_seed 4881560218908238235
+ 
+diff --git a/hw/top_englishbreakfast/data/chip_env_pkg__params.sv.tpl b/hw/top_englishbreakfast/data/chip_env_pkg__params.sv.tpl
+deleted file mode 120000
+index 26c58ffcaa..0000000000
+--- a/hw/top_englishbreakfast/data/chip_env_pkg__params.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/chip_env_pkg__params.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/tb__alert_handler_connect.sv.tpl b/hw/top_englishbreakfast/data/tb__alert_handler_connect.sv.tpl
+deleted file mode 120000
+index e670721975..0000000000
+--- a/hw/top_englishbreakfast/data/tb__alert_handler_connect.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/tb__alert_handler_connect.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/tb__xbar_connect.sv.tpl b/hw/top_englishbreakfast/data/tb__xbar_connect.sv.tpl
+deleted file mode 120000
+index 99790f8e0a..0000000000
+--- a/hw/top_englishbreakfast/data/tb__xbar_connect.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/tb__xbar_connect.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/top_englishbreakfast.sv.tpl b/hw/top_englishbreakfast/data/top_englishbreakfast.sv.tpl
+deleted file mode 120000
+index c44053b4cd..0000000000
+--- a/hw/top_englishbreakfast/data/top_englishbreakfast.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/top_earlgrey.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/top_englishbreakfast_pkg.sv.tpl b/hw/top_englishbreakfast/data/top_englishbreakfast_pkg.sv.tpl
+deleted file mode 120000
+index 587d97f54d..0000000000
+--- a/hw/top_englishbreakfast/data/top_englishbreakfast_pkg.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/top_earlgrey_pkg.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/top_englishbreakfast_rnd_cnst_pkg.sv.tpl b/hw/top_englishbreakfast/data/top_englishbreakfast_rnd_cnst_pkg.sv.tpl
+deleted file mode 120000
+index 050b4df8fe..0000000000
+--- a/hw/top_englishbreakfast/data/top_englishbreakfast_rnd_cnst_pkg.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/top_earlgrey_rnd_cnst_pkg.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_englishbreakfast/data/xbar_env_pkg__params.sv.tpl b/hw/top_englishbreakfast/data/xbar_env_pkg__params.sv.tpl
+deleted file mode 120000
+index 86c5137ce0..0000000000
+--- a/hw/top_englishbreakfast/data/xbar_env_pkg__params.sv.tpl
++++ /dev/null
+@@ -1 +0,0 @@
+-../../top_earlgrey/data/xbar_env_pkg__params.sv.tpl
+\ No newline at end of file
+diff --git a/hw/top_earlgrey/data/chip_env_pkg__params.sv.tpl b/util/topgen/templates/chip_env_pkg__params.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/chip_env_pkg__params.sv.tpl
+rename to util/topgen/templates/chip_env_pkg__params.sv.tpl
+diff --git a/hw/top_earlgrey/data/tb__alert_handler_connect.sv.tpl b/util/topgen/templates/tb__alert_handler_connect.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/tb__alert_handler_connect.sv.tpl
+rename to util/topgen/templates/tb__alert_handler_connect.sv.tpl
+diff --git a/hw/top_earlgrey/data/tb__xbar_connect.sv.tpl b/util/topgen/templates/tb__xbar_connect.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/tb__xbar_connect.sv.tpl
+rename to util/topgen/templates/tb__xbar_connect.sv.tpl
+diff --git a/hw/top_earlgrey/data/top_earlgrey.sv.tpl b/util/topgen/templates/toplevel.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/top_earlgrey.sv.tpl
+rename to util/topgen/templates/toplevel.sv.tpl
+diff --git a/hw/top_earlgrey/data/top_earlgrey_pkg.sv.tpl b/util/topgen/templates/toplevel_pkg.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/top_earlgrey_pkg.sv.tpl
+rename to util/topgen/templates/toplevel_pkg.sv.tpl
+diff --git a/hw/top_earlgrey/data/top_earlgrey_rnd_cnst_pkg.sv.tpl b/util/topgen/templates/toplevel_rnd_cnst_pkg.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/top_earlgrey_rnd_cnst_pkg.sv.tpl
+rename to util/topgen/templates/toplevel_rnd_cnst_pkg.sv.tpl
+diff --git a/hw/top_earlgrey/data/xbar_env_pkg__params.sv.tpl b/util/topgen/templates/xbar_env_pkg__params.sv.tpl
+similarity index 100%
+rename from hw/top_earlgrey/data/xbar_env_pkg__params.sv.tpl
+rename to util/topgen/templates/xbar_env_pkg__params.sv.tpl
+(17 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,161 @@
+diff --git a/hw/ip/prim/abstract/prim_clock_mux2.sv b/hw/ip/prim/abstract/prim_clock_mux2.sv
+new file mode 100644
+index 0000000000..6f266b69bb
+--- /dev/null
++++ b/hw/ip/prim/abstract/prim_clock_mux2.sv
+@@ -0,0 +1,41 @@
++// Copyright lowRISC contributors.
++// Licensed under the Apache License, Version 2.0, see LICENSE for details.
++// SPDX-License-Identifier: Apache-2.0
++
++// TODO: This module is a hard-coded stopgap to select an implementation of an
++// "abstract module". This module is to be replaced by generated code.
++
++`ifndef PRIM_DEFAULT_IMPL
++  `define PRIM_DEFAULT_IMPL prim_pkg::ImplGeneric
++`endif
++
++module prim_clock_mux2 #(
++  parameter prim_pkg::impl_e Impl = `PRIM_DEFAULT_IMPL
++) (
++  input        clk0_i,
++  input        clk1_i,
++  input        sel_i,
++  output logic clk_o
++);
++
++  import prim_pkg::*;
++
++  if (Impl == ImplGeneric) begin : gen_generic
++    prim_generic_clock_mux2 u_impl_generic (
++      .clk0_i,
++      .clk1_i,
++      .sel_i,
++      .clk_o
++    );
++  end else if (Impl == ImplXilinx) begin : gen_xilinx
++    prim_xilinx_clock_mux2 u_impl_xilinx (
++      .clk0_i,
++      .clk1_i,
++      .sel_i,
++      .clk_o
++    );
++  end else begin : gen_failure
++    // TODO: Find code that works across tools and causes a compile failure
++  end
++
++endmodule : prim_clock_mux2
+diff --git a/hw/ip/prim/rtl/prim_clock_inverter.sv b/hw/ip/prim/rtl/prim_clock_inverter.sv
+index e24febbbf4..3113c55f82 100644
+--- a/hw/ip/prim/rtl/prim_clock_inverter.sv
++++ b/hw/ip/prim/rtl/prim_clock_inverter.sv
+@@ -5,17 +5,25 @@
+ // Clock inverter
+ //   Varies on the process
+ 
+-module prim_clock_inverter (
+-  input clk_i,
+-  output logic clk_n_o,   // Inverted
+-
+-  input scanmode_i
++module prim_clock_inverter #(
++  parameter bit HasScanMode = 1'b1
++) (
++  input        clk_i,
++  input        scanmode_i,
++  output logic clk_no      // Inverted
+ );
+ 
+-  // Model
+-  assign clk_n_o = (scanmode_i) ? clk_i : ~clk_i;
+-
+-  // make sure scanmode_i is never X (including during reset)
+-  `ASSERT_KNOWN(scanmodeKnown, scanmode_i, clk_i, 0)
++  if (HasScanMode) begin : gen_scan
++    prim_clock_mux2 i_dft_tck_mux (
++     .clk0_i ( ~clk_i     ),
++     .clk1_i ( clk_i      ), // bypass the inverted clock for testing
++     .sel_i  ( scanmode_i ),
++     .clk_o  ( clk_no     )
++    );
++  end else begin : gen_noscan
++    logic unused_scanmode;
++    assign unused_scanmode = scanmode_i;
++    assign clk_no = ~clk_i;
++  end
+ 
+ endmodule
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_clock_mux2.sv b/hw/ip/prim_generic/rtl/prim_generic_clock_mux2.sv
+new file mode 100644
+index 0000000000..a0a91283ba
+--- /dev/null
++++ b/hw/ip/prim_generic/rtl/prim_generic_clock_mux2.sv
+@@ -0,0 +1,20 @@
++// Copyright lowRISC contributors.
++// Licensed under the Apache License, Version 2.0, see LICENSE for details.
++// SPDX-License-Identifier: Apache-2.0
++
++module prim_generic_clock_mux2 (
++  input        clk0_i,
++  input        clk1_i,
++  input        sel_i,
++  output logic clk_o
++);
++
++  assign clk_o = (sel_i) ? clk1_i : clk0_i;
++
++  // make sure sel is never X (including during reset)
++  // need to use ##1 as this could break with inverted clocks that
++  // start with a rising edge at the beginning of the simulation.
++  `ASSERT(selKnown0, ##1 !$isunknown(sel_i), clk0_i, 0)
++  `ASSERT(selKnown1, ##1 !$isunknown(sel_i), clk1_i, 0)
++
++endmodule : prim_generic_clock_mux2
+diff --git a/hw/ip/prim_xilinx/rtl/prim_xilinx_clock_mux2.sv b/hw/ip/prim_xilinx/rtl/prim_xilinx_clock_mux2.sv
+new file mode 100644
+index 0000000000..b567b0766a
+--- /dev/null
++++ b/hw/ip/prim_xilinx/rtl/prim_xilinx_clock_mux2.sv
+@@ -0,0 +1,28 @@
++// Copyright lowRISC contributors.
++// Licensed under the Apache License, Version 2.0, see LICENSE for details.
++// SPDX-License-Identifier: Apache-2.0
++
++module prim_xilinx_clock_mux2 (
++  input        clk0_i,
++  input        clk1_i,
++  input        sel_i,
++  output logic clk_o
++);
++
++  // for more info, refer to the Xilinx technology primitives userguide, e.g.:
++  // ug953-vivado-7series-libraries.pdf
++  // ug974-vivado-ultrascale-libraries.pdf
++  BUFGMUX bufgmux_i (
++    .S  ( sel_i  ),
++    .I0 ( clk0_i ),
++    .I1 ( clk1_i ),
++    .O  ( clk_o  )
++  );
++
++  // make sure sel is never X (including during reset)
++  // need to use ##1 as this could break with inverted clocks that
++  // start with a rising edge at the beginning of the simulation.
++  `ASSERT(selKnown0, ##1 !$isunknown(sel_i), clk0_i, 0)
++  `ASSERT(selKnown1, ##1 !$isunknown(sel_i), clk1_i, 0)
++
++endmodule : prim_xilinx_clock_mux2
+diff --git a/hw/ip/spi_device/rtl/spi_device.sv b/hw/ip/spi_device/rtl/spi_device.sv
+index 8b7a64ea73..4fb24c98f7 100644
+--- a/hw/ip/spi_device/rtl/spi_device.sv
++++ b/hw/ip/spi_device/rtl/spi_device.sv
+@@ -303,7 +303,7 @@ module spi_device #(
+   logic sck_n;
+   logic rst_spi_n;
+ 
+-  prim_clock_inverter u_clk_spi (.clk_i(cio_sck_i), .clk_n_o(sck_n), .scanmode_i);
++  prim_clock_inverter u_clk_spi (.clk_i(cio_sck_i), .clk_no(sck_n), .scanmode_i);
+   assign clk_spi_in  = (cpha ^ cpol) ? sck_n    : cio_sck_i   ;
+   assign clk_spi_out = (cpha ^ cpol) ? cio_sck_i    : sck_n   ;
+ 
+(4 non-HDL files also changed in this commit; not shown)

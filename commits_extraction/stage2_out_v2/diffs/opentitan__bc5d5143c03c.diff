@@ -1,0 +1,136 @@
+diff --git a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+index e1b9cb9255..e21a0ca161 100644
+--- a/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
++++ b/hw/ip/flash_ctrl/rtl/flash_ctrl_reg_pkg.sv
+@@ -427,7 +427,7 @@ typedef struct packed {
+     4'b 0001, // index[15] FLASH_CTRL_OP_STATUS
+     4'b 1111, // index[16] FLASH_CTRL_STATUS
+     4'b 1111, // index[17] FLASH_CTRL_SCRATCH
+-    4'b 0011, // index[18] FLASH_CTRL_FIFO_LVL
++    4'b 0011  // index[18] FLASH_CTRL_FIFO_LVL
+   };
+ endpackage
+ 
+diff --git a/hw/ip/gpio/rtl/gpio_reg_pkg.sv b/hw/ip/gpio/rtl/gpio_reg_pkg.sv
+index fa657749e0..e4e8cd457a 100644
+--- a/hw/ip/gpio/rtl/gpio_reg_pkg.sv
++++ b/hw/ip/gpio/rtl/gpio_reg_pkg.sv
+@@ -188,7 +188,7 @@ typedef struct packed {
+     4'b 1111, // index[11] GPIO_INTR_CTRL_EN_FALLING
+     4'b 1111, // index[12] GPIO_INTR_CTRL_EN_LVLHIGH
+     4'b 1111, // index[13] GPIO_INTR_CTRL_EN_LVLLOW
+-    4'b 1111, // index[14] GPIO_CTRL_EN_INPUT_FILTER
++    4'b 1111  // index[14] GPIO_CTRL_EN_INPUT_FILTER
+   };
+ endpackage
+ 
+diff --git a/hw/ip/hmac/rtl/hmac_reg_pkg.sv b/hw/ip/hmac/rtl/hmac_reg_pkg.sv
+index 7552769208..b8b3dda338 100644
+--- a/hw/ip/hmac/rtl/hmac_reg_pkg.sv
++++ b/hw/ip/hmac/rtl/hmac_reg_pkg.sv
+@@ -265,7 +265,7 @@ typedef struct packed {
+     4'b 1111, // index[21] HMAC_DIGEST6
+     4'b 1111, // index[22] HMAC_DIGEST7
+     4'b 1111, // index[23] HMAC_MSG_LENGTH_LOWER
+-    4'b 1111, // index[24] HMAC_MSG_LENGTH_UPPER
++    4'b 1111  // index[24] HMAC_MSG_LENGTH_UPPER
+   };
+ endpackage
+ 
+diff --git a/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv b/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+index 8e5f6bdcda..82fa17fd3b 100644
+--- a/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
++++ b/hw/ip/rv_plic/rtl/rv_plic_reg_pkg.sv
+@@ -574,7 +574,7 @@ typedef struct packed {
+     4'b 1111, // index[34] RV_PLIC_IE0
+     4'b 0001, // index[35] RV_PLIC_THRESHOLD0
+     4'b 0001, // index[36] RV_PLIC_CC0
+-    4'b 0001, // index[37] RV_PLIC_MSIP0
++    4'b 0001  // index[37] RV_PLIC_MSIP0
+   };
+ endpackage
+ 
+diff --git a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+index 7970a7f95a..9fba0bae7e 100644
+--- a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
++++ b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+@@ -96,7 +96,7 @@ typedef struct packed {
+     4'b 1111, // index[5] RV_TIMER_COMPARE_UPPER0_0
+     4'b 0001, // index[6] RV_TIMER_INTR_ENABLE0
+     4'b 0001, // index[7] RV_TIMER_INTR_STATE0
+-    4'b 0001, // index[8] RV_TIMER_INTR_TEST0
++    4'b 0001  // index[8] RV_TIMER_INTR_TEST0
+   };
+ endpackage
+ 
+diff --git a/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv b/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+index c312ab3948..d74eb3b0ba 100644
+--- a/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
++++ b/hw/ip/spi_device/rtl/spi_device_reg_pkg.sv
+@@ -229,7 +229,7 @@ typedef struct packed {
+     4'b 1111, // index[ 8] SPI_DEVICE_RXF_PTR
+     4'b 1111, // index[ 9] SPI_DEVICE_TXF_PTR
+     4'b 1111, // index[10] SPI_DEVICE_RXF_ADDR
+-    4'b 1111, // index[11] SPI_DEVICE_TXF_ADDR
++    4'b 1111  // index[11] SPI_DEVICE_TXF_ADDR
+   };
+ endpackage
+ 
+diff --git a/hw/ip/uart/rtl/uart_reg_pkg.sv b/hw/ip/uart/rtl/uart_reg_pkg.sv
+index dbe770136c..320002b398 100644
+--- a/hw/ip/uart/rtl/uart_reg_pkg.sv
++++ b/hw/ip/uart/rtl/uart_reg_pkg.sv
+@@ -321,7 +321,7 @@ typedef struct packed {
+     4'b 1111, // index[ 8] UART_FIFO_STATUS
+     4'b 0001, // index[ 9] UART_OVRD
+     4'b 0011, // index[10] UART_VAL
+-    4'b 1111, // index[11] UART_TIMEOUT_CTRL
++    4'b 1111  // index[11] UART_TIMEOUT_CTRL
+   };
+ endpackage
+ 
+diff --git a/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv b/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+index ade7035dde..36d15e7dcd 100644
+--- a/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
++++ b/hw/ip/usbuart/rtl/usbuart_reg_pkg.sv
+@@ -331,7 +331,7 @@ typedef struct packed {
+     4'b 0011, // index[10] USBUART_VAL
+     4'b 1111, // index[11] USBUART_TIMEOUT_CTRL
+     4'b 1111, // index[12] USBUART_USBSTAT
+-    4'b 1111, // index[13] USBUART_USBPARAM
++    4'b 1111  // index[13] USBUART_USBPARAM
+   };
+ endpackage
+ 
+diff --git a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+index c002c46ead..56815d99d3 100644
+--- a/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
++++ b/hw/top_earlgrey/rtl/rv_plic_reg_pkg.sv
+@@ -909,7 +909,7 @@ typedef struct packed {
+     4'b 1111, // index[57] RV_PLIC_IE01
+     4'b 0001, // index[58] RV_PLIC_THRESHOLD0
+     4'b 0001, // index[59] RV_PLIC_CC0
+-    4'b 0001, // index[60] RV_PLIC_MSIP0
++    4'b 0001  // index[60] RV_PLIC_MSIP0
+   };
+ endpackage
+ 
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index b2f2223c6d..3a0cb6a001 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -151,11 +151,11 @@ packbit = 0
+ % for i,r in enumerate(block.regs):
+ <% index_str = "{}".format(i).rjust(max_regs_char) %>\
+   % if r.width > 16:
+-    4'b 1111${" " if i == max_regs else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
++    4'b 1111${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
+   % elif r.width > 8:
+-    4'b 0011${" " if i == max_regs else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
++    4'b 0011${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
+   % else:
+-    4'b 0001${" " if i == max_regs else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
++    4'b 0001${" " if i == num_regs-1 else ","} // index[${index_str}] ${block.name.upper()}_${r.name.upper()}
+   % endif
+ % endfor
+   };

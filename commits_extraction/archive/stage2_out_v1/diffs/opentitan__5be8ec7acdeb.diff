@@ -1,0 +1,52 @@
+diff --git a/hw/top_earlgrey/ip/ast/rtl/vcaon_pgd.sv b/hw/top_earlgrey/ip/ast/rtl/vcaon_pgd.sv
+index 98ff3395e9..8731fa29b6 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/vcaon_pgd.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/vcaon_pgd.sv
+@@ -31,7 +31,7 @@ initial begin
+   init_start = 1'b0;
+ end
+ 
+-always_comb begin
++always @( * ) begin
+   if ( init_start ) begin
+     vcaon_pok_o <= 1'b0;
+   end else if ( !init_start && gen_supp_a ) begin
+diff --git a/hw/top_earlgrey/ip/ast/rtl/vcc_pgd.sv b/hw/top_earlgrey/ip/ast/rtl/vcc_pgd.sv
+index 06b7170f95..3de3d6931d 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/vcc_pgd.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/vcc_pgd.sv
+@@ -31,7 +31,7 @@ initial begin
+   init_start = 1'b0;
+ end
+ 
+-always_comb (* xprop_off *) begin
++always (* xprop_off *) @( * ) begin
+   if ( init_start ) begin
+     vcc_pok_o <= 1'b0;
+   end
+diff --git a/hw/top_earlgrey/ip/ast/rtl/vcmain_pgd.sv b/hw/top_earlgrey/ip/ast/rtl/vcmain_pgd.sv
+index 5468972a5a..432155d2c5 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/vcmain_pgd.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/vcmain_pgd.sv
+@@ -31,7 +31,7 @@ initial begin
+   init_start = 1'b0;
+ end
+ 
+-always_comb begin
++always @( * ) begin
+   if ( init_start ) begin
+     vcmain_pok_o <= 1'b0;
+   end else if ( !init_start && gen_supp_a ) begin
+diff --git a/hw/top_earlgrey/ip/ast/rtl/vio_pgd.sv b/hw/top_earlgrey/ip/ast/rtl/vio_pgd.sv
+index ac75288ab5..4caac0e8f2 100644
+--- a/hw/top_earlgrey/ip/ast/rtl/vio_pgd.sv
++++ b/hw/top_earlgrey/ip/ast/rtl/vio_pgd.sv
+@@ -31,7 +31,7 @@ initial begin
+   init_start = 1'b0;
+ end
+ 
+-always_comb (* xprop_off *) begin
++always (* xprop_off *) @( * ) begin
+   if ( init_start ) begin
+     vio_pok_o <= 1'b0;
+   end

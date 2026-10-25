@@ -1,0 +1,304 @@
+diff --git a/hw/vendor/pulp_riscv_dbg/src/dm_csrs.sv b/hw/vendor/pulp_riscv_dbg/src/dm_csrs.sv
+index 38d7b51bf7..ee13a5029d 100644
+--- a/hw/vendor/pulp_riscv_dbg/src/dm_csrs.sv
++++ b/hw/vendor/pulp_riscv_dbg/src/dm_csrs.sv
+@@ -87,7 +87,6 @@ module dm_csrs #(
+   dm::dtm_op_e dtm_op;
+   assign dtm_op = dm::dtm_op_e'(dmi_req_i.op);
+ 
+-  logic [31:0] resp_queue_data;
+ 
+   localparam dm::dm_csr_e DataEnd = dm::dm_csr_e'(dm::Data0 + {4'h0, dm::DataCount} - 8'h1);
+   localparam dm::dm_csr_e ProgBufEnd = dm::dm_csr_e'(dm::ProgBuf0 + {4'h0, dm::ProgBufSize} - 8'h1);
+@@ -176,8 +175,8 @@ module dm_csrs #(
+ 
+   logic [HartSelLen-1:0] selected_hart;
+ 
+-  // a successful response returns zero
+-  assign dmi_resp_o.resp = dm::DTM_SUCCESS;
++  dm::dmi_resp_t resp_queue_inp;
++
+   // SBA
+   assign sbautoincrement_o = sbcs_q.sbautoincrement;
+   assign sbreadonaddr_o    = sbcs_q.sbreadonaddr;
+@@ -273,7 +272,8 @@ module dm_csrs #(
+     sbaddr_d            = 64'(sbaddress_i);
+     sbdata_d            = sbdata_q;
+ 
+-    resp_queue_data         = 32'h0;
++    resp_queue_inp.data     = 32'h0;
++    resp_queue_inp.resp     = dm::DTM_SUCCESS;
+     cmd_valid_d             = 1'b0;
+     sbaddress_write_valid_o = 1'b0;
+     sbdata_read_valid_o     = 1'b0;
+@@ -288,62 +288,70 @@ module dm_csrs #(
+     if (dmi_req_ready_o && dmi_req_valid_i && dtm_op == dm::DTM_READ) begin
+       unique case (dm_csr_addr) inside
+         [(dm::Data0):DataEnd]: begin
+-          resp_queue_data = data_q[$clog2(dm::DataCount)'(autoexecdata_idx)];
++          resp_queue_inp.data = data_q[$clog2(dm::DataCount)'(autoexecdata_idx)];
+           if (!cmdbusy_i) begin
+             // check whether we need to re-execute the command (just give a cmd_valid)
+             cmd_valid_d = abstractauto_q.autoexecdata[autoexecdata_idx];
+           // An abstract command was executing while one of the data registers was read
+-          end else if (cmderr_q == dm::CmdErrNone) begin
+-            cmderr_d = dm::CmdErrBusy;
++          end else begin
++            resp_queue_inp.resp = dm::DTM_BUSY;
++            if (cmderr_q == dm::CmdErrNone) begin
++              cmderr_d = dm::CmdErrBusy;
++            end
+           end
+         end
+-        dm::DMControl:    resp_queue_data = dmcontrol_q;
+-        dm::DMStatus:     resp_queue_data = dmstatus;
+-        dm::Hartinfo:     resp_queue_data = hartinfo_aligned[selected_hart];
+-        dm::AbstractCS:   resp_queue_data = abstractcs;
+-        dm::AbstractAuto: resp_queue_data = abstractauto_q;
++        dm::DMControl:    resp_queue_inp.data = dmcontrol_q;
++        dm::DMStatus:     resp_queue_inp.data = dmstatus;
++        dm::Hartinfo:     resp_queue_inp.data = hartinfo_aligned[selected_hart];
++        dm::AbstractCS:   resp_queue_inp.data = abstractcs;
++        dm::AbstractAuto: resp_queue_inp.data = abstractauto_q;
+         // command is read-only
+-        dm::Command:    resp_queue_data = '0;
++        dm::Command:    resp_queue_inp.data = '0;
+         [(dm::ProgBuf0):ProgBufEnd]: begin
+-          resp_queue_data = progbuf_q[dmi_req_i.addr[$clog2(dm::ProgBufSize)-1:0]];
++          resp_queue_inp.data = progbuf_q[dmi_req_i.addr[$clog2(dm::ProgBufSize)-1:0]];
+           if (!cmdbusy_i) begin
+             // check whether we need to re-execute the command (just give a cmd_valid)
+             // range of autoexecprogbuf is 31:16
+             cmd_valid_d = abstractauto_q.autoexecprogbuf[{1'b1, dmi_req_i.addr[3:0]}];
+ 
+           // An abstract command was executing while one of the progbuf registers was read
+-          end else if (cmderr_q == dm::CmdErrNone) begin
+-            cmderr_d = dm::CmdErrBusy;
++          end else begin
++            resp_queue_inp.resp = dm::DTM_BUSY;
++            if (cmderr_q == dm::CmdErrNone) begin
++              cmderr_d = dm::CmdErrBusy;
++            end
+           end
+         end
+-        dm::HaltSum0: resp_queue_data = haltsum0;
+-        dm::HaltSum1: resp_queue_data = haltsum1;
+-        dm::HaltSum2: resp_queue_data = haltsum2;
+-        dm::HaltSum3: resp_queue_data = haltsum3;
++        dm::HaltSum0: resp_queue_inp.data = haltsum0;
++        dm::HaltSum1: resp_queue_inp.data = haltsum1;
++        dm::HaltSum2: resp_queue_inp.data = haltsum2;
++        dm::HaltSum3: resp_queue_inp.data = haltsum3;
+         dm::SBCS: begin
+-          resp_queue_data = sbcs_q;
++          resp_queue_inp.data = sbcs_q;
+         end
+         dm::SBAddress0: begin
+-          resp_queue_data = sbaddr_q[31:0];
++          resp_queue_inp.data = sbaddr_q[31:0];
+         end
+         dm::SBAddress1: begin
+-          resp_queue_data = sbaddr_q[63:32];
++          resp_queue_inp.data = sbaddr_q[63:32];
+         end
+         dm::SBData0: begin
+           // access while the SBA was busy
+           if (sbbusy_i || sbcs_q.sbbusyerror) begin
+             sbcs_d.sbbusyerror = 1'b1;
++            resp_queue_inp.resp = dm::DTM_BUSY;
+           end else begin
+             sbdata_read_valid_o = (sbcs_q.sberror == '0);
+-            resp_queue_data = sbdata_q[31:0];
++            resp_queue_inp.data = sbdata_q[31:0];
+           end
+         end
+         dm::SBData1: begin
+           // access while the SBA was busy
+           if (sbbusy_i || sbcs_q.sbbusyerror) begin
+             sbcs_d.sbbusyerror = 1'b1;
++            resp_queue_inp.resp = dm::DTM_BUSY;
+           end else begin
+… (135 more diff lines in this file not shown)
+diff --git a/hw/vendor/pulp_riscv_dbg/src/dm_mem.sv b/hw/vendor/pulp_riscv_dbg/src/dm_mem.sv
+index 178259f6fd..c1cc0e87be 100755
+--- a/hw/vendor/pulp_riscv_dbg/src/dm_mem.sv
++++ b/hw/vendor/pulp_riscv_dbg/src/dm_mem.sv
+@@ -26,6 +26,7 @@ module dm_mem #(
+   input  logic                             rst_ni,      // debug module reset
+ 
+   output logic [NrHarts-1:0]               debug_req_o,
++  input  logic                             ndmreset_i,
+   input  logic [19:0]                      hartsel_i,
+   // from Ctrl and Status register
+   input  logic [NrHarts-1:0]               haltreq_i,
+@@ -201,6 +202,13 @@ module dm_mem #(
+       cmderror_valid_o = 1'b1;
+       cmderror_o = dm::CmdErrorException;
+     end
++
++    if (ndmreset_i) begin
++      // Clear state of hart and its control signals when it is being reset.
++      state_d = Idle;
++      go      = 1'b0;
++      resume  = 1'b0;
++    end
+   end
+ 
+   // word mux for 32bit and 64bit buses
+@@ -214,14 +222,13 @@ module dm_mem #(
+   end
+ 
+   // read/write logic
+-  logic [63:0] data_bits;
++  logic [dm::DataCount-1:0][31:0] data_bits;
+   logic [7:0][7:0] rdata;
+   always_comb begin : p_rw_logic
+ 
+     halted_d_aligned   = NrHartsAligned'(halted_q);
+     resuming_d_aligned = NrHartsAligned'(resuming_q);
+     rdata_d        = rdata_q;
+-    // convert the data in bits representation
+     data_bits      = data_i;
+     rdata          = '0;
+ 
+@@ -258,9 +265,19 @@ module dm_mem #(
+           // core can write data registers
+           [DataBaseAddr:DataEndAddr]: begin
+             data_valid_o = 1'b1;
+-            for (int i = 0; i < $bits(be_i); i++) begin
+-              if (be_i[i]) begin
+-                data_bits[i*8+:8] = wdata_i[i*8+:8];
++            for (int dc = 0; dc < dm::DataCount; dc++) begin
++              if ((addr_i[DbgAddressBits-1:2] - DataBaseAddr[DbgAddressBits-1:2]) == dc) begin
++                for (int i = 0; i < $bits(be_i); i++) begin
++                  if (be_i[i]) begin
++                    if (i>3) begin // for upper 32bit data write (only used for BusWidth ==  64)
++                      if ((dc+1) < dm::DataCount) begin // ensure we write to an implemented data register
++                        data_bits[dc+1][(i-4)*8+:8] = wdata_i[i*8+:8];
++                      end
++                    end else begin // for lower 32bit data write
++                      data_bits[dc][i*8+:8] = wdata_i[i*8+:8];
++                    end
++                  end
++                end
+               end
+             end
+           end
+@@ -293,10 +310,8 @@ module dm_mem #(
+ 
+           [DataBaseAddr:DataEndAddr]: begin
+             rdata_d = {
+-                      data_i[$clog2(dm::ProgBufSize)'(addr_i[DbgAddressBits-1:3] -
+-                          DataBaseAddr[DbgAddressBits-1:3] + 1'b1)],
+-                      data_i[$clog2(dm::ProgBufSize)'(addr_i[DbgAddressBits-1:3] -
+-                          DataBaseAddr[DbgAddressBits-1:3])]
++                      data_i[$clog2(dm::DataCount)'(((addr_i[DbgAddressBits-1:3] - DataBaseAddr[DbgAddressBits-1:3]) << 1) + 1'b1)],
++                      data_i[$clog2(dm::DataCount)'(((addr_i[DbgAddressBits-1:3] - DataBaseAddr[DbgAddressBits-1:3]) << 1))]
+                       };
+           end
+ 
+@@ -325,6 +340,12 @@ module dm_mem #(
+       end
+     end
+ 
++    if (ndmreset_i) begin
++      // When harts are reset, they are neither halted nor resuming.
++      halted_d_aligned   = '0;
++      resuming_d_aligned = '0;
++    end
++
+     data_o = data_bits;
+   end
+ 
+diff --git a/hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv b/hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv
+index 1c2b61954d..9f3c3121c0 100644
+--- a/hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv
++++ b/hw/vendor/pulp_riscv_dbg/src/dm_pkg.sv
+@@ -197,6 +197,12 @@ package dm;
+     DTM_WRITE = 2'h2
+   } dtm_op_e;
+ 
++  typedef enum logic [1:0] {
++    DTM_SUCCESS = 2'h0,
++    DTM_ERR     = 2'h2,
++    DTM_BUSY    = 2'h3
++  } dtm_op_status_e;
++
+   typedef struct packed {
+     logic [31:29] sbversion;
+     logic [28:23] zero0;
+@@ -215,8 +221,6 @@ package dm;
+     logic         sbaccess8;
+   } sbcs_t;
+ 
+-  localparam logic [1:0] DTM_SUCCESS = 2'h0;
+-
+   typedef struct packed {
+     logic [6:0]  addr;
+     dtm_op_e     op;
+diff --git a/hw/vendor/pulp_riscv_dbg/src/dm_top.sv b/hw/vendor/pulp_riscv_dbg/src/dm_top.sv
+index 3c9c445118..c21e58d9cd 100644
+--- a/hw/vendor/pulp_riscv_dbg/src/dm_top.sv
++++ b/hw/vendor/pulp_riscv_dbg/src/dm_top.sv
+@@ -86,6 +86,7 @@ module dm_top #(
+   logic [dm::DataCount-1:0][31:0]   data_csrs_mem;
+   logic [dm::DataCount-1:0][31:0]   data_mem_csrs;
+   logic                             data_valid;
++  logic                             ndmreset;
+   logic [19:0]                      hartsel;
+   // System Bus Access Module
+   logic [BusWidth-1:0]              sbaddress_csrs_sba;
+@@ -104,6 +105,7 @@ module dm_top #(
+   logic                             sberror_valid;
+   logic [2:0]                       sberror;
+ 
++  assign ndmreset_o = ndmreset;
+ 
+   dm_csrs #(
+     .NrHarts(NrHarts),
+@@ -120,7 +122,7 @@ module dm_top #(
+     .dmi_resp_valid_o,
+     .dmi_resp_ready_i,
+     .dmi_resp_o,
+-    .ndmreset_o,
++    .ndmreset_o              ( ndmreset              ),
+     .dmactive_o,
+     .hartsel_o               ( hartsel               ),
+     .hartinfo_i,
+@@ -201,6 +203,7 @@ module dm_top #(
+     .clk_i,
+     .rst_ni,
+     .debug_req_o,
++    .ndmreset_i              ( ndmreset              ),
+     .hartsel_i               ( hartsel               ),
+     .haltreq_i               ( haltreq               ),
+     .resumereq_i             ( resumereq             ),
+diff --git a/hw/vendor/pulp_riscv_dbg/src/dmi_bscane_tap.sv b/hw/vendor/pulp_riscv_dbg/src/dmi_bscane_tap.sv
+new file mode 100644
+index 0000000000..5fe5d86e51
+--- /dev/null
++++ b/hw/vendor/pulp_riscv_dbg/src/dmi_bscane_tap.sv
+@@ -0,0 +1,80 @@
++// Copyright 2020 ETH Zurich and University of Bologna.
++// Solderpad Hardware License, Version 0.51, see LICENSE for details.
++// SPDX-License-Identifier: SHL-0.51
++
++// Author: Florian Zaruba <zarubaf@iis.ee.ethz.ch>
++
++/// Replacement for the full JTAG tap with `BSCANE2` Xilinx elements which hook
++/// into the FPGA native scan chain. Meant for FPGA boards which do not expose a
++/// usable pin-header or a separate, programmable FTDI chip.
++
++/// They replace the functionality of `dmi_jtag_tap.sv`. The file is
++/// pin-compatible so that by selecting the appropriate file for the target it
++/// can be transparently managed without relying on tick defines.
++module dmi_jtag_tap #(
++  // Ignored, defined by the FPGA model.
++  parameter int unsigned IrLength = 5,
++  // JTAG IDCODE Value
++  parameter logic [31:0] IdcodeValue = 32'h00000001
++  // xxxx             version
++  // xxxxxxxxxxxxxxxx part number
+… (60 more diff lines in this file not shown)
+… files not shown (diff cap reached): hw/vendor/pulp_riscv_dbg/src/dmi_intf.sv, hw/vendor/pulp_riscv_dbg/src/dmi_jtag.sv, hw/vendor/pulp_riscv_dbg/src/dmi_jtag_tap.sv, hw/vendor/pulp_riscv_dbg/src/dmi_test.sv, hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/jtag_intf.sv, hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/jtag_test.sv, hw/vendor/pulp_riscv_dbg/tb/jtag_dmi/tb_jtag_dmi.sv
+(12 non-HDL files also changed in this commit; not shown)

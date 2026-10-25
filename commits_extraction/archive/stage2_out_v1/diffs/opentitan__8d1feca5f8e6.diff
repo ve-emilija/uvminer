@@ -1,0 +1,62 @@
+diff --git a/hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv b/hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
+index 974b01f2fd..6fb96dccde 100644
+--- a/hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
++++ b/hw/top_earlgrey/rtl/autogen/chip_earlgrey_cw310.sv
+@@ -758,7 +758,7 @@ module chip_earlgrey_cw310 #(
+     .RomCtrlBootRomInitFile(BootRomInitFile),
+     .RvCoreIbexRegFile(ibex_pkg::RegFileFPGA),
+     .RvCoreIbexPipeLine(1),
+-    .SecRvCoreIbexureIbex(0),
++    .RvCoreIbexSecureIbex(0),
+     .SramCtrlRetAonInstrExec(0),
+     .SramCtrlMainInstrExec(1),
+     .PinmuxAonTargetCfg(PinmuxTargetCfg)
+diff --git a/hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv b/hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv
+index 1950931205..c5e834cb96 100644
+--- a/hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv
++++ b/hw/top_earlgrey/rtl/autogen/chip_earlgrey_nexysvideo.sv
+@@ -742,7 +742,7 @@ module chip_earlgrey_nexysvideo #(
+     .RomCtrlBootRomInitFile(BootRomInitFile),
+     .RvCoreIbexRegFile(ibex_pkg::RegFileFPGA),
+     .RvCoreIbexPipeLine(1),
+-    .SecRvCoreIbexureIbex(0),
++    .RvCoreIbexSecureIbex(0),
+     .SramCtrlRetAonInstrExec(0),
+     .SramCtrlMainInstrExec(1),
+     .PinmuxAonTargetCfg(PinmuxTargetCfg)
+diff --git a/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv b/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+index a12318d0fa..95977c41bd 100644
+--- a/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
++++ b/hw/top_earlgrey/rtl/autogen/top_earlgrey.sv
+@@ -88,7 +88,7 @@ module top_earlgrey #(
+   parameter bit RvCoreIbexICacheECC = 1,
+   parameter bit RvCoreIbexBranchPredictor = 0,
+   parameter bit RvCoreIbexDbgTriggerEn = 1,
+-  parameter bit SecRvCoreIbexureIbex = 1,
++  parameter bit RvCoreIbexSecureIbex = 1,
+   parameter int unsigned RvCoreIbexDmHaltAddr =
+       tl_main_pkg::ADDR_SPACE_RV_DM__ROM + dm::HaltAddress[31:0],
+   parameter int unsigned RvCoreIbexDmExceptionAddr =
+@@ -2389,7 +2389,7 @@ module top_earlgrey #(
+     .ICacheECC(RvCoreIbexICacheECC),
+     .BranchPredictor(RvCoreIbexBranchPredictor),
+     .DbgTriggerEn(RvCoreIbexDbgTriggerEn),
+-    .SecureIbex(SecRvCoreIbexureIbex),
++    .SecureIbex(RvCoreIbexSecureIbex),
+     .DmHaltAddr(RvCoreIbexDmHaltAddr),
+     .DmExceptionAddr(RvCoreIbexDmExceptionAddr),
+     .PipeLine(RvCoreIbexPipeLine)
+diff --git a/util/topgen/templates/chiplevel.sv.tpl b/util/topgen/templates/chiplevel.sv.tpl
+index e6ee5cc092..58c9a43d8c 100644
+--- a/util/topgen/templates/chiplevel.sv.tpl
++++ b/util/topgen/templates/chiplevel.sv.tpl
+@@ -1097,7 +1097,7 @@ module chip_${top["name"]}_${target["name"]} (
+     .RomCtrlBootRomInitFile(BootRomInitFile),
+     .RvCoreIbexRegFile(ibex_pkg::RegFileFPGA),
+     .RvCoreIbexPipeLine(1),
+-    .SecRvCoreIbexureIbex(0),
++    .RvCoreIbexSecureIbex(0),
+     .SramCtrlRetAonInstrExec(0),
+     .SramCtrlMainInstrExec(1),
+     .PinmuxAonTargetCfg(PinmuxTargetCfg)
+(2 non-HDL files also changed in this commit; not shown)

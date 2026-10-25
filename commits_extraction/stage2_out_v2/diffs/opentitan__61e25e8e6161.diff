@@ -1,0 +1,304 @@
+diff --git a/hw/ip/prim/rtl/prim_arbiter.sv b/hw/ip/prim/rtl/prim_arbiter.sv
+index c9e7bd05c9..ae1aea5b57 100644
+--- a/hw/ip/prim/rtl/prim_arbiter.sv
++++ b/hw/ip/prim/rtl/prim_arbiter.sv
+@@ -7,6 +7,10 @@
+ // verilog parameter
+ //   N:  Number of request ports
+ //   DW: Data width
++//
++// This arbiter implements a first come first serve scheme.
++// If the destination is not ready, the current winning request is held until transaction
++// is accepted.
+ 
+ module prim_arbiter #(
+   parameter N   = 4,
+@@ -56,7 +60,7 @@ module prim_arbiter #(
+     if (!rst_ni) begin
+       mask <= '0;
+     end else if (arb_valid && arb_ready) begin
+-      // Latch only when requests available
++      // Latch only when requests accepted
+       mask <= mask_next;
+     end else if (arb_valid && !arb_ready) begin
+       // Downstream isn't yet ready so, keep current request alive. (First come first serve)
+diff --git a/hw/ip/prim/rtl/prim_fifo_sync.sv b/hw/ip/prim/rtl/prim_fifo_sync.sv
+index 185120c670..5cc1b67e8a 100644
+--- a/hw/ip/prim/rtl/prim_fifo_sync.sv
++++ b/hw/ip/prim/rtl/prim_fifo_sync.sv
+@@ -5,10 +5,11 @@
+ // Generic synchronous fifo for use in a variety of devices.
+ 
+ module prim_fifo_sync #(
+-  parameter int unsigned Width  = 16,
+-  parameter bit Pass            = 1'b1, // if == 1 allow requests to pass through empty FIFO
+-  parameter int unsigned Depth  = 4,
+-  parameter int unsigned DepthW = $clog2(Depth+1)  // derived parameter
++  parameter int unsigned Width       = 16,
++  parameter bit Pass                 = 1'b1, // if == 1 allow requests to pass through empty FIFO
++  parameter int unsigned Depth       = 4,
++  localparam int unsigned DepthWNorm = $clog2(Depth+1),
++  localparam int unsigned DepthW     = (DepthWNorm == 0) ? 1 : DepthWNorm // derived parameter
+ ) (
+   input                   clk_i,
+   input                   rst_ni,
+@@ -24,76 +25,93 @@ module prim_fifo_sync #(
+   output  [DepthW-1:0]    depth
+ );
+ 
+-  `ASSERT_INIT(paramCheckDepthW, DepthW == $clog2(Depth+1))
+-
+-  // consider Depth == 1 case when $clog2(1) == 0
+-  localparam int unsigned PTRV_W    = $clog2(Depth) + ~|$clog2(Depth);
+-  localparam int unsigned PTR_WIDTH = PTRV_W+1;
+-
+-  logic [PTR_WIDTH-1:0] fifo_wptr, fifo_rptr;
+-  logic                 fifo_incr_wptr, fifo_incr_rptr, fifo_empty;
+-
+-  // create the write and read pointers
+-  logic  full, empty;
+-  logic  wptr_msb;
+-  logic  rptr_msb;
+-  logic  [PTRV_W-1:0] wptr_value;
+-  logic  [PTRV_W-1:0] rptr_value;
+-
+-  assign wptr_msb = fifo_wptr[PTR_WIDTH-1];
+-  assign rptr_msb = fifo_rptr[PTR_WIDTH-1];
+-  assign wptr_value = fifo_wptr[0+:PTRV_W];
+-  assign rptr_value = fifo_rptr[0+:PTRV_W];
+-  assign depth = (full)                 ? DepthW'(Depth) :
+-                 (wptr_msb == rptr_msb) ? DepthW'(wptr_value) - DepthW'(rptr_value) :
+-                 (DepthW'(Depth) - DepthW'(rptr_value) + DepthW'(wptr_value)) ;
+-
+-  assign fifo_incr_wptr = wvalid & wready;
+-  assign fifo_incr_rptr = rvalid & rready;
+-
+-  assign wready = ~full;
+-  assign rvalid = ~empty;
+-
+-  always_ff @(posedge clk_i or negedge rst_ni)
+-    if (!rst_ni) begin
+-      fifo_wptr <= {(PTR_WIDTH){1'b0}};
+-    end else if (fifo_incr_wptr) begin
+-      if (fifo_wptr[PTR_WIDTH-2:0] == (Depth-1)) begin
+-        fifo_wptr <= {~fifo_wptr[PTR_WIDTH-1],{(PTR_WIDTH-1){1'b0}}};
+-      end else begin
+-        fifo_wptr <= fifo_wptr + {{(PTR_WIDTH-1){1'b0}},1'b1};
++  // FIFO is in complete passthrough mode
++  if (Depth == 0) begin : gen_passthru_fifo
++    `ASSERT_INIT(paramCheckPass, Pass == 1)
++
++    assign depth = 1'b0; //output is meaningless
++
++    // devie facing
++    assign rvalid = wvalid;
++    assign rdata = wdata;
++
++    // host facing
++    assign wready = rready;
++
++  // Normal FIFO construction
++  end else begin : gen_normal_fifo
++    `ASSERT_INIT(paramCheckDepthW, DepthW == $clog2(Depth+1))
++
++    // consider Depth == 1 case when $clog2(1) == 0
++    localparam int unsigned PTRV_W    = $clog2(Depth) + ~|$clog2(Depth);
++    localparam int unsigned PTR_WIDTH = PTRV_W+1;
++
++    logic [PTR_WIDTH-1:0] fifo_wptr, fifo_rptr;
++    logic                 fifo_incr_wptr, fifo_incr_rptr, fifo_empty;
++
++    // create the write and read pointers
++    logic  full, empty;
++    logic  wptr_msb;
++    logic  rptr_msb;
++    logic  [PTRV_W-1:0] wptr_value;
++    logic  [PTRV_W-1:0] rptr_value;
++
++    assign wptr_msb = fifo_wptr[PTR_WIDTH-1];
++    assign rptr_msb = fifo_rptr[PTR_WIDTH-1];
++    assign wptr_value = fifo_wptr[0+:PTRV_W];
++    assign rptr_value = fifo_rptr[0+:PTRV_W];
++    assign depth = (full)                 ? DepthW'(Depth) :
++                   (wptr_msb == rptr_msb) ? DepthW'(wptr_value) - DepthW'(rptr_value) :
++                   (DepthW'(Depth) - DepthW'(rptr_value) + DepthW'(wptr_value)) ;
++
++    assign fifo_incr_wptr = wvalid & wready;
++    assign fifo_incr_rptr = rvalid & rready;
++
++    assign wready = ~full;
++    assign rvalid = ~empty;
++
++    always_ff @(posedge clk_i or negedge rst_ni)
++      if (!rst_ni) begin
++        fifo_wptr <= {(PTR_WIDTH){1'b0}};
++      end else if (fifo_incr_wptr) begin
++        if (fifo_wptr[PTR_WIDTH-2:0] == (Depth-1)) begin
++          fifo_wptr <= {~fifo_wptr[PTR_WIDTH-1],{(PTR_WIDTH-1){1'b0}}};
++        end else begin
++          fifo_wptr <= fifo_wptr + {{(PTR_WIDTH-1){1'b0}},1'b1};
++      end
+     end
+-  end
+-
+-  always_ff @(posedge clk_i or negedge rst_ni)
+… (57 more diff lines in this file not shown)
+diff --git a/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv b/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+index d6aed4a0c6..7e97113655 100644
+--- a/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
++++ b/hw/ip/rv_core_ibex/rtl/rv_core_ibex.sv
+@@ -171,8 +171,8 @@ module rv_core_ibex #(
+     if (!rst_ni) begin
+       {tl_i_source, tl_d_source} <= '0;
+     end else begin
+-      if (instr_req_o) tl_i_source <= !tl_i_source;
+-      if (data_req_o)  tl_d_source <= !tl_d_source;
++      if (instr_req_o && instr_gnt_i) tl_i_source <= !tl_i_source;
++      if (data_req_o && data_gnt_i)  tl_d_source <= !tl_d_source;
+     end
+   end
+ 
+diff --git a/hw/ip/tlul/rtl/tlul_socket_1n.sv b/hw/ip/tlul/rtl/tlul_socket_1n.sv
+index a26e1c5f82..9532e261ab 100644
+--- a/hw/ip/tlul/rtl/tlul_socket_1n.sv
++++ b/hw/ip/tlul/rtl/tlul_socket_1n.sv
+@@ -147,7 +147,8 @@ module tlul_socket_1n #(
+   always_comb begin
+     hfifo_reqready = tl_u_i[N].a_ready; // default to error
+     for (int idx = 0 ; idx < N ; idx++) begin
+-      if (dev_select_outstanding == NWD'(idx)) hfifo_reqready = tl_u_i[idx].a_ready;
++      //if (dev_select_outstanding == NWD'(idx)) hfifo_reqready = tl_u_i[idx].a_ready;
++      if (dev_select_t == NWD'(idx)) hfifo_reqready = tl_u_i[idx].a_ready;
+     end
+     if (hold_all_requests) hfifo_reqready = 1'b0;
+   end
+diff --git a/hw/ip/tlul/rtl/tlul_socket_m1.sv b/hw/ip/tlul/rtl/tlul_socket_m1.sv
+index fb2c796950..5642a62373 100644
+--- a/hw/ip/tlul/rtl/tlul_socket_m1.sv
++++ b/hw/ip/tlul/rtl/tlul_socket_m1.sv
+@@ -209,8 +209,8 @@ module tlul_socket_m1 #(
+     drsp_fifo_o.d_source[IDW-1:STIDW]
+   };
+   for (genvar i = 0 ; i < M ; i++) begin : gen_idrouting
+-    assign hfifo_rspvalid[i] = drsp_fifo_o.d_valid    && (drsp_fifo_o.d_source[0+:STIDW] == i);
+-    assign dfifo_rspready[i] = hreq_fifo_o[i].d_ready && (drsp_fifo_o.d_source[0+:STIDW] == i);
++    assign hfifo_rspvalid[i] = drsp_fifo_o.d_valid    & (drsp_fifo_o.d_source[0+:STIDW] == i);
++    assign dfifo_rspready[i] = hreq_fifo_o[i].d_ready & (drsp_fifo_o.d_source[0+:STIDW] == i) & drsp_fifo_o.d_valid;
+ 
+     assign hrsp_fifo_i[i] = '{
+       d_valid:  hfifo_rspvalid[i],
+diff --git a/hw/top_earlgrey/rtl/xbar_main.sv b/hw/top_earlgrey/rtl/xbar_main.sv
+index ae2d3da2d4..52878241ee 100644
+--- a/hw/top_earlgrey/rtl/xbar_main.sv
++++ b/hw/top_earlgrey/rtl/xbar_main.sv
+@@ -402,9 +402,11 @@ module xbar_main (
+ 
+   // Instantiation phase
+   tlul_socket_1n #(
+-    .HReqPass (1'b0),
+-    .HRspPass (1'b0),
+-    .N        (4)
++    .HReqDepth (4'h0),
++    .HRspDepth (4'h0),
++    .DReqDepth ({4{4'h0}}),
++    .DRspDepth ({4{4'h0}}),
++    .N         (4)
+   ) u_s1n_14 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -415,7 +417,11 @@ module xbar_main (
+     .dev_select   (dev_sel_s1n_14)
+   );
+   tlul_socket_m1 #(
+-    .M            (3)
++    .HReqDepth ({3{4'h0}}),
++    .HRspDepth ({3{4'h0}}),
++    .DReqDepth (4'h0),
++    .DRspDepth (4'h0),
++    .M         (3)
+   ) u_sm1_15 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -425,7 +431,11 @@ module xbar_main (
+     .tl_d_i       (tl_sm1_15_ds_d2h)
+   );
+   tlul_socket_m1 #(
+-    .M            (2)
++    .HReqPass  (2'h0),
++    .HRspPass  (2'h0),
++    .DReqPass  (1'b0),
++    .DRspPass  (1'b0),
++    .M         (2)
+   ) u_sm1_16 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -435,7 +445,11 @@ module xbar_main (
+     .tl_d_i       (tl_sm1_16_ds_d2h)
+   );
+   tlul_socket_m1 #(
+-    .M            (3)
++    .HReqDepth ({3{4'h0}}),
++    .HRspDepth ({3{4'h0}}),
++    .DReqDepth (4'h0),
++    .DRspDepth (4'h0),
++    .M         (3)
+   ) u_sm1_17 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -445,7 +459,11 @@ module xbar_main (
+     .tl_d_i       (tl_sm1_17_ds_d2h)
+   );
+   tlul_socket_m1 #(
+-    .M            (3)
++    .HReqDepth ({3{4'h0}}),
++    .HRspDepth ({3{4'h0}}),
++    .DReqDepth (4'h0),
++    .DRspDepth (4'h0),
++    .M         (3)
+   ) u_sm1_18 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -455,9 +473,11 @@ module xbar_main (
+     .tl_d_i       (tl_sm1_18_ds_d2h)
+   );
+   tlul_socket_1n #(
+-    .HReqPass (1'b0),
+-    .HRspPass (1'b0),
+-    .N        (11)
++    .HReqDepth (4'h0),
++    .HRspDepth (4'h0),
++    .DReqDepth ({11{4'h0}}),
++    .DRspDepth ({11{4'h0}}),
++    .N         (11)
+   ) u_s1n_19 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -468,7 +488,11 @@ module xbar_main (
+     .dev_select   (dev_sel_s1n_19)
+   );
+   tlul_socket_m1 #(
+-    .M            (2)
++    .HReqPass  (2'h0),
++    .HRspPass  (2'h0),
++    .DReqPass  (1'b0),
++    .DRspPass  (1'b0),
++    .M         (2)
+   ) u_sm1_20 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+@@ -478,7 +502,11 @@ module xbar_main (
+     .tl_d_i       (tl_sm1_20_ds_d2h)
+   );
+   tlul_socket_m1 #(
+-    .M            (2)
++    .HReqPass  (2'h0),
++    .HRspPass  (2'h0),
++    .DReqPass  (1'b0),
++    .DRspPass  (1'b0),
++    .M         (2)
+   ) u_sm1_21 (
+     .clk_i        (clk_main_i),
+     .rst_ni       (rst_main_ni),
+… (80 more diff lines in this file not shown)
+… files not shown (diff cap reached): util/tlgen/xbar.rtl.tpl.sv
+(6 non-HDL files also changed in this commit; not shown)

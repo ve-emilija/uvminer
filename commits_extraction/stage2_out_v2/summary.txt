@@ -1,0 +1,26 @@
+selector suffixes: .sv, .svh, .v, .vh, .sva, .sv.tpl, .svh.tpl
+bulk threshold: 500 files
+
+caliptra-rtl: 802 commits, 482 selected
+    design        selected     77   excluded      0
+    verification  selected    214   excluded      0
+    both          selected    191   excluded      2
+    neither       selected      0   excluded      2
+    none          selected      0   excluded    316
+    top directories with UNKNOWN selector files (tighten rules here):
+            2  tools/templates/rdl/smp
+
+opentitan: 32604 commits, 13148 selected
+    design        selected   4992   excluded      0
+    verification  selected   6816   excluded      0
+    both          selected   1333   excluded      3
+    unknown       selected      7   excluded      0
+    neither       selected      0   excluded     52
+    none          selected      0   excluded  19401
+    top directories with UNKNOWN selector files (tighten rules here):
+           36  hw/ip/prim/abstract
+           21  util/reggen
+           13  hw/top_earlgrey/doc
+            8  hw/ip/alert_handler/doc
+            3  hw/ip/rv_plic/doc
+            3  util/tlgen

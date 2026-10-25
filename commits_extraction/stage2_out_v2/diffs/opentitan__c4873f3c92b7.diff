@@ -1,0 +1,34 @@
+diff --git a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+index 9fba0bae7e..30c80d77dd 100644
+--- a/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
++++ b/hw/ip/rv_timer/rtl/rv_timer_reg_pkg.sv
+@@ -6,6 +6,10 @@
+ 
+ package rv_timer_reg_pkg;
+ 
++  // Param list
++  localparam int N_HARTS = 1;
++  localparam int N_TIMERS = 1;
++
+ // Register to internal design logic
+ typedef struct packed {
+ 
+diff --git a/util/reggen/reg_pkg.tpl.sv b/util/reggen/reg_pkg.tpl.sv
+index 3a0cb6a001..cb9df6748b 100644
+--- a/util/reggen/reg_pkg.tpl.sv
++++ b/util/reggen/reg_pkg.tpl.sv
+@@ -9,6 +9,13 @@
+   max_regs_char = len("{}".format(num_regs-1))
+ %>\
+ package ${block.name}_reg_pkg;
++% if len(block.params) != 0:
++
++  // Param list
++% endif
++% for param in block.params:
++  localparam ${param["type"]} ${param["name"]} = ${param["default"]};
++% endfor
+ 
+ // Register to internal design logic
+ typedef struct packed {
+(4 non-HDL files also changed in this commit; not shown)

@@ -1,0 +1,299 @@
+diff --git a/hw/ip/prim/abstract/prim_ram_1p.sv b/hw/ip/prim/abstract/prim_ram_1p.sv
+index 092bbed565..7a492aaf6d 100644
+--- a/hw/ip/prim/abstract/prim_ram_1p.sv
++++ b/hw/ip/prim/abstract/prim_ram_1p.sv
+@@ -31,8 +31,6 @@ module prim_ram_1p #(
+ 
+   import prim_pkg::*;
+ 
+-  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+-
+   if (Impl == ImplGeneric || Impl == ImplXilinx) begin : gen_mem_generic
+     prim_generic_ram_1p #(
+       .Width(Width),
+diff --git a/hw/ip/prim/abstract/prim_ram_2p.sv b/hw/ip/prim/abstract/prim_ram_2p.sv
+index e906592abb..cab45d73f9 100644
+--- a/hw/ip/prim/abstract/prim_ram_2p.sv
++++ b/hw/ip/prim/abstract/prim_ram_2p.sv
+@@ -16,8 +16,7 @@ module prim_ram_2p #(
+   parameter int Width = 32, // bit
+   parameter int Depth = 128,
+ 
+-  // Do not touch
+-  parameter int Aw    = $clog2(Depth) // derived parameter
++  localparam int Aw   = $clog2(Depth) // derived parameter
+ ) (
+   input clk_a_i,
+   input clk_b_i,
+@@ -37,8 +36,6 @@ module prim_ram_2p #(
+ 
+   import prim_pkg::*;
+ 
+-  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+-
+   if (Impl == ImplGeneric) begin : gen_mem_generic
+     prim_generic_ram_2p #(
+       .Width(Width),
+diff --git a/hw/ip/prim/rtl/prim_fifo_async.sv b/hw/ip/prim/rtl/prim_fifo_async.sv
+index 5f1de9c738..010899cbb2 100644
+--- a/hw/ip/prim/rtl/prim_fifo_async.sv
++++ b/hw/ip/prim/rtl/prim_fifo_async.sv
+@@ -5,9 +5,9 @@
+ // Generic asynchronous fifo for use in a variety of devices.
+ 
+ module prim_fifo_async #(
+-  parameter int unsigned Width = 16,
+-  parameter int unsigned Depth = 3,
+-  parameter int unsigned DepthW = $clog2(Depth+1) // derived parameter representing [0..Depth]
++  parameter  int unsigned Width  = 16,
++  parameter  int unsigned Depth  = 3,
++  localparam int unsigned DepthW = $clog2(Depth+1) // derived parameter representing [0..Depth]
+ ) (
+   // write port
+   input                  clk_wr_i,
+@@ -27,7 +27,6 @@ module prim_fifo_async #(
+ );
+ 
+   `ASSERT_INIT(paramCheckDepth,  Depth >= 3)
+-  `ASSERT_INIT(paramCheckDepthW, DepthW == $clog2(Depth+1))
+ 
+   localparam int unsigned PTRV_W = $clog2(Depth);
+   localparam logic [PTRV_W-1:0] DepthMinus1 = PTRV_W'(Depth - 1);
+diff --git a/hw/ip/prim/rtl/prim_fifo_sync.sv b/hw/ip/prim/rtl/prim_fifo_sync.sv
+index f0fa99a438..f718d0933c 100644
+--- a/hw/ip/prim/rtl/prim_fifo_sync.sv
++++ b/hw/ip/prim/rtl/prim_fifo_sync.sv
+@@ -8,8 +8,9 @@ module prim_fifo_sync #(
+   parameter int unsigned Width       = 16,
+   parameter bit Pass                 = 1'b1, // if == 1 allow requests to pass through empty FIFO
+   parameter int unsigned Depth       = 4,
++  // derived parameter
+   localparam int unsigned DepthWNorm = $clog2(Depth+1),
+-  localparam int unsigned DepthW     = (DepthWNorm == 0) ? 1 : DepthWNorm // derived parameter
++  localparam int unsigned DepthW     = (DepthWNorm == 0) ? 1 : DepthWNorm
+ ) (
+   input                   clk_i,
+   input                   rst_ni,
+@@ -46,7 +47,6 @@ module prim_fifo_sync #(
+ 
+   // Normal FIFO construction
+   end else begin : gen_normal_fifo
+-    `ASSERT_INIT(paramCheckDepthW, DepthW == $clog2(Depth+1))
+ 
+     // consider Depth == 1 case when $clog2(1) == 0
+     localparam int unsigned PTRV_W    = $clog2(Depth) + ~|$clog2(Depth);
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_flash.sv b/hw/ip/prim_generic/rtl/prim_generic_flash.sv
+index d194e614f0..d948e9117f 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_flash.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_flash.sv
+@@ -11,7 +11,7 @@ module prim_generic_flash #(
+   parameter int DataWidth   = 32,   // bits per word
+   parameter bit SkipInit = 1,       // this is an option to reset flash to all F's at reset
+ 
+-  //Do not touch - Derived parameters
++  // Derived parameters
+   localparam int PageW = $clog2(PagesPerBank),
+   localparam int WordW = $clog2(WordsPerPage),
+   localparam int AddrW = PageW + WordW
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv b/hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv
+index ad03e43a4a..c99f0a6e58 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_ram_1p.sv
+@@ -5,10 +5,10 @@
+ // Synchronous single-port SRAM model
+ 
+ module prim_generic_ram_1p #(
+-  parameter int Width           = 32, // bit
+-  parameter int Depth           = 128,
+-  parameter int DataBitsPerMask = 1, // Number of data bits per bit of write mask
+-  localparam int Aw             = $clog2(Depth)  // derived parameter
++  parameter  int Width           = 32, // bit
++  parameter  int Depth           = 128,
++  parameter  int DataBitsPerMask = 1, // Number of data bits per bit of write mask
++  localparam int Aw              = $clog2(Depth)  // derived parameter
+ ) (
+   input clk_i,
+   input rst_ni,       // Memory content reset
+@@ -26,9 +26,6 @@ module prim_generic_ram_1p #(
+   // to be the full bit mask
+   localparam int MaskWidth = Width / DataBitsPerMask;
+ 
+-  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+-
+-
+   logic [Width-1:0] mem [Depth];
+   logic [MaskWidth-1:0] wmask;
+ 
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_ram_2p.sv b/hw/ip/prim_generic/rtl/prim_generic_ram_2p.sv
+index 11ebfec262..e2d3415edf 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_ram_2p.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_ram_2p.sv
+@@ -7,11 +7,10 @@
+ //   Implementing ECC should be done inside wrapper not this model.
+ 
+ module prim_generic_ram_2p #(
+-  parameter int Width    = 32, // bit
+-  parameter int Depth    = 128,
++  parameter  int Width = 32, // bit
++  parameter  int Depth = 128,
+ 
+-  // Do not touch
+-  parameter int Aw = $clog2(Depth)  // derived parameter
++  localparam int Aw    = $clog2(Depth)  // derived parameter
+ ) (
+   input clk_a_i,
+   input clk_b_i,
+@@ -30,8 +29,6 @@ module prim_generic_ram_2p #(
+   output logic [Width-1:0] b_rdata_o
+ );
+ 
+-  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+-
+   logic [Width-1:0] mem [Depth];
+ 
+   // Xilinx FPGA specific Dual-port RAM coding style
+diff --git a/hw/ip/prim_xilinx/rtl/prim_xilinx_ram_2p.sv b/hw/ip/prim_xilinx/rtl/prim_xilinx_ram_2p.sv
+index 9296768aa0..9ee94c5d6b 100644
+--- a/hw/ip/prim_xilinx/rtl/prim_xilinx_ram_2p.sv
++++ b/hw/ip/prim_xilinx/rtl/prim_xilinx_ram_2p.sv
+@@ -7,11 +7,10 @@
+ //   Implementing ECC should be done inside wrapper not this model.
+ 
+ module prim_xilinx_ram_2p #(
+-  parameter int Width    = 32, // bit
+-  parameter int Depth    = 128,
++  parameter  int Width = 32, // bit
++  parameter  int Depth = 128,
+ 
+-  // Do not touch
+-  parameter int Aw = $clog2(Depth)  // derived parameter
++  localparam int Aw    = $clog2(Depth)  // derived parameter
+ ) (
+   input clk_a_i,
+   input clk_b_i,
+@@ -29,8 +28,6 @@ module prim_xilinx_ram_2p #(
+   output logic [Width-1:0] b_rdata_o
+ );
+ 
+-  `ASSERT_INIT(paramCheckAw, Aw == $clog2(Depth))
+-
+   logic [Width-1:0] storage [Depth];
+ 
+   // Xilinx FPGA specific Dual-port RAM coding style
+diff --git a/hw/ip/rv_plic/rtl/rv_plic_target.sv b/hw/ip/rv_plic/rtl/rv_plic_target.sv
+index c08e70fcf4..745643f3eb 100644
+--- a/hw/ip/rv_plic/rtl/rv_plic_target.sv
++++ b/hw/ip/rv_plic/rtl/rv_plic_target.sv
+@@ -35,8 +35,6 @@ module rv_plic_target #(
+ 
+   // this only works with 2 or more sources
+   `ASSERT_INIT(NumSources_A, N_SOURCE >= 2)
+-  `ASSERT_INIT(paramCheckSRCW,  SRCW  == $clog2(N_SOURCE+1))
+-  `ASSERT_INIT(paramCheckPRIOW, PRIOW == $clog2(MAX_PRIO+1))
+ 
+   // To occupy threshold + 1 value
+   localparam int unsigned MAX_PRIOW = $clog2(MAX_PRIO+2);
+diff --git a/hw/ip/spi_device/rtl/spi_fwm_rxf_ctrl.sv b/hw/ip/spi_device/rtl/spi_fwm_rxf_ctrl.sv
+index bab909dcf3..f7264d6596 100644
+--- a/hw/ip/spi_device/rtl/spi_fwm_rxf_ctrl.sv
++++ b/hw/ip/spi_device/rtl/spi_fwm_rxf_ctrl.sv
+@@ -11,9 +11,9 @@ module spi_fwm_rxf_ctrl #(
+   parameter int unsigned SramDw = 32,
+   // Do not touch below
+   // SramDw should be multiple of FifoDw
+-  parameter int unsigned NumBytes = SramDw/FifoDw,  // derived parameter
+-  parameter int unsigned SDW = $clog2(NumBytes),    // derived parameter
+-  parameter int unsigned PtrW = SramAw + SDW + 1    // derived parameter
++  localparam int unsigned NumBytes = SramDw/FifoDw,    // derived parameter
++  localparam int unsigned SDW      = $clog2(NumBytes), // derived parameter
++  localparam int unsigned PtrW     = SramAw + SDW + 1  // derived parameter
+ ) (
+   input clk_i,
+   input rst_ni,
+@@ -42,10 +42,6 @@ module spi_fwm_rxf_ctrl #(
+   input               [1:0] sram_error
+ );
+ 
+-  `ASSERT_INIT(paramCheckNumBytes, NumBytes == (SramDw/FifoDw))
+-  `ASSERT_INIT(paramCheckSDW,      SDW      == $clog2(NumBytes))
+-  `ASSERT_INIT(paramCheckPtrW,     PtrW     == (SramAw + SDW + 1))
+-
+   // Internal variable
+   logic [NumBytes-1:0] byte_enable;
+   logic [SDW-1:0]      pos;   // current byte position
+diff --git a/hw/ip/spi_device/rtl/spi_fwm_txf_ctrl.sv b/hw/ip/spi_device/rtl/spi_fwm_txf_ctrl.sv
+index 8f87005e0c..239654fb45 100644
+--- a/hw/ip/spi_device/rtl/spi_fwm_txf_ctrl.sv
++++ b/hw/ip/spi_device/rtl/spi_fwm_txf_ctrl.sv
+@@ -9,11 +9,10 @@ module spi_fwm_txf_ctrl #(
+   parameter int FifoDw = 8,
+   parameter int SramAw = 11,
+   parameter int SramDw = 32,
+-  // Do not touch below
+   // SramDw should be multiple of FifoDw
+-  parameter int NumBytes = SramDw/FifoDw, // derived parameter
+-  parameter int SDW = $clog2(NumBytes),   // derived parameter
+-  parameter int PtrW = SramAw + SDW + 1   // derived parameter
++  localparam int NumBytes = SramDw/FifoDw, // derived parameter
++  localparam int SDW = $clog2(NumBytes),   // derived parameter
++  localparam int PtrW = SramAw + SDW + 1   // derived parameter
+ ) (
+   input clk_i,
+   input rst_ni,
+@@ -41,10 +40,6 @@ module spi_fwm_txf_ctrl #(
+   input               [1:0] sram_error
+ );
+ 
+-  `ASSERT_INIT(paramCheckNumBytes, NumBytes == (SramDw/FifoDw))
+-  `ASSERT_INIT(paramCheckSDW,      SDW      == $clog2(NumBytes))
+-  `ASSERT_INIT(paramCheckPtrW,     PtrW     == (SramAw + SDW + 1))
+-
+   logic [SDW-1:0] pos;    // Current write position
+   logic [SramAw-1:0] sramf_limit;
+ 
+diff --git a/hw/ip/tlul/rtl/tlul_socket_1n.sv b/hw/ip/tlul/rtl/tlul_socket_1n.sv
+index b9a0696704..28bcfbb669 100644
+--- a/hw/ip/tlul/rtl/tlul_socket_1n.sv
++++ b/hw/ip/tlul/rtl/tlul_socket_1n.sv
+@@ -44,7 +44,7 @@ module tlul_socket_1n #(
+   parameter bit [3:0]     HRspDepth = 4'h2,
+   parameter bit [N*4-1:0] DReqDepth = {N{4'h2}},
+   parameter bit [N*4-1:0] DRspDepth = {N{4'h2}},
+-  parameter               NWD       = $clog2(N+1) // derived parameter
++  localparam              NWD       = $clog2(N+1) // derived parameter
+ ) (
+   input                     clk_i,
+   input                     rst_ni,
+@@ -55,7 +55,6 @@ module tlul_socket_1n #(
+   input  [NWD-1:0]          dev_select
+ );
+ 
+-  `ASSERT_INIT(paramCheckNWD, NWD == $clog2(N+1))
+   `ASSERT_INIT(maxN, N < 16)
+ 
+   // Since our steering is done after potential FIFOing, we need to
+diff --git a/hw/ip/usbdev/rtl/usbdev_usbif.sv b/hw/ip/usbdev/rtl/usbdev_usbif.sv
+index 2511137a12..1b029cd1d7 100644
+--- a/hw/ip/usbdev/rtl/usbdev_usbif.sv
++++ b/hw/ip/usbdev/rtl/usbdev_usbif.sv
+@@ -8,13 +8,13 @@
+ 
+ // This module runs on the 48MHz USB clock
+ module usbdev_usbif  #(
+-  parameter int AVFifoWidth = 4,
+-  parameter int RXFifoWidth = 4,
+-  parameter int MaxPktSizeByte = 64,
+-  parameter int NBuf = 4,
+-  parameter int SramAw = 4,
+-  parameter int NBufWidth = $clog2(NBuf), // derived parameter
+-  parameter int PktW = $clog2(MaxPktSizeByte) // derived parameter
++  parameter  int AVFifoWidth = 4,
++  parameter  int RXFifoWidth = 4,
++  parameter  int MaxPktSizeByte = 64,
++  parameter  int NBuf = 4,
++  parameter  int SramAw = 4,
++  localparam int NBufWidth = $clog2(NBuf), // derived parameter
++  localparam int PktW = $clog2(MaxPktSizeByte) // derived parameter
+ ) (
+   input                            clk_48mhz_i, // 48MHz USB clock
+   input                            rst_ni,

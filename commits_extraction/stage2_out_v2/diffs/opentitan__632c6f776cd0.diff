@@ -1,0 +1,14 @@
+diff --git a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+index 4bb4ec51d0..d2bc994b36 100644
+--- a/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
++++ b/hw/top_earlgrey/doc/top_earlgrey.tpl.sv
+@@ -4,7 +4,7 @@
+ 
+ <% import re
+ %>\
+-module top_earlgrey #(
++module top_${top["name"]} #(
+   parameter bit IbexPipeLine = 0
+ ) (
+   // Clock and Reset
+(10 non-HDL files also changed in this commit; not shown)
